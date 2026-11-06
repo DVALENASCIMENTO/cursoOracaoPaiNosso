@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Avaliação — Aula 01 | O Pai Nosso</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/questionario.css">
+
+    <style>
+        :root {
+            --azul: #071b33;
+            --azul2: #102d4e;
+            --dourado: #c9a45c;
+            --fundo: #f1f3f6;
+            --texto: #293443;
+            --verde: #28734b;
+            --vermelho: #a83232;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--fundo);
+            color: var(--texto);
+            font-family: "Crimson Text", Georgia, serif;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--azul), var(--azul2));
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+            border-bottom: 4px solid var(--dourado);
+        }
+
+        header .ministerio {
+            font-family: "Cinzel", serif;
+            color: var(--dourado);
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-family: "Cinzel", serif;
+            font-size: clamp(23px, 4vw, 34px);
+            margin: 0 0 10px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .container {
+            width: min(950px, 94%);
+            margin: 30px auto;
+        }
+
+        .introducao,
+        .questao,
+        .resultado {
+            background: white;
+            border-radius: 8px;
+            padding: 23px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, .06);
+        }
+
+        .introducao h2,
+        .resultado h2 {
+            font-family: "Cinzel", serif;
+            color: var(--azul);
+            margin-top: 0;
+        }
+
+        .introducao p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .dados-aluno {
+            margin-top: 20px;
+        }
+
+        .dados-aluno label {
+            display: block;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .dados-aluno input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd2dc;
+            border-radius: 5px;
+            font-size: 17px;
+            font-family: inherit;
+        }
+
+        .dados-aluno input:focus {
+            outline: 2px solid var(--dourado);
+            border-color: var(--dourado);
+        }
+
+        .questao {
+            border-left: 4px solid var(--dourado);
+        }
+
+        .questao h3 {
+            color: var(--azul);
+            font-size: 20px;
+            line-height: 1.4;
+            margin: 0 0 15px;
+        }
+
+        .alternativa {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 11px 12px;
+            margin: 8px 0;
+            border: 1px solid #e0e4e9;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: .2s;
+        }
+
+        .alternativa:hover {
+            background: #f6f3eb;
+            border-color: var(--dourado);
+        }
+
+        .alternativa input {
+            margin-top: 6px;
+            accent-color: var(--azul);
+            flex-shrink: 0;
+        }
+
+        .alternativa.selecionada {
+            background: #f4f0e6;
+            border-color: var(--dourado);
+        }
+
+        .acoes {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        button {
+            border: none;
+            border-radius: 5px;
+            padding: 14px 25px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-finalizar {
+            background: var(--azul);
+            color: white;
+        }
+
+        .btn-finalizar:hover {
+            background: var(--azul2);
+        }
+
+        .btn-imprimir {
+            background: var(--dourado);
+            color: var(--azul);
+            margin-top: 20px;
+        }
+
+        .btn-imprimir:hover {
+            background: #b58e43;
+        }
+
+        .btn-refazer {
+            background: #e8edf2;
+            color: var(--azul);
+            margin-top: 15px;
+        }
+
+        .resultado {
+            display: none;
+            text-align: center;
+        }
+
+        .resultado.aparecer {
+            display: block;
+        }
+
+        .resultado .pontuacao {
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--azul);
+            margin: 15px 0;
+        }
+
+        .aprovado {
+            color: var(--verde);
+        }
+
+        .reprovado {
+            color: var(--vermelho);
+        }
+
+        .mensagem-resultado {
+            font-size: 19px;
+            line-height: 1.5;
+        }
+
+        .certificado {
+            display: none;
+            width: 100%;
+            max-width: 1050px;
+            min-height: 720px;
+            margin: 35px auto;
+            padding: 35px;
+            background: #fffdf7;
+            border: 12px double var(--dourado);
+            outline: 2px solid var(--azul);
+            outline-offset: -22px;
+            text-align: center;
+            position: relative;
+            color: var(--azul);
+        }
+
+        .certificado.aparecer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .certificado .marca {
+            font-family: "Cinzel", serif;
+            font-size: 17px;
+            letter-spacing: 4px;
+            color: #9a742f;
+            margin-bottom: 35px;
+        }
+
+        .certificado h2 {
+            font-family: "Cinzel", serif;
+            font-size: clamp(30px, 5vw, 43px);
+            margin: 0 0 20px;
+            color: var(--azul);
+        }
+
+        .certificado .texto-certificado {
+            font-size: 21px;
+            line-height: 1.7;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .nome-certificado {
+            font-family: "Cinzel", serif;
+            font-size: clamp(25px, 4vw, 35px);
+            font-weight: bold;
+            color: #9a742f;
+            margin: 28px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--dourado);
+        }
+
+        .detalhes-certificado {
+            margin-top: 20px;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .assinatura {
+            margin: 55px auto 0;
+            width: 290px;
+            border-top: 1px solid var(--azul);
+            padding-top: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .assinatura strong {
+            display: block;
+        }
+
+        .rodape-certificado {
+            font-family: "Cinzel", serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #9a742f;
+            margin-top: 35px;
+        }
+
+        footer {
+            background: var(--azul);
+            color: #dce2e9;
+            text-align: center;
+            padding: 22px 12px;
+            border-top: 3px solid var(--dourado);
+        }
+
+        footer strong {
+            color: var(--dourado);
+        }
+
+        @media(max-width: 600px) {
+            .introducao,
+            .questao,
+            .resultado {
+                padding: 17px;
+            }
+
+            .certificado {
+                min-height: 650px;
+                padding: 28px;
+                border-width: 8px;
+            }
+
+            .certificado .texto-certificado {
+                font-size: 18px;
+            }
+
+            .assinatura {
+                margin-top: 35px;
+            }
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 8mm;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            header,
+            .container,
+            footer,
+            .resultado,
+            .acoes {
+                display: none !important;
+            }
+
+            .certificado.aparecer {
+                display: flex !important;
+                width: 100%;
+                max-width: none;
+                min-height: 185mm;
+                margin: 0;
+                page-break-inside: avoid;
+                box-shadow: none;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="ministerio">MINISTÉRIO ATALAIA</div>
+        <h1>Avaliação — Aula 01</h1>
+        <p>O Contexto do Pai Nosso</p>
+    </header>
+
+    <main class="container">
+
+        <section class="introducao">
+            <h2>Avaliação de Aprendizagem</h2>
+
+            <p>
+                Esta avaliação contém 40 questões de múltipla escolha,
+                elaboradas com base no estudo bíblico da Aula 01 —
+                O Contexto do Pai Nosso.
+            </p>
+
+            <p>
+                Para obter aprovação, o aluno deverá alcançar pelo menos
+                <strong>70% de aproveitamento</strong>, correspondentes a
+                28 acertos.
+            </p>
+
+            <p>
+                Ao concluir a avaliação, o sistema apresentará sua pontuação.
+                Se aprovado, será disponibilizado um certificado para impressão.
+            </p>
+
+            <div class="dados-aluno">
+                <label for="nomeAluno">Nome completo do aluno:</label>
+                <input type="text" id="nomeAluno"
+                    placeholder="Digite seu nome completo"
+                    autocomplete="name" required>
+            </div>
+        </section>
+
+        <form id="formularioAvaliacao">
+
+            <div id="listaQuestoes"></div>
+
+            <div class="acoes">
+                <button type="submit" class="btn-finalizar">
+                    Finalizar Avaliação
+                </button>
+            </div>
+
+        </form>
+
+        <section class="resultado" id="resultado">
+            <h2>Resultado da Avaliação</h2>
+            <div class="pontuacao" id="pontuacao"></div>
+            <p class="mensagem-resultado" id="mensagemResultado"></p>
+
+            <button class="btn-imprimir" id="imprimirCertificado"
+                onclick="imprimirCertificado()" style="display:none;">
+                Imprimir Certificado
+            </button>
+
+            <br>
+
+            <button class="btn-refazer" onclick="refazerAvaliacao()">
+                Refazer Avaliação
+            </button>
+        </section>
+
+        <section class="certificado" id="certificado">
+
+            <div class="marca">MINISTÉRIO ATALAIA</div>
+
+            <h2>Certificado de Conclusão</h2>
+
+            <p class="texto-certificado">
+                A Escola Bíblica Atalaia certifica que
+            </p>
+
+            <div class="nome-certificado" id="nomeNoCertificado">
+                NOME DO ALUNO
+            </div>
+
+            <p class="texto-certificado">
+                concluiu com aproveitamento a avaliação da
+                <strong>Aula 01 — O Contexto do Pai Nosso</strong>,
+                integrante do curso de formação cristã
+                <strong>O Pai Nosso</strong>.
+            </p>
+
+            <div class="detalhes-certificado">
+                <strong>Resultado:</strong>
+                <span id="resultadoCertificado"></span>
+                <br>
+                <strong>Aproveitamento:</strong>
+                <span id="aproveitamentoCertificado"></span>
+                <br>
+                <strong>Data de emissão:</strong>
+                <span id="dataCertificado"></span>
+            </div>
+
+            <div class="assinatura">
+                <strong>Diego Nascimento</strong>
+                Pastor Evangelista
+                <br>
+                Escola Bíblica Atalaia
+            </div>
+
+            <div class="rodape-certificado">
+                PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p><strong>ESCOLA BÍBLICA ATALAIA</strong></p>
+        <p>Ministério Atalaia — Curso O Pai Nosso</p>
+    </footer>
+
+    <script>
+        /* ==========================================
+           BANCO DE QUESTÕES — AULA 01
+        ========================================== */
+
+        const questoes = [
+
+            {
+                pergunta: "Em qual sermão está inserido o ensino do Pai Nosso?",
+                alternativas: [
+                    "Sermão Profético",
+                    "Sermão do Monte",
+                    "Sermão do Cenáculo",
+                    "Sermão de Pentecostes"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual é o texto principal utilizado nesta aula?",
+                alternativas: [
+                    "Mateus 6:5–15",
+                    "João 3:16–21",
+                    "Atos 2:1–13",
+                    "Romanos 8:1–11"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Quais Evangelhos registram o ensino do Pai Nosso estudado nesta aula?",
+                alternativas: [
+                    "Mateus e Marcos",
+                    "Marcos e João",
+                    "Mateus e Lucas",
+                    "Lucas e João"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "O que Jesus apresenta nas bem-aventuranças?",
+                alternativas: [
+                    "Uma lista de reis de Israel",
+                    "Princípios relacionados à vida daqueles que são bem-aventurados",
+                    "Uma descrição das viagens missionárias",
+                    "Uma lista de festas judaicas"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Em Mateus 5:13–16, Jesus compara seus discípulos a:",
+                alternativas: [
+                    "Árvores e rios",
+                    "Sacerdotes e reis",
+                    "Sal da terra e luz do mundo",
+                    "Soldados e governantes"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "Quais práticas religiosas Jesus aborda em Mateus 6 antes e durante o ensino sobre a oração?",
+                alternativas: [
+                    "Sacrifícios e peregrinações",
+                    "Esmolas, oração e jejum",
+                    "Batismo e ceia",
+                    "Cânticos e ofertas exclusivamente"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual é o problema da oração feita apenas para ser vista pelas pessoas?",
+                alternativas: [
+                    "A duração da oração",
+                    "O local onde acontece",
+                    "A busca por reconhecimento humano",
+                    "A utilização de palavras bíblicas"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "Em Mateus 6:5, Jesus utiliza qual figura para advertir sobre a religiosidade exterior?",
+                alternativas: [
+                    "Hipócritas",
+                    "Pastores",
+                    "Profetas",
+                    "Discípulos"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Segundo 1 Samuel 16:7, enquanto o ser humano observa a aparência, Deus observa:",
+                alternativas: [
+                    "A posição social",
+                    "O coração",
+                    "A riqueza",
+                    "A idade"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem apresenta a parábola do fariseu e do publicano?",
+                alternativas: [
+                    "Mateus 13:1–9",
+                    "Lucas 18:9–14",
+                    "João 10:1–10",
+                    "Marcos 4:35–41"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "O que Jesus ensina sobre o lugar secreto em Mateus 6:6?",
+                alternativas: [
+                    "Que a oração deve ser proibida em público",
+                    "Que a oração deve ser feita somente no templo",
+                    "Que o discípulo deve buscar comunhão sincera com o Pai",
+                    "Que somente os líderes podem orar"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "Segundo Marcos 1:35, o que Jesus fazia antes do amanhecer?",
+                alternativas: [
+                    "Reunia multidões",
+                    "Retirava-se para orar",
+                    "Visitava autoridades",
+                    "Ensinava nas sinagogas"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Em Lucas 6:12, o que Jesus fez antes de escolher os doze apóstolos?",
+                alternativas: [
+                    "Passou a noite em oração",
+                    "Realizou uma viagem",
+                    "Reuniu os sacerdotes",
+                    "Escreveu uma parábola"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Qual personagem bíblico mantinha uma prática regular de oração, conforme Daniel 6:10?",
+                alternativas: [
+                    "Josué",
+                    "Daniel",
+                    "Elias",
+                    "Neemias"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual é a principal ênfase do ensino sobre o lugar secreto?",
+                alternativas: [
+                    "A quantidade de pessoas reunidas",
+                    "A beleza do ambiente",
+                    "A intimidade e sinceridade diante de Deus",
+                    "A utilização de palavras difíceis"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "O que Jesus condena ao falar sobre vãs repetições?",
+                alternativas: [
+                    "Toda oração feita em voz alta",
+                    "A repetição mecânica e vazia, sem entendimento",
+                    "Toda oração feita diariamente",
+                    "A oração realizada em família"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "A advertência sobre vãs repetições está registrada em:",
+                alternativas: [
+                    "Mateus 6:7–8",
+                    "Mateus 5:1–5",
+                    "Lucas 15:1–7",
+                    "João 14:1–6"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "O ensino de Jesus sobre vãs repetições significa que:",
+                alternativas: [
+                    "Nunca devemos repetir uma oração",
+                    "Não devemos perseverar na oração",
+                    "A oração deve ser sempre curta",
+                    "Não devemos transformar a oração em repetição vazia"
+                ],
+                correta: 3
+            },
+
+            {
+                pergunta: "Qual passagem apresenta os profetas de Baal clamando repetidamente?",
+                alternativas: [
+                    "1 Reis 18:25–29",
+                    "2 Reis 2:1–12",
+                    "Gênesis 12:1–9",
+                    "Êxodo 20:1–17"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Segundo Lucas 18:1, Jesus ensinou que devemos:",
+                alternativas: [
+                    "Orar somente quando houver dificuldades",
+                    "Orar sempre e nunca desfalecer",
+                    "Orar apenas em reuniões",
+                    "Evitar a oração em momentos de alegria"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem orienta a perseverar na oração?",
+                alternativas: [
+                    "Colossenses 4:2",
+                    "Gênesis 1:1",
+                    "Êxodo 14:21",
+                    "Josué 1:1"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Segundo Mateus 6:8, antes mesmo de pedirmos, o Pai:",
+                alternativas: [
+                    "Desconhece nossas necessidades",
+                    "Conhece nossas necessidades",
+                    "Precisa receber informações dos anjos",
+                    "Somente conhece as necessidades materiais"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem ensina a apresentar nossas petições a Deus com ações de graças?",
+                alternativas: [
+                    "Filipenses 4:6–7",
+                    "Gênesis 3:1–7",
+                    "Mateus 2:1–12",
+                    "Atos 1:1–5"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Em qual passagem está registrado o modelo de oração apresentado por Jesus?",
+                alternativas: [
+                    "Mateus 6:9–13",
+                    "João 1:1–5",
+                    "Atos 9:1–9",
+                    "Romanos 12:1–2"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "A expressão inicial do Pai Nosso é:",
+                alternativas: [
+                    "Senhor dos Exércitos",
+                    "Deus de Abraão",
+                    "Pai nosso que estás nos céus",
+                    "Rei de Israel"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "O que significa pedir que venha o Reino de Deus?",
+                alternativas: [
+                    "Desejar apenas prosperidade financeira",
+                    "Reconhecer a autoridade de Deus e desejar sua vontade",
+                    "Solicitar o governo de um rei humano",
+                    "Pedir que os problemas desapareçam imediatamente"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem apresenta a orientação de buscar primeiro o Reino de Deus e sua justiça?",
+                alternativas: [
+                    "Mateus 6:33",
+                    "Lucas 2:1–7",
+                    "João 11:1–6",
+                    "Atos 8:26–40"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "A submissão à vontade de Deus na oração significa:",
+                alternativas: [
+                    "Colocar os desejos pessoais acima de tudo",
+                    "Reconhecer a vontade do Pai e estar disposto a obedecê-la",
+                    "Deixar de apresentar necessidades",
+                    "Orar somente por outras pessoas"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem apresenta Jesus dizendo que veio para fazer a vontade daquele que o enviou?",
+                alternativas: [
+                    "João 6:38",
+                    "Mateus 2:13",
+                    "Lucas 19:1",
+                    "Marcos 1:1"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "O pedido pelo pão de cada dia demonstra:",
+                alternativas: [
+                    "A dependência de Deus nas necessidades cotidianas",
+                    "A obrigação de acumular alimentos",
+                    "A superioridade das riquezas",
+                    "A proibição de trabalhar"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Qual acontecimento do Antigo Testamento ilustra a provisão diária de alimento no deserto?",
+                alternativas: [
+                    "A construção da arca",
+                    "O recebimento do maná",
+                    "A travessia do Jordão",
+                    "A queda das muralhas de Jericó"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem apresenta a orientação de perdoar uns aos outros?",
+                alternativas: [
+                    "Colossenses 3:13",
+                    "Gênesis 6:1–8",
+                    "Mateus 2:1–6",
+                    "Atos 1:6–8"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Qual parábola aprofunda o ensino sobre o perdão ao próximo?",
+                alternativas: [
+                    "O semeador",
+                    "O credor incompassivo",
+                    "As dez virgens",
+                    "O bom samaritano"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "O ensino sobre perdoar o próximo demonstra que:",
+                alternativas: [
+                    "O perdão deve permanecer apenas em palavras",
+                    "O perdão não tem relação com os relacionamentos",
+                    "O perdão precisa alcançar nossas atitudes e relacionamentos",
+                    "Somente pessoas perfeitas podem perdoar"
+                ],
+                correta: 2
+            },
+
+            {
+                pergunta: "O pedido de livramento no Pai Nosso está relacionado à necessidade de:",
+                alternativas: [
+                    "Vigilância, dependência e proteção diante do mal",
+                    "Acumular riquezas",
+                    "Evitar qualquer relacionamento",
+                    "Buscar reconhecimento público"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Qual passagem apresenta José resistindo à tentação no Egito?",
+                alternativas: [
+                    "Gênesis 39:7–12",
+                    "Êxodo 3:1–6",
+                    "Números 13:1–3",
+                    "Juízes 6:11–16"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Qual passagem apresenta o ensino sobre a armadura espiritual?",
+                alternativas: [
+                    "Efésios 6:10–18",
+                    "João 2:1–11",
+                    "Mateus 1:1–17",
+                    "Salmos 1:1–6"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Em Atos 2:42, a Igreja perseverava em quais práticas?",
+                alternativas: [
+                    "Somente em viagens",
+                    "Doutrina dos apóstolos, comunhão, partir do pão e orações",
+                    "Somente em festas",
+                    "Apenas em atividades administrativas"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual passagem registra a Igreja reunida em oração pela situação de Pedro?",
+                alternativas: [
+                    "Atos 12:5",
+                    "Atos 1:1",
+                    "Atos 7:54",
+                    "Atos 28:1"
+                ],
+                correta: 0
+            },
+
+            {
+                pergunta: "Segundo Hebreus 4:14–16, podemos nos aproximar de Deus:",
+                alternativas: [
+                    "Com medo de sermos ouvidos",
+                    "Com confiança diante do trono da graça",
+                    "Somente por meio de cerimônias",
+                    "Apenas em dias específicos"
+                ],
+                correta: 1
+            },
+
+            {
+                pergunta: "Qual é a verdade central ensinada nesta primeira aula?",
+                alternativas: [
+                    "A oração serve para impressionar as pessoas",
+                    "A oração é uma repetição obrigatória de palavras",
+                    "A oração expressa relacionamento, dependência, confiança e comunhão com Deus",
+                    "A oração substitui a prática da Palavra"
+                ],
+                correta: 2
+            }
+
+        ];
+
+
+        /* ==========================================
+           EXIBIR AS QUESTÕES
+        ========================================== */
+
+        const listaQuestoes = document.getElementById("listaQuestoes");
+
+        function carregarQuestoes() {
+
+            listaQuestoes.innerHTML = "";
+
+            questoes.forEach((questao, indice) => {
+
+                const artigo = document.createElement("section");
+                artigo.className = "questao";
+
+                const titulo = document.createElement("h3");
+
+                titulo.textContent =
+                    `${indice + 1}. ${questao.pergunta}`;
+
+                artigo.appendChild(titulo);
+
+                questao.alternativas.forEach((alternativa, opcao) => {
+
+                    const label = document.createElement("label");
+                    label.className = "alternativa";
+
+                    const input = document.createElement("input");
+
+                    input.type = "radio";
+                    input.name = `questao${indice}`;
+                    input.value = opcao;
+                    input.required = true;
+
+                    const texto = document.createElement("span");
+                    texto.textContent = alternativa;
+
+                    label.appendChild(input);
+                    label.appendChild(texto);
+
+                    input.addEventListener("change", () => {
+
+                        artigo.querySelectorAll(".alternativa")
+                            .forEach(item => item.classList.remove("selecionada"));
+
+                        label.classList.add("selecionada");
+
+                    });
+
+                    artigo.appendChild(label);
+
+                });
+
+                listaQuestoes.appendChild(artigo);
+
+            });
+
+        }
+
+        carregarQuestoes();
+
+
+        /* ==========================================
+           CORRIGIR A AVALIAÇÃO
+        ========================================== */
+
+        document.getElementById("formularioAvaliacao")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                const nome =
+                    document.getElementById("nomeAluno").value.trim();
+
+                if (!nome) {
+                    alert("Digite o nome completo do aluno.");
+                    document.getElementById("nomeAluno").focus();
+                    return;
+                }
+
+                let acertos = 0;
+                let respondidas = 0;
+
+                questoes.forEach((questao, indice) => {
+
+                    const resposta = document.querySelector(
+                        `input[name="questao${indice}"]:checked`
+                    );
+
+                    if (resposta) {
+
+                        respondidas++;
+
+                        if (Number(resposta.value) === questao.correta) {
+                            acertos++;
+                        }
+
+                    }
+
+                });
+
+                if (respondidas < questoes.length) {
+
+                    alert(
+                        `Você respondeu ${respondidas} de ${questoes.length} questões. ` +
+                        "Responda todas antes de finalizar."
+                    );
+
+                    return;
+                }
+
+                const total = questoes.length;
+                const percentual = (acertos / total) * 100;
+                const aprovacao = percentual >= 70;
+
+                const resultado = document.getElementById("resultado");
+                const pontuacao = document.getElementById("pontuacao");
+                const mensagem = document.getElementById("mensagemResultado");
+                const botaoImprimir = document.getElementById("imprimirCertificado");
+                const certificado = document.getElementById("certificado");
+
+                resultado.classList.add("aparecer");
+
+                certificado.classList.remove("aparecer");
+
+                pontuacao.textContent =
+                    `${acertos} de ${total} questões — ${percentual.toFixed(0)}%`;
+
+                pontuacao.className =
+                    "pontuacao " + (aprovacao ? "aprovado" : "reprovado");
+
+                if (aprovacao) {
+
+                    mensagem.innerHTML =
+                        "<strong class='aprovado'>APROVADO!</strong><br>" +
+                        "Parabéns! Você alcançou o aproveitamento mínimo " +
+                        "necessário para aprovação. Seu certificado está disponível.";
+
+                    botaoImprimir.style.display = "inline-block";
+
+                    document.getElementById("nomeNoCertificado").textContent = nome;
+
+                    document.getElementById("resultadoCertificado").textContent =
+                        `${acertos} de ${total} questões`;
+
+                    document.getElementById("aproveitamentoCertificado").textContent =
+                        `${percentual.toFixed(0)}%`;
+
+                    document.getElementById("dataCertificado").textContent =
+                        new Date().toLocaleDateString("pt-BR");
+
+                    certificado.classList.add("aparecer");
+
+                } else {
+
+                    mensagem.innerHTML =
+                        "<strong class='reprovado'>NÃO APROVADO</strong><br>" +
+                        "Você precisa alcançar pelo menos 28 acertos (70%). " +
+                        "Revise o conteúdo da aula e tente novamente.";
+
+                    botaoImprimir.style.display = "none";
+                }
+
+                resultado.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            });
+
+
+        /* ==========================================
+           IMPRIMIR CERTIFICADO
+        ========================================== */
+
+        function imprimirCertificado() {
+
+            const certificado = document.getElementById("certificado");
+
+            if (!certificado.classList.contains("aparecer")) {
+                alert("O certificado ainda não foi liberado.");
+                return;
+            }
+
+            window.print();
+
+        }
+
+
+        /* ==========================================
+           REFAZER A AVALIAÇÃO
+        ========================================== */
+
+        function refazerAvaliacao() {
+
+            document.getElementById("formularioAvaliacao").reset();
+
+            document.getElementById("resultado")
+                .classList.remove("aparecer");
+
+            document.getElementById("certificado")
+                .classList.remove("aparecer");
+
+            document.getElementById("imprimirCertificado")
+                .style.display = "none";
+
+            document.querySelectorAll(".alternativa")
+                .forEach(item => item.classList.remove("selecionada"));
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>

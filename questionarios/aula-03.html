@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — Aula 3 | Escola Bíblica Atalaia</title>
+
+<style>
+:root {
+    --azul: #142b49;
+    --azul-claro: #203f65;
+    --dourado: #c6a45c;
+    --fundo: #f3f5f8;
+    --texto: #263445;
+    --branco: #ffffff;
+    --verde: #247447;
+    --vermelho: #a83232;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: var(--branco);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+.cabecalho {
+    text-align: center;
+    border-bottom: 3px solid var(--dourado);
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.cabecalho h1 {
+    color: var(--azul);
+    margin-bottom: 5px;
+    font-size: 27px;
+}
+
+.cabecalho h2 {
+    color: var(--azul-claro);
+    font-size: 19px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+.cabecalho p {
+    color: #777;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.identificacao {
+    margin-bottom: 25px;
+}
+
+.identificacao label {
+    display: block;
+    font-weight: bold;
+    color: var(--azul);
+    margin-bottom: 8px;
+}
+
+.identificacao input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd2dc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.progresso {
+    background: #e2e6ec;
+    height: 10px;
+    border-radius: 20px;
+    margin: 20px 0 30px;
+    overflow: hidden;
+}
+
+.progresso-barra {
+    height: 100%;
+    width: 0%;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.questao {
+    padding: 20px;
+    margin-bottom: 18px;
+    border: 1px solid #e0e4ea;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.questao h3 {
+    color: var(--azul);
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.alternativa {
+    display: block;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 1px solid #e0e4ea;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.alternativa:hover {
+    background: #f3f6fa;
+    border-color: var(--dourado);
+}
+
+.alternativa input {
+    margin-right: 9px;
+    accent-color: var(--azul);
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 7px;
+    background: var(--azul);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    margin-top: 25px;
+}
+
+button:hover {
+    background: var(--azul-claro);
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+#resultado {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 9px;
+    text-align: center;
+    background: #f4f6f9;
+}
+
+#resultado h2 {
+    color: var(--azul);
+}
+
+.aprovado {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.reprovado {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+.certificado {
+    display: none;
+    margin-top: 30px;
+    padding: 35px;
+    border: 8px double var(--dourado);
+    text-align: center;
+    background: #fff;
+    color: var(--azul);
+}
+
+.certificado .escola {
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.certificado h1 {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    margin: 20px 0;
+    color: var(--azul);
+}
+
+.certificado .nome-aluno {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    color: #9a7734;
+    border-bottom: 1px solid var(--dourado);
+    display: inline-block;
+    padding: 5px 25px;
+    margin: 15px 0;
+}
+
+.certificado .assinatura {
+    margin-top: 55px;
+    display: inline-block;
+    min-width: 250px;
+    border-top: 1px solid var(--azul);
+    padding-top: 8px;
+}
+
+.certificado .assinatura strong {
+    display: block;
+}
+
+.certificado .rodape {
+    margin-top: 35px;
+    font-size: 12px;
+    color: #777;
+}
+
+.botoes-certificado {
+    display: none;
+}
+
+@media(max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 20px 14px;
+        margin: 10px auto;
+    }
+
+    .cabecalho h1 {
+        font-size: 23px;
+    }
+
+    .certificado {
+        padding: 20px 12px;
+    }
+
+    .certificado h1 {
+        font-size: 27px;
+    }
+
+    .certificado .nome-aluno {
+        font-size: 21px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .cabecalho,
+    .identificacao,
+    .progresso,
+    #questionario,
+    #resultado,
+    .botoes-certificado,
+    .nao-imprimir {
+        display: none !important;
+    }
+
+    .certificado {
+        display: block !important;
+        width: 100%;
+        min-height: 185mm;
+        margin: 0;
+        padding: 35px;
+        border: 8px double var(--dourado);
+        page-break-inside: avoid;
+    }
+
+    @page {
+        size: A4 landscape;
+        margin: 12mm;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cabecalho">
+        <h1>ESCOLA BÍBLICA ATALAIA</h1>
+        <h2>Curso: O Pai Nosso</h2>
+        <h2>Aula 03 — Santificado seja o teu nome</h2>
+        <p>PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</p>
+    </header>
+
+    <div class="identificacao">
+        <label for="nome">Nome completo do aluno:</label>
+        <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+    </div>
+
+    <p><strong>Instruções:</strong> Responda às 40 questões de múltipla escolha. Cada questão possui apenas uma alternativa correta. Para aprovação e emissão do certificado, é necessário alcançar pelo menos 70% de aproveitamento (28 acertos).</p>
+
+    <div class="progresso">
+        <div class="progresso-barra" id="barraProgresso"></div>
+    </div>
+
+    <form id="questionario">
+
+        <div id="questoes"></div>
+
+        <button type="submit" id="btnEnviar">Finalizar avaliação</button>
+
+    </form>
+
+    <div id="resultado"></div>
+
+    <section class="certificado" id="certificado">
+
+        <div class="escola">Escola Bíblica Atalaia</div>
+
+        <p>Curso de Formação Cristã</p>
+
+        <h1>Certificado de Aprovação</h1>
+
+        <p>Certificamos que</p>
+
+        <div class="nome-aluno" id="nomeCertificado"></div>
+
+        <p>concluiu com aproveitamento a avaliação da</p>
+
+        <h2>Aula 03 — Santificado seja o teu nome</h2>
+
+        <p>do curso <strong>O Pai Nosso</strong>, demonstrando conhecimento sobre a santidade do nome de Deus, seu caráter e a responsabilidade de honrá-lo por meio das palavras e da maneira de viver.</p>
+
+        <p id="pontuacaoCertificado"></p>
+
+        <p>Manaus — Amazonas</p>
+
+        <div class="assinatura">
+            <strong>Diego Nascimento</strong>
+            Pastor Evangelista
+        </div>
+
+        <div class="rodape">
+            ESCOLA BÍBLICA ATALAIA<br>
+            Proclamando a Verdade. Formando Discípulos.
+        </div>
+
+    </section>
+
+    <div class="botoes-certificado" id="botoesCertificado">
+        <button type="button" onclick="window.print()">Imprimir / Salvar certificado em PDF</button>
+    </div>
+
+</div>
+
+<script>
+const perguntas = [
+
+{
+p: "O que Jesus ensina na expressão “Santificado seja o teu nome”?",
+a: [
+"Que Deus precisa se tornar santo.",
+"Que o nome de Deus deve ser reconhecido e honrado como santo.",
+"Que devemos evitar pronunciar qualquer nome.",
+"Que a santidade depende da opinião das pessoas."
+],
+c: 1
+},
+
+{
+p: "Qual é o texto bíblico principal da Aula 03?",
+a: [
+"Mateus 6:9.",
+"João 3:16.",
+"Salmos 23:1.",
+"Atos 2:1."
+],
+c: 0
+},
+
+{
+p: "O que significa santificar, conforme apresentado no estudo?",
+a: [
+"Esquecer.",
+"Esconder.",
+"Separar, consagrar e reconhecer como santo.",
+"Modificar a natureza de Deus."
+],
+c: 2
+},
+
+{
+p: "Deus precisa que os seres humanos o tornem santo?",
+a: [
+"Sim, porque sua santidade depende das pessoas.",
+"Sim, por meio de orações diárias.",
+"Não, porque Deus já é absolutamente santo em sua natureza.",
+"Não, porque a santidade não existe."
+],
+c: 2
+},
+
+{
+p: "Em Isaías 6:3, o que os serafins proclamam?",
+a: [
+"Que o homem é poderoso.",
+"Que o Senhor dos Exércitos é santo, santo, santo.",
+"Que Jerusalém é invencível.",
+"Que todos os povos são iguais em poder."
+],
+c: 1
+},
+
+{
+p: "Segundo Isaías 6:3, o que está cheia da glória do Senhor?",
+a: [
+"Apenas Jerusalém.",
+"Apenas o templo.",
+"Toda a terra.",
+"Apenas os céus."
+],
+c: 2
+},
+
+{
+p: "A santidade de Deus depende do reconhecimento humano?",
+a: [
+"Sim, depende da adoração das pessoas.",
+"Sim, depende das orações.",
+"Não, Deus é santo independentemente do reconhecimento humano.",
+"Sim, depende da quantidade de pessoas que creem."
+],
+c: 2
+},
+
+{
+p: "Na Bíblia, o nome de alguém frequentemente está relacionado a quê?",
+a: [
+"Somente à aparência física.",
+"À identidade, reputação e caráter.",
+"Somente à profissão.",
+"À posição financeira."
+],
+c: 1
+},
+
+{
+p: "Quando o estudo fala sobre o nome de Deus, a que ele se refere?",
+a: [
+"Somente a uma palavra pronunciada.",
+"À identidade, natureza, atributos e ações de Deus.",
+"Somente ao nome de uma cidade.",
+"À tradição humana."
+],
+c: 1
+},
+
+{
+p: "Qual texto bíblico adverte contra tomar o nome do Senhor em vão?",
+a: [
+"Êxodo 20:7.",
+"Mateus 5:16.",
+"Romanos 8:15.",
+"João 1:12."
+],
+c: 0
+},
+
+{
+p: "O que significa usar o nome de Deus em vão?",
+a: [
+"Orar com sinceridade.",
+"Usar o nome de Deus de maneira irresponsável, frívola ou desrespeitosa.",
+"Adorar a Deus.",
+"Estudar as Escrituras."
+],
+c: 1
+},
+
+{
+p: "Qual atitude representa um uso inadequado do nome de Deus?",
+a: [
+"Agradecer pela vida.",
+"Orar com reverência.",
+"Usar o nome de Deus para justificar mentiras ou manipular pessoas.",
+"Reconhecer a fidelidade do Senhor."
+],
+c: 2
+},
+
+{
+p: "De acordo com o estudo, é suficiente honrar o nome de Deus apenas com os lábios?",
+a: [
+"Sim, as palavras são suficientes.",
+"Não, a vida também deve demonstrar reverência.",
+"Sim, desde que a oração seja longa.",
+"Não, porque palavras nunca têm importância."
+],
+c: 1
+},
+
+{
+p: "Qual é a relação entre o caráter de Deus e o modo como devemos viver?",
+a: [
+"Nenhuma relação existe.",
+"Devemos viver de maneira que demonstre reverência ao caráter de Deus.",
+"Podemos agir de qualquer maneira.",
+"Nosso comportamento não tem importância."
+],
+c: 1
+},
+
+{
+p: "Qual ensinamento aparece em Mateus 5:16?",
+a: [
+"Esconder todas as boas obras.",
+"Deixar a luz brilhar para que as pessoas glorifiquem o Pai.",
+"Buscar reconhecimento pessoal.",
+"Evitar qualquer relacionamento."
+],
+c: 1
+},
+
+{
+p: "Segundo Mateus 5:16, quem deve ser glorificado por meio das boas obras?",
+a: [
+"O próprio ser humano.",
+"Os líderes religiosos.",
+"O Pai que está nos céus.",
+"As autoridades da cidade."
+],
+c: 2
+},
+
+{
+p: "O que 1 Pedro 1:15–16 ensina?",
+a: [
+"Que devemos viver sem compromisso.",
+"Que devemos ser santos em todo o nosso procedimento, porque Deus é santo.",
+"Que a santidade é impossível.",
+"Que somente algumas pessoas precisam buscar santidade."
+],
+c: 1
+},
+
+{
+p: "Em quais áreas da vida devemos honrar o nome de Deus?",
+a: [
+"Somente na igreja.",
+"Somente durante as orações.",
+"Em casa, no trabalho, nos relacionamentos e nas palavras.",
+"Somente em momentos de dificuldade."
+],
+c: 2
+},
+
+{
+p: "Qual destas atitudes pode demonstrar reverência ao nome de Deus?",
+a: [
+"Desonestidade.",
+"Falta de perdão.",
+"Amor, honestidade e justiça.",
+"Manipulação das pessoas."
+],
+c: 2
+},
+
+{
+p: "Qual pergunta pessoal o estudo propõe para reflexão?",
+a: [
+"Quanto dinheiro eu possuo?",
+"Minha maneira de viver honra o nome de Deus?",
+"Quantas pessoas me conhecem?",
+"Qual é minha posição social?"
+],
+c: 1
+},
+
+{
+p: "Na sequência do Pai Nosso, o que vem depois de “Santificado seja o teu nome”?",
+a: [
+"Perdoa as nossas dívidas.",
+"Venha o teu Reino.",
+"Não nos deixes cair em tentação.",
+"O pão nosso de cada dia."
+],
+c: 1
+},
+
+{
+p: "O que a ordem das primeiras expressões do Pai Nosso nos ensina?",
+a: [
+"Que devemos começar a oração exigindo respostas.",
+"Que o reconhecimento e a honra a Deus vêm antes das petições pessoais.",
+"Que não devemos apresentar pedidos.",
+"Que a oração deve ser apenas uma repetição."
+],
+c: 1
+},
+
+{
+p: "De acordo com o estudo, a oração é mais do que uma lista de necessidades. Ela também é:",
+a: [
+"Adoração, reconhecimento e entrega.",
+"Uma obrigação sem significado.",
+"Uma forma de controlar Deus.",
+"Uma maneira de obter prestígio."
+],
+c: 0
+},
+
+{
+p: "O que significa colocar a glória de Deus acima dos interesses pessoais?",
+a: [
+"Buscar somente a própria vontade.",
+"Priorizar aquilo que honra a Deus, em vez de colocar os desejos pessoais em primeiro lugar.",
+"Desconsiderar a vontade de Deus.",
+"Usar a fé para obter vantagens."
+],
+c: 1
+},
+
+{
+p: "Como devemos honrar o nome de Deus por meio das palavras?",
+a: [
+"Usando seu nome de qualquer maneira.",
+"Falando com respeito e evitando o uso irresponsável de seu nome.",
+"Pronunciando seu nome para manipular pessoas.",
+"Usando o nome de Deus em brincadeiras desrespeitosas."
+],
+c: 1
+},
+
+{
+p: "Qual atitude demonstra que reconhecemos a santidade de Deus?",
+a: [
+"Tratar Deus com irreverência.",
+"Reconhecer sua grandeza e viver com respeito diante dele.",
+"Considerar Deus igual aos seres humanos.",
+"Ignorar sua Palavra."
+],
+c: 1
+},
+
+{
+p: "O que significa testemunhar o caráter de Deus?",
+a: [
+"Viver de maneira que nossas atitudes apontem para quem Deus é.",
+"Falar de Deus sem demonstrar amor.",
+"Buscar reconhecimento para nós mesmos.",
+"Evitar praticar aquilo que ensinamos."
+],
+c: 0
+},
+
+{
+p: "Qual deve ser a prioridade do cristão ao orar?",
+a: [
+"Impor seus próprios desejos.",
+"Reconhecer, honrar e buscar a vontade de Deus.",
+"Exigir que Deus faça tudo imediatamente.",
+"Repetir palavras sem reflexão."
+],
+c: 1
+},
+
+{
+p: "Por que a expressão “Santificado seja o teu nome” aparece antes dos pedidos pessoais?",
+a: [
+"Porque Deus não deseja ouvir pedidos.",
+"Porque a oração começa reconhecendo a santidade e a glória de Deus.",
+"Porque os pedidos são proibidos.",
+"Porque o ser humano deve ser o centro da oração."
+],
+c: 1
+},
+
+{
+p: "Qual é o perigo de usar o nome de Deus para justificar nossas próprias vontades?",
+a: [
+"Demonstrar humildade.",
+"Honrar a verdade.",
+"Apresentar nossos interesses como se fossem a vontade de Deus.",
+"Praticar o perdão."
+],
+c: 2
+},
+
+{
+p: "O que o estudo ensina sobre a relação entre confiança e reverência?",
+a: [
+"Podemos nos aproximar de Deus com confiança, sem perder o respeito por sua majestade.",
+"Confiança significa ausência de respeito.",
+"Reverência significa não poder falar com Deus.",
+"Não existe relação entre confiança e reverência."
+],
+c: 0
+},
+
+{
+p: "Qual texto bíblico é citado para ensinar sobre a santidade de Deus?",
+a: [
+"Isaías 6:3.",
+"Lucas 15:11.",
+"Gênesis 12:1.",
+"Apocalipse 21:4."
+],
+c: 0
+},
+
+{
+p: "Qual texto bíblico é citado para ensinar sobre honrar a Deus por meio das boas obras?",
+a: [
+"Mateus 5:16.",
+"Êxodo 3:14.",
+"Salmos 91:1.",
+"João 11:35."
+],
+c: 0
+},
+
+{
+p: "Qual texto bíblico é citado para ensinar que devemos ser santos em nosso procedimento?",
+a: [
+"1 Pedro 1:15–16.",
+"Atos 1:8.",
+"Filipenses 4:13.",
+"Lucas 2:11."
+],
+c: 0
+},
+
+{
+p: "Qual é uma aplicação prática do ensino “Santificado seja o teu nome” no ambiente de trabalho?",
+a: [
+"Agir com desonestidade quando ninguém estiver olhando.",
+"Demonstrar honestidade e responsabilidade.",
+"Tratar os outros com desprezo.",
+"Usar a fé para obter vantagens."
+],
+c: 1
+},
+
+{
+p: "Como nossas atitudes podem influenciar outras pessoas?",
+a: [
+"Podem apontar para Deus por meio do amor, da justiça e da honestidade.",
+"Não influenciam ninguém.",
+"Devem buscar somente elogios.",
+"Devem ser independentes de nossa fé."
+],
+c: 0
+},
+
+{
+p: "Qual é a relação entre santificar o nome de Deus e obedecer à sua Palavra?",
+a: [
+"Não existe relação.",
+"Honrar o nome de Deus envolve viver com reverência e obediência.",
+"Obedecer é desnecessário.",
+"Somente as palavras importam."
+],
+c: 1
+},
+
+{
+p: "Qual é o principal ensinamento da Aula 03?",
+a: [
+"Devemos usar o nome de Deus para alcançar nossos objetivos.",
+"Devemos reconhecer a santidade de Deus e honrar seu nome por meio de nossas palavras e atitudes.",
+"Deus precisa da aprovação humana para ser santo.",
+"A oração deve conter somente pedidos pessoais."
+],
+c: 1
+},
+
+{
+p: "Qual deve ser a disposição do cristão ao dizer “Santificado seja o teu nome”?",
+a: [
+"Buscar a própria glória.",
+"Reconhecer a santidade de Deus e desejar que sua vida o glorifique.",
+"Exigir que Deus atenda todos os desejos.",
+"Falar sem compromisso com suas atitudes."
+],
+c: 1
+},
+
+{
+p: "Qual é o tema da próxima aula do curso O Pai Nosso?",
+a: [
+"O pão nosso de cada dia.",
+"Perdoa as nossas dívidas.",
+"Venha o teu Reino.",
+"Não nos deixes cair em tentação."
+],
+c: 2
+}
+
+];
+
+const areaQuestoes = document.getElementById("questoes");
+const barraProgresso = document.getElementById("barraProgresso");
+const formulario = document.getElementById("questionario");
+
+function carregarQuestoes() {
+    perguntas.forEach((pergunta, indice) => {
+
+        const numero = indice + 1;
+
+        const bloco = document.createElement("div");
+        bloco.className = "questao";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = `${numero}. ${pergunta.p}`;
+
+        bloco.appendChild(titulo);
+
+        pergunta.a.forEach((alternativa, alternativaIndice) => {
+
+            const label = document.createElement("label");
+            label.className = "alternativa";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `questao${indice}`;
+            radio.value = alternativaIndice;
+            radio.required = true;
+
+            radio.addEventListener("change", atualizarProgresso);
+
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(alternativa));
+
+            bloco.appendChild(label);
+        });
+
+        areaQuestoes.appendChild(bloco);
+    });
+}
+
+function atualizarProgresso() {
+    const respondidas = perguntas.filter((pergunta, indice) => {
+        return document.querySelector(`input[name="questao${indice}"]:checked`);
+    }).length;
+
+    barraProgresso.style.width =
+        (respondidas / perguntas.length * 100) + "%";
+}
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo.");
+        document.getElementById("nome").focus();
+        return;
+    }
+
+    let acertos = 0;
+    let respondidas = 0;
+
+    perguntas.forEach((pergunta, indice) => {
+
+        const resposta = document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        );
+
+        if (resposta) {
+            respondidas++;
+
+            if (Number(resposta.value) === pergunta.c) {
+                acertos++;
+            }
+        }
+    });
+
+    if (respondidas !== perguntas.length) {
+        alert("Responda todas as 40 questões antes de finalizar.");
+        return;
+    }
+
+    const percentual = Math.round((acertos / perguntas.length) * 100);
+    const aprovado = percentual >= 70;
+
+    const resultado = document.getElementById("resultado");
+
+    resultado.style.display = "block";
+
+    resultado.innerHTML = `
+        <h2>Resultado da Avaliação</h2>
+        <p><strong>Aluno:</strong> ${escaparHTML(nome)}</p>
+        <p><strong>Acertos:</strong> ${acertos} de ${perguntas.length}</p>
+        <p><strong>Aproveitamento:</strong> ${percentual}%</p>
+        <p class="${aprovado ? "aprovado" : "reprovado"}">
+            ${aprovado
+                ? "PARABÉNS! VOCÊ FOI APROVADO!"
+                : "VOCÊ NÃO ATINGIU A NOTA MÍNIMA."}
+        </p>
+        <p>
+            ${aprovado
+                ? "Seu certificado de aprovação foi emitido abaixo."
+                : "Para obter aprovação, é necessário alcançar pelo menos 70% (28 acertos)."}
+        </p>
+    `;
+
+    if (aprovado) {
+
+        document.getElementById("nomeCertificado").textContent = nome;
+
+        document.getElementById("pontuacaoCertificado").textContent =
+            `Aproveitamento: ${acertos}/40 questões — ${percentual}%`;
+
+        document.getElementById("certificado").style.display = "block";
+        document.getElementById("botoesCertificado").style.display = "block";
+
+    } else {
+
+        document.getElementById("certificado").style.display = "none";
+        document.getElementById("botoesCertificado").style.display = "none";
+    }
+
+    document.getElementById("btnEnviar").disabled = true;
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+function escaparHTML(texto) {
+    return texto.replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[caractere]);
+}
+
+carregarQuestoes();
+</script>
+
+</body>
+</html>

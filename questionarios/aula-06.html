@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — Aula 06 | Escola Bíblica Atalaia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #10243a;
+    --azul2: #1c3854;
+    --dourado: #c7a45b;
+    --fundo: #f3f1eb;
+    --texto: #263442;
+    --verde: #246b45;
+    --vermelho: #a83232;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Crimson Text', serif;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: var(--azul);
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 18px;
+    margin: 5px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.07);
+}
+
+.card h2 {
+    color: var(--azul);
+    font-family: 'Cinzel', serif;
+    font-size: 21px;
+    border-bottom: 2px solid var(--dourado);
+    padding-bottom: 10px;
+}
+
+.identificacao label {
+    display: block;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.identificacao input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 18px;
+}
+
+.instrucoes {
+    background: #f2ecdc;
+    border-left: 4px solid var(--dourado);
+    padding: 15px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.progresso {
+    height: 9px;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progresso div {
+    height: 100%;
+    width: 0%;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.questao {
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.questao:last-child {
+    border-bottom: none;
+}
+
+.questao h3 {
+    font-size: 20px;
+    color: var(--azul);
+    line-height: 1.5;
+    margin: 0 0 15px;
+}
+
+.numero {
+    color: #a17b31;
+    font-weight: bold;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 13px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1.4;
+    transition: .2s;
+}
+
+.alternativa:hover {
+    background: #f5f1e7;
+    border-color: var(--dourado);
+}
+
+.alternativa input {
+    margin-top: 5px;
+    accent-color: var(--azul);
+}
+
+.alternativa.selecionada {
+    background: #edf1f5;
+    border-color: var(--azul2);
+}
+
+button {
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 14px 25px;
+    font-family: 'Crimson Text', serif;
+    font-size: 19px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: var(--azul2);
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.acoes {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.resultado {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    border-radius: 8px;
+    background: white;
+    margin: 25px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+
+.resultado h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+}
+
+.nota {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--azul);
+    margin: 15px 0;
+}
+
+.aprovado {
+    color: var(--verde);
+}
+
+.reprovado {
+    color: var(--vermelho);
+}
+
+.detalhes {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.detalhes p {
+    font-size: 18px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#certificado {
+    display: none;
+    background: #fffdf6;
+    border: 10px double var(--dourado);
+    padding: 35px;
+    margin: 25px auto;
+    text-align: center;
+    min-height: 550px;
+    position: relative;
+}
+
+.cert-conteudo {
+    border: 1px solid var(--dourado);
+    padding: 30px 20px;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cert-logo {
+    font-size: 35px;
+    color: var(--dourado);
+}
+
+#certificado h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+    font-size: 30px;
+    margin: 12px 0;
+}
+
+#certificado h2 {
+    font-family: 'Cinzel', serif;
+    color: #a17b31;
+    font-size: 25px;
+}
+
+.cert-texto {
+    font-size: 21px;
+    line-height: 1.7;
+}
+
+.nome-certificado {
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    color: var(--azul);
+    font-size: 27px;
+    border-bottom: 1px solid var(--dourado);
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 15px 0;
+}
+
+.cert-dados {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.cert-assinatura {
+    margin: 40px auto 0;
+    border-top: 1px solid #555;
+    width: 280px;
+    padding-top: 8px;
+    font-size: 18px;
+}
+
+.cert-assinatura strong {
+    display: block;
+    color: var(--azul);
+}
+
+.botoes-certificado {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin: 35px 0 15px;
+    font-size: 16px;
+}
+
+@media(max-width:600px) {
+    body {padding: 9px;}
+    .card {padding: 18px;}
+    header h1 {font-size: 21px;}
+    .questao h3 {font-size: 19px;}
+    .alternativa {font-size: 17px;}
+    #certificado {padding: 12px;}
+    .cert-conteudo {padding: 15px 8px;}
+    #certificado h1 {font-size: 23px;}
+    #certificado h2 {font-size: 20px;}
+    .nome-certificado {font-size: 20px;}
+}
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    #certificado,
+    #certificado * {
+        visibility: visible;
+    }
+
+    #certificado {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 180mm;
+        margin: 0;
+        padding: 15px;
+        border: 8px double var(--dourado);
+        box-shadow: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .cert-conteudo {
+        min-height: 150mm;
+    }
+
+    .botoes-certificado {
+        display: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>ESCOLA BÍBLICA ATALAIA</h1>
+    <p>Proclamando a Verdade. Formando Discípulos.</p>
+    <p><strong>CURSO: O PAI NOSSO</strong></p>
+</header>
+
+<section class="card identificacao">
+    <h2>Questionário — Aula 06</h2>
+
+    <p style="font-size:20px;">
+        <strong>O Pão Nosso de Cada Dia nos Dá Hoje</strong>
+    </p>
+
+    <label for="nomeAluno">Nome completo do aluno:</label>
+    <input type="text" id="nomeAluno" placeholder="Digite seu nome completo" autocomplete="name" required>
+
+    <div class="instrucoes" style="margin-top:20px;">
+        <strong>Orientações:</strong>
+        <ul>
+            <li>O questionário contém 40 questões de múltipla escolha.</li>
+            <li>Cada questão possui apenas uma alternativa correta.</li>
+            <li>A pontuação máxima é de 100 pontos.</li>
+            <li>Para aprovação, é necessário obter no mínimo 70% de acertos (28 questões).</li>
+            <li>O certificado será liberado automaticamente para os alunos aprovados.</li>
+        </ul>
+    </div>
+
+    <div class="progresso">
+        <div id="barraProgresso"></div>
+    </div>
+    <p id="contadorRespostas">0 de 40 questões respondidas.</p>
+</section>
+
+<form id="formQuestionario">
+
+<section class="card" id="questoes">
+    <h2>Questões de avaliação</h2>
+    <div id="listaQuestoes"></div>
+</section>
+
+<div class="acoes">
+    <button type="submit" id="btnCorrigir">Finalizar e corrigir questionário</button>
+</div>
+
+</form>
+
+<section class="resultado" id="resultado">
+    <h2>Resultado da avaliação</h2>
+    <div class="nota" id="notaFinal">0%</div>
+    <h2 id="mensagemResultado"></h2>
+    <div id="resumoResultado"></div>
+    <div class="detalhes" id="detalhesResultado"></div>
+</section>
+
+<section id="certificado">
+    <div class="cert-conteudo">
+        <div class="cert-logo">✦</div>
+        <h1>ESCOLA BÍBLICA ATALAIA</h1>
+        <p style="font-size:17px;">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</p>
+
+        <h2>CERTIFICADO DE APROVAÇÃO</h2>
+
+        <p class="cert-texto">
+            Certificamos que
+        </p>
+
+        <div class="nome-certificado" id="nomeCertificado"></div>
+
+        <p class="cert-texto">
+            concluiu com aproveitamento a avaliação da
+            <strong>Aula 06 — O Pão Nosso de Cada Dia nos Dá Hoje</strong>,
+            integrante do curso <strong>O Pai Nosso</strong>,
+            demonstrando aproveitamento satisfatório nos conteúdos estudados.
+        </p>
+
+        <div class="cert-dados">
+            <strong>Resultado:</strong> <span id="certNota"></span>
+            <br>
+            <strong>Acertos:</strong> <span id="certAcertos"></span> de 40 questões
+            <br>
+            <strong>Data de emissão:</strong> <span id="certData"></span>
+        </div>
+
+        <div class="cert-assinatura">
+            <strong>Diego Nascimento</strong>
+            Pastor Evangelista
+        </div>
+    </div>
+</section>
+
+<div class="botoes-certificado" id="botoesCertificado">
+    <button onclick="window.print()">Imprimir / Salvar certificado em PDF</button>
+</div>
+
+<footer>
+    Escola Bíblica Atalaia — Proclamando a Verdade. Formando Discípulos.
+</footer>
+
+</div>
+
+<script>
+const questoes = [
+{
+p: "Segundo Mateus 6:11, qual pedido Jesus ensinou aos discípulos?",
+a: [
+"Que Deus lhes concedesse riquezas abundantes.",
+"Que o Pai lhes desse o pão de cada dia.",
+"Que nunca enfrentassem dificuldades.",
+"Que recebessem alimento somente uma vez por semana."
+],
+c: 1
+},
+{
+p: "O que significa pedir o pão de cada dia?",
+a: [
+"Reconhecer nossa dependência da provisão de Deus.",
+"Exigir que Deus nos torne ricos.",
+"Abandonar nossas responsabilidades.",
+"Buscar somente bens materiais."
+],
+c: 0
+},
+{
+p: "De acordo com Salmos 24:1, a quem pertence a terra e tudo o que nela existe?",
+a: [
+"Aos governantes.",
+"Aos homens mais ricos.",
+"Ao Senhor.",
+"Aos povos que a habitam."
+],
+c: 2
+},
+{
+p: "Qual verdade é apresentada em Atos 17:24–25?",
+a: [
+"Deus depende dos homens para existir.",
+"Deus dá a todos vida, respiração e todas as coisas.",
+"O ser humano é independente do Criador.",
+"A vida é sustentada exclusivamente pelos recursos humanos."
+],
+c: 1
+},
+{
+p: "Na Bíblia, o pão representa principalmente:",
+a: [
+"Somente riqueza e prosperidade.",
+"O alimento necessário à manutenção da vida.",
+"Um símbolo de autoridade política.",
+"Um sinal de superioridade humana."
+],
+c: 1
+},
+{
+p: "O que Deuteronômio 8:3 ensina?",
+a: [
+"O homem vive somente de alimentos materiais.",
+"O homem não vive somente de pão, mas de tudo o que procede da boca do Senhor.",
+"O alimento espiritual é desnecessário.",
+"O trabalho humano substitui a Palavra de Deus."
+],
+c: 1
+},
+{
+p: "Em Êxodo 16, qual alimento Deus providenciou para Israel no deserto?",
+a: [
+"Peixes.",
+"Trigo cultivado pelo povo.",
+"Maná.",
+"Carne comprada no Egito."
+],
+c: 2
+},
+{
+p: "Qual era uma das lições espirituais do maná?",
+a: [
+"Israel deveria depender diariamente da provisão de Deus.",
+"O povo deveria abandonar completamente o trabalho.",
+"Deus queria que o povo acumulasse alimento indefinidamente.",
+"O alimento deveria ser comercializado entre as tribos."
+],
+c: 0
+},
+{
+p: "Segundo Êxodo 16:19–21, o que aconteceu com o maná guardado para o dia seguinte, contrariando a orientação de Deus?",
+a: [
+"Transformou-se em água.",
+"Foi multiplicado.",
+"Criou bichos e cheirou mal.",
+"Desapareceu imediatamente."
+],
+c: 2
+},
+{
+p: "Em Deuteronômio 8:2–3, por que Deus conduziu Israel pelo deserto?",
+a: [
+"Para ensinar dependência, humilhar e provar o povo.",
+"Para fazer o povo esquecer sua história.",
+"Para impedir que Israel recebesse a Lei.",
+"Para tornar o povo independente de Deus."
+],
+c: 0
+},
+{
+p: "O que Êxodo 16:22–30 ensina sobre o sexto dia e o sábado?",
+a: [
+"Não havia provisão no sexto dia.",
+"Deus orientou o recolhimento de porção dobrada no sexto dia.",
+"O sábado era destinado à colheita do maná.",
+"O povo deveria recolher alimento apenas no sábado."
+],
+c: 1
+},
+{
+p: "Qual passagem apresenta a formiga como exemplo de diligência?",
+a: [
+"Salmos 23:1.",
+"Provérbios 6:6–11.",
+"Mateus 6:11.",
+"João 6:35."
+],
+c: 1
+},
+{
+p: "Segundo Gênesis 2:15, qual responsabilidade foi dada ao homem no jardim?",
+a: [
+"Governar outros povos.",
+"Cultivar e guardar o jardim.",
+"Construir uma cidade.",
+"Acumular riquezas."
+],
+c: 1
+},
+{
+p: "O que Efésios 4:28 ensina sobre o trabalho?",
+a: [
+"Trabalhar honestamente para ter o que repartir com quem necessita.",
+"Trabalhar apenas para enriquecer.",
+"Evitar qualquer atividade profissional.",
+"Buscar vantagem mesmo por meios desonestos."
+],
+c: 0
+},
+{
+p: "De acordo com Colossenses 3:23–24, como devemos realizar nosso trabalho?",
+a: [
+"Somente quando alguém estiver observando.",
+"De coração, como para o Senhor.",
+"Com interesse exclusivo em reconhecimento humano.",
+"Sem compromisso ou responsabilidade."
+],
+c: 1
+},
+{
+p: "Qual é a relação entre oração e responsabilidade humana?",
+a: [
+"Quem ora não precisa trabalhar.",
+"A confiança em Deus elimina o planejamento.",
+"A oração deve caminhar junto com diligência e responsabilidade.",
+"Somente o esforço humano é suficiente."
+],
+c: 2
+},
+{
+p: "Em Mateus 6:25–34, Jesus ensina seus discípulos a:",
+a: [
+"Viverem dominados pela ansiedade.",
+"Confiar no cuidado do Pai e não serem dominados pela ansiedade.",
+"Abandonarem todas as atividades.",
+"Acumularem alimentos para muitos anos."
+],
+c: 1
+},
+{
+p: "Qual exemplo Jesus utiliza em Mateus 6 para ensinar sobre o cuidado de Deus?",
+a: [
+"Os exércitos de Israel.",
+"As aves do céu e os lírios do campo.",
+"Os reis de Jerusalém.",
+"Os comerciantes do templo."
+],
+c: 1
+},
+{
+p: "Segundo Mateus 6:32, quem conhece as necessidades dos discípulos?",
+a: [
+"Somente os líderes religiosos.",
+"O Pai celestial.",
+"Os governantes.",
+"Os próprios discípulos, exclusivamente."
+],
+c: 1
+},
+{
+p: "O que Mateus 6:33 orienta os discípulos a buscar primeiro?",
+a: [
+"As riquezas.",
+"O reconhecimento humano.",
+"O Reino de Deus e a sua justiça.",
+"O conforto material."
+],
+c: 2
+},
+{
+p: "O que Jesus ensina em Mateus 6:34?",
+a: [
+"Devemos antecipar todas as preocupações futuras.",
+"Cada dia tem seu próprio cuidado; não devemos viver dominados pela preocupação com o amanhã.",
+"Não devemos fazer planos.",
+"Os problemas nunca existirão para os cristãos."
+],
+c: 1
+},
+{
+p: "Em João 6:35, quem Jesus declara ser?",
+a: [
+"A porta do templo.",
+"O bom samaritano.",
+"O Pão da Vida.",
+"O rei de Israel."
+],
+c: 2
+},
+{
+p: "Qual é a principal diferença entre o maná e Cristo como Pão da Vida?",
+a: [
+"O maná era alimento material temporário; Cristo oferece vida eterna.",
+"Ambos são apenas alimentos físicos.",
+"O maná concedia vida eterna e Cristo não.",
+"Não existe diferença entre eles."
+],
+c: 0
+},
+{
+p: "Segundo João 6:26–27, Jesus orienta o povo a buscar:",
+a: [
+"Somente o alimento que perece.",
+"O alimento que permanece para a vida eterna.",
+"Riquezas terrenas.",
+"Reconhecimento público."
+],
+c: 1
+},
+{
+p: "Qual passagem registra a declaração de Jesus: 'Eu sou o pão da vida'?",
+a: [
+"Mateus 5:3.",
+"João 6:35.",
+"Atos 2:42.",
+"Romanos 8:28."
+],
+c: 1
+},
+{
+p: "O que significa a expressão 'pão nosso' na oração?",
+a: [
+"Pensar exclusivamente nas necessidades individuais.",
+"Reconhecer também as necessidades do próximo e a importância da comunhão.",
+"Exigir que todos tenham a mesma profissão.",
+"Evitar compartilhar recursos."
+],
+c: 1
+},
+{
+p: "Qual passagem apresenta a comunidade cristã compartilhando seus recursos?",
+a: [
+"Atos 4:32–35.",
+"Êxodo 20:17.",
+"Mateus 4:4.",
+"Jó 1:20–22."
+],
+c: 0
+},
+{
+p: "Segundo 1 João 3:17–18, como o amor deve ser demonstrado?",
+a: [
+"Somente por palavras.",
+"Por ações e em verdade.",
+"Por discursos sem atitudes.",
+"Somente em reuniões públicas."
+],
+c: 1
+},
+{
+p: "O que Deuteronômio 15:7–11 ensina?",
+a: [
+"Endurecer o coração diante do pobre.",
+"Não ajudar pessoas necessitadas.",
+"Não endurecer o coração e abrir a mão ao necessitado.",
+"Guardar todos os recursos para si."
+],
+c: 2
+},
+{
+p: "Qual é o ensino de Isaías 58:6–10 relacionado ao alimento?",
+a: [
+"Repartir o pão com o faminto e praticar a justiça.",
+"Acumular alimento sem repartir.",
+"Buscar apenas cerimônias religiosas.",
+"Ignorar as necessidades dos pobres."
+],
+c: 0
+},
+{
+p: "Segundo Filipenses 4:11–13, o que Paulo aprendeu?",
+a: [
+"Viver contente em diferentes circunstâncias.",
+"Viver somente em abundância.",
+"Evitar qualquer dificuldade.",
+"Confiar exclusivamente em bens materiais."
+],
+c: 0
+},
+{
+p: "O que 1 Timóteo 6:6–8 ensina?",
+a: [
+"Que a riqueza é a finalidade da fé.",
+"Que a piedade acompanhada de contentamento é grande fonte de ganho.",
+"Que o cristão deve viver insatisfeito.",
+"Que a vida espiritual depende da quantidade de bens."
+],
+c: 1
+},
+{
+p: "Qual é a advertência de Lucas 12:15?",
+a: [
+"A vida de uma pessoa consiste na abundância dos bens.",
+"A vida não consiste na abundância dos bens que alguém possui.",
+"Todo rico é necessariamente justo.",
+"Os bens materiais garantem a vida eterna."
+],
+c: 1
+},
+{
+p: "O que a parábola do rico insensato, em Lucas 12:16–21, ensina?",
+a: [
+"Que acumular bens é a finalidade da existência.",
+"Que devemos confiar somente em nossas riquezas.",
+"Que a vida é breve e não devemos colocar nossa segurança na acumulação de bens.",
+"Que a generosidade é desnecessária."
+],
+c: 2
+},
+{
+p: "Segundo Habacuque 3:17–19, qual atitude é possível mesmo diante da escassez?",
+a: [
+"Abandonar a confiança em Deus.",
+"Revoltar-se contra o Senhor.",
+"Manter a alegria e a confiança em Deus.",
+"Buscar somente riquezas."
+],
+c: 2
+},
+{
+p: "O que Filipenses 4:19 afirma?",
+a: [
+"Deus suprirá as necessidades segundo suas riquezas em glória em Cristo Jesus.",
+"Todos os cristãos terão riquezas ilimitadas.",
+"Ninguém enfrentará dificuldades financeiras.",
+"O trabalho humano é desnecessário."
+],
+c: 0
+},
+{
+p: "Qual é a diferença entre contentamento e acomodação?",
+a: [
+"São exatamente a mesma coisa.",
+"Contentamento é gratidão sem abandonar a responsabilidade de trabalhar e buscar melhorias.",
+"Contentamento significa desistir de todas as responsabilidades.",
+"Acomodação é sempre uma virtude."
+],
+c: 1
+},
+{
+p: "Qual passagem ensina a lançar sobre o Senhor nossas ansiedades?",
+a: [
+"1 Pedro 5:6–7.",
+"Êxodo 20:17.",
+"Provérbios 6:6.",
+"João 1:1."
+],
+c: 0
+},
+{
+p: "Qual das alternativas resume melhor a lição espiritual de Mateus 6:11?",
+a: [
+"Devemos buscar somente prosperidade material.",
+"Devemos depender de Deus, viver com gratidão e repartir com generosidade.",
+"Não precisamos trabalhar nem planejar.",
+"Devemos acumular tudo o que recebemos."
+],
+c: 1
+},
+{
+p: "Qual é a maior necessidade espiritual revelada no estudo sobre o pão diário?",
+a: [
+"Ter muitos bens materiais.",
+"Receber reconhecimento das pessoas.",
+"Reconhecer nossa dependência de Deus e buscar em Cristo a vida eterna.",
+"Não enfrentar nenhuma dificuldade."
+],
+c: 2
+}
+];
+
+/* RENDERIZAÇÃO DAS QUESTÕES */
+
+const listaQuestoes = document.getElementById('listaQuestoes');
+
+questoes.forEach((questao, indice) => {
+    const bloco = document.createElement('div');
+    bloco.className = 'questao';
+
+    const titulo = document.createElement('h3');
+    titulo.innerHTML = `<span class="numero">Questão ${indice + 1}.</span> ${questao.p}`;
+    bloco.appendChild(titulo);
+
+    questao.a.forEach((alternativa, letra) => {
+        const label = document.createElement('label');
+        label.className = 'alternativa';
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = `q${indice}`;
+        radio.value = letra;
+
+        radio.addEventListener('change', () => {
+            atualizarProgresso();
+
+            bloco.querySelectorAll('.alternativa').forEach(item => {
+                item.classList.remove('selecionada');
+            });
+
+            label.classList.add('selecionada');
+        });
+
+        const texto = document.createElement('span');
+        texto.textContent = `${String.fromCharCode(65 + letra)}) ${alternativa}`;
+
+        label.appendChild(radio);
+        label.appendChild(texto);
+        bloco.appendChild(label);
+    });
+
+    listaQuestoes.appendChild(bloco);
+});
+
+
+/* CONTROLE DO PROGRESSO */
+
+function atualizarProgresso() {
+    let respondidas = 0;
+
+    questoes.forEach((_, indice) => {
+        if (document.querySelector(`input[name="q${indice}"]:checked`)) {
+            respondidas++;
+        }
+    });
+
+    document.getElementById('contadorRespostas').textContent =
+        `${respondidas} de 40 questões respondidas.`;
+
+    document.getElementById('barraProgresso').style.width =
+        `${(respondidas / 40) * 100}%`;
+}
+
+
+/* CORREÇÃO DO QUESTIONÁRIO */
+
+document.getElementById('formQuestionario').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nomeAluno').value.trim();
+
+    if (!nome) {
+        alert('Digite seu nome completo antes de finalizar.');
+        document.getElementById('nomeAluno').focus();
+        return;
+    }
+
+    let respondidas = 0;
+    let acertos = 0;
+    let erros = 0;
+    let semResposta = 0;
+
+    questoes.forEach((questao, indice) => {
+        const selecionada = document.querySelector(
+            `input[name="q${indice}"]:checked`
+        );
+
+        if (!selecionada) {
+            semResposta++;
+            return;
+        }
+
+        respondidas++;
+
+        if (Number(selecionada.value) === questao.c) {
+            acertos++;
+        } else {
+            erros++;
+        }
+    });
+
+    if (semResposta > 0) {
+        const confirmar = confirm(
+            `Você deixou ${semResposta} questão(ões) sem resposta. Deseja finalizar mesmo assim?`
+        );
+
+        if (!confirmar) return;
+    }
+
+    const percentual = (acertos / questoes.length) * 100;
+    const aprovado = percentual >= 70;
+
+    const resultado = document.getElementById('resultado');
+    const notaFinal = document.getElementById('notaFinal');
+    const mensagem = document.getElementById('mensagemResultado');
+
+    resultado.style.display = 'block';
+
+    notaFinal.textContent = `${percentual.toFixed(0)}%`;
+    notaFinal.className = 'nota ' + (aprovado ? 'aprovado' : 'reprovado');
+
+    mensagem.textContent = aprovado ? 'APROVADO!' : 'NÃO APROVADO';
+    mensagem.className = aprovado ? 'aprovado' : 'reprovado';
+
+    document.getElementById('resumoResultado').innerHTML = `
+        <p style="font-size:20px;">
+            Aluno: <strong>${escaparHTML(nome)}</strong>
+        </p>
+        <p style="font-size:19px;">
+            Você acertou <strong>${acertos}</strong> de 40 questões.
+        </p>
+    `;
+
+    document.getElementById('detalhesResultado').innerHTML = `
+        <p><strong>Questões respondidas:</strong> ${respondidas}</p>
+        <p><strong>Acertos:</strong> ${acertos}</p>
+        <p><strong>Erros:</strong> ${erros}</p>
+        <p><strong>Sem resposta:</strong> ${semResposta}</p>
+        <p><strong>Nota mínima para aprovação:</strong> 70%</p>
+    `;
+
+    if (aprovado) {
+        emitirCertificado(nome, percentual, acertos);
+    } else {
+        document.getElementById('certificado').style.display = 'none';
+        document.getElementById('botoesCertificado').style.display = 'none';
+    }
+
+    document.getElementById('formQuestionario').style.display = 'none';
+
+    document.querySelector('.identificacao').style.display = 'none';
+
+    document.getElementById('resultado').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+});
+
+
+/* EMISSÃO DO CERTIFICADO */
+
+function emitirCertificado(nome, percentual, acertos) {
+    const hoje = new Date();
+
+    const data = hoje.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+    });
+
+    document.getElementById('nomeCertificado').textContent = nome;
+    document.getElementById('certNota').textContent =
+        `${percentual.toFixed(0)}%`;
+
+    document.getElementById('certAcertos').textContent = acertos;
+    document.getElementById('certData').textContent = data;
+
+    document.getElementById('certificado').style.display = 'block';
+    document.getElementById('botoesCertificado').style.display = 'block';
+}
+
+
+/* PROTEÇÃO DE TEXTO NO RESULTADO */
+
+function escaparHTML(texto) {
+    const elemento = document.createElement('div');
+    elemento.textContent = texto;
+    return elemento.innerHTML;
+}
+</script>
+
+</body>
+</html>

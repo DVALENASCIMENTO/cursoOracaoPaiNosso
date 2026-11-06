@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — Aula 05 | Escola Bíblica Atalaia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #071b33;
+    --azul2: #123456;
+    --dourado: #c9a45c;
+    --fundo: #eef1f5;
+    --branco: #ffffff;
+    --texto: #293443;
+    --verde: #287447;
+    --vermelho: #a52a2a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: "Crimson Text", Georgia, serif;
+    font-size: 18px;
+}
+
+header {
+    background: linear-gradient(135deg, var(--azul), var(--azul2));
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    border-bottom: 4px solid var(--dourado);
+}
+
+header .marca {
+    color: var(--dourado);
+    font-family: Cinzel, serif;
+    letter-spacing: 4px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+header h1 {
+    font-family: Cinzel, serif;
+    font-size: clamp(22px, 4vw, 32px);
+    margin: 0 0 10px;
+}
+
+header p {
+    margin: 0;
+    color: #e2e7ed;
+}
+
+.container {
+    width: min(900px, 94%);
+    margin: 30px auto;
+}
+
+.painel {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.07);
+    margin-bottom: 22px;
+}
+
+.painel h2 {
+    font-family: Cinzel, serif;
+    color: var(--azul);
+    font-size: 22px;
+    margin-top: 0;
+}
+
+.painel p {
+    line-height: 1.5;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd2dc;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 18px;
+    outline-color: var(--dourado);
+}
+
+.informacoes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.info {
+    background: #f3f5f7;
+    padding: 13px;
+    border-left: 3px solid var(--dourado);
+    text-align: center;
+}
+
+.info strong {
+    display: block;
+    color: var(--azul);
+    font-size: 22px;
+}
+
+.info span {
+    font-size: 15px;
+}
+
+.progresso-container {
+    margin: 20px 0;
+}
+
+.progresso-texto {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.progresso {
+    height: 8px;
+    background: #dce1e7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progresso-barra {
+    height: 100%;
+    width: 0;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.questao {
+    background: white;
+    border-radius: 7px;
+    padding: 22px;
+    margin-bottom: 17px;
+    border: 1px solid #e0e4e9;
+    box-shadow: 0 3px 10px rgba(0,0,0,.035);
+}
+
+.questao h3 {
+    color: var(--azul);
+    font-size: 20px;
+    margin: 0 0 15px;
+    line-height: 1.4;
+}
+
+.numero {
+    color: #9a702c;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 7px;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 13px;
+    margin: 8px 0;
+    border: 1px solid #e0e4e9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.alternativa:hover {
+    background: #f5f2e9;
+    border-color: var(--dourado);
+}
+
+.alternativa input {
+    margin-top: 5px;
+    accent-color: var(--azul);
+}
+
+.alternativa span {
+    line-height: 1.4;
+}
+
+.alternativa.correta {
+    background: #e7f4eb;
+    border-color: var(--verde);
+}
+
+.alternativa.incorreta {
+    background: #fbeaea;
+    border-color: var(--vermelho);
+}
+
+button {
+    border: none;
+    background: var(--azul);
+    color: white;
+    padding: 14px 25px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: var(--azul2);
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.botao-finalizar {
+    width: 100%;
+    background: #9a702c;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.botao-finalizar:hover {
+    background: #79551f;
+}
+
+.resultado {
+    display: none;
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    margin: 25px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+.resultado h2 {
+    color: var(--azul);
+    font-family: Cinzel, serif;
+}
+
+.nota {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--azul);
+    margin: 15px 0;
+}
+
+.aprovado {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.reprovado {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+.certificado {
+    display: none;
+    background: #fffdf7;
+    border: 12px double var(--dourado);
+    padding: 35px 25px;
+    margin: 30px auto;
+    text-align: center;
+    color: var(--azul);
+    max-width: 900px;
+    min-height: 560px;
+    position: relative;
+}
+
+.certificado .marca {
+    font-family: Cinzel, serif;
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: #98702f;
+    margin-bottom: 30px;
+}
+
+.certificado h1 {
+    font-family: Cinzel, serif;
+    font-size: clamp(26px, 5vw, 42px);
+    margin: 20px 0;
+}
+
+.certificado .subtitulo {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+.certificado .nome-aluno {
+    font-family: Cinzel, serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: bold;
+    color: #98702f;
+    border-bottom: 1px solid var(--dourado);
+    display: inline-block;
+    padding: 10px 25px;
+    margin: 20px 0;
+}
+
+.certificado .descricao {
+    font-size: 20px;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 15px auto;
+}
+
+.certificado .assinatura {
+    margin: 55px auto 0;
+    width: 270px;
+    border-top: 1px solid var(--azul);
+    padding-top: 10px;
+    font-size: 17px;
+}
+
+.certificado .data {
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.acoes-certificado {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.botao-imprimir {
+    background: var(--verde);
+}
+
+.botao-reiniciar {
+    background: #66717e;
+    margin-left: 8px;
+}
+
+footer {
+    background: var(--azul);
+    color: white;
+    text-align: center;
+    padding: 22px;
+    border-top: 3px solid var(--dourado);
+    margin-top: 40px;
+}
+
+footer strong {
+    color: var(--dourado);
+}
+
+@media(max-width:600px) {
+    .painel {
+        padding: 19px;
+    }
+
+    .informacoes {
+        grid-template-columns: 1fr;
+    }
+
+    .questao {
+        padding: 17px;
+    }
+
+    .certificado {
+        padding: 25px 15px;
+        min-height: 500px;
+    }
+
+    .botao-reiniciar {
+        margin: 10px 0 0;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    header,
+    .container,
+    footer,
+    .resultado,
+    .acoes-certificado {
+        display: none !important;
+    }
+
+    .certificado {
+        display: block !important;
+        width: 100%;
+        max-width: none;
+        min-height: 95vh;
+        margin: 0;
+        page-break-inside: avoid;
+        border: 12px double var(--dourado);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    @page {
+        size: landscape;
+        margin: 10mm;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+    <h1>AVALIAÇÃO — AULA 05</h1>
+    <p>Seja Feita a Tua Vontade, Assim na Terra como no Céu</p>
+</header>
+
+<main class="container">
+
+    <section class="painel">
+        <h2>Identificação do Aluno</h2>
+
+        <label for="nomeAluno">Nome completo:</label>
+        <input
+            type="text"
+            id="nomeAluno"
+            placeholder="Digite seu nome completo"
+            autocomplete="name"
+            required
+        >
+
+        <div class="informacoes">
+            <div class="info">
+                <strong>40</strong>
+                <span>Questões</span>
+            </div>
+
+            <div class="info">
+                <strong>70%</strong>
+                <span>Nota mínima</span>
+            </div>
+
+            <div class="info">
+                <strong>28</strong>
+                <span>Acertos necessários</span>
+            </div>
+        </div>
+
+        <p>
+            Leia atentamente cada questão e selecione apenas uma alternativa.
+            Ao terminar, clique em <strong>Finalizar Avaliação</strong>.
+            Para receber o certificado, é necessário acertar pelo menos 28 questões.
+        </p>
+    </section>
+
+    <section class="painel">
+        <div class="progresso-container">
+            <div class="progresso-texto">
+                <span>Progresso da avaliação</span>
+                <strong id="progressoTexto">0 de 40 respondidas</strong>
+            </div>
+
+            <div class="progresso">
+                <div class="progresso-barra" id="progressoBarra"></div>
+            </div>
+        </div>
+
+        <div id="questionario"></div>
+
+        <button
+            type="button"
+            class="botao-finalizar"
+            id="finalizar"
+            onclick="finalizarAvaliacao()"
+        >
+            FINALIZAR AVALIAÇÃO
+        </button>
+    </section>
+
+    <section class="resultado" id="resultado">
+        <h2>Resultado da Avaliação</h2>
+        <div class="nota" id="nota"></div>
+        <p id="mensagemResultado"></p>
+        <p id="detalhesResultado"></p>
+    </section>
+
+    <section class="certificado" id="certificado">
+        <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+
+        <h1>CERTIFICADO DE APROVAÇÃO</h1>
+
+        <p class="subtitulo">Certificamos que</p>
+
+        <div class="nome-aluno" id="nomeCertificado"></div>
+
+        <p class="descricao">
+            concluiu com aproveitamento a avaliação da
+            <strong>Aula 05 — Seja Feita a Tua Vontade,
+            Assim na Terra como no Céu</strong>,
+            demonstrando conhecimento sobre os fundamentos
+            bíblicos estudados nesta lição.
+        </p>
+
+        <p class="descricao">
+            Aproveitamento: <strong id="notaCertificado"></strong>
+        </p>
+
+        <p class="descricao">
+            Aprovado com aproveitamento igual ou superior a 70%.
+        </p>
+
+        <div class="assinatura">
+            <strong>Diego Nascimento</strong><br>
+            Pastor Evangelista
+        </div>
+
+        <div class="data" id="dataCertificado"></div>
+    </section>
+
+    <div class="acoes-certificado" id="acoesCertificado">
+        <button class="botao-imprimir" onclick="imprimirCertificado()">
+            IMPRIMIR CERTIFICADO
+        </button>
+
+        <button class="botao-reiniciar" onclick="reiniciarAvaliacao()">
+            REFAZER AVALIAÇÃO
+        </button>
+    </div>
+
+</main>
+
+<footer>
+    <strong>ESCOLA BÍBLICA ATALAIA</strong>
+    <p>Proclamando a Verdade. Formando Discípulos.</p>
+</footer>
+
+<script>
+
+/* =========================================
+   BANCO DE QUESTÕES — AULA 05
+========================================= */
+
+const questoes = [
+
+{
+    pergunta: "Qual é a expressão estudada na quinta petição do Pai Nosso?",
+    opcoes: [
+        "O pão nosso de cada dia nos dá hoje.",
+        "Seja feita a tua vontade, assim na terra como no céu.",
+        "Perdoa as nossas dívidas.",
+        "Venha o teu Reino."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Em qual passagem encontramos a petição 'Seja feita a tua vontade'?",
+    opcoes: [
+        "Mateus 6:10",
+        "João 3:16",
+        "Salmos 23:1",
+        "Atos 1:8"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual é a principal atitude expressa nessa petição?",
+    opcoes: [
+        "Exigir que Deus realize todos os nossos desejos.",
+        "Desistir de todas as responsabilidades.",
+        "Submeter-se à vontade de Deus e desejar obedecê-la.",
+        "Evitar fazer qualquer pedido a Deus."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Qual pedido aparece imediatamente antes de 'Seja feita a tua vontade'?",
+    opcoes: [
+        "Perdoa as nossas dívidas.",
+        "Venha o teu Reino.",
+        "Livra-nos do mal.",
+        "O pão nosso de cada dia."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo Mateus 6:33, o que devemos buscar primeiro?",
+    opcoes: [
+        "Riquezas e reconhecimento.",
+        "A aprovação das pessoas.",
+        "O Reino de Deus e a sua justiça.",
+        "A realização de nossos próprios projetos."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Em João 4:34, como Jesus descreveu sua missão?",
+    opcoes: [
+        "Fazer sua própria vontade.",
+        "Fazer a vontade daquele que o enviou e completar sua obra.",
+        "Buscar reconhecimento público.",
+        "Evitar o sofrimento a qualquer custo."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que Salmos 40:8 expressa sobre a vontade de Deus?",
+    opcoes: [
+        "Que o salmista tem prazer em fazer a vontade divina.",
+        "Que a vontade de Deus deve ser ignorada.",
+        "Que somente os sacerdotes podem obedecer a Deus.",
+        "Que a obediência não é necessária."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Segundo João 6:38, por que Jesus desceu do céu?",
+    opcoes: [
+        "Para realizar somente sua própria vontade.",
+        "Para fazer a vontade daquele que o enviou.",
+        "Para estabelecer um reino político.",
+        "Para receber honras humanas."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que Mateus 7:21 ensina?",
+    opcoes: [
+        "Basta dizer que conhece a Deus.",
+        "A vontade humana está acima da divina.",
+        "É necessário fazer a vontade do Pai que está nos céus.",
+        "A obediência é dispensável."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Segundo 1 João 2:17, quem permanece para sempre?",
+    opcoes: [
+        "Aquele que faz a vontade de Deus.",
+        "Aquele que busca riquezas.",
+        "Aquele que recebe elogios.",
+        "Aquele que evita todas as dificuldades."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O que Salmos 103:19 ensina sobre Deus?",
+    opcoes: [
+        "Que seu Reino é limitado à terra.",
+        "Que seu trono está estabelecido nos céus e seu domínio alcança tudo.",
+        "Que Ele depende da aprovação humana.",
+        "Que seu governo é temporário."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo Romanos 14:17, o Reino de Deus é justiça, paz e:",
+    opcoes: [
+        "Riqueza material.",
+        "Reconhecimento social.",
+        "Alegria no Espírito Santo.",
+        "Poder político."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "O que Isaías 46:9–10 destaca?",
+    opcoes: [
+        "A limitação do conhecimento de Deus.",
+        "A soberania e os propósitos de Deus.",
+        "A independência humana de Deus.",
+        "A impossibilidade de Deus cumprir seus planos."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "De acordo com 1 Tessalonicenses 4:3, qual é a vontade de Deus mencionada no texto?",
+    opcoes: [
+        "A santificação.",
+        "A fama.",
+        "A riqueza.",
+        "A ausência de responsabilidades."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Segundo Miqueias 6:8, o que o Senhor requer do ser humano?",
+    opcoes: [
+        "Acumular riquezas.",
+        "Buscar reconhecimento.",
+        "Praticar a justiça, amar a misericórdia e andar humildemente com Deus.",
+        "Evitar relacionamentos."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "O que 1 Tessalonicenses 5:18 ensina?",
+    opcoes: [
+        "Dar graças em todas as circunstâncias.",
+        "Agradecer somente quando tudo estiver bem.",
+        "Nunca apresentar dificuldades a Deus.",
+        "Não orar em momentos difíceis."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Em João 5:30, Jesus afirma que não busca:",
+    opcoes: [
+        "A vontade daquele que o enviou.",
+        "Sua própria vontade, mas a vontade do Pai.",
+        "Cumprir a missão recebida.",
+        "Fazer aquilo que é justo."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que Filipenses 2:5–8 apresenta como exemplo de Cristo?",
+    opcoes: [
+        "Orgulho e superioridade.",
+        "Busca por poder humano.",
+        "Humildade e obediência.",
+        "Indiferença ao sofrimento."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Qual passagem apresenta Jesus orando no Getsêmani?",
+    opcoes: [
+        "Mateus 26:36–46.",
+        "Gênesis 1:1–5.",
+        "Atos 1:1–5.",
+        "Apocalipse 1:1–5."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual foi a atitude de Jesus no Getsêmani?",
+    opcoes: [
+        "Recusou-se a orar.",
+        "Escondeu sua angústia dos discípulos.",
+        "Apresentou sua aflição ao Pai e submeteu-se à sua vontade.",
+        "Abandonou sua missão."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "O que a oração de Jesus no Getsêmani nos ensina?",
+    opcoes: [
+        "Que não podemos expressar nossas emoções.",
+        "Que podemos apresentar nossa dor a Deus e confiar nele.",
+        "Que devemos evitar toda dificuldade.",
+        "Que a oração não tem relação com obediência."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Quais Evangelhos também relatam a oração de Jesus no Getsêmani?",
+    opcoes: [
+        "Marcos e Lucas.",
+        "João e Apocalipse.",
+        "Mateus e Atos.",
+        "Lucas e Romanos."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O que significa a expressão 'assim na terra como no céu'?",
+    opcoes: [
+        "Que a vontade humana deve governar o céu.",
+        "Que desejamos que a vontade de Deus seja obedecida na terra como no céu.",
+        "Que a terra não pertence a Deus.",
+        "Que a oração deve tratar apenas de assuntos celestiais."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo Salmos 103:20–21, os anjos são apresentados como:",
+    opcoes: [
+        "Servos que cumprem a palavra do Senhor.",
+        "Seres independentes da autoridade divina.",
+        "Governantes acima de Deus.",
+        "Figuras sem função no serviço celestial."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O que Romanos 12:1–2 ensina sobre a vida cristã?",
+    opcoes: [
+        "Conformar-se com os padrões deste mundo.",
+        "Evitar qualquer transformação.",
+        "Apresentar-se a Deus e renovar a mente para discernir sua vontade.",
+        "Buscar apenas interesses pessoais."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Segundo Tiago 1:22, o cristão deve ser:",
+    opcoes: [
+        "Somente ouvinte da Palavra.",
+        "Praticante da Palavra, e não apenas ouvinte.",
+        "Indiferente aos ensinamentos bíblicos.",
+        "Dependente exclusivamente de opiniões humanas."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que significa negar a si mesmo, conforme Lucas 9:23?",
+    opcoes: [
+        "Abandonar todas as responsabilidades.",
+        "Viver sem propósito.",
+        "Submeter a própria vida a Cristo, tomando a cruz e seguindo-o.",
+        "Ignorar os ensinamentos de Jesus."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Segundo Provérbios 3:5–6, devemos confiar:",
+    opcoes: [
+        "Somente em nossa própria inteligência.",
+        "No Senhor de todo o coração.",
+        "Na opinião da maioria.",
+        "Apenas em nossas conquistas."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que Tiago 1:5 nos orienta a fazer quando precisamos de sabedoria?",
+    opcoes: [
+        "Pedir sabedoria a Deus.",
+        "Desistir de tomar decisões.",
+        "Ignorar os conselhos bíblicos.",
+        "Confiar exclusivamente nas emoções."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual é uma das orientações de Provérbios 15:22?",
+    opcoes: [
+        "Não ouvir ninguém.",
+        "Agir sempre impulsivamente.",
+        "Buscar conselhos, pois os planos se firmam com orientação.",
+        "Evitar qualquer planejamento."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Segundo Gálatas 5:22–23, qual destas opções apresenta fruto do Espírito?",
+    opcoes: [
+        "Inveja e contenda.",
+        "Amor, alegria, paz e domínio próprio.",
+        "Orgulho e arrogância.",
+        "Ganância e vaidade."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Como a vontade de Deus deve influenciar a vida familiar?",
+    opcoes: [
+        "Por meio do amor, respeito, serviço e responsabilidade.",
+        "Por meio da indiferença.",
+        "Por meio de conflitos constantes.",
+        "Por meio da ausência de compromisso."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Segundo Colossenses 3:23–24, como devemos realizar nosso trabalho?",
+    opcoes: [
+        "Somente quando alguém estiver observando.",
+        "Com dedicação, como para o Senhor.",
+        "Sem responsabilidade.",
+        "Buscando apenas reconhecimento humano."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual atitude é ensinada em Efésios 4:25–32?",
+    opcoes: [
+        "Mentir e alimentar a ira.",
+        "Guardar ressentimento.",
+        "Praticar a verdade, o perdão e o amor.",
+        "Retribuir o mal com o mal."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "O que Habacuque 3:17–19 demonstra?",
+    opcoes: [
+        "Que a confiança em Deus depende da prosperidade.",
+        "Que é possível confiar e alegrar-se no Senhor mesmo em circunstâncias difíceis.",
+        "Que devemos abandonar a fé nas dificuldades.",
+        "Que Deus só é digno de confiança quando tudo está bem."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo Isaías 55:8–9, os pensamentos e caminhos de Deus são:",
+    opcoes: [
+        "Iguais aos pensamentos humanos.",
+        "Limitados pela compreensão humana.",
+        "Mais elevados que os caminhos e pensamentos humanos.",
+        "Dependentes da aprovação humana."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "O que Romanos 8:28 ensina?",
+    opcoes: [
+        "Que todas as circunstâncias são boas em si mesmas.",
+        "Que Deus trabalha para o bem daqueles que o amam e são chamados segundo seu propósito.",
+        "Que os cristãos nunca enfrentarão dificuldades.",
+        "Que não precisamos confiar em Deus."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é a missão apresentada em Mateus 28:18–20?",
+    opcoes: [
+        "Fazer discípulos, batizar e ensinar a guardar o que Jesus ordenou.",
+        "Buscar somente reconhecimento.",
+        "Construir um governo humano.",
+        "Evitar anunciar o evangelho."
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Segundo Atos 1:8, os discípulos receberiam poder para:",
+    opcoes: [
+        "Acumular riquezas.",
+        "Ser testemunhas de Jesus.",
+        "Controlar todas as pessoas.",
+        "Evitar o serviço cristão."
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual deve ser a atitude do discípulo ao orar 'Seja feita a tua vontade'?",
+    opcoes: [
+        "Pronunciar a frase sem mudar suas atitudes.",
+        "Esperar que Deus faça tudo sem sua participação.",
+        "Buscar a Palavra, obedecer e viver de acordo com os propósitos de Deus.",
+        "Abandonar a oração e a responsabilidade."
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Qual é a principal mensagem da Aula 05?",
+    opcoes: [
+        "A vontade humana deve estar acima de tudo.",
+        "A oração deve ser usada somente para pedir bens materiais.",
+        "A vontade de Deus deve ser buscada, acolhida e praticada na vida diária.",
+        "A obediência só é necessária durante os cultos."
+    ],
+    correta: 2
+}
+
+];
+
+
+/* =========================================
+   MONTAGEM DAS QUESTÕES
+========================================= */
+
+const questionario = document.getElementById("questionario");
+
+function montarQuestionario() {
+
+    questionario.innerHTML = "";
+
+    questoes.forEach((q, indice) => {
+
+        const bloco = document.createElement("article");
+        bloco.className = "questao";
+        bloco.id = "questao-" + indice;
+
+        let html = `
+            <span class="numero">QUESTÃO ${indice + 1} DE 40</span>
+            <h3>${q.pergunta}</h3>
+        `;
+
+        q.opcoes.forEach((opcao, alternativa) => {
+
+            html += `
+                <label class="alternativa">
+                    <input
+                        type="radio"
+                        name="questao${indice}"
+                        value="${alternativa}"
+                        onchange="atualizarProgresso()"
+                    >
+                    <span>${String.fromCharCode(65 + alternativa)}) ${opcao}</span>
+                </label>
+            `;
+
+        });
+
+        bloco.innerHTML = html;
+        questionario.appendChild(bloco);
+
+    });
+
+}
+
+montarQuestionario();
+
+
+/* =========================================
+   ATUALIZAR PROGRESSO
+========================================= */
+
+function atualizarProgresso() {
+
+    let respondidas = 0;
+
+    questoes.forEach((q, indice) => {
+
+        const selecionada = document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        );
+
+        if (selecionada) {
+            respondidas++;
+        }
+
+    });
+
+    document.getElementById("progressoTexto").textContent =
+        `${respondidas} de ${questoes.length} respondidas`;
+
+    document.getElementById("progressoBarra").style.width =
+        (respondidas / questoes.length * 100) + "%";
+
+}
+
+
+/* =========================================
+   FINALIZAR E CORRIGIR A AVALIAÇÃO
+========================================= */
+
+let avaliacaoFinalizada = false;
+
+function finalizarAvaliacao() {
+
+    if (avaliacaoFinalizada) return;
+
+    const nome = document.getElementById("nomeAluno").value.trim();
+
+    if (!nome) {
+        alert("Por favor, digite seu nome completo antes de finalizar.");
+        document.getElementById("nomeAluno").focus();
+        return;
+    }
+
+    let respondidas = 0;
+
+    questoes.forEach((q, indice) => {
+        if (document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        )) {
+            respondidas++;
+        }
+    });
+
+    if (respondidas < questoes.length) {
+
+        const faltam = questoes.length - respondidas;
+
+        const confirmar = confirm(
+            `Você ainda não respondeu ${faltam} questão(ões).\n\n` +
+            "Deseja finalizar mesmo assim?"
+        );
+
+        if (!confirmar) return;
+
+    }
+
+    avaliacaoFinalizada = true;
+
+    let acertos = 0;
+
+    questoes.forEach((q, indice) => {
+
+        const selecionada = document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        );
+
+        const alternativas = document.querySelectorAll(
+            `#questao-${indice} .alternativa`
+        );
+
+        alternativas.forEach((alternativa, numero) => {
+
+            const input = alternativa.querySelector("input");
+
+            input.disabled = true;
+
+            if (numero === q.correta) {
+                alternativa.classList.add("correta");
+            }
+
+            if (
+                selecionada &&
+                numero === Number(selecionada.value) &&
+                numero !== q.correta
+            ) {
+                alternativa.classList.add("incorreta");
+            }
+
+        });
+
+        if (selecionada && Number(selecionada.value) === q.correta) {
+            acertos++;
+        }
+
+    });
+
+    const percentual = (acertos / questoes.length) * 100;
+    const aprovou = percentual >= 70;
+
+    const resultado = document.getElementById("resultado");
+    const nota = document.getElementById("nota");
+    const mensagem = document.getElementById("mensagemResultado");
+    const detalhes = document.getElementById("detalhesResultado");
+
+    resultado.style.display = "block";
+
+    nota.textContent = percentual.toFixed(1).replace(".", ",") + "%";
+
+    if (aprovou) {
+
+        mensagem.textContent = "PARABÉNS! VOCÊ FOI APROVADO(A)!";
+        mensagem.className = "aprovado";
+
+        detalhes.textContent =
+            `Você acertou ${acertos} de ${questoes.length} questões e atingiu a nota mínima de aprovação.`;
+
+        emitirCertificado(nome, percentual);
+
+    } else {
+
+        mensagem.textContent = "VOCÊ NÃO ATINGIU A NOTA MÍNIMA.";
+        mensagem.className = "reprovado";
+
+        detalhes.textContent =
+            `Você acertou ${acertos} de ${questoes.length} questões. São necessários pelo menos 28 acertos para aprovação. Revise o conteúdo e tente novamente.`;
+
+    }
+
+    document.getElementById("finalizar").disabled = true;
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+/* =========================================
+   EMISSÃO DO CERTIFICADO
+========================================= */
+
+function emitirCertificado(nome, percentual) {
+
+    document.getElementById("nomeCertificado").textContent = nome;
+
+    document.getElementById("notaCertificado").textContent =
+        percentual.toFixed(1).replace(".", ",") + "%";
+
+    const data = new Date();
+
+    document.getElementById("dataCertificado").textContent =
+        "Manaus - AM, " +
+        data.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+
+    document.getElementById("certificado").style.display = "block";
+
+    document.getElementById("acoesCertificado").style.display = "block";
+
+}
+
+
+/* =========================================
+   IMPRIMIR CERTIFICADO
+========================================= */
+
+function imprimirCertificado() {
+
+    window.print();
+
+}
+
+
+/* =========================================
+   REINICIAR A AVALIAÇÃO
+========================================= */
+
+function reiniciarAvaliacao() {
+
+    const confirmar = confirm(
+        "Deseja realmente refazer a avaliação?"
+    );
+
+    if (!confirmar) return;
+
+    avaliacaoFinalizada = false;
+
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("certificado").style.display = "none";
+    document.getElementById("acoesCertificado").style.display = "none";
+
+    document.getElementById("finalizar").disabled = false;
+
+    montarQuestionario();
+    atualizarProgresso();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>

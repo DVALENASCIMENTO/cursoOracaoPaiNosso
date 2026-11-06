@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10243a">
+<title>Aula 06 — O Pão Nosso de Cada Dia | Escola Bíblica Atalaia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #10243a;
+    --azul2: #1c3854;
+    --dourado: #c7a45b;
+    --creme: #f8f5ed;
+    --texto: #263442;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #e8e5dc;
+    color: var(--texto);
+    font-family: 'Crimson Text', serif;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.topo {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.topo h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.topo p {
+    color: #66717c;
+    font-size: 17px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background: #d0d0d0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.livro {
+    background: var(--creme);
+    min-height: 620px;
+    border-radius: 8px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.18);
+    overflow: hidden;
+    position: relative;
+}
+
+.pagina {
+    display: none;
+    padding: 55px 65px;
+    min-height: 620px;
+    animation: aparecer .35s ease;
+}
+
+.pagina.ativa {
+    display: block;
+}
+
+@keyframes aparecer {
+    from {opacity: 0; transform: translateX(10px);}
+    to {opacity: 1; transform: translateX(0);}
+}
+
+.pagina h1,
+.pagina h2,
+.pagina h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+}
+
+.pagina h1 {
+    font-size: 32px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.pagina h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--dourado);
+    padding-bottom: 10px;
+}
+
+.pagina h3 {
+    font-size: 19px;
+    margin: 22px 0 8px;
+}
+
+.pagina p {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.pagina ul {
+    margin: 10px 0 20px 25px;
+}
+
+.pagina li {
+    font-size: 19px;
+    line-height: 1.55;
+    margin-bottom: 7px;
+}
+
+.referencia {
+    color: #946f25;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: normal;
+}
+
+.referencia:hover {
+    color: #153e64;
+}
+
+.versiculo {
+    border-left: 4px solid var(--dourado);
+    background: #eee9dc;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.destaque {
+    background: #e9e2d0;
+    border-left: 4px solid var(--azul2);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.capa {
+    background: linear-gradient(145deg, #0b1c2d, #1c3b59);
+    color: white;
+    text-align: center;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.capa h1 {
+    color: #e3c47e;
+    font-size: 38px;
+    margin: 25px 0;
+}
+
+.capa h2 {
+    color: white;
+    border: none;
+    font-size: 22px;
+}
+
+.capa p {
+    color: #f2ead9;
+    text-align: center;
+    font-size: 22px;
+}
+
+.capa .linha {
+    width: 100px;
+    height: 3px;
+    background: var(--dourado);
+    margin: 20px auto;
+}
+
+.simbolo {
+    font-size: 65px;
+    color: var(--dourado);
+}
+
+.rodape-pagina {
+    margin-top: 35px;
+    padding-top: 12px;
+    border-top: 1px solid #d7d0c1;
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+    font-size: 15px;
+}
+
+.controles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.controles button {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Crimson Text', serif;
+    font-size: 18px;
+    transition: .2s;
+}
+
+.controles button:hover {
+    background: var(--azul2);
+}
+
+.controles button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+#contador {
+    font-size: 18px;
+    color: var(--azul);
+    font-weight: bold;
+    min-width: 100px;
+    text-align: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal.abrir {
+    display: flex;
+}
+
+.modal-conteudo {
+    background: #fffdf7;
+    max-width: 650px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 28px;
+    position: relative;
+}
+
+.modal-conteudo h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+    margin-bottom: 15px;
+    padding-right: 25px;
+}
+
+.modal-conteudo p {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 15px;
+}
+
+.fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #555;
+    cursor: pointer;
+}
+
+.status {
+    font-size: 16px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.assinatura {
+    margin-top: 35px;
+    text-align: center;
+    color: var(--azul);
+    font-family: 'Cinzel', serif;
+}
+
+@media(max-width:700px) {
+    body {padding: 8px;}
+    .pagina {
+        padding: 30px 22px;
+        min-height: 600px;
+    }
+    .livro {min-height: 600px;}
+    .pagina h1 {font-size: 27px;}
+    .pagina h2 {font-size: 21px;}
+    .pagina p {font-size: 18px;}
+    .pagina li {font-size: 18px;}
+    .capa {padding: 25px; min-height: 600px;}
+    .capa h1 {font-size: 29px;}
+    .capa p {font-size: 19px;}
+    .controles button {padding: 10px 14px; font-size: 16px;}
+}
+
+@media print {
+    body {background: white; padding: 0;}
+    .topo, .progress-container, .controles, .modal {display: none !important;}
+    .livro {box-shadow: none; overflow: visible;}
+    .pagina {
+        display: block !important;
+        page-break-after: always;
+        min-height: auto;
+        padding: 35px;
+        animation: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="topo">
+        <h2>ESCOLA BÍBLICA ATALAIA</h2>
+        <p>Proclamando a Verdade. Formando Discípulos.</p>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progresso"></div>
+    </div>
+
+    <main class="livro" id="livro">
+
+        <!-- CAPA -->
+        <section class="pagina capa ativa">
+            <div class="simbolo">✦</div>
+            <p>ESCOLA BÍBLICA ATALAIA</p>
+            <div class="linha"></div>
+            <h1>O PÃO NOSSO DE CADA DIA NOS DÁ HOJE</h1>
+            <h2>A provisão de Deus e a dependência diária</h2>
+            <div class="linha"></div>
+            <p>Texto-base: Mateus 6:11</p>
+            <p style="margin-top:35px;font-size:17px;">CURSO: O PAI NOSSO</p>
+        </section>
+
+        <!-- PÁGINA 2 -->
+        <section class="pagina">
+            <h2>1. Introdução: a oração que reconhece nossa dependência de Deus</h2>
+
+            <div class="versiculo">
+                “O pão nosso de cada dia nos dá hoje.”
+                <br><strong>Mateus 6:11</strong>
+            </div>
+
+            <p>Na oração ensinada por Jesus, encontramos uma petição simples, mas profundamente significativa: “O pão nosso de cada dia nos dá hoje”.</p>
+
+            <p>Depois de ensinar seus discípulos a reconhecer a santidade do nome de Deus, desejar a vinda do Reino e submeter-se à vontade divina, Jesus os ensina a apresentar ao Pai suas necessidades diárias.</p>
+
+            <p>Essa ordem revela uma verdade espiritual: Deus não está interessado somente em nossa vida religiosa, mas também se importa com nossas necessidades cotidianas.</p>
+
+            <p>A Bíblia apresenta Deus como Criador, Sustentador e Provedor de todas as coisas.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Gênesis 1:29-30">Gênesis 1:29–30</span> — Deus provê alimento à sua criação.</li>
+                <li><span class="referencia" data-ref="Salmos 24:1">Salmos 24:1</span> — A terra pertence ao Senhor.</li>
+                <li><span class="referencia" data-ref="Salmos 104:14-15">Salmos 104:14–15</span> — Deus sustenta os seres vivos.</li>
+                <li><span class="referencia" data-ref="Salmos 145:15-16">Salmos 145:15–16</span> — Os olhos de todos esperam no Senhor.</li>
+                <li><span class="referencia" data-ref="Atos 17:24-25">Atos 17:24–25</span> — Deus concede vida e todas as coisas.</li>
+                <li><span class="referencia" data-ref="Filipenses 4:19">Filipenses 4:19</span> — Deus supre nossas necessidades.</li>
+            </ul>
+
+            <div class="destaque">
+                Ensinamento: Pedir o pão diário é reconhecer que nossa existência depende da provisão e da fidelidade de Deus.
+            </div>
+        </section>
+
+        <!-- PÁGINA 3 -->
+        <section class="pagina">
+            <h2>2. O significado do pão na Bíblia</h2>
+
+            <p>Na Escritura, o pão representa o alimento necessário à manutenção da vida. Em diferentes passagens, também aparece relacionado à comunhão, à hospitalidade, à provisão e à dependência de Deus.</p>
+
+            <p>Na cultura bíblica, o pão era um alimento essencial. Por isso, quando Jesus ensina a pedir o pão, está ensinando seus discípulos a confiar no Pai quanto às necessidades básicas da existência.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Gênesis 3:19">Gênesis 3:19</span> — O pão e o trabalho humano.</li>
+                <li><span class="referencia" data-ref="Gênesis 14:18">Gênesis 14:18</span> — Melquisedeque apresenta pão e vinho.</li>
+                <li><span class="referencia" data-ref="Êxodo 16:4">Êxodo 16:4</span> — O pão que vem do céu.</li>
+                <li><span class="referencia" data-ref="Deuteronômio 8:3">Deuteronômio 8:3</span> — O homem não vive somente de pão.</li>
+                <li><span class="referencia" data-ref="Provérbios 30:8-9">Provérbios 30:8–9</span> — O alimento necessário.</li>
+                <li><span class="referencia" data-ref="Mateus 4:4">Mateus 4:4</span> — A Palavra de Deus é essencial à vida.</li>
+                <li><span class="referencia" data-ref="Lucas 11:3">Lucas 11:3</span> — O pedido pelo pão cotidiano.</li>
+            </ul>
+
+            <p>O pão aponta para a necessidade material, mas a Palavra nos ensina que a vida humana não pode ser reduzida às necessidades materiais.</p>
+
+            <div class="destaque">
+                O alimento sustenta o corpo, mas a vida também precisa ser alimentada pela Palavra de Deus.
+            </div>
+        </section>
+
+        <!-- PÁGINA 4 -->
+        <section class="pagina">
+            <h2>3. O maná: uma escola de dependência diária</h2>
+
+            <p>Um dos exemplos mais importantes da provisão divina está registrado em Êxodo 16.</p>
+
+            <p>Depois de libertar Israel do Egito, Deus conduziu o povo pelo deserto. Naquele ambiente, os israelitas enfrentaram a falta de alimento. O Senhor, então, providenciou o maná, um alimento que aparecia diariamente sobre o solo.</p>
+
+            <p>Deus orientou o povo a recolher a porção necessária para cada dia. A provisão não deveria ser transformada em motivo de ansiedade ou independência.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Êxodo 16:1-5">Êxodo 16:1–5</span> — A promessa do alimento.</li>
+                <li><span class="referencia" data-ref="Êxodo 16:13-18">Êxodo 16:13–18</span> — O recolhimento do maná.</li>
+                <li><span class="referencia" data-ref="Êxodo 16:19-21">Êxodo 16:19–21</span> — A orientação sobre o maná.</li>
+                <li><span class="referencia" data-ref="Êxodo 16:22-30">Êxodo 16:22–30</span> — A provisão e o descanso sabático.</li>
+                <li><span class="referencia" data-ref="Deuteronômio 8:2-3">Deuteronômio 8:2–3</span> — A dependência de Deus.</li>
+                <li><span class="referencia" data-ref="Deuteronômio 8:16-18">Deuteronômio 8:16–18</span> — Deus concede força para adquirir riquezas.</li>
+                <li><span class="referencia" data-ref="Neemias 9:15">Neemias 9:15</span> — O pão do céu.</li>
+                <li><span class="referencia" data-ref="Salmos 78:23-25">Salmos 78:23–25</span> — O alimento no deserto.</li>
+            </ul>
+
+            <div class="destaque">
+                Lição espiritual: O maná ensinava Israel a depender de Deus diariamente. A provisão vinha daquele que sustentava o povo.
+            </div>
+        </section>
+
+        <!-- PÁGINA 5 -->
+        <section class="pagina">
+            <h2>4. A provisão divina e a responsabilidade humana</h2>
+
+            <p>Confiar em Deus não significa abandonar o trabalho, a responsabilidade ou a administração dos recursos.</p>
+
+            <p>A Bíblia ensina que o trabalho é uma atividade digna e que o ser humano deve agir com responsabilidade.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Gênesis 2:15">Gênesis 2:15</span> — Cultivar e guardar o jardim.</li>
+                <li><span class="referencia" data-ref="Provérbios 6:6-11">Provérbios 6:6–11</span> — A formiga como exemplo de diligência.</li>
+                <li><span class="referencia" data-ref="Provérbios 10:4">Provérbios 10:4</span> — A mão diligente.</li>
+                <li><span class="referencia" data-ref="Provérbios 12:11">Provérbios 12:11</span> — O valor do trabalho.</li>
+                <li><span class="referencia" data-ref="Provérbios 14:23">Provérbios 14:23</span> — Em todo trabalho há proveito.</li>
+                <li><span class="referencia" data-ref="Provérbios 21:5">Provérbios 21:5</span> — Os planos do diligente.</li>
+                <li><span class="referencia" data-ref="Efésios 4:28">Efésios 4:28</span> — Trabalhar honestamente para repartir.</li>
+                <li><span class="referencia" data-ref="Colossenses 3:23-24">Colossenses 3:23–24</span> — Trabalhar como para o Senhor.</li>
+                <li><span class="referencia" data-ref="2 Tessalonicenses 3:10-12">2 Tessalonicenses 3:10–12</span> — Responsabilidade e trabalho.</li>
+            </ul>
+
+            <p>A confiança na provisão de Deus não deve ser confundida com passividade. O Senhor pode prover por meio do trabalho, de oportunidades, de pessoas e de recursos.</p>
+
+            <div class="destaque">
+                Ensinamento: Orar pelo pão não dispensa o compromisso de trabalhar com honestidade, sabedoria e diligência.
+            </div>
+        </section>
+
+        <!-- PÁGINA 6 -->
+        <section class="pagina">
+            <h2>5. Por que Jesus ensinou a pedir o pão de cada dia?</h2>
+
+            <p>Jesus não ensinou seus discípulos a viverem dominados pela preocupação com o amanhã. Ele os ensinou a confiar no cuidado diário do Pai.</p>
+
+            <p>Em Mateus 6:25–34, Jesus aborda diretamente a ansiedade relacionada ao alimento, à bebida e às vestimentas.</p>
+
+            <p>Ele apresenta as aves do céu e os lírios do campo como exemplos do cuidado de Deus com sua criação.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Mateus 6:25-27">Mateus 6:25–27</span> — Não viver dominado pela ansiedade.</li>
+                <li><span class="referencia" data-ref="Mateus 6:28-30">Mateus 6:28–30</span> — O cuidado de Deus com os lírios.</li>
+                <li><span class="referencia" data-ref="Mateus 6:31-32">Mateus 6:31–32</span> — O Pai conhece as necessidades.</li>
+                <li><span class="referencia" data-ref="Mateus 6:33">Mateus 6:33</span> — Buscar primeiro o Reino.</li>
+                <li><span class="referencia" data-ref="Mateus 6:34">Mateus 6:34</span> — Não antecipar as preocupações do amanhã.</li>
+                <li><span class="referencia" data-ref="Lucas 12:22-31">Lucas 12:22–31</span> — Confiança e ansiedade.</li>
+                <li><span class="referencia" data-ref="Salmos 55:22">Salmos 55:22</span> — Lançar preocupações sobre Deus.</li>
+                <li><span class="referencia" data-ref="1 Pedro 5:6-7">1 Pedro 5:6–7</span> — Entregar as ansiedades.</li>
+                <li><span class="referencia" data-ref="Filipenses 4:6-7">Filipenses 4:6–7</span> — Apresentar pedidos a Deus.</li>
+            </ul>
+
+            <div class="destaque">
+                A expressão “cada dia” nos ensina a viver uma jornada de confiança. Planejamos o futuro, mas não permitimos que o medo domine nosso coração.
+            </div>
+        </section>
+
+        <!-- PÁGINA 7 -->
+        <section class="pagina">
+            <h2>6. Jesus, o Pão da Vida</h2>
+
+            <p>O ensinamento sobre o pão diário também nos conduz a uma verdade espiritual mais profunda.</p>
+
+            <p>Em João 6, Jesus utiliza a experiência do maná para revelar sua própria identidade. O povo havia recebido alimento no deserto, mas Jesus apresenta a si mesmo como o verdadeiro Pão que desceu do céu.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="João 6:26-27">João 6:26–27</span> — O alimento que permanece para a vida eterna.</li>
+                <li><span class="referencia" data-ref="João 6:30-33">João 6:30–33</span> — O verdadeiro pão do céu.</li>
+                <li><span class="referencia" data-ref="João 6:34-35">João 6:34–35</span> — Jesus, o Pão da Vida.</li>
+                <li><span class="referencia" data-ref="João 6:47-51">João 6:47–51</span> — Quem crê tem a vida eterna.</li>
+                <li><span class="referencia" data-ref="João 6:57-58">João 6:57–58</span> — O pão que dá vida.</li>
+                <li><span class="referencia" data-ref="Mateus 4:4">Mateus 4:4</span> — A Palavra de Deus.</li>
+                <li><span class="referencia" data-ref="Deuteronômio 8:3">Deuteronômio 8:3</span> — O que procede da boca do Senhor.</li>
+                <li><span class="referencia" data-ref="João 1:1-4">João 1:1–4</span> — A vida está no Verbo.</li>
+                <li><span class="referencia" data-ref="João 10:10">João 10:10</span> — Vida em abundância.</li>
+            </ul>
+
+            <div class="destaque">
+                O pão material atende a uma necessidade temporária. Cristo, o Pão da Vida, é a fonte da vida eterna.
+            </div>
+        </section>
+
+        <!-- PÁGINA 8 -->
+        <section class="pagina">
+            <h2>7. O pão nosso: comunhão e generosidade</h2>
+
+            <p>Jesus não ensinou a dizer “o pão meu”, mas “o pão nosso”.</p>
+
+            <p>Essa expressão merece atenção. A oração não está concentrada exclusivamente nas necessidades individuais. Ela nos ensina a considerar também as necessidades do próximo.</p>
+
+            <p>A fé bíblica não pode ser separada do amor prático.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Levítico 19:9-10">Levítico 19:9–10</span> — Deixar parte da colheita para o necessitado.</li>
+                <li><span class="referencia" data-ref="Deuteronômio 15:7-11">Deuteronômio 15:7–11</span> — Não endurecer o coração.</li>
+                <li><span class="referencia" data-ref="Provérbios 19:17">Provérbios 19:17</span> — A compaixão pelo pobre.</li>
+                <li><span class="referencia" data-ref="Isaías 58:6-10">Isaías 58:6–10</span> — Repartir o pão com o faminto.</li>
+                <li><span class="referencia" data-ref="Mateus 25:34-40">Mateus 25:34–40</span> — Servir aos necessitados.</li>
+                <li><span class="referencia" data-ref="Atos 2:42-47">Atos 2:42–47</span> — Comunhão e partilha.</li>
+                <li><span class="referencia" data-ref="Atos 4:32-35">Atos 4:32–35</span> — A comunidade compartilhava recursos.</li>
+                <li><span class="referencia" data-ref="2 Coríntios 8:13-15">2 Coríntios 8:13–15</span> — O princípio da igualdade.</li>
+                <li><span class="referencia" data-ref="Gálatas 6:9-10">Gálatas 6:9–10</span> — Fazer o bem a todos.</li>
+                <li><span class="referencia" data-ref="1 João 3:17-18">1 João 3:17–18</span> — Amar por ações e em verdade.</li>
+                <li><span class="referencia" data-ref="Tiago 2:14-17">Tiago 2:14–17</span> — A fé demonstrada por obras.</li>
+            </ul>
+
+            <div class="destaque">
+                Quem pede ao Pai o pão diário também precisa desenvolver um coração disposto a repartir.
+            </div>
+        </section>
+
+        <!-- PÁGINA 9 -->
+        <section class="pagina">
+            <h2>8. Gratidão e contentamento diante da provisão</h2>
+
+            <p>A oração pelo pão diário também nos ensina a reconhecer o valor daquilo que recebemos.</p>
+
+            <p>Nem sempre teremos abundância. Em determinados períodos, enfrentaremos limitações, dificuldades e necessidades. Ainda assim, a Palavra nos orienta a cultivar gratidão e contentamento.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Salmos 34:1">Salmos 34:1</span> — Bendizer ao Senhor em todo o tempo.</li>
+                <li><span class="referencia" data-ref="Salmos 103:1-5">Salmos 103:1–5</span> — Não esquecer os benefícios do Senhor.</li>
+                <li><span class="referencia" data-ref="Provérbios 30:8-9">Provérbios 30:8–9</span> — O alimento necessário.</li>
+                <li><span class="referencia" data-ref="Eclesiastes 5:18-19">Eclesiastes 5:18–19</span> — O fruto do trabalho como dádiva.</li>
+                <li><span class="referencia" data-ref="Filipenses 4:11-13">Filipenses 4:11–13</span> — Aprender a viver contente.</li>
+                <li><span class="referencia" data-ref="Colossenses 3:15-17">Colossenses 3:15–17</span> — Viver em gratidão.</li>
+                <li><span class="referencia" data-ref="1 Tessalonicenses 5:16-18">1 Tessalonicenses 5:16–18</span> — Dar graças em todas as circunstâncias.</li>
+                <li><span class="referencia" data-ref="1 Timóteo 6:6-8">1 Timóteo 6:6–8</span> — Piedade e contentamento.</li>
+                <li><span class="referencia" data-ref="Hebreus 13:5">Hebreus 13:5</span> — Contentar-se com o que se tem.</li>
+            </ul>
+
+            <div class="destaque">
+                Contentamento não significa deixar de trabalhar ou buscar melhorias. Significa não permitir que a insatisfação, a comparação e a cobiça dominem o coração.
+            </div>
+        </section>
+
+        <!-- PÁGINA 10 -->
+        <section class="pagina">
+            <h2>9. Necessidade e cobiça</h2>
+
+            <p>Ao ensinar seus discípulos a pedir o pão de cada dia, Jesus não estava incentivando uma vida dominada pelo desejo de acumular bens.</p>
+
+            <p>A Bíblia adverte sobre o perigo de transformar riquezas e posses em prioridade.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Êxodo 20:17">Êxodo 20:17</span> — Não cobiçar.</li>
+                <li><span class="referencia" data-ref="Salmos 62:10">Salmos 62:10</span> — Não colocar o coração nas riquezas.</li>
+                <li><span class="referencia" data-ref="Provérbios 11:28">Provérbios 11:28</span> — Não confiar nas riquezas.</li>
+                <li><span class="referencia" data-ref="Provérbios 23:4-5">Provérbios 23:4–5</span> — Não viver para enriquecer.</li>
+                <li><span class="referencia" data-ref="Eclesiastes 5:10">Eclesiastes 5:10</span> — O amor ao dinheiro.</li>
+                <li><span class="referencia" data-ref="Mateus 6:19-21">Mateus 6:19–21</span> — Tesouros na terra e no céu.</li>
+                <li><span class="referencia" data-ref="Mateus 6:24">Mateus 6:24</span> — Deus e as riquezas.</li>
+                <li><span class="referencia" data-ref="Lucas 12:15">Lucas 12:15</span> — A vida não consiste nos bens.</li>
+                <li><span class="referencia" data-ref="Lucas 12:16-21">Lucas 12:16–21</span> — A parábola do rico insensato.</li>
+                <li><span class="referencia" data-ref="1 Timóteo 6:9-10">1 Timóteo 6:9–10</span> — O perigo do amor ao dinheiro.</li>
+                <li><span class="referencia" data-ref="1 Timóteo 6:17-19">1 Timóteo 6:17–19</span> — A responsabilidade dos que possuem recursos.</li>
+            </ul>
+
+            <div class="destaque">
+                Devemos receber os bens com gratidão, administrá-los com sabedoria e utilizá-los sem transformar o dinheiro em senhor da nossa vida.
+            </div>
+        </section>
+
+        <!-- PÁGINA 11 -->
+        <section class="pagina">
+            <h2>10. A provisão e a soberania de Deus</h2>
+
+            <p>A Bíblia ensina que Deus é soberano e conhece as necessidades humanas. Isso não significa que todos os dias serão fáceis ou que o cristão nunca enfrentará escassez.</p>
+
+            <p>O apóstolo Paulo conheceu tanto a abundância quanto a necessidade. Sua confiança não estava na estabilidade das circunstâncias, mas em Cristo.</p>
+
+            <h3>Referências para estudo</h3>
+            <ul>
+                <li><span class="referencia" data-ref="Jó 1:20-22">Jó 1:20–22</span> — A fidelidade em meio à perda.</li>
+                <li><span class="referencia" data-ref="Habacuque 3:17-19">Habacuque 3:17–19</span> — Alegria mesmo diante da escassez.</li>
+                <li><span class="referencia" data-ref="Salmos 23:1">Salmos 23:1</span> — O Senhor é o pastor.</li>
+                <li><span class="referencia" data-ref="Salmos 34:9-10">Salmos 34:9–10</span> — A bondade de Deus.</li>
+                <li><span class="referencia" data-ref="Salmos 37:3-5">Salmos 37:3–5</span> — Confiar no Senhor.</li>
+                <li><span class="referencia" data-ref="Romanos 8:28">Romanos 8:28</span> — Deus opera em todas as coisas para o bem.</li>
+                <li><span class="referencia" data-ref="2 Coríntios 11:27">2 Coríntios 11:27</span> — Paulo relata fome e sede.</li>
+                <li><span class="referencia" data-ref="Filipenses 4:12-13">Filipenses 4:12–13</span> — Viver em abundância e necessidade.</li>
+                <li><span class="referencia" data-ref="Filipenses 4:19">Filipenses 4:19</span> — A provisão de Deus.</li>
+            </ul>
+
+            <div class="destaque">
+                A fé não é uma promessa de ausência de dificuldades. É a confiança de que Deus permanece digno de confiança em todas as circunstâncias.
+            </div>
+        </section>
+
+        <!-- PÁGINA 12 -->
+        <section class="pagina">
+            <h2>11. Aplicações práticas para a vida cristã</h2>
+
+            <h3>1. Reconhecer Deus como fonte da provisão</h3>
+            <p>Não atribuir toda a segurança pessoal exclusivamente ao dinheiro, ao emprego ou aos recursos humanos.</p>
+            <p><span class="referencia" data-ref="Deuteronômio 8:17-18">Deuteronômio 8:17–18</span>; <span class="referencia" data-ref="Salmos 104:27-28">Salmos 104:27–28</span>; <span class="referencia" data-ref="Tiago 1:17">Tiago 1:17</span>.</p>
+
+            <h3>2. Trabalhar com honestidade e responsabilidade</h3>
+            <p>A oração deve caminhar junto com a diligência e a integridade.</p>
+            <p><span class="referencia" data-ref="Provérbios 6:6-8">Provérbios 6:6–8</span>; <span class="referencia" data-ref="Efésios 4:28">Efésios 4:28</span>; <span class="referencia" data-ref="Colossenses 3:23">Colossenses 3:23</span>.</p>
+
+            <h3>3. Evitar a ansiedade excessiva</h3>
+            <p>Planejar o futuro sem permitir que o medo do amanhã roube a paz de hoje.</p>
+            <p><span class="referencia" data-ref="Mateus 6:25-34">Mateus 6:25–34</span>; <span class="referencia" data-ref="Filipenses 4:6-7">Filipenses 4:6–7</span>; <span class="referencia" data-ref="1 Pedro 5:7">1 Pedro 5:7</span>.</p>
+
+            <h3>4. Desenvolver gratidão</h3>
+            <p>Reconhecer a bondade de Deus nas provisões grandes e pequenas.</p>
+            <p><span class="referencia" data-ref="Salmos 103:2">Salmos 103:2</span>; <span class="referencia" data-ref="Colossenses 3:15-17">Colossenses 3:15–17</span>; <span class="referencia" data-ref="1 Tessalonicenses 5:18">1 Tessalonicenses 5:18</span>.</p>
+        </section>
+
+        <!-- PÁGINA 13 -->
+        <section class="pagina">
+            <h2>11. Aplicações práticas — continuação</h2>
+
+            <h3>5. Repartir com quem necessita</h3>
+            <p>Não transformar a bênção recebida em egoísmo.</p>
+            <p><span class="referencia" data-ref="Deuteronômio 15:7-11">Deuteronômio 15:7–11</span>; <span class="referencia" data-ref="Atos 4:32-35">Atos 4:32–35</span>; <span class="referencia" data-ref="1 João 3:17-18">1 João 3:17–18</span>.</p>
+
+            <h3>6. Buscar o alimento espiritual</h3>
+            <p>Não cuidar apenas do corpo e negligenciar a Palavra de Deus.</p>
+            <p><span class="referencia" data-ref="Deuteronômio 8:3">Deuteronômio 8:3</span>; <span class="referencia" data-ref="Mateus 4:4">Mateus 4:4</span>; <span class="referencia" data-ref="João 6:35">João 6:35</span>; <span class="referencia" data-ref="1 Pedro 2:2">1 Pedro 2:2</span>.</p>
+
+            <div class="versiculo">
+                “Buscai primeiro o Reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.”
+                <br><strong>Mateus 6:33</strong>
+            </div>
+
+            <p>A provisão material é importante, mas não deve ocupar o lugar de Deus em nosso coração. O discípulo aprende a colocar o Reino em primeiro lugar e a confiar no cuidado do Pai.</p>
+        </section>
+
+        <!-- PÁGINA 14 -->
+        <section class="pagina">
+            <h2>12. Conclusão: aprendendo a depender do Pai diariamente</h2>
+
+            <p>Quando Jesus ensinou seus discípulos a orar pelo pão de cada dia, Ele os conduziu a uma vida de dependência, gratidão e confiança.</p>
+
+            <p>O pão diário representa a necessidade de reconhecer que não somos autossuficientes. Precisamos de Deus para viver, trabalhar, sustentar nossa família, enfrentar as dificuldades e permanecer firmes na fé.</p>
+
+            <p>O maná no deserto ensinou Israel a depender da provisão diária. O ensino de Jesus nos chama a confiar no Pai, sem sermos dominados pela ansiedade. E a declaração de Cristo como o Pão da Vida nos revela que nossa maior necessidade não é apenas material: precisamos dele para receber a vida eterna.</p>
+
+            <h3>Três verdades fundamentais</h3>
+            <div class="destaque">
+                <strong>DEPENDÊNCIA:</strong> Deus é o nosso sustentador.
+            </div>
+            <div class="destaque">
+                <strong>CONTENTAMENTO:</strong> Devemos receber com gratidão aquilo que Ele nos concede.
+            </div>
+            <div class="destaque">
+                <strong>GENEROSIDADE:</strong> A provisão recebida também deve servir para abençoar outras pessoas.
+            </div>
+
+            <p>Que nossa oração não seja apenas por aquilo que desejamos possuir, mas por um coração que saiba depender de Deus, administrar com sabedoria, agradecer continuamente e repartir com amor.</p>
+        </section>
+
+        <!-- PÁGINA 15 -->
+        <section class="pagina">
+            <h2>13. Perguntas para reflexão e fixação</h2>
+
+            <ol>
+                <li>O que significa pedir a Deus o pão de cada dia?</li>
+                <li>Qual foi a finalidade do maná durante a caminhada de Israel no deserto?</li>
+                <li>Por que a confiança na provisão divina não elimina a responsabilidade de trabalhar?</li>
+                <li>Qual é a relação entre Mateus 6:11 e Mateus 6:25–34?</li>
+                <li>Por que Jesus se apresenta como o Pão da Vida em João 6?</li>
+                <li>O que a palavra “nosso” ensina sobre comunhão e generosidade?</li>
+                <li>Qual é a diferença entre contentamento e acomodação?</li>
+                <li>Como o cristão pode planejar o futuro sem viver dominado pela ansiedade?</li>
+                <li>De que maneira podemos repartir o pão com quem necessita?</li>
+                <li>Como essa parte da oração do Pai Nosso pode transformar nossa vida cotidiana?</li>
+            </ol>
+
+            <div class="destaque">
+                Leia as referências bíblicas indicadas ao longo do estudo e procure responder às perguntas com base nas Escrituras.
+            </div>
+        </section>
+
+        <!-- PÁGINA 16 -->
+        <section class="pagina">
+            <h2>14. Textos bíblicos fundamentais</h2>
+
+            <ul>
+                <li><strong>Deus como provedor:</strong> <span class="referencia" data-ref="Salmos 23:1">Salmos 23:1</span>; <span class="referencia" data-ref="Salmos 34:9-10">34:9–10</span>; <span class="referencia" data-ref="Salmos 145:15-16">145:15–16</span>.</li>
+
+                <li><strong>O maná no deserto:</strong> <span class="referencia" data-ref="Êxodo 16:1-36">Êxodo 16:1–36</span>.</li>
+
+                <li><strong>Dependência de Deus:</strong> <span class="referencia" data-ref="Deuteronômio 8:2-18">Deuteronômio 8:2–18</span>.</li>
+
+                <li><strong>O trabalho:</strong> <span class="referencia" data-ref="Provérbios 6:6-11">Provérbios 6:6–11</span>; <span class="referencia" data-ref="Efésios 4:28">Efésios 4:28</span>.</li>
+
+                <li><strong>O Pão da Vida:</strong> <span class="referencia" data-ref="João 6:26-58">João 6:26–58</span>.</li>
+
+                <li><strong>A ansiedade:</strong> <span class="referencia" data-ref="Mateus 6:25-34">Mateus 6:25–34</span>; <span class="referencia" data-ref="Filipenses 4:6-7">Filipenses 4:6–7</span>.</li>
+
+                <li><strong>A generosidade:</strong> <span class="referencia" data-ref="Atos 4:32-35">Atos 4:32–35</span>; <span class="referencia" data-ref="1 João 3:17-18">1 João 3:17–18</span>.</li>
+
+                <li><strong>O contentamento:</strong> <span class="referencia" data-ref="Filipenses 4:11-13">Filipenses 4:11–13</span>; <span class="referencia" data-ref="1 Timóteo 6:6-8">1 Timóteo 6:6–8</span>.</li>
+
+                <li><strong>A gratidão:</strong> <span class="referencia" data-ref="Colossenses 3:15-17">Colossenses 3:15–17</span>; <span class="referencia" data-ref="1 Tessalonicenses 5:18">1 Tessalonicenses 5:18</span>.</li>
+            </ul>
+
+            <div class="versiculo">
+                “O pão nosso de cada dia nos dá hoje.”
+                <br><strong>Mateus 6:11</strong>
+            </div>
+        </section>
+
+
+    </main>
+
+    <div class="status" id="status">Aula 06 — O Pão Nosso de Cada Dia nos Dá Hoje</div>
+
+    <nav class="controles">
+        <button id="anterior" onclick="mudarPagina(-1)">❮ Anterior</button>
+        <span id="contador">1 / 17</span>
+        <button id="proximo" onclick="mudarPagina(1)">Próxima ❯</button>
+        <button onclick="window.print()">Imprimir</button>
+    </nav>
+
+</div>
+
+<!-- JANELA DOS TEXTOS BÍBLICOS -->
+<div class="modal" id="modalBiblia" onclick="fecharModalFora(event)">
+    <div class="modal-conteudo">
+        <button class="fechar" onclick="fecharModal()">×</button>
+        <h2 id="tituloReferencia">Referência bíblica</h2>
+        <div id="textoBiblico">
+            <p>Carregando texto bíblico...</p>
+        </div>
+        <p style="font-size:14px;color:#777;margin-top:20px;">
+            Texto bíblico disponibilizado pela API Bible.
+        </p>
+    </div>
+</div>
+
+<script>
+/* NAVEGAÇÃO DO FLIPBOOK */
+
+const paginas = document.querySelectorAll('.pagina');
+const totalPaginas = paginas.length;
+let paginaAtual = 0;
+
+const contador = document.getElementById('contador');
+const progresso = document.getElementById('progresso');
+const botaoAnterior = document.getElementById('anterior');
+const botaoProximo = document.getElementById('proximo');
+
+function atualizarPagina() {
+    paginas.forEach((pagina, indice) => {
+        pagina.classList.toggle('ativa', indice === paginaAtual);
+    });
+
+    contador.textContent = `${paginaAtual + 1} / ${totalPaginas}`;
+
+    progresso.style.width =
+        `${((paginaAtual + 1) / totalPaginas) * 100}%`;
+
+    botaoAnterior.disabled = paginaAtual === 0;
+    botaoProximo.disabled = paginaAtual === totalPaginas - 1;
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function mudarPagina(direcao) {
+    const novaPagina = paginaAtual + direcao;
+
+    if (novaPagina >= 0 && novaPagina < totalPaginas) {
+        paginaAtual = novaPagina;
+        atualizarPagina();
+    }
+}
+
+document.addEventListener('keydown', function(event) {
+    if (document.getElementById('modalBiblia').classList.contains('abrir')) {
+        if (event.key === 'Escape') fecharModal();
+        return;
+    }
+
+    if (event.key === 'ArrowRight') mudarPagina(1);
+    if (event.key === 'ArrowLeft') mudarPagina(-1);
+});
+
+atualizarPagina();
+
+
+/* REFERÊNCIAS BÍBLICAS E POPUP */
+
+const modal = document.getElementById('modalBiblia');
+const tituloReferencia = document.getElementById('tituloReferencia');
+const textoBiblico = document.getElementById('textoBiblico');
+
+const nomesLivros = {
+    "Gênesis": "Genesis",
+    "Êxodo": "Exodus",
+    "Levítico": "Leviticus",
+    "Números": "Numbers",
+    "Deuteronômio": "Deuteronomy",
+    "Josué": "Joshua",
+    "Juízes": "Judges",
+    "Rute": "Ruth",
+    "1 Samuel": "1 Samuel",
+    "2 Samuel": "2 Samuel",
+    "1 Reis": "1 Kings",
+    "2 Reis": "2 Kings",
+    "1 Crônicas": "1 Chronicles",
+    "2 Crônicas": "2 Chronicles",
+    "Esdras": "Ezra",
+    "Neemias": "Nehemiah",
+    "Ester": "Esther",
+    "Jó": "Job",
+    "Salmos": "Psalms",
+    "Provérbios": "Proverbs",
+    "Eclesiastes": "Ecclesiastes",
+    "Cânticos": "Song of Solomon",
+    "Isaías": "Isaiah",
+    "Jeremias": "Jeremiah",
+    "Lamentações": "Lamentations",
+    "Ezequiel": "Ezekiel",
+    "Daniel": "Daniel",
+    "Oséias": "Hosea",
+    "Joel": "Joel",
+    "Amós": "Amos",
+    "Obadias": "Obadiah",
+    "Jonas": "Jonah",
+    "Miquéias": "Micah",
+    "Naum": "Nahum",
+    "Habacuque": "Habakkuk",
+    "Sofonias": "Zephaniah",
+    "Ageu": "Haggai",
+    "Zacarias": "Zechariah",
+    "Malaquias": "Malachi",
+    "Mateus": "Matthew",
+    "Marcos": "Mark",
+    "Lucas": "Luke",
+    "João": "John",
+    "Atos": "Acts",
+    "Romanos": "Romans",
+    "1 Coríntios": "1 Corinthians",
+    "2 Coríntios": "2 Corinthians",
+    "Gálatas": "Galatians",
+    "Efésios": "Ephesians",
+    "Filipenses": "Philippians",
+    "Colossenses": "Colossians",
+    "1 Tessalonicenses": "1 Thessalonians",
+    "2 Tessalonicenses": "2 Thessalonians",
+    "1 Timóteo": "1 Timothy",
+    "2 Timóteo": "2 Timothy",
+    "Tito": "Titus",
+    "Filemom": "Philemon",
+    "Hebreus": "Hebrews",
+    "Tiago": "James",
+    "1 Pedro": "1 Peter",
+    "2 Pedro": "2 Peter",
+    "1 João": "1 John",
+    "2 João": "2 John",
+    "3 João": "3 John",
+    "Judas": "Jude",
+    "Apocalipse": "Revelation"
+};
+
+function converterReferencia(referencia) {
+    const correspondencia = referencia.match(/^(.+?)\s+(\d+):(\d+)(?:-(\d+))?$/);
+
+    if (!correspondencia) {
+        throw new Error("Formato de referência não reconhecido.");
+    }
+
+    const livroPt = correspondencia[1].trim();
+    const livroEn = nomesLivros[livroPt];
+
+    if (!livroEn) {
+        throw new Error("Livro bíblico não encontrado: " + livroPt);
+    }
+
+    const capitulo = correspondencia[2];
+    const versiculoInicial = correspondencia[3];
+    const versiculoFinal = correspondencia[4] || versiculoInicial;
+
+    return {
+        livro: livroEn,
+        capitulo,
+        versiculoInicial,
+        versiculoFinal
+    };
+}
+
+async function abrirReferencia(referencia) {
+    modal.classList.add('abrir');
+    tituloReferencia.textContent = referencia;
+    textoBiblico.innerHTML = '<p>Carregando texto bíblico...</p>';
+
+    try {
+        const dados = converterReferencia(referencia);
+
+        const consulta = `${dados.livro}+${dados.capitulo}:${dados.versiculoInicial}-${dados.versiculoFinal}`;
+
+        const url = `https://bible-api.com/${encodeURIComponent(consulta)}?translation=almeida`;
+
+        const resposta = await fetch(url);
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível consultar a referência.");
+        }
+
+        const resultado = await resposta.json();
+
+        if (!resultado.verses || resultado.verses.length === 0) {
+            throw new Error("Texto bíblico não encontrado.");
+        }
+
+        textoBiblico.innerHTML = '';
+
+        resultado.verses.forEach(versiculo => {
+            const paragrafo = document.createElement('p');
+            paragrafo.innerHTML =
+                `<strong>${versiculo.verse}.</strong> ${escaparHTML(versiculo.text.trim())}`;
+            textoBiblico.appendChild(paragrafo);
+        });
+
+        const fonte = document.createElement('p');
+        fonte.style.fontSize = '14px';
+        fonte.style.color = '#777';
+        fonte.textContent = resultado.translation_name || 'Almeida';
+        textoBiblico.appendChild(fonte);
+
+    } catch (erro) {
+        textoBiblico.innerHTML = `
+            <p>Não foi possível carregar automaticamente o texto desta referência.</p>
+            <p>Você pode consultar a passagem diretamente na Bíblia online:</p>
+        `;
+
+        const link = document.createElement('a');
+        link.href = 'https://www.bible.com/pt/bible';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Abrir Bíblia online';
+        link.style.color = '#946f25';
+        link.style.fontWeight = 'bold';
+
+        textoBiblico.appendChild(link);
+
+        console.error(erro);
+    }
+}
+
+function escaparHTML(texto) {
+    const elemento = document.createElement('div');
+    elemento.textContent = texto;
+    return elemento.innerHTML;
+}
+
+document.querySelectorAll('.referencia').forEach(item => {
+    item.addEventListener('click', () => {
+        abrirReferencia(item.dataset.ref);
+    });
+});
+
+function fecharModal() {
+    modal.classList.remove('abrir');
+}
+
+function fecharModalFora(event) {
+    if (event.target === modal) {
+        fecharModal();
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — Aula 07 | Escola Bíblica Atalaia</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap');
+
+:root {
+    --azul: #102a43;
+    --azul-escuro: #081b2d;
+    --dourado: #c5a45b;
+    --fundo: #f1f3f5;
+    --texto: #263238;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 15px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 19px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    background: var(--branco);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.09);
+}
+
+.cabecalho {
+    text-align: center;
+    border-bottom: 3px solid var(--dourado);
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+}
+
+.cabecalho .instituicao {
+    font-family: 'Cinzel', serif;
+    color: var(--dourado);
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+    font-size: 27px;
+    margin: 12px 0 5px;
+}
+
+.subtitulo {
+    color: #586675;
+    font-size: 19px;
+}
+
+.identificacao {
+    background: #f5f7f9;
+    border-left: 4px solid var(--dourado);
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.identificacao label {
+    display: block;
+    color: var(--azul);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 13px;
+    font-family: inherit;
+    font-size: 18px;
+    border: 1px solid #b8c2cc;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 2px rgba(197,164,91,.15);
+}
+
+.instrucoes {
+    background: #edf2f7;
+    padding: 15px 18px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.instrucoes strong {
+    color: var(--azul);
+}
+
+.questao {
+    padding: 20px 18px;
+    margin-bottom: 18px;
+    border: 1px solid #dce2e8;
+    border-radius: 7px;
+    background: #fff;
+}
+
+.questao h3 {
+    margin: 0 0 13px;
+    color: var(--azul);
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.alternativa:hover {
+    background: #f1f4f7;
+}
+
+.alternativa input {
+    margin-top: 6px;
+    accent-color: var(--azul);
+    transform: scale(1.15);
+}
+
+.alternativa span {
+    flex: 1;
+}
+
+button {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+.btn-finalizar {
+    display: block;
+    width: 100%;
+    background: var(--azul);
+    color: white;
+    margin-top: 30px;
+}
+
+.btn-imprimir {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+    margin-top: 20px;
+}
+
+#resultado {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    border: 2px solid var(--dourado);
+    border-radius: 8px;
+    text-align: center;
+}
+
+#resultado h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+}
+
+.aprovado {
+    color: #236b42;
+    font-weight: bold;
+}
+
+.reprovado {
+    color: #a52a2a;
+    font-weight: bold;
+}
+
+.detalhes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.detalhe {
+    min-width: 100px;
+    padding: 12px;
+    background: #f1f4f7;
+    border-radius: 6px;
+}
+
+.detalhe strong {
+    display: block;
+    font-size: 25px;
+    color: var(--azul);
+}
+
+#certificado {
+    display: none;
+}
+
+/* CERTIFICADO */
+
+.certificado-pagina {
+    width: 100%;
+    min-height: 190mm;
+    padding: 14mm;
+    background: white;
+    border: 8px double var(--dourado);
+    outline: 2px solid var(--azul);
+    outline-offset: -17px;
+    text-align: center;
+    color: var(--azul-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.certificado-pagina .marca {
+    font-family: 'Cinzel', serif;
+    color: var(--dourado);
+    letter-spacing: 4px;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.certificado-pagina h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 34px;
+    color: var(--azul);
+    letter-spacing: 3px;
+    margin: 12px 0;
+}
+
+.certificado-pagina .linha {
+    width: 180px;
+    height: 2px;
+    background: var(--dourado);
+    margin: 10px auto 25px;
+}
+
+.certificado-pagina .texto-certificado {
+    font-size: 22px;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+.nome-certificado {
+    font-family: 'Cinzel', serif;
+    font-size: 29px;
+    font-weight: bold;
+    color: var(--azul);
+    border-bottom: 2px solid var(--dourado);
+    padding: 8px 25px;
+    margin: 20px 0;
+}
+
+.dados-certificado {
+    font-size: 19px;
+    line-height: 1.8;
+    margin-top: 12px;
+}
+
+.assinatura {
+    margin-top: 45px;
+    min-width: 270px;
+    padding-top: 10px;
+    border-top: 1px solid var(--azul);
+    font-size: 18px;
+}
+
+.assinatura strong {
+    display: block;
+    font-weight: bold;
+}
+
+.rodape-certificado {
+    margin-top: 35px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #66717c;
+}
+
+@media(max-width:600px) {
+    body {
+        padding: 10px 5px;
+    }
+
+    .container {
+        padding: 18px 13px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .questao {
+        padding: 15px 12px;
+    }
+
+    .detalhes {
+        gap: 10px;
+    }
+
+    .detalhe {
+        min-width: 85px;
+    }
+}
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    body.imprimindo-certificado .container {
+        display: none !important;
+    }
+
+    body.imprimindo-certificado #certificado {
+        display: block !important;
+        width: 277mm;
+        height: 190mm;
+        margin: 0 auto;
+    }
+
+    body.imprimindo-certificado .certificado-pagina {
+        width: 277mm;
+        height: 190mm;
+        min-height: 190mm;
+        padding: 15mm;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    body:not(.imprimindo-certificado) #certificado {
+        display: none !important;
+    }
+
+    .btn-imprimir,
+    .btn-finalizar {
+        display: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cabecalho">
+        <div class="instituicao">ESCOLA BÍBLICA ATALAIA</div>
+        <h1>QUESTIONÁRIO DE AVALIAÇÃO</h1>
+        <div class="subtitulo">O Pai Nosso — Aula 07</div>
+        <p><strong>Perdoa as Nossas Dívidas</strong></p>
+        <small>Texto-base: Mateus 6:12</small>
+    </header>
+
+    <div class="identificacao">
+        <label for="nomeAluno">Nome completo do aluno:</label>
+        <input type="text" id="nomeAluno" placeholder="Digite seu nome completo">
+    </div>
+
+    <div class="instrucoes">
+        <strong>Instruções:</strong>
+        <p>Leia atentamente cada questão e marque apenas uma alternativa. O questionário contém 40 questões. Para ser aprovado e receber o certificado, é necessário alcançar pelo menos 70% de aproveitamento, equivalente a 28 acertos.</p>
+    </div>
+
+    <form id="formulario">
+        <div id="questoes"></div>
+        <button type="submit" class="btn-finalizar">Finalizar avaliação</button>
+    </form>
+
+    <section id="resultado">
+        <h2>Resultado da avaliação</h2>
+        <p id="mensagemResultado"></p>
+
+        <div class="detalhes">
+            <div class="detalhe">
+                <strong id="acertos">0</strong>
+                Acertos
+            </div>
+            <div class="detalhe">
+                <strong id="erros">0</strong>
+                Erros
+            </div>
+            <div class="detalhe">
+                <strong id="percentual">0%</strong>
+                Aproveitamento
+            </div>
+        </div>
+
+        <p id="situacao"></p>
+        <div id="areaCertificado"></div>
+    </section>
+
+</div>
+
+<section id="certificado">
+    <div class="certificado-pagina">
+        <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+        <div class="linha"></div>
+
+        <h1>CERTIFICADO</h1>
+        <h2 style="font-family:'Cinzel',serif; letter-spacing:3px; font-size:20px;">
+            DE APROVAÇÃO
+        </h2>
+
+        <p class="texto-certificado">
+            A Escola Bíblica Atalaia certifica que
+        </p>
+
+        <div class="nome-certificado" id="nomeNoCertificado">
+            Nome do aluno
+        </div>
+
+        <p class="texto-certificado">
+            concluiu com aproveitamento satisfatório a avaliação da:
+        </p>
+
+        <h2 style="font-family:'Cinzel',serif; color:#102a43; font-size:23px;">
+            AULA 07 — PERDOA AS NOSSAS DÍVIDAS
+        </h2>
+
+        <p class="texto-certificado">
+            do curso <strong>O Pai Nosso</strong>, demonstrando conhecimento
+            sobre o ensino bíblico do arrependimento, da graça, da confissão
+            e do perdão concedido por Deus mediante Jesus Cristo.
+        </p>
+
+        <div class="dados-certificado">
+            <strong>Resultado: <span id="notaCertificado"></span></strong><br>
+            Aproveitamento: <span id="percentualCertificado"></span><br>
+            Data de emissão: <span id="dataCertificado"></span>
+        </div>
+
+        <div class="assinatura">
+            <strong>Diego Nascimento</strong>
+            Pastor Evangelista
+        </div>
+
+        <div class="rodape-certificado">
+            ESCOLA BÍBLICA ATALAIA — PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.
+        </div>
+    </div>
+</section>
+
+<script>
+const perguntas = [
+{
+q: "Qual é o texto bíblico que apresenta o pedido “Perdoa as nossas dívidas, assim como nós perdoamos aos nossos devedores”?",
+a: ["Mateus 5:9", "Mateus 6:12", "Mateus 7:7", "Lucas 10:27"],
+c: 1
+},
+{
+q: "O que o pedido de perdão em Mateus 6:12 nos ensina a reconhecer?",
+a: ["Que não precisamos de Deus", "Que somos incapazes de pecar", "Que dependemos da misericórdia e do perdão de Deus", "Que nossas obras eliminam nossos pecados"],
+c: 2
+},
+{
+q: "Segundo Romanos 3:23, qual é a condição de toda a humanidade?",
+a: ["Todos pecaram e carecem da glória de Deus", "Todos são naturalmente justos", "Ninguém precisa de arrependimento", "Todos alcançam a salvação por mérito"],
+c: 0
+},
+{
+q: "De acordo com Isaías 59:1–2, o que faz separação entre o ser humano e Deus?",
+a: ["A falta de conhecimento intelectual", "A distância geográfica", "A condição financeira", "As iniquidades e os pecados"],
+c: 3
+},
+{
+q: "Qual salmo é um conhecido exemplo de confissão e arrependimento de Davi?",
+a: ["Salmo 1", "Salmo 51", "Salmo 121", "Salmo 150"],
+c: 1
+},
+{
+q: "Na oração do Pai Nosso, a palavra “dívidas” está relacionada principalmente a:",
+a: ["Empréstimos bancários", "Obrigações comerciais", "Ofensas e pecados diante de Deus", "Impostos civis"],
+c: 2
+},
+{
+q: "Em Mateus 18:23–35, qual é a principal lição da parábola do credor incompassivo?",
+a: ["Quem recebeu misericórdia deve também perdoar", "O dinheiro é a maior riqueza", "A vingança é necessária", "O perdão deve ser comprado"],
+c: 0
+},
+{
+q: "Em Lucas 7:36–50, a mulher que ungiu os pés de Jesus demonstra:",
+a: ["Orgulho religioso", "Indiferença", "Desejo de reconhecimento público", "Amor e gratidão relacionados ao perdão recebido"],
+c: 3
+},
+{
+q: "Segundo Colossenses 2:13–14, o que Deus fez em Cristo em relação às nossas transgressões?",
+a: ["Ignorou a justiça", "Perdoou as transgressões e cancelou o escrito de dívida", "Exigiu pagamento humano", "Retirou a necessidade de fé"],
+c: 1
+},
+{
+q: "De acordo com Romanos 6:23, qual é o salário do pecado?",
+a: ["A prosperidade", "A honra", "A morte", "A sabedoria"],
+c: 2
+},
+{
+q: "O que significa arrependimento no contexto bíblico?",
+a: ["Reconhecer o pecado e voltar-se para Deus", "Sentir apenas vergonha diante das pessoas", "Esconder os erros", "Prometer mudanças sem transformação"],
+c: 0
+},
+{
+q: "Segundo Atos 3:19, o que Pedro orienta seus ouvintes a fazer?",
+a: ["Buscar riquezas", "Evitar qualquer correção", "Confiar na própria justiça", "Arrepender-se e converter-se"],
+c: 3
+},
+{
+q: "Segundo Provérbios 28:13, quem alcança misericórdia?",
+a: ["Quem esconde suas transgressões", "Quem confessa e deixa suas transgressões", "Quem culpa outras pessoas", "Quem nega que pecou"],
+c: 1
+},
+{
+q: "Em 2 Coríntios 7:9–10, a tristeza segundo Deus produz:",
+a: ["Desespero sem esperança", "Orgulho", "Arrependimento para a salvação", "Indiferença espiritual"],
+c: 2
+},
+{
+q: "Segundo Efésios 1:7, em Cristo temos:",
+a: ["Redenção pelo seu sangue e perdão dos pecados", "Imunidade contra todas as dificuldades", "Salvação por riqueza", "Perdão sem a obra de Cristo"],
+c: 0
+},
+{
+q: "De acordo com Efésios 2:8–9, a salvação é:",
+a: ["Resultado exclusivo do esforço humano", "Comprada por ofertas", "Conquistada por posição religiosa", "Pela graça, mediante a fé, não por obras"],
+c: 3
+},
+{
+q: "Qual é a relação entre o perdão e a obra de Jesus, segundo 1 Pedro 1:18–19?",
+a: ["O perdão vem da tradição familiar", "Fomos resgatados pelo precioso sangue de Cristo", "O perdão é obtido por dinheiro", "A cruz foi desnecessária"],
+c: 1
+},
+{
+q: "Segundo 1 João 1:9, o que Deus faz quando confessamos os nossos pecados?",
+a: ["Abandona os que confessam", "Exige que escondamos os erros", "É fiel e justo para perdoar e purificar", "Declara que o pecado não existe"],
+c: 2
+},
+{
+q: "Em Salmo 32:3–5, o que aconteceu enquanto Davi escondia seu pecado?",
+a: ["Experimentou sofrimento interior", "Alcançou maior comunhão", "Não sentiu nenhuma consequência", "Recebeu aprovação dos homens"],
+c: 0
+},
+{
+q: "O exemplo de confissão coletiva em Daniel 9:4–19 destaca:",
+a: ["A negação da culpa", "A acusação exclusiva dos outros", "A autossuficiência", "O reconhecimento dos pecados e a busca da misericórdia divina"],
+c: 3
+},
+{
+q: "Segundo Romanos 6:1–2, devemos continuar no pecado para que a graça aumente?",
+a: ["Sim, sem limites", "Não; estamos mortos para o pecado", "Sim, desde que ninguém saiba", "A Bíblia não trata desse assunto"],
+c: 1
+},
+{
+q: "Em João 5:14, que orientação Jesus deu ao homem que havia sido curado?",
+a: ["Voltar à antiga vida", "Ignorar o que aconteceu", "Não pecar mais, para que não lhe suceda coisa pior", "Buscar reconhecimento público"],
+c: 2
+},
+{
+q: "Segundo Tito 2:11–14, a graça de Deus nos ensina a:",
+a: ["Renunciar à impiedade e viver de maneira piedosa", "Permanecer deliberadamente no pecado", "Desprezar a santidade", "Confiar apenas nas riquezas"],
+c: 0
+},
+{
+q: "Qual é a orientação de 1 João 2:1–2 em relação ao pecado?",
+a: ["O pecado não importa", "Não existe possibilidade de perdão", "Devemos esconder nossos pecados", "Não pecar; mas, se alguém pecar, temos Advogado junto ao Pai"],
+c: 3
+},
+{
+q: "Segundo Salmo 103:10–12, como Deus trata os pecados dos que o temem?",
+a: ["Mantém-nos sempre diante de nós", "Afasta nossas transgressões para longe de nós", "Exige que sejam esquecidos por esforço humano", "Transforma os pecados em méritos"],
+c: 1
+},
+{
+q: "Em Miqueias 7:18–19, o que é destacado sobre o caráter de Deus?",
+a: ["Ele tem prazer na condenação", "Ele não demonstra compaixão", "Ele tem prazer na misericórdia e lança os pecados nas profundezas do mar", "Ele não perdoa transgressões"],
+c: 2
+},
+{
+q: "Na parábola de Lucas 15:11–24, o pai que recebe o filho pródigo representa:",
+a: ["A misericórdia e o acolhimento diante do arrependimento", "A rejeição definitiva", "A impossibilidade de restauração", "A vingança familiar"],
+c: 0
+},
+{
+q: "Segundo Romanos 5:1–2, por meio da fé em Jesus Cristo temos:",
+a: ["Garantia de ausência de problemas", "Poder para nunca precisar de perdão", "Justificação pelas obras", "Paz com Deus e acesso à graça"],
+c: 3
+},
+{
+q: "De acordo com Hebreus 10:10–14, a oferta de Jesus foi:",
+a: ["Repetida diariamente por novos sacrifícios", "Realizada uma vez por todas", "Insuficiente para tratar o pecado", "Substituída pelas obras humanas"],
+c: 1
+},
+{
+q: "Segundo João 1:29, como João Batista apresenta Jesus?",
+a: ["Como um governante romano", "Como um profeta sem missão", "Como o Cordeiro de Deus que tira o pecado do mundo", "Como um sacerdote levítico"],
+c: 2
+},
+{
+q: "O que Jesus declarou ao instituir a ceia, conforme Mateus 26:26–28?",
+a: ["Seu sangue é o sangue da aliança, derramado para remissão de pecados", "O perdão depende de riquezas", "A cruz não seria necessária", "Os discípulos não precisavam de salvação"],
+c: 0
+},
+{
+q: "Segundo Atos 10:42–43, todo aquele que crê em Jesus recebe:",
+a: ["Riqueza obrigatória", "Autoridade política", "Ausência de provações", "Remissão dos pecados pelo seu nome"],
+c: 3
+},
+{
+q: "Em 1 Timóteo 1:12–16, Paulo apresenta sua própria história como exemplo de:",
+a: ["Superioridade moral", "Misericórdia e paciência de Cristo", "Ausência de pecado", "Salvação por prestígio"],
+c: 1
+},
+{
+q: "Qual deve ser a resposta de quem recebeu o perdão de Deus, conforme Romanos 12:1–2?",
+a: ["Viver sem compromisso", "Buscar vingança", "Apresentar o corpo como sacrifício vivo e renovar a mente", "Retornar às práticas antigas"],
+c: 2
+},
+{
+q: "Segundo 1 Coríntios 6:19–20, por que devemos glorificar a Deus em nosso corpo?",
+a: ["Porque fomos comprados por preço", "Porque o corpo não tem importância", "Porque a santidade é opcional", "Porque não pertencemos a ninguém"],
+c: 0
+},
+{
+q: "Qual atitude é recomendada em Salmo 139:23–24?",
+a: ["Examinar somente os erros dos outros", "Evitar qualquer reflexão", "Confiar exclusivamente em si mesmo", "Pedir a Deus que sonde o coração e mostre o caminho"],
+c: 3
+},
+{
+q: "Segundo 1 Coríntios 11:28, antes de participar da ceia, cada pessoa deve:",
+a: ["Julgar os demais", "Examinar a si mesma", "Demonstrar superioridade", "Ignorar sua condição espiritual"],
+c: 1
+},
+{
+q: "Qual é uma aplicação prática do ensino de Mateus 6:12?",
+a: ["Exigir perdão sem reconhecer os próprios erros", "Alimentar ressentimentos", "Buscar o perdão de Deus e praticar o perdão ao próximo", "Usar a graça como justificativa para pecar"],
+c: 2
+},
+{
+q: "De acordo com 1 Tessalonicenses 4:3–7, qual é a vontade de Deus para a vida dos seus filhos?",
+a: ["A santificação", "A prática da injustiça", "A indiferença moral", "A busca da vingança"],
+c: 0
+},
+{
+q: "Qual sequência resume adequadamente a aplicação do ensino “Perdoa as nossas dívidas”?",
+a: ["Esconder, negar e acusar", "Pecar, justificar e permanecer", "Condenar, desprezar e afastar", "Reconhecer, arrepender-se, confessar, receber a graça e viver em transformação"],
+c: 3
+}
+];
+
+const letras = ["A", "B", "C", "D"];
+const areaQuestoes = document.getElementById("questoes");
+
+perguntas.forEach((pergunta, indice) => {
+    const bloco = document.createElement("div");
+    bloco.className = "questao";
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = `${indice + 1}. ${pergunta.q}`;
+    bloco.appendChild(titulo);
+
+    pergunta.a.forEach((alternativa, i) => {
+        const label = document.createElement("label");
+        label.className = "alternativa";
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `questao${indice}`;
+        radio.value = i;
+        radio.required = false;
+
+        const texto = document.createElement("span");
+        texto.textContent = `${letras[i]}) ${alternativa}`;
+
+        label.appendChild(radio);
+        label.appendChild(texto);
+        bloco.appendChild(label);
+    });
+
+    areaQuestoes.appendChild(bloco);
+});
+
+document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nomeAluno").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo antes de finalizar.");
+        document.getElementById("nomeAluno").focus();
+        return;
+    }
+
+    let acertos = 0;
+    let respondidas = 0;
+
+    perguntas.forEach((pergunta, indice) => {
+        const marcada = document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        );
+
+        if (marcada) {
+            respondidas++;
+            if (Number(marcada.value) === pergunta.c) {
+                acertos++;
+            }
+        }
+    });
+
+    const erros = respondidas - acertos;
+    const naoRespondidas = perguntas.length - respondidas;
+    const percentual = Math.round((acertos / perguntas.length) * 100);
+    const aprovado = percentual >= 70;
+
+    document.getElementById("acertos").textContent = acertos;
+    document.getElementById("erros").textContent = erros;
+    document.getElementById("percentual").textContent = percentual + "%";
+
+    const mensagem = document.getElementById("mensagemResultado");
+    const situacao = document.getElementById("situacao");
+
+    mensagem.textContent = aprovado
+        ? "Parabéns! Você concluiu a avaliação com aproveitamento satisfatório."
+        : "Avaliação concluída. Continue estudando e fortaleça seu conhecimento.";
+
+    situacao.className = aprovado ? "aprovado" : "reprovado";
+    situacao.innerHTML = aprovado
+        ? "APROVADO — Você alcançou o aproveitamento mínimo de 70%."
+        : "NÃO APROVADO — É necessário alcançar pelo menos 28 acertos.";
+
+    let observacao = document.getElementById("naoRespondidas");
+    if (!observacao) {
+        observacao = document.createElement("p");
+        observacao.id = "naoRespondidas";
+        document.getElementById("resultado").appendChild(observacao);
+    }
+    observacao.textContent = `Questões não respondidas: ${naoRespondidas}`;
+
+    const areaCertificado = document.getElementById("areaCertificado");
+    areaCertificado.innerHTML = "";
+
+    if (aprovado) {
+        document.getElementById("nomeNoCertificado").textContent = nome;
+        document.getElementById("notaCertificado").textContent =
+            `${acertos} de ${perguntas.length} questões`;
+        document.getElementById("percentualCertificado").textContent =
+            percentual + "%";
+
+        const hoje = new Date();
+        document.getElementById("dataCertificado").textContent =
+            hoje.toLocaleDateString("pt-BR");
+
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "btn-imprimir";
+        botao.textContent = "Imprimir / Salvar Certificado em PDF";
+        botao.addEventListener("click", imprimirCertificado);
+
+        areaCertificado.appendChild(botao);
+    }
+
+    document.getElementById("resultado").style.display = "block";
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    document.querySelectorAll("#formulario input").forEach(input => {
+        input.disabled = true;
+    });
+
+    document.querySelector(".btn-finalizar").disabled = true;
+    document.querySelector(".btn-finalizar").style.opacity = ".5";
+});
+
+function imprimirCertificado() {
+    document.body.classList.add("imprimindo-certificado");
+
+    window.print();
+
+    setTimeout(() => {
+        document.body.classList.remove("imprimindo-certificado");
+    }, 1000);
+}
+</script>
+
+</body>
+</html>

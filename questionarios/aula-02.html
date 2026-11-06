@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — Aula 2 | Escola Bíblica Atalaia</title>
+<style>
+:root{
+  --navy:#142b4a;--navy2:#203d62;--gold:#b89450;--paper:#f5f3ee;
+  --ink:#263445;--muted:#687587;--line:#d9dee5;--white:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-align:center;padding:34px 18px 30px;border-bottom:4px solid var(--gold)}
+header .eyebrow{font:700 .75rem Arial,sans-serif;letter-spacing:2px;color:#e4cfaa}
+header h1{font-size:clamp(1.55rem,4vw,2.35rem);margin:9px 0 5px}
+header p{margin:0;color:#e7edf5}
+.container{width:min(920px,calc(100% - 28px));margin:28px auto 50px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 5px 18px #142b4a0b}
+h2{color:var(--navy);font-size:1.35rem;margin:0 0 12px}
+.intro{color:var(--muted);margin:0 0 18px}
+.name-label{display:block;font-weight:bold;color:var(--navy);margin-bottom:7px}
+input[type=text]{width:100%;padding:13px 14px;border:1px solid #bfc8d4;border-radius:7px;font:1rem Arial,sans-serif}
+.progress-wrap{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font: .9rem Arial,sans-serif;margin:18px 0 8px}
+.progress{height:8px;background:#e8ebef;border-radius:20px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .2s}
+.question{padding:20px 0;border-bottom:1px solid var(--line)}
+.question:last-child{border-bottom:0}
+.question h3{font-size:1.08rem;color:var(--navy);margin:0 0 12px}
+.options{display:grid;gap:9px}
+.option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid #e0e4e9;border-radius:7px;cursor:pointer;transition:.15s}
+.option:hover{border-color:var(--gold);background:#fbfaf7}
+.option input{margin-top:5px;accent-color:var(--navy)}
+.option span{flex:1}
+button{border:0;border-radius:7px;padding:13px 22px;background:var(--navy);color:#fff;font:700 .95rem Arial,sans-serif;cursor:pointer}
+button:hover{background:var(--navy2)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;justify-content:center;margin:24px 0}
+#result{display:none}
+.result-score{font-size:2.1rem;font-weight:bold;color:var(--navy);margin:4px 0}
+.status{font-weight:bold;margin:4px 0 12px}
+.pass{color:#26734d}.fail{color:#a33c35}
+#certificate{display:none;background:#fff;border:9px double var(--gold);padding:36px 30px;text-align:center;position:relative;min-height:490px}
+.cert-inner{border:1px solid #d7c49e;padding:30px 18px;min-height:410px}
+.cert-school{font:700 .8rem Arial,sans-serif;letter-spacing:2px;color:var(--gold)}
+#certificate h2{font-size:2.25rem;letter-spacing:2px;margin:22px 0 4px}
+.cert-sub{color:var(--muted);font-style:italic}
+.cert-name{font-size:2rem;color:var(--navy);border-bottom:1px solid var(--gold);display:inline-block;padding:5px 24px 9px;margin:18px 0}
+.cert-detail{max-width:620px;margin:12px auto}
+.cert-meta{display:flex;justify-content:space-around;gap:20px;margin-top:36px;font-size:.9rem}
+.cert-meta div{min-width:180px;border-top:1px solid #8b929b;padding-top:8px}
+.cert-actions{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.secondary{background:#697789}
+.small{font: .85rem Arial,sans-serif;color:var(--muted)}
+@media(max-width:600px){
+ .panel{padding:17px}.cert-meta{flex-direction:column;align-items:center;gap:24px}
+ #certificate{padding:14px}.cert-inner{padding:22px 10px}
+ #certificate h2{font-size:1.7rem}.cert-name{font-size:1.5rem}
+}
+@media print{
+ @page{size:A4 landscape;margin:12mm}
+ body{background:#fff}
+ header,.container>.panel,#result,.cert-actions{display:none!important}
+ .container{width:100%;margin:0}
+ #certificate{display:block!important;min-height:175mm;border-width:8px;break-inside:avoid}
+ .cert-inner{min-height:155mm}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">ESCOLA BÍBLICA ATALAIA</div>
+  <h1>Questionário — Aula 2</h1>
+  <p>Pai nosso que estás nos céus</p>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h2>Avaliação de aprendizagem</h2>
+    <p class="intro">Responda às 40 questões de múltipla escolha. Para aprovação e emissão do certificado, é necessário obter no mínimo 70% de acertos (28 questões).</p>
+    <label class="name-label" for="studentName">Nome completo</label>
+    <input id="studentName" type="text" placeholder="Digite seu nome completo" autocomplete="name" required>
+    <div class="progress-wrap"><span>Progresso</span><span id="progressText">0 de 40 respondidas</span></div>
+    <div class="progress"><span id="progressBar"></span></div>
+  </section>
+
+  <form id="quizForm" class="panel">
+    <div id="questions"></div>
+    <div class="actions"><button id="submitBtn" type="submit">Finalizar questionário</button></div>
+  </form>
+
+  <section id="result" class="panel" aria-live="polite">
+    <h2>Resultado da avaliação</h2>
+    <div class="result-score" id="score"></div>
+    <p id="resultMessage"></p>
+    <div id="certificateActions" class="cert-actions" style="display:none">
+      <button type="button" onclick="printCertificate()">Imprimir certificado</button>
+    </div>
+  </section>
+
+  <section id="certificate">
+    <div class="cert-inner">
+      <div class="cert-school">ESCOLA BÍBLICA ATALAIA</div>
+      <h2>CERTIFICADO</h2>
+      <div class="cert-sub">de conclusão de avaliação</div>
+      <p style="margin-top:28px">Certificamos que</p>
+      <div class="cert-name" id="certName"></div>
+      <p class="cert-detail">concluiu com aproveitamento a avaliação da <strong>Aula 2 — Pai nosso que estás nos céus</strong>, do curso <strong>O Pai Nosso</strong>, da Escola Bíblica Atalaia, demonstrando aproveitamento igual ou superior a 70%.</p>
+      <p class="cert-detail" id="certScore"></p>
+      <div class="cert-meta">
+        <div><strong id="certDate"></strong><br>Data de emissão</div>
+        <div><strong>Diego Nascimento</strong><br>Pastor Evangelista</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const questions = [
+ {q:"Segundo Mateus 6:9, com quais palavras Jesus inicia o modelo de oração?",a:["Senhor dos Exércitos, ouve-nos","Pai nosso, que estás nos céus","Deus eterno, atende a minha voz","Ó Rei de Israel, santificado sejas"],c:1},
+ {q:"Qual é o principal foco da Aula 2?",a:["A forma correta de jejuar","A oração pública no templo","O significado de “Pai nosso, que estás nos céus”","A ordem das festas bíblicas"],c:2},
+ {q:"Na aula anterior, a oração foi apresentada como:",a:["Uma demonstração pública de religiosidade","Uma repetição obrigatória de palavras","Uma relação sincera com Deus","Uma prática reservada aos líderes"],c:2},
+ {q:"Ao chamar Deus de Pai, o discípulo reconhece especialmente:",a:["Uma relação de proximidade, cuidado e confiança","Que Deus está limitado à família humana","Que não precisa obedecer a Deus","Que pode exigir qualquer coisa"],c:0},
+ {q:"Isaías 64:8 apresenta Deus por meio da imagem de:",a:["Um pastor e suas ovelhas","Um oleiro e o barro","Um rei e seus soldados","Um agricultor e sua vinha"],c:1},
+ {q:"De acordo com João 1:12, os que recebem Cristo e creem em seu nome recebem:",a:["O direito de se tornarem filhos de Deus","Autoridade para dominar os céus","Isenção de toda dificuldade","O poder de nunca pecar"],c:0},
+ {q:"Romanos 8:15 ensina que recebemos:",a:["Um espírito de escravidão para viver com medo","O espírito de adoção, pelo qual clamamos: Aba, Pai","Um espírito de competição religiosa","Uma obrigação de repetir fórmulas"],c:1},
+ {q:"A expressão “Aba, Pai” comunica:",a:["Distância e formalidade absoluta","Proximidade e relacionamento filial","Uma referência a um lugar geográfico","Um título exclusivo dos anjos"],c:1},
+ {q:"Por que Jesus ensina “Pai nosso”, e não apenas “meu Pai”?",a:["Para mostrar que a oração também possui dimensão comunitária","Para proibir a oração individual","Para ensinar que Deus é Pai somente dos apóstolos","Para indicar que todos têm a mesma função"],c:0},
+ {q:"A expressão “Pai nosso” nos lembra de:",a:["Orar somente por nossas necessidades","Fazer parte de uma família de fé e considerar os outros","Evitar a comunhão com outros cristãos","Buscar reconhecimento público"],c:1},
+ {q:"Qual atitude combina com a dimensão comunitária da oração?",a:["Interceder também por outras pessoas","Orar apenas quando alguém está olhando","Desprezar as necessidades do próximo","Transformar a oração em competição"],c:0},
+ {q:"Efésios 4:3 destaca o cuidado em preservar:",a:["A unidade do Espírito pelo vínculo da paz","A fama de cada membro","A superioridade de um grupo","A riqueza material da comunidade"],c:0},
+ {q:"Na expressão “que estás nos céus”, os céus apontam, entre outros aspectos, para:",a:["A limitação de Deus a um lugar","A majestade, autoridade e soberania de Deus","A ausência de Deus na Terra","A existência de vários deuses"],c:1},
+ {q:"O ensino de que Deus está nos céus significa que Ele:",a:["Não pode ouvir quem está na Terra","Está distante e indiferente à humanidade","Não está limitado a um espaço ou lugar","Só pode ser adorado em um edifício"],c:2},
+ {q:"Jeremias 23:23–24 apresenta Deus como aquele que:",a:["Está perto e também enche os céus e a terra","Conhece somente o que acontece no templo","Precisa viajar para visitar as nações","Está sujeito às dimensões humanas"],c:0},
+ {q:"O Salmo 139 é citado na aula para reforçar a verdade de que:",a:["Deus está presente e conhece plenamente o ser humano","Deus conhece apenas os pensamentos bons","A presença de Deus depende de um edifício","O ser humano pode esconder-se de Deus"],c:0},
+ {q:"Segundo Isaías 66:1, os céus são apresentados como:",a:["O trono de Deus","Uma morada construída por seres humanos","Um lugar que limita o poder divino","Um território governado por anjos"],c:0},
+ {q:"Reconhecer Deus como Criador e Senhor significa admitir:",a:["Sua autoridade e soberania sobre toda a criação","Que Ele depende da aprovação humana","Que sua autoridade vale apenas na igreja","Que o universo está fora de seu governo"],c:0},
+ {q:"A aula ensina que “que estás nos céus” não deve ser entendido como:",a:["Uma declaração da grandeza de Deus","Uma afirmação de sua soberania","Uma indicação de que Deus está limitado a um lugar distante","Um reconhecimento de sua autoridade"],c:2},
+ {q:"Qual equilíbrio a primeira frase do Pai Nosso apresenta?",a:["Intimidade com Deus e reverência diante de sua majestade","Medo sem relacionamento","Liberdade sem responsabilidade","Formalidade sem confiança"],c:0},
+ {q:"Hebreus 4:16 convida os cristãos a se aproximarem do trono da graça com:",a:["Arrogância","Confiança","Indiferença","Orgulho"],c:1},
+ {q:"A confiança para nos aproximarmos de Deus deve ser acompanhada de:",a:["Irreverência","Desprezo pela Palavra","Reverência e humildade","Exigências pessoais"],c:2},
+ {q:"A oração, conforme a aula, não deve ser usada para:",a:["Expressar confiança em Deus","Reconhecer quem Deus é","Tentar controlar Deus ou impor nossas vontades","Apresentar necessidades diante do Pai"],c:2},
+ {q:"Ao orar, o discípulo é chamado a confiar:",a:["No caráter de Deus","Somente em suas próprias capacidades","Na força das palavras repetidas","Na aprovação das pessoas"],c:0},
+ {q:"Submeter-se à vontade de Deus significa:",a:["Reconhecer sua autoridade e confiar em sua sabedoria","Desistir de conversar com Deus","Fingir que não possui necessidades","Tentar obrigar Deus a agir"],c:0},
+ {q:"Qual atitude expressa confiança filial?",a:["Aproximar-se de Deus com sinceridade","Esconder de Deus todas as preocupações","Orar apenas para ser visto","Tratar Deus como alguém obrigado a obedecer"],c:0},
+ {q:"A expressão “Pai nosso” também nos chama a:",a:["Lembrar somente de nós mesmos","Incluir outras pessoas em nossas orações","Evitar pedidos em favor do próximo","Separar a fé da comunhão"],c:1},
+ {q:"Antes de apresentar pedidos, a aplicação da aula recomenda:",a:["Reconhecer Deus como Pai e agradecer pelo relacionamento com Ele","Enumerar exigências","Comparar nossa oração com a dos outros","Buscar palavras difíceis"],c:0},
+ {q:"A relação com Deus como Pai é possível, segundo o ensino apresentado, por meio de:",a:["Méritos pessoais","Jesus Cristo","Riqueza material","Posição social"],c:1},
+ {q:"Reconhecer a grandeza de Deus antes de pedir algo ajuda a:",a:["Colocar nossas vontades acima da vontade divina","Lembrar quem Deus é e ajustar nossa postura diante dele","Evitar qualquer relacionamento com Deus","Transformar a oração em ritual vazio"],c:1},
+ {q:"Qual alternativa melhor resume a relação entre proximidade e majestade?",a:["Deus é Pai próximo e também Senhor soberano","Deus é próximo, mas não possui autoridade","Deus é soberano, mas não deseja relacionamento","Deus só se aproxima de pessoas perfeitas"],c:0},
+ {q:"A oração ensinada por Jesus deve ser compreendida como:",a:["Uma fórmula mágica que garante resultados","Um modelo que revela princípios de relacionamento com Deus","Uma fala destinada somente aos religiosos experientes","Uma repetição sem entendimento"],c:1},
+ {q:"Qual referência bíblica apresenta Deus como Pai e oleiro?",a:["Isaías 64:8","Jeremias 23:23–24","Hebreus 4:16","Efésios 4:3"],c:0},
+ {q:"Qual referência bíblica fala do espírito de adoção e do clamor “Aba, Pai”?",a:["João 1:12","Romanos 8:15","Isaías 66:1","Salmo 139"],c:1},
+ {q:"Qual referência bíblica é relacionada à unidade do Espírito pelo vínculo da paz?",a:["Efésios 4:3","Mateus 6:9","Isaías 64:8","João 1:12"],c:0},
+ {q:"Qual referência bíblica sustenta o convite para aproximar-se do trono da graça com confiança?",a:["Jeremias 23:23–24","Hebreus 4:16","Isaías 66:1","Efésios 4:3"],c:1},
+ {q:"O que a frase “Pai nosso, que estás nos céus” estabelece para a oração?",a:["Confiança, reverência, gratidão e comunhão","Medo, distância e isolamento","Exibição, repetição e orgulho","Pressa, exigência e controle"],c:0},
+ {q:"Qual prática demonstra que compreendemos “Pai nosso” como uma expressão comunitária?",a:["Orar também pelas necessidades dos irmãos","Ignorar quem passa por dificuldades","Buscar destaque individual","Recusar a comunhão"],c:0},
+ {q:"Qual é a atitude adequada diante da soberania de Deus?",a:["Exigir que Ele cumpra nossos planos","Confiar em seu caráter e submeter-nos à sua vontade","Tentar limitar sua ação","Desconsiderar sua Palavra"],c:1},
+ {q:"Qual será o tema da próxima aula, conforme o encerramento da Aula 2?",a:["Venha o teu Reino","O pão nosso de cada dia","Santificado seja o teu nome","Perdoa as nossas dívidas"],c:2}
+];
+
+const questionsContainer = document.getElementById("questions");
+questions.forEach((item,index)=>{
+  const section=document.createElement("section");
+  section.className="question";
+  const title=document.createElement("h3");
+  title.textContent=`${index+1}. ${item.q}`;
+  section.appendChild(title);
+  const options=document.createElement("div");
+  options.className="options";
+  item.a.forEach((answer,optionIndex)=>{
+    const label=document.createElement("label");
+    label.className="option";
+    const radio=document.createElement("input");
+    radio.type="radio";radio.name=`q${index}`;radio.value=optionIndex;
+    radio.addEventListener("change",updateProgress);
+    const text=document.createElement("span");
+    text.textContent=answer;
+    label.append(radio,text);options.appendChild(label);
+  });
+  section.appendChild(options);questionsContainer.appendChild(section);
+});
+
+function updateProgress(){
+ const answered=questions.filter((_,i)=>document.querySelector(`input[name="q${i}"]:checked`)).length;
+ document.getElementById("progressText").textContent=`${answered} de ${questions.length} respondidas`;
+ document.getElementById("progressBar").style.width=(answered/questions.length*100)+"%";
+}
+document.getElementById("quizForm").addEventListener("submit",function(event){
+ event.preventDefault();
+ const name=document.getElementById("studentName").value.trim();
+ if(!name){alert("Digite seu nome completo antes de finalizar.");document.getElementById("studentName").focus();return;}
+ const unanswered=questions.findIndex((_,i)=>!document.querySelector(`input[name="q${i}"]:checked`));
+ if(unanswered!==-1){alert(`Responda à questão ${unanswered+1} antes de finalizar.`);document.querySelectorAll(".question")[unanswered].scrollIntoView({behavior:"smooth",block:"center"});return;}
+ let correct=0;
+ questions.forEach((item,i)=>{
+  const selected=Number(document.querySelector(`input[name="q${i}"]:checked`).value);
+  if(selected===item.c)correct++;
+ });
+ const percent=Math.round(correct/questions.length*100);
+ const passed=percent>=70;
+ document.getElementById("score").textContent=`${correct} de ${questions.length} — ${percent}%`;
+ const message=document.getElementById("resultMessage");
+ message.textContent=passed
+  ?"Parabéns! Você alcançou o aproveitamento mínimo de 70% e foi aprovado(a). Seu certificado foi emitido abaixo."
+  :"Você ainda não alcançou o mínimo de 70% (28 acertos). Revise a Aula 2 e tente novamente.";
+ message.className="status "+(passed?"pass":"fail");
+ document.getElementById("result").style.display="block";
+ document.getElementById("certificate").style.display=passed?"block":"none";
+ document.getElementById("certificateActions").style.display=passed?"flex":"none";
+ if(passed){
+  document.getElementById("certName").textContent=name;
+  document.getElementById("certScore").textContent=`Aproveitamento: ${correct}/40 questões — ${percent}%`;
+  document.getElementById("certDate").textContent=new Date().toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+ }
+ document.getElementById("submitBtn").disabled=true;
+ document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"});
+});
+function printCertificate(){window.print();}
+</script>
+</body>
+</html>

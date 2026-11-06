@@ -1,0 +1,352 @@
+:root {
+    --azul: #071b33;
+    --azul2: #102d4e;
+    --dourado: #c9a45c;
+    --branco: #ffffff;
+    --cinza: #f2f4f7;
+    --texto: #273449;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cinza);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+/* CABEÇALHO */
+
+header {
+    background: linear-gradient(135deg, var(--azul), var(--azul2));
+    color: var(--branco);
+    text-align: center;
+    padding: 55px 20px;
+    border-bottom: 5px solid var(--dourado);
+}
+
+.logo {
+    color: var(--dourado);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+header h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(32px, 6vw, 52px);
+    margin-bottom: 10px;
+}
+
+header .subtitulo {
+    color: #e4eaf1;
+    font-size: 17px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.header-info {
+    margin-top: 25px;
+    color: var(--dourado);
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+/* APRESENTAÇÃO */
+
+.apresentacao {
+    background: var(--branco);
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 35px;
+    border-left: 5px solid var(--dourado);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+}
+
+.apresentacao h2 {
+    color: var(--azul);
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+}
+
+.apresentacao p {
+    font-size: 15px;
+}
+
+.secao-titulo {
+    color: var(--azul);
+    font-family: Georgia, serif;
+    font-size: 27px;
+    margin-bottom: 22px;
+}
+
+/* GRADE DE AULAS */
+
+.aulas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* CARDS */
+
+.aula {
+    background: var(--branco);
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .07);
+    transition: transform .25s, box-shadow .25s;
+    display: flex;
+    flex-direction: column;
+}
+
+.aula:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 24px rgba(0, 0, 0, .12);
+}
+
+/* IMAGENS */
+
+.imagem-aula {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--azul), #31577b);
+}
+
+/* CONTEÚDO DO CARD */
+
+.conteudo-aula {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.numero {
+    color: #9a762e;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+.aula h3 {
+    color: var(--azul);
+    font-family: Georgia, serif;
+    font-size: 21px;
+    line-height: 1.3;
+    margin-bottom: 7px;
+}
+
+.aula .subtitulo-aula {
+    color: #9a762e;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.descricao {
+    font-size: 14px;
+    color: #586477;
+    margin-bottom: 18px;
+}
+
+/* ÁUDIO */
+
+.audio {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #e5e8ed;
+}
+
+.audio label {
+    display: block;
+    color: var(--azul);
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+audio {
+    display: block;
+    width: 100%;
+    height: 38px;
+}
+
+/* BOTÕES */
+
+.botoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 11px 8px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.btn-flipbook {
+    background: var(--azul);
+    color: var(--branco);
+}
+
+.btn-questionario {
+    background: var(--dourado);
+    color: #17263a;
+}
+
+.btn:hover {
+    filter: brightness(1.12);
+    transform: scale(1.02);
+}
+
+/* QUESTIONÁRIO GERAL */
+
+.questionario-geral {
+    margin: 55px 0 25px;
+    padding: 40px 25px;
+    text-align: center;
+    color: var(--branco);
+    background: linear-gradient(135deg, var(--azul), var(--azul2));
+    border-radius: 14px;
+    border: 2px solid var(--dourado);
+}
+
+.questionario-geral h2 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.questionario-geral p {
+    color: #dce5ef;
+    margin-bottom: 22px;
+}
+
+.btn-geral {
+    display: inline-block;
+    background: var(--dourado);
+    color: var(--azul);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 14px 30px;
+    border-radius: 7px;
+    transition: .2s;
+}
+
+.btn-geral:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+}
+
+/* RODAPÉ */
+
+footer {
+    background: #061426;
+    color: #d4dce6;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--dourado);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 45px 15px;
+    }
+
+    .header-info {
+        font-size: 11px;
+        line-height: 1.8;
+    }
+
+    main {
+        padding: 25px 14px;
+    }
+
+    .apresentacao {
+        padding: 22px;
+    }
+
+    .aulas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .conteudo-aula {
+        padding: 16px;
+    }
+
+    .aula h3 {
+        font-size: 18px;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .aulas {
+        grid-template-columns: 1fr;
+    }
+
+    .imagem-aula {
+        height: 210px;
+    }
+
+    .conteudo-aula {
+        padding: 22px;
+    }
+
+    .aula h3 {
+        font-size: 21px;
+    }
+
+    .questionario-geral {
+        padding: 30px 18px;
+    }
+
+    .questionario-geral h2 {
+        font-size: 24px;
+    }
+
+    .btn-geral {
+        padding: 13px 18px;
+        font-size: 13px;
+    }
+
+}

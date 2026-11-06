@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aula 02 — Pai Nosso que Estás nos Céus | Escola Bíblica Atalaia</title>
+
+<meta name="description" content="Estudo bíblico aprofundado sobre a expressão Pai nosso que estás nos céus, com referências bíblicas clicáveis.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #071b33;
+    --azul-claro: #102d4e;
+    --dourado: #c9a45c;
+    --papel: #fffdf7;
+    --texto: #293443;
+    --cinza: #e8e5dc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #e9edf2;
+    color: var(--texto);
+    font-family: "Crimson Text", Georgia, serif;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+    color: white;
+    text-align: center;
+    padding: 25px 15px 22px;
+    border-bottom: 4px solid var(--dourado);
+}
+
+header .ministerio {
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--dourado);
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(23px, 4vw, 34px);
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 17px;
+    color: #e4e8ed;
+}
+
+.identificacao {
+    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--dourado);
+}
+
+.instrucoes {
+    text-align: center;
+    padding: 15px 10px 5px;
+    color: #536173;
+    font-size: 16px;
+}
+
+.instrucoes strong {
+    color: var(--azul);
+}
+
+.flipbook-area {
+    width: 100%;
+    padding: 20px 12px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.livro {
+    width: min(100%, 850px);
+    min-height: 570px;
+    position: relative;
+    perspective: 1800px;
+}
+
+.pagina {
+    display: none;
+    width: 100%;
+    min-height: 570px;
+    background: var(--papel);
+    border: 1px solid #ded8c9;
+    border-radius: 5px;
+    padding: clamp(25px, 5vw, 55px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .13);
+    animation: aparecer .35s ease;
+    position: relative;
+}
+
+.pagina.ativa {
+    display: block;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: .3;
+        transform: rotateY(-3deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateY(0);
+    }
+}
+
+.pagina::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--dourado), #ead9b4, var(--dourado));
+    opacity: .75;
+}
+
+.pagina h2 {
+    font-family: "Cinzel", serif;
+    color: var(--azul);
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.pagina h3 {
+    font-family: "Cinzel", serif;
+    font-size: 18px;
+    color: var(--azul-claro);
+    margin: 25px 0 10px;
+}
+
+.pagina h4 {
+    font-size: 19px;
+    color: #8a682e;
+    margin: 18px 0 7px;
+}
+
+.pagina p {
+    font-size: 19px;
+    line-height: 1.65;
+    margin-bottom: 13px;
+    text-align: justify;
+}
+
+.pagina ul,
+.pagina ol {
+    margin: 10px 0 18px 25px;
+}
+
+.pagina li {
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 7px;
+}
+
+.linha-dourada {
+    width: 75px;
+    height: 3px;
+    background: var(--dourado);
+    margin: 15px 0 22px;
+}
+
+.texto-base {
+    background: #f4f0e6;
+    border-left: 4px solid var(--dourado);
+    padding: 15px 18px;
+    margin: 18px 0;
+}
+
+.texto-base p {
+    margin-bottom: 5px;
+}
+
+.destaque {
+    background: #f4f0e6;
+    border-left: 4px solid var(--dourado);
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.referencia {
+    color: #986d22;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.referencia:hover {
+    color: #c18a28;
+    text-decoration-style: solid;
+}
+
+.capa {
+    min-height: 570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(7, 27, 51, .94), rgba(7, 27, 51, .96));
+    color: white;
+    border: 5px double var(--dourado);
+}
+
+.capa::before {
+    display: none;
+}
+
+.capa .marca {
+    color: var(--dourado);
+    font-family: "Cinzel", serif;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-bottom: 45px;
+}
+
+.capa h2 {
+    color: white;
+    font-size: clamp(30px, 6vw, 45px);
+    margin-bottom: 18px;
+}
+
+.capa .subtitulo {
+    max-width: 570px;
+    font-size: 21px;
+    color: #e5e8ec;
+    text-align: center;
+}
+
+.capa .aula {
+    margin-top: 45px;
+    color: var(--dourado);
+    font-family: "Cinzel", serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+
+.capa .escola {
+    margin-top: 55px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #d5dbe2;
+}
+
+.rodape-pagina {
+    position: absolute;
+    bottom: 18px;
+    right: 25px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: #9b927f;
+}
+
+.controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 15px 25px;
+}
+
+.controles button {
+    border: none;
+    background: var(--azul);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: .2s;
+}
+
+.controles button:hover {
+    background: var(--azul-claro);
+}
+
+.controles button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+#contador {
+    color: var(--azul);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    min-width: 110px;
+    text-align: center;
+}
+
+.progresso {
+    width: min(500px, 85%);
+    height: 5px;
+    background: #d5dbe2;
+    margin: 0 auto 25px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progresso div {
+    height: 100%;
+    width: 0;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.questionario {
+    background: #f4f0e6;
+    border: 1px solid #e0d6c3;
+    padding: 16px;
+    margin: 18px 0;
+}
+
+.questionario p {
+    margin-bottom: 8px;
+}
+
+.questionario ol {
+    margin-bottom: 0;
+}
+
+footer {
+    background: var(--azul);
+    color: #dce2e9;
+    text-align: center;
+    padding: 22px 12px;
+    border-top: 3px solid var(--dourado);
+    font-size: 15px;
+}
+
+footer strong {
+    color: var(--dourado);
+}
+
+/* POPUP BÍBLICO */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, .72);
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.aberto {
+    display: flex;
+}
+
+.modal-conteudo {
+    width: min(650px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--papel);
+    border-radius: 7px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .35);
+    padding: 25px;
+    position: relative;
+    animation: modalEntrada .25s ease;
+}
+
+@keyframes modalEntrada {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-topo {
+    border-bottom: 2px solid var(--dourado);
+    padding-bottom: 12px;
+    margin-bottom: 17px;
+    padding-right: 35px;
+}
+
+.modal-topo h2 {
+    color: var(--azul);
+    font-family: "Cinzel", serif;
+    font-size: 21px;
+}
+
+.fechar-modal {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    border: none;
+    background: var(--azul);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#textoBiblico {
+    font-size: 19px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+#textoBiblico .versiculo {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#textoBiblico .numero-versiculo {
+    color: #9a702c;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.aviso-modal {
+    font-size: 14px;
+    color: #7a8490;
+    margin-top: 18px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 20px 12px;
+    }
+
+    .livro {
+        min-height: 650px;
+    }
+
+    .pagina {
+        min-height: 650px;
+        padding: 28px 23px 45px 28px;
+    }
+
+    .pagina p {
+        font-size: 18px;
+    }
+
+    .pagina li {
+        font-size: 17px;
+    }
+
+    .capa {
+        min-height: 650px;
+    }
+
+    .controles {
+        gap: 8px;
+    }
+
+    .controles button {
+        padding: 11px 15px;
+    }
+
+    .modal-conteudo {
+        padding: 20px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    header,
+    .instrucoes,
+    .controles,
+    .progresso,
+    footer,
+    .modal {
+        display: none !important;
+    }
+
+    .flipbook-area {
+        display: block;
+        padding: 0;
+    }
+
+    .livro {
+        width: 100%;
+    }
+
+    .pagina {
+        display: block !important;
+        min-height: auto;
+        page-break-after: always;
+        box-shadow: none;
+        border: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="ministerio">MINISTÉRIO ATALAIA</div>
+    <h1>O Pai Nosso</h1>
+    <p>Uma jornada de oração, comunhão e transformação</p>
+    <div class="identificacao">ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</div>
+</header>
+
+<div class="instrucoes">
+    <strong>Estudo bíblico interativo</strong><br>
+    Clique nas referências bíblicas sublinhadas para consultar os textos.
+</div>
+
+<main class="flipbook-area">
+<div class="livro" id="livro">
+
+<!-- CAPA -->
+<section class="pagina capa ativa">
+    <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+    <h2>PAI NOSSO<br>QUE ESTÁS NOS CÉUS</h2>
+    <div class="linha-dourada"></div>
+    <p class="subtitulo">
+        A paternidade de Deus, a identidade dos filhos
+        e a majestade do Pai celestial.
+    </p>
+    <div class="aula">AULA 02</div>
+    <div class="escola">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+</section>
+
+<!-- PÁGINA 2 -->
+<section class="pagina">
+    <h2>Apresentação do Estudo</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Na aula anterior, estudamos o contexto em que Jesus ensinou
+        o Pai Nosso. Compreendemos que a oração não deve ser uma
+        demonstração exterior de religiosidade, nem uma repetição
+        vazia de palavras. Ela deve nascer de um relacionamento
+        sincero com Deus.
+    </p>
+
+    <p>
+        Nesta aula, aprofundaremos a primeira expressão da oração
+        ensinada por Jesus: <strong>“Pai nosso, que estás nos céus”.</strong>
+    </p>
+
+    <p>
+        Essa declaração apresenta verdades profundas sobre quem Deus é,
+        sobre nosso relacionamento com Ele e sobre a maneira como devemos
+        nos aproximar de sua presença.
+    </p>
+
+    <div class="destaque">
+        Verdade central: podemos nos aproximar de Deus como Pai por meio
+        de Jesus Cristo, reconhecendo ao mesmo tempo sua majestade,
+        santidade e soberania.
+    </div>
+
+    <h3>Texto-base</h3>
+    <p><span class="referencia">Mateus 6:9</span>; <span class="referencia">Lucas 11:1–4</span>.</p>
+
+    <h3>Objetivos do estudo</h3>
+    <ul>
+        <li>Compreender o significado bíblico de chamar Deus de Pai.</li>
+        <li>Estudar a filiação divina por meio de Jesus Cristo.</li>
+        <li>Entender a dimensão comunitária da expressão “Pai nosso”.</li>
+        <li>Reconhecer a majestade e a soberania do Pai celestial.</li>
+        <li>Aprender a equilibrar intimidade, confiança e reverência.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 3 -->
+<section class="pagina">
+    <h2>1. A Quem Dirigimos Nossas Orações?</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A oração ensinada por Jesus começa com uma declaração sobre Deus,
+        antes de apresentar qualquer pedido humano.
+    </p>
+
+    <div class="texto-base">
+        <p><strong>Mateus 6:9</strong></p>
+        <p>
+            “Portanto, vós orareis assim: Pai nosso, que estás nos céus,
+            santificado seja o teu nome.”
+        </p>
+    </div>
+
+    <p>
+        Essa ordem é significativa. Jesus não começa ensinando seus
+        discípulos a apresentar suas necessidades, mas a reconhecer
+        aquele a quem estão se dirigindo.
+    </p>
+
+    <p>
+        A oração bíblica não é simplesmente uma lista de solicitações.
+        É uma expressão de relacionamento, adoração, dependência,
+        confiança e submissão à vontade de Deus.
+    </p>
+
+    <h3>A oração e a adoração</h3>
+
+    <ul>
+        <li><span class="referencia">Salmos 100:1–5</span> — Entrar na presença de Deus com louvor e gratidão.</li>
+        <li><span class="referencia">Salmos 95:1–7</span> — Adoração ao Senhor, Criador e Pastor.</li>
+        <li><span class="referencia">João 4:23–24</span> — Adoração em espírito e em verdade.</li>
+        <li><span class="referencia">Filipenses 4:6–7</span> — Apresentar as petições com ações de graças.</li>
+        <li><span class="referencia">Colossenses 4:2</span> — Perseverar em oração, com vigilância e gratidão.</li>
+        <li><span class="referencia">Hebreus 10:19–22</span> — Aproximar-se de Deus com coração sincero.</li>
+    </ul>
+
+    <div class="destaque">
+        Antes de apresentar aquilo que precisamos, devemos reconhecer
+        quem é aquele que nos ouve.
+    </div>
+</section>
+
+<!-- PÁGINA 4 -->
+<section class="pagina">
+    <h2>2. Deus se Revela como Pai</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A Bíblia apresenta Deus como Pai, revelando seu cuidado,
+        autoridade, provisão, correção e amor.
+    </p>
+
+    <p>
+        No Antigo Testamento, essa relação já aparece em diferentes
+        passagens. Em <span class="referencia">Isaías 64:8</span>,
+        o profeta reconhece o Senhor como Pai e compara o povo ao barro
+        nas mãos do oleiro.
+    </p>
+
+    <p>
+        Em <span class="referencia">Deuteronômio 32:6</span>, Moisés
+        apresenta o Senhor como aquele que criou e estabeleceu seu povo.
+        Em <span class="referencia">Malaquias 2:10</span>, o profeta
+        pergunta se não temos todos um mesmo Pai.
+    </p>
+
+    <h3>A paternidade de Deus nas Escrituras</h3>
+
+    <ul>
+        <li><span class="referencia">Êxodo 4:22–23</span> — Israel apresentado como filho de Deus.</li>
+        <li><span class="referencia">Deuteronômio 1:29–31</span> — O cuidado de Deus comparado ao de um pai.</li>
+        <li><span class="referencia">Deuteronômio 8:5</span> — A disciplina do Senhor.</li>
+        <li><span class="referencia">2 Samuel 7:12–14</span> — A promessa de relacionamento paternal na aliança com Davi.</li>
+        <li><span class="referencia">Salmos 68:5</span> — Pai dos órfãos e defensor das viúvas.</li>
+        <li><span class="referencia">Salmos 103:8–14</span> — A compaixão do Senhor.</li>
+        <li><span class="referencia">Isaías 63:15–16</span> — Deus reconhecido como Pai e Redentor.</li>
+        <li><span class="referencia">Jeremias 3:19</span> — Deus expressa o desejo de ser reconhecido como Pai.</li>
+        <li><span class="referencia">Oseias 11:1–4</span> — O amor paternal de Deus por Israel.</li>
+    </ul>
+
+    <div class="destaque">
+        A paternidade divina não é uma ideia introduzida somente no
+        Novo Testamento. Ela faz parte da revelação bíblica.
+    </div>
+</section>
+
+<!-- PÁGINA 5 -->
+<section class="pagina">
+    <h2>3. A Filiação por Meio de Jesus Cristo</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        No Novo Testamento, a filiação divina é apresentada de maneira
+        especial por meio de Jesus Cristo.
+    </p>
+
+    <p>
+        <span class="referencia">João 1:12–13</span> ensina que aqueles
+        que recebem Cristo e creem em seu nome recebem o direito de se
+        tornarem filhos de Deus.
+    </p>
+
+    <p>
+        Essa filiação não deve ser confundida com a simples existência
+        humana. A Bíblia apresenta a adoção espiritual como uma obra
+        da graça de Deus, recebida por meio da fé em Cristo.
+    </p>
+
+    <p>
+        Em <span class="referencia">Gálatas 4:4–7</span>, Paulo explica
+        que Deus enviou seu Filho para que recebêssemos a adoção de filhos.
+        Porque somos filhos, Deus enviou ao nosso coração o Espírito de
+        seu Filho, que clama: “Aba, Pai”.
+    </p>
+
+    <h3>Referências para aprofundamento</h3>
+
+    <ul>
+        <li><span class="referencia">João 1:12–13</span> — O nascimento dos filhos de Deus.</li>
+        <li><span class="referencia">Romanos 8:14–17</span> — O Espírito de adoção e a condição de filhos e herdeiros.</li>
+        <li><span class="referencia">Gálatas 3:26–29</span> — Filhos de Deus mediante a fé em Cristo.</li>
+        <li><span class="referencia">Gálatas 4:4–7</span> — A adoção e o clamor “Aba, Pai”.</li>
+        <li><span class="referencia">Efésios 1:3–6</span> — A adoção por meio de Jesus Cristo.</li>
+        <li><span class="referencia">1 João 3:1–3</span> — O amor do Pai e a condição de filhos.</li>
+        <li><span class="referencia">1 João 5:1–2</span> — A fé e o nascimento de Deus.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 6 -->
+<section class="pagina">
+    <h2>4. O Significado de “Aba, Pai”</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Em <span class="referencia">Romanos 8:15</span> e
+        <span class="referencia">Gálatas 4:6</span>, encontramos
+        a expressão “Aba, Pai”.
+    </p>
+
+    <p>
+        Ela demonstra a intimidade do relacionamento que Deus concede
+        aos seus filhos. Não se trata de uma fórmula mágica ou de uma
+        palavra que deva ser repetida mecanicamente, mas de uma expressão
+        de confiança e filiação.
+    </p>
+
+    <p>
+        Jesus também utilizou essa expressão em sua oração no Getsêmani,
+        conforme <span class="referencia">Marcos 14:36</span>.
+    </p>
+
+    <p>
+        Mesmo em um momento de profunda angústia, Jesus se dirige ao Pai
+        com intimidade e, ao mesmo tempo, submete-se à sua vontade.
+    </p>
+
+    <h3>Referências para aprofundamento</h3>
+
+    <ul>
+        <li><span class="referencia">Marcos 14:32–36</span> — Jesus clama “Aba, Pai” no Getsêmani.</li>
+        <li><span class="referencia">Romanos 8:15–16</span> — O Espírito testifica que somos filhos de Deus.</li>
+        <li><span class="referencia">Gálatas 4:6–7</span> — O Espírito do Filho clama “Aba, Pai”.</li>
+        <li><span class="referencia">João 17:1–5</span> — Jesus dirige-se ao Pai em oração.</li>
+        <li><span class="referencia">Hebreus 5:7–9</span> — A oração e a obediência de Cristo.</li>
+    </ul>
+
+    <div class="destaque">
+        A intimidade com Deus não significa ausência de submissão.
+        Jesus nos ensina que podemos confiar no Pai e entregar nossa
+        vontade à vontade dele.
+    </div>
+</section>
+
+<!-- PÁGINA 7 -->
+<section class="pagina">
+    <h2>5. A Filiação Envolve Responsabilidade</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Ser filho de Deus não significa viver sem compromisso com a
+        vontade do Pai. A Bíblia ensina que os filhos devem desenvolver
+        uma vida de obediência, santidade, amor e transformação.
+    </p>
+
+    <p>
+        Em <span class="referencia">Efésios 5:1</span>, Paulo exorta
+        os cristãos a serem imitadores de Deus como filhos amados.
+    </p>
+
+    <p>
+        Em <span class="referencia">Hebreus 12:5–11</span>, a disciplina
+        do Senhor é apresentada como parte de seu cuidado paternal.
+    </p>
+
+    <h3>Como vivem os filhos de Deus?</h3>
+
+    <ul>
+        <li><span class="referencia">Mateus 5:44–48</span> — Amar os inimigos e refletir o caráter do Pai.</li>
+        <li><span class="referencia">Mateus 7:21</span> — Fazer a vontade do Pai.</li>
+        <li><span class="referencia">João 8:31–42</span> — A relação entre filiação e prática da verdade.</li>
+        <li><span class="referencia">Romanos 8:12–14</span> — Ser guiado pelo Espírito.</li>
+        <li><span class="referencia">Efésios 4:17–24</span> — Abandonar a velha maneira de viver.</li>
+        <li><span class="referencia">Efésios 5:1–2</span> — Imitar a Deus e andar em amor.</li>
+        <li><span class="referencia">Filipenses 2:14–16</span> — Viver como filhos de Deus.</li>
+        <li><span class="referencia">1 Pedro 1:14–16</span> — Viver em santidade.</li>
+    </ul>
+
+    <div class="destaque">
+        Não devemos desejar apenas os benefícios da casa do Pai.
+        Devemos também aprender a viver de acordo com sua vontade.
+    </div>
+</section>
+
+<!-- PÁGINA 8 -->
+<section class="pagina">
+    <h2>6. O Significado de “Pai Nosso”</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Jesus não ensinou seus discípulos a dizer apenas “meu Pai”,
+        mas “Pai nosso”.
+    </p>
+
+    <p>
+        Essa expressão apresenta uma dimensão coletiva da oração.
+        O discípulo de Cristo não vive isolado, mas pertence à família
+        da fé.
+    </p>
+
+    <p>
+        A comunhão cristã exige que aprendamos a orar não apenas por
+        nossas próprias necessidades, mas também pelos outros.
+    </p>
+
+    <h3>A família da fé nas Escrituras</h3>
+
+    <ul>
+        <li><span class="referencia">Atos 2:42–47</span> — A comunhão e a perseverança da igreja.</li>
+        <li><span class="referencia">Atos 4:23–31</span> — A igreja reunida em oração.</li>
+        <li><span class="referencia">Atos 12:5</span> — A igreja intercede por Pedro.</li>
+        <li><span class="referencia">Romanos 12:4–5</span> — Muitos membros formando um só corpo.</li>
+        <li><span class="referencia">1 Coríntios 12:12–27</span> — A unidade do corpo de Cristo.</li>
+        <li><span class="referencia">Efésios 2:18–22</span> — Acesso ao Pai e pertencimento à família de Deus.</li>
+        <li><span class="referencia">Efésios 4:1–6</span> — Unidade do Espírito.</li>
+        <li><span class="referencia">Colossenses 3:12–15</span> — Amor, perdão e unidade.</li>
+        <li><span class="referencia">Hebreus 10:24–25</span> — Estímulo ao amor e às boas obras.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 9 -->
+<section class="pagina">
+    <h2>7. A Oração e a Necessidade do Próximo</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A expressão “Pai nosso” confronta o egoísmo na vida de oração.
+        Aquele que reconhece outros como irmãos deve desenvolver amor,
+        compaixão, intercessão e disposição para servir.
+    </p>
+
+    <h3>O exemplo da intercessão</h3>
+
+    <ul>
+        <li><span class="referencia">Jó 42:10</span> — Jó ora por seus amigos.</li>
+        <li><span class="referencia">Mateus 5:44</span> — Orar pelos perseguidores.</li>
+        <li><span class="referencia">Lucas 6:27–28</span> — Orar pelos que maltratam.</li>
+        <li><span class="referencia">João 17:9–23</span> — Jesus intercede pelos discípulos.</li>
+        <li><span class="referencia">Atos 12:5</span> — A igreja ora por Pedro.</li>
+        <li><span class="referencia">Romanos 1:9–10</span> — Paulo ora pelos irmãos.</li>
+        <li><span class="referencia">Efésios 6:18–20</span> — Orar por todos os santos.</li>
+        <li><span class="referencia">Filipenses 1:3–4</span> — Oração pelos irmãos com alegria.</li>
+        <li><span class="referencia">Tiago 5:16</span> — Orar uns pelos outros.</li>
+    </ul>
+
+    <h3>A unidade da família de Deus</h3>
+
+    <p>
+        A comunhão não significa ausência de diferenças, mas compromisso
+        com o amor, a verdade e a unidade em Cristo.
+    </p>
+
+    <ul>
+        <li><span class="referencia">João 13:34–35</span> — O amor como marca dos discípulos.</li>
+        <li><span class="referencia">João 17:20–23</span> — A oração de Jesus pela unidade.</li>
+        <li><span class="referencia">Romanos 12:9–18</span> — Amor sincero e convivência pacífica.</li>
+        <li><span class="referencia">Gálatas 6:2</span> — Levar as cargas uns dos outros.</li>
+        <li><span class="referencia">Filipenses 2:1–4</span> — Considerar também os interesses dos outros.</li>
+        <li><span class="referencia">1 João 4:7–12</span> — O amor procede de Deus.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 10 -->
+<section class="pagina">
+    <h2>8. Que Estás nos Céus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Depois de apresentar Deus como Pai, Jesus nos ensina a reconhecer
+        que esse Pai está nos céus.
+    </p>
+
+    <p>
+        Essa expressão não significa que Deus esteja limitado a um lugar
+        ou distante de sua criação. Ela apresenta a majestade e a soberania
+        de Deus.
+    </p>
+
+    <p>
+        Os céus são frequentemente apresentados nas Escrituras como lugar
+        de seu trono e de sua autoridade.
+    </p>
+
+    <p>
+        Em <span class="referencia">Isaías 66:1</span>, o Senhor declara
+        que os céus são seu trono e a terra o estrado de seus pés.
+        Em <span class="referencia">Salmos 115:3</span>, lemos que o
+        nosso Deus está nos céus e faz tudo o que lhe agrada.
+    </p>
+
+    <h3>Deus é Criador e Senhor</h3>
+
+    <ul>
+        <li><span class="referencia">Gênesis 1:1</span> — Deus cria os céus e a terra.</li>
+        <li><span class="referencia">Deuteronômio 10:14</span> — Os céus e a terra pertencem ao Senhor.</li>
+        <li><span class="referencia">1 Reis 8:27</span> — Nem os céus dos céus podem conter Deus.</li>
+        <li><span class="referencia">Salmos 11:4</span> — O Senhor tem seu trono nos céus.</li>
+        <li><span class="referencia">Salmos 103:19</span> — O trono do Senhor está estabelecido nos céus.</li>
+        <li><span class="referencia">Salmos 115:3</span> — Deus está nos céus e faz o que lhe agrada.</li>
+        <li><span class="referencia">Isaías 40:21–26</span> — A grandeza do Criador.</li>
+        <li><span class="referencia">Isaías 66:1–2</span> — Os céus como trono de Deus.</li>
+        <li><span class="referencia">Apocalipse 4:1–11</span> — A majestade e a adoração diante do trono celestial.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 11 -->
+<section class="pagina">
+    <h2>9. Deus Não Está Limitado a um Lugar</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Embora Jesus ensine a expressão “que estás nos céus”, a Bíblia
+        também revela que a presença de Deus não está limitada ao céu
+        como localização.
+    </p>
+
+    <p>
+        Em <span class="referencia">Jeremias 23:23–24</span>, Deus declara
+        que enche os céus e a terra.
+    </p>
+
+    <p>
+        O <span class="referencia">Salmo 139:7–12</span> apresenta uma
+        reflexão profunda sobre a impossibilidade de fugir da presença
+        divina.
+    </p>
+
+    <h3>Referências para aprofundamento</h3>
+
+    <ul>
+        <li><span class="referencia">1 Reis 8:27–30</span> — Deus não está limitado ao templo.</li>
+        <li><span class="referencia">Salmos 139:1–12</span> — A presença e o conhecimento de Deus.</li>
+        <li><span class="referencia">Provérbios 15:3</span> — Os olhos do Senhor estão em todo lugar.</li>
+        <li><span class="referencia">Isaías 57:15</span> — Deus é exaltado e também habita com o contrito.</li>
+        <li><span class="referencia">Jeremias 23:23–24</span> — Deus enche os céus e a terra.</li>
+        <li><span class="referencia">Atos 17:24–28</span> — Deus não habita em templos feitos por mãos humanas e não está longe de cada um de nós.</li>
+        <li><span class="referencia">Efésios 4:6</span> — Um só Deus e Pai de todos.</li>
+    </ul>
+
+    <div class="destaque">
+        Não existe distância, escuridão ou circunstância que possa
+        impedir o conhecimento e a soberania de Deus.
+    </div>
+</section>
+
+<!-- PÁGINA 12 -->
+<section class="pagina">
+    <h2>10. O Criador Governa Todas as Coisas</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Reconhecer que o Pai está nos céus também significa reconhecer
+        que Ele possui autoridade sobre toda a criação.
+    </p>
+
+    <p>
+        As dificuldades humanas não anulam seu governo. As circunstâncias
+        não determinam quem Deus é.
+    </p>
+
+    <h3>Referências sobre a soberania divina</h3>
+
+    <ul>
+        <li><span class="referencia">1 Crônicas 29:11–12</span> — Grandeza, poder e domínio pertencem ao Senhor.</li>
+        <li><span class="referencia">Jó 42:1–2</span> — Nenhum propósito de Deus pode ser impedido.</li>
+        <li><span class="referencia">Salmos 24:1–2</span> — A terra pertence ao Senhor.</li>
+        <li><span class="referencia">Salmos 47:2–8</span> — Deus é Rei sobre toda a terra.</li>
+        <li><span class="referencia">Salmos 103:19</span> — O domínio do Senhor sobre todas as coisas.</li>
+        <li><span class="referencia">Daniel 4:34–35</span> — A soberania do Altíssimo.</li>
+        <li><span class="referencia">Mateus 28:18</span> — Toda autoridade foi dada a Cristo.</li>
+        <li><span class="referencia">Romanos 11:33–36</span> — Tudo procede de Deus, por Ele e para Ele.</li>
+        <li><span class="referencia">Colossenses 1:15–17</span> — Cristo como Criador e sustentador de todas as coisas.</li>
+    </ul>
+
+    <div class="destaque">
+        Dizer “que estás nos céus” é reconhecer que Deus não está
+        sujeito às limitações humanas. Ele é o Senhor da criação.
+    </div>
+</section>
+
+<!-- PÁGINA 13 -->
+<section class="pagina">
+    <h2>11. Intimidade e Reverência Diante do Pai</h2>
+    <div class="linha-dourada"></div>
+
+    <h3>11.1. Podemos nos aproximar com confiança</h3>
+
+    <p>
+        A Bíblia ensina que, por meio de Jesus Cristo, temos acesso
+        à presença de Deus.
+    </p>
+
+    <p>
+        Em <span class="referencia">Hebreus 4:14–16</span>, somos
+        convidados a nos aproximar do trono da graça para receber
+        misericórdia e encontrar graça em ocasião oportuna.
+    </p>
+
+    <ul>
+        <li><span class="referencia">João 14:6</span> — Cristo é o caminho para o Pai.</li>
+        <li><span class="referencia">Romanos 5:1–2</span> — Acesso a Deus por meio de Jesus Cristo.</li>
+        <li><span class="referencia">Efésios 2:13–18</span> — Aproximação pelo sangue de Cristo.</li>
+        <li><span class="referencia">Efésios 3:11–12</span> — Acesso com confiança mediante a fé.</li>
+        <li><span class="referencia">Hebreus 10:19–22</span> — Entrar na presença de Deus com confiança.</li>
+        <li><span class="referencia">1 João 5:14–15</span> — Confiança diante de Deus em oração.</li>
+    </ul>
+
+    <h3>11.2. A intimidade não elimina a reverência</h3>
+
+    <p>
+        Deus é Pai, mas não deixa de ser santo, majestoso e soberano.
+        A proximidade que Ele nos concede não autoriza irreverência.
+    </p>
+
+    <ul>
+        <li><span class="referencia">Êxodo 3:1–6</span> — Moisés diante da sarça ardente.</li>
+        <li><span class="referencia">Êxodo 15:11</span> — A santidade e a majestade de Deus.</li>
+        <li><span class="referencia">1 Samuel 2:2</span> — Não há santo como o Senhor.</li>
+        <li><span class="referencia">Salmos 2:11</span> — Servir ao Senhor com temor e alegria.</li>
+        <li><span class="referencia">Isaías 6:1–5</span> — A visão da santidade do Senhor.</li>
+        <li><span class="referencia">Eclesiastes 5:1–2</span> — Aproximar-se de Deus com reverência.</li>
+        <li><span class="referencia">Hebreus 12:28–29</span> — Servir a Deus com reverência e temor.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 14 -->
+<section class="pagina">
+    <h2>12. Jesus, Nosso Exemplo de Relacionamento com o Pai</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Nos Evangelhos, encontramos Jesus orando ao Pai em diferentes
+        momentos. Ele orava em particular, antes de decisões importantes,
+        em momentos de angústia e diante de seus discípulos.
+    </p>
+
+    <p>
+        Sua vida revela uma relação de comunhão, dependência e obediência
+        ao Pai.
+    </p>
+
+    <h3>Jesus e a oração</h3>
+
+    <ul>
+        <li><span class="referencia">Marcos 1:35</span> — Jesus ora em lugar deserto.</li>
+        <li><span class="referencia">Lucas 5:15–16</span> — Jesus se retirava para orar.</li>
+        <li><span class="referencia">Lucas 6:12–13</span> — Jesus passa a noite em oração antes de escolher os apóstolos.</li>
+        <li><span class="referencia">Mateus 14:22–23</span> — Jesus sobe ao monte para orar.</li>
+        <li><span class="referencia">Mateus 26:36–44</span> — A oração no Getsêmani.</li>
+        <li><span class="referencia">João 5:19–23</span> — A relação entre o Pai e o Filho.</li>
+        <li><span class="referencia">João 8:28–29</span> — Jesus faz o que agrada ao Pai.</li>
+        <li><span class="referencia">João 12:27–28</span> — Jesus glorifica o nome do Pai.</li>
+        <li><span class="referencia">João 17:1–26</span> — A oração sacerdotal de Jesus.</li>
+    </ul>
+
+    <h3>O Pai conhece seus filhos</h3>
+
+    <p>
+        A oração não serve para informar a Deus sobre aquilo que Ele
+        desconhece. Jesus ensina em
+        <span class="referencia">Mateus 6:8</span> que o Pai sabe
+        do que necessitamos antes mesmo de pedirmos.
+    </p>
+
+    <p>
+        Leia também <span class="referencia">Salmos 139:1–4</span>,
+        <span class="referencia">Mateus 6:25–34</span>,
+        <span class="referencia">Lucas 12:6–7</span>,
+        <span class="referencia">Romanos 8:26–27</span> e
+        <span class="referencia">1 Pedro 5:6–7</span>.
+    </p>
+</section>
+
+<!-- PÁGINA 15 -->
+<section class="pagina">
+    <h2>13. Aplicações Práticas</h2>
+    <div class="linha-dourada"></div>
+
+    <h3>13.1. Desenvolver intimidade com Deus</h3>
+    <p>
+        Não devemos limitar nosso relacionamento com Deus aos momentos
+        de necessidade. A comunhão deve ser cultivada diariamente.
+    </p>
+    <p>
+        Referências: <span class="referencia">Salmos 27:4</span>;
+        <span class="referencia">Salmos 63:1–8</span>;
+        <span class="referencia">Mateus 6:6</span>;
+        <span class="referencia">João 15:4–7</span>;
+        <span class="referencia">Tiago 4:8</span>.
+    </p>
+
+    <h3>13.2. Viver como filhos de Deus</h3>
+    <p>
+        Nossa identidade deve refletir-se em nossas atitudes, escolhas
+        e relacionamentos.
+    </p>
+    <p>
+        Referências: <span class="referencia">Mateus 5:9</span>;
+        <span class="referencia">Romanos 8:14–17</span>;
+        <span class="referencia">Efésios 5:1–2</span>;
+        <span class="referencia">1 João 3:1–3</span>.
+    </p>
+
+    <h3>13.3. Interceder por outras pessoas</h3>
+    <p>
+        A expressão “Pai nosso” deve nos lembrar de que não estamos sozinhos.
+    </p>
+    <p>
+        Referências: <span class="referencia">Efésios 6:18</span>;
+        <span class="referencia">Colossenses 1:9–12</span>;
+        <span class="referencia">1 Timóteo 2:1–4</span>;
+        <span class="referencia">Tiago 5:16</span>.
+    </p>
+
+    <h3>13.4. Reconhecer a soberania de Deus</h3>
+    <p>
+        Não devemos avaliar o poder, a fidelidade ou o amor de Deus
+        somente pelas circunstâncias que enfrentamos.
+    </p>
+    <p>
+        Referências: <span class="referencia">Jó 42:2</span>;
+        <span class="referencia">Salmos 46:1–11</span>;
+        <span class="referencia">Romanos 8:28–39</span>;
+        <span class="referencia">Efésios 1:11</span>.
+    </p>
+
+    <h3>13.5. Orar com confiança e reverência</h3>
+    <p>
+        Aproximar-se de Deus exige fé, humildade, sinceridade e submissão.
+    </p>
+    <p>
+        Referências: <span class="referencia">Salmos 51:16–17</span>;
+        <span class="referencia">Hebreus 4:16</span>;
+        <span class="referencia">Hebreus 12:28</span>;
+        <span class="referencia">1 João 5:14</span>.
+    </p>
+</section>
+
+<!-- PÁGINA 16 -->
+<section class="pagina">
+    <h2>14. Questões de Fixação</h2>
+    <div class="linha-dourada"></div>
+
+    <div class="questionario">
+        <ol>
+            <li>Qual é o significado de Jesus começar a oração chamando Deus de Pai?</li>
+            <li>O que João 1:12 ensina sobre aqueles que recebem Jesus Cristo?</li>
+            <li>Qual é o significado da expressão “Aba, Pai” em Romanos 8:15?</li>
+            <li>Por que Jesus utiliza a expressão “Pai nosso”, e não apenas “meu Pai”?</li>
+            <li>Como a expressão “Pai nosso” deve influenciar nossa maneira de tratar os irmãos?</li>
+            <li>O que Isaías 66:1 revela sobre a majestade e a soberania de Deus?</li>
+            <li>Por que dizer que Deus está nos céus não significa que Ele esteja limitado a um lugar?</li>
+            <li>Como Jeremias 23:23–24 e Salmos 139:7–12 revelam a presença de Deus?</li>
+            <li>Qual é a relação entre confiança e reverência na oração?</li>
+            <li>De acordo com Hebreus 4:16, por meio de quem podemos nos aproximar do trono da graça?</li>
+            <li>Por que o conhecimento que Deus tem de nossas necessidades não elimina a importância da oração?</li>
+            <li>Como podemos demonstrar, na prática, que pertencemos à família de Deus?</li>
+        </ol>
+    </div>
+
+    <h3>Leitura complementar</h3>
+
+    <ul>
+        <li><span class="referencia">Isaías 64:8</span></li>
+        <li><span class="referencia">João 1:12–13</span></li>
+        <li><span class="referencia">Romanos 8:14–17</span></li>
+        <li><span class="referencia">Gálatas 4:4–7</span></li>
+        <li><span class="referencia">Efésios 2:18–22</span></li>
+        <li><span class="referencia">Salmos 139:1–12</span></li>
+        <li><span class="referencia">Isaías 66:1–2</span></li>
+        <li><span class="referencia">Hebreus 4:14–16</span></li>
+    </ul>
+</section>
+
+<!-- PÁGINA 17 -->
+<section class="pagina">
+    <h2>15. Desafio Espiritual — Sete Dias</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Durante os próximos sete dias, pratique o que foi aprendido
+        nesta aula. Separe um momento para ler as passagens bíblicas,
+        orar e refletir sobre seu relacionamento com o Pai.
+    </p>
+
+    <h3>Plano devocional</h3>
+
+    <ol>
+        <li>
+            <strong>Dia 1 — Deus é Pai.</strong><br>
+            Leia <span class="referencia">Isaías 64:8</span> e
+            <span class="referencia">João 1:12–13</span>.
+            Medite sobre sua identidade em Cristo.
+        </li>
+        <li>
+            <strong>Dia 2 — Aba, Pai.</strong><br>
+            Leia <span class="referencia">Romanos 8:14–17</span> e
+            <span class="referencia">Gálatas 4:4–7</span>.
+            Ore agradecendo pela adoção espiritual.
+        </li>
+        <li>
+            <strong>Dia 3 — Pai nosso.</strong><br>
+            Leia <span class="referencia">Efésios 2:18–22</span> e
+            <span class="referencia">Efésios 4:1–6</span>.
+            Ore por sua família da fé e pela unidade da igreja.
+        </li>
+        <li>
+            <strong>Dia 4 — Deus está nos céus.</strong><br>
+            Leia <span class="referencia">Isaías 66:1</span> e
+            <span class="referencia">Salmos 103:19</span>.
+            Adore a Deus reconhecendo sua majestade.
+        </li>
+        <li>
+            <strong>Dia 5 — A presença de Deus.</strong><br>
+            Leia <span class="referencia">Salmos 139:1–12</span>.
+            Separe um momento de oração em secreto.
+        </li>
+        <li>
+            <strong>Dia 6 — Confiança diante do Pai.</strong><br>
+            Leia <span class="referencia">Hebreus 4:14–16</span> e
+            <span class="referencia">Filipenses 4:6–7</span>.
+            Apresente suas preocupações a Deus.
+        </li>
+        <li>
+            <strong>Dia 7 — Vivendo como filhos.</strong><br>
+            Leia <span class="referencia">Efésios 5:1–2</span> e
+            <span class="referencia">1 João 3:1–3</span>.
+            Examine suas atitudes e pratique o amor cristão.
+        </li>
+    </ol>
+</section>
+
+<!-- PÁGINA 18 -->
+<section class="pagina">
+    <h2>Conclusão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A expressão “Pai nosso, que estás nos céus” estabelece os
+        fundamentos de nossa aproximação com Deus.
+    </p>
+
+    <p>
+        Ao dizer “Pai”, reconhecemos o relacionamento de filiação que
+        recebemos por meio de Jesus Cristo. Ao dizer “nosso”, reconhecemos
+        que fazemos parte de uma família espiritual e que devemos cultivar
+        comunhão, amor e intercessão.
+    </p>
+
+    <p>
+        Ao dizer “que estás nos céus”, confessamos a majestade,
+        a autoridade e a soberania do Criador.
+    </p>
+
+    <p>
+        Essas verdades nos ensinam que a oração deve ser marcada por
+        intimidade, mas também por reverência; por confiança, mas também
+        por submissão; por necessidades pessoais, mas também pelo amor
+        ao próximo.
+    </p>
+
+    <div class="destaque">
+        Não fomos chamados apenas a pronunciar uma oração, mas a viver
+        o relacionamento que ela expressa.
+    </div>
+
+    <h3>Oração final</h3>
+
+    <p>
+        Pai nosso, que estás nos céus, nós te agradecemos pelo privilégio
+        de nos aproximarmos de tua presença por meio de Jesus Cristo.
+    </p>
+
+    <p>
+        Obrigado porque, em Cristo, recebemos a graça da adoção e podemos
+        te chamar de Pai. Ensina-nos a viver como teus filhos, com fé,
+        obediência, amor e santidade.
+    </p>
+
+    <p>
+        Ajuda-nos a compreender que não estamos sozinhos, pois fazemos
+        parte de uma família espiritual. Coloca em nosso coração amor
+        pelos irmãos, compaixão pelos necessitados e disposição para
+        interceder por aqueles que precisam de nossas orações.
+    </p>
+
+    <p>
+        Senhor, reconhecemos tua majestade, tua autoridade e tua soberania.
+        Ensina-nos a nos aproximar de ti com confiança, sem perder a reverência.
+        Que nossas orações expressem um relacionamento verdadeiro contigo.
+    </p>
+
+    <p><strong>Em nome de Jesus Cristo. Amém.</strong></p>
+</section>
+
+
+</div>
+</main>
+
+<div class="progresso">
+    <div id="barraProgresso"></div>
+</div>
+
+<nav class="controles">
+    <button id="anterior" onclick="mudarPagina(-1)">&#8592; Anterior</button>
+    <span id="contador">Página 1 de 19</span>
+    <button id="proxima" onclick="mudarPagina(1)">Próxima &#8594;</button>
+</nav>
+
+<footer>
+    <p><strong>MINISTÉRIO ATALAIA</strong></p>
+    <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+    <p>Proclamando a Verdade. Formando Discípulos.</p>
+</footer>
+
+<!-- JANELA DE TEXTO BÍBLICO -->
+<div class="modal" id="modalBiblia" onclick="fecharSeFora(event)">
+    <div class="modal-conteudo">
+        <button class="fechar-modal" onclick="fecharBiblia()" aria-label="Fechar">×</button>
+
+        <div class="modal-topo">
+            <h2 id="tituloReferencia">Texto bíblico</h2>
+        </div>
+
+        <div id="textoBiblico">Carregando texto bíblico...</div>
+
+        <div class="aviso-modal">
+            Texto bíblico consultado pela API Bible. A tradução disponível
+            depende da disponibilidade do serviço.
+        </div>
+    </div>
+</div>
+
+<script>
+/* ==========================================
+   NAVEGAÇÃO DO FLIPBOOK
+========================================== */
+
+const paginas = document.querySelectorAll(".pagina");
+const contador = document.getElementById("contador");
+const botaoAnterior = document.getElementById("anterior");
+const botaoProxima = document.getElementById("proxima");
+const barraProgresso = document.getElementById("barraProgresso");
+
+let paginaAtual = 0;
+
+function atualizarFlipbook() {
+    paginas.forEach((pagina, indice) => {
+        pagina.classList.toggle("ativa", indice === paginaAtual);
+    });
+
+    contador.textContent = `Página ${paginaAtual + 1} de ${paginas.length}`;
+
+    botaoAnterior.disabled = paginaAtual === 0;
+    botaoProxima.disabled = paginaAtual === paginas.length - 1;
+
+    const progresso = ((paginaAtual + 1) / paginas.length) * 100;
+    barraProgresso.style.width = progresso + "%";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function mudarPagina(direcao) {
+    const novaPagina = paginaAtual + direcao;
+
+    if (novaPagina >= 0 && novaPagina < paginas.length) {
+        paginaAtual = novaPagina;
+        atualizarFlipbook();
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (modalBiblia.classList.contains("aberto")) {
+        if (event.key === "Escape") fecharBiblia();
+        return;
+    }
+
+    if (event.key === "ArrowRight") mudarPagina(1);
+    if (event.key === "ArrowLeft") mudarPagina(-1);
+});
+
+atualizarFlipbook();
+
+
+/* ==========================================
+   REFERÊNCIAS BÍBLICAS CLICÁVEIS
+========================================== */
+
+const modalBiblia = document.getElementById("modalBiblia");
+const tituloReferencia = document.getElementById("tituloReferencia");
+const textoBiblico = document.getElementById("textoBiblico");
+
+const livrosBiblia = {
+    "genesis": "Genesis", "gênesis": "Genesis",
+    "exodo": "Exodus", "êxodo": "Exodus",
+    "levitico": "Leviticus", "levítico": "Leviticus",
+    "numeros": "Numbers", "números": "Numbers",
+    "deuteronomio": "Deuteronomy", "deuteronômio": "Deuteronomy",
+    "josue": "Joshua", "josué": "Joshua",
+    "juizes": "Judges", "juízes": "Judges",
+    "rute": "Ruth",
+    "1 samuel": "1 Samuel", "2 samuel": "2 Samuel",
+    "1 reis": "1 Kings", "2 reis": "2 Kings",
+    "1 cronicas": "1 Chronicles", "1 crônicas": "1 Chronicles",
+    "2 cronicas": "2 Chronicles", "2 crônicas": "2 Chronicles",
+    "esdras": "Ezra", "neemias": "Nehemiah", "ester": "Esther",
+    "jo": "Job", "jó": "Job",
+    "salmos": "Psalms", "salmo": "Psalms",
+    "proverbios": "Proverbs", "provérbios": "Proverbs",
+    "eclesiastes": "Ecclesiastes",
+    "cantares": "Song of Solomon",
+    "canticos": "Song of Solomon", "cânticos": "Song of Solomon",
+    "isaias": "Isaiah", "isaías": "Isaiah",
+    "jeremias": "Jeremiah",
+    "lamentacoes": "Lamentations", "lamentações": "Lamentations",
+    "ezequiel": "Ezekiel", "daniel": "Daniel",
+    "oseias": "Hosea", "oséias": "Hosea",
+    "joel": "Joel", "amos": "Amos", "amós": "Amos",
+    "obadias": "Obadiah", "jonas": "Jonah",
+    "miqueias": "Micah", "miquéias": "Micah",
+    "naum": "Nahum", "habacuque": "Habakkuk",
+    "sofonias": "Zephaniah", "ageu": "Haggai",
+    "zacarias": "Zechariah",
+    "malaquias": "Malachi", "malaquías": "Malachi",
+
+    "mateus": "Matthew", "marcos": "Mark",
+    "lucas": "Luke", "joao": "John", "joão": "John",
+    "atos": "Acts", "romanos": "Romans",
+    "1 corintios": "1 Corinthians", "1 coríntios": "1 Corinthians",
+    "2 corintios": "2 Corinthians", "2 coríntios": "2 Corinthians",
+    "galatas": "Galatians", "gálatas": "Galatians",
+    "efesios": "Ephesians", "efésios": "Ephesians",
+    "filipenses": "Philippians", "colossenses": "Colossians",
+    "1 tessalonicenses": "1 Thessalonians",
+    "2 tessalonicenses": "2 Thessalonians",
+    "1 timoteo": "1 Timothy", "1 timóteo": "1 Timothy",
+    "2 timoteo": "2 Timothy", "2 timóteo": "2 Timothy",
+    "tito": "Titus", "filemom": "Philemon",
+    "hebreus": "Hebrews", "tiago": "James",
+    "1 pedro": "1 Peter", "2 pedro": "2 Peter",
+    "1 joao": "1 John", "1 joão": "1 John",
+    "2 joao": "2 John", "2 joão": "2 John",
+    "3 joao": "3 John", "3 joão": "3 John",
+    "judas": "Jude", "apocalipse": "Revelation"
+};
+
+function normalizarReferencia(referencia) {
+    referencia = referencia
+        .replace(/[–—−]/g, "-")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const resultado = referencia.match(/^(.+?)\s+(\d+)(?::([\d,-]+))?$/);
+
+    if (!resultado) {
+        throw new Error("Formato de referência não reconhecido.");
+    }
+
+    const nomeLivro = resultado[1].trim().toLowerCase();
+    const livroIngles = livrosBiblia[nomeLivro];
+
+    if (!livroIngles) {
+        throw new Error("Livro bíblico não reconhecido: " + nomeLivro);
+    }
+
+    return {
+        livro: livroIngles,
+        capitulo: Number(resultado[2]),
+        versiculos: resultado[3] || null
+    };
+}
+
+async function buscarCapitulo(livro, capitulo, versiculos = null) {
+    let referencia = `${livro} ${capitulo}`;
+
+    if (versiculos) {
+        referencia += `:${versiculos}`;
+    }
+
+    const url = "https://bible-api.com/" +
+        encodeURIComponent(referencia) +
+        "?translation=almeida";
+
+    const resposta = await fetch(url);
+
+    if (!resposta.ok) {
+        throw new Error("Não foi possível consultar " + referencia);
+    }
+
+    const dados = await resposta.json();
+
+    if (!dados.verses || !Array.isArray(dados.verses)) {
+        throw new Error("A API não retornou os versículos.");
+    }
+
+    return dados;
+}
+
+async function consultarBiblia(referencia) {
+    modalBiblia.classList.add("aberto");
+    tituloReferencia.textContent = referencia;
+    textoBiblico.textContent = "Carregando texto bíblico...";
+
+    try {
+        const dadosReferencia = normalizarReferencia(referencia);
+
+        const dados = await buscarCapitulo(
+            dadosReferencia.livro,
+            dadosReferencia.capitulo,
+            dadosReferencia.versiculos
+        );
+
+        textoBiblico.innerHTML = "";
+
+        const subtitulo = document.createElement("h3");
+        subtitulo.textContent = dados.reference || referencia;
+        subtitulo.style.cssText = `
+            font-family: Cinzel, serif;
+            color: #102d4e;
+            font-size: 16px;
+            margin: 15px 0;
+        `;
+        textoBiblico.appendChild(subtitulo);
+
+        dados.verses.forEach(versiculo => {
+            const linha = document.createElement("p");
+            linha.className = "versiculo";
+
+            const numero = document.createElement("strong");
+            numero.className = "numero-versiculo";
+            numero.textContent = versiculo.verse + ".";
+
+            const texto = document.createTextNode(" " + versiculo.text.trim());
+
+            linha.appendChild(numero);
+            linha.appendChild(texto);
+            textoBiblico.appendChild(linha);
+        });
+
+        const identificacao = document.createElement("p");
+        identificacao.style.cssText = `
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 1px solid #ddd;
+            font-size: 13px;
+            color: #777;
+        `;
+        identificacao.textContent =
+            "Tradução: versão disponibilizada pelo serviço Bible API.";
+
+        textoBiblico.appendChild(identificacao);
+
+    } catch (erro) {
+        console.error("Erro na consulta bíblica:", erro);
+
+        textoBiblico.textContent =
+            "Não foi possível carregar os versículos desta referência. " +
+            "Verifique sua conexão com a internet e tente novamente. " +
+            "Referência: " + referencia;
+    }
+}
+
+/* Ativar as referências */
+document.querySelectorAll(".referencia").forEach(elemento => {
+    elemento.setAttribute("role", "button");
+    elemento.setAttribute("tabindex", "0");
+    elemento.setAttribute("title", "Clique para consultar o texto bíblico");
+
+    elemento.addEventListener("click", function() {
+        consultarBiblia(this.textContent.trim());
+    });
+
+    elemento.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            consultarBiblia(this.textContent.trim());
+        }
+    });
+});
+
+/* Fechar popup */
+function fecharBiblia() {
+    modalBiblia.classList.remove("aberto");
+}
+
+function fecharSeFora(event) {
+    if (event.target === modalBiblia) {
+        fecharBiblia();
+    }
+}
+</script>
+
+</body>
+</html>

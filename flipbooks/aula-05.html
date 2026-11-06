@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 05 — Seja Feita a Tua Vontade | Escola Bíblica Atalaia</title>
+<meta name="description" content="Estudo bíblico sobre Mateus 6:10 — Seja feita a tua vontade, assim na terra como no céu.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #071b33;
+    --azul-claro: #102d4e;
+    --dourado: #c9a45c;
+    --papel: #fffdf7;
+    --texto: #293443;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #e9edf2;
+    color: var(--texto);
+    font-family: "Crimson Text", Georgia, serif;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+    color: white;
+    text-align: center;
+    padding: 25px 15px 22px;
+    border-bottom: 4px solid var(--dourado);
+}
+
+header .ministerio {
+    font-family: Cinzel, serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--dourado);
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-family: Cinzel, serif;
+    font-size: clamp(23px, 4vw, 34px);
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 17px;
+    color: #e4e8ed;
+}
+
+.identificacao {
+    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--dourado);
+}
+
+.instrucoes {
+    text-align: center;
+    padding: 15px 10px 5px;
+    color: #536173;
+    font-size: 16px;
+}
+
+.instrucoes strong {
+    color: var(--azul);
+}
+
+.flipbook-area {
+    width: 100%;
+    padding: 20px 12px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.livro {
+    width: min(100%, 850px);
+    min-height: 570px;
+    position: relative;
+    perspective: 1800px;
+}
+
+.pagina {
+    display: none;
+    width: 100%;
+    min-height: 570px;
+    background: var(--papel);
+    border: 1px solid #ded8c9;
+    border-radius: 5px;
+    padding: clamp(25px, 5vw, 55px);
+    box-shadow: 0 12px 35px rgba(0,0,0,.13);
+    animation: aparecer .35s ease;
+    position: relative;
+}
+
+.pagina.ativa {
+    display: block;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: .3;
+        transform: rotateY(-3deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateY(0);
+    }
+}
+
+.pagina::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--dourado), #ead9b4, var(--dourado));
+    opacity: .75;
+}
+
+.pagina h2 {
+    font-family: Cinzel, serif;
+    color: var(--azul);
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.pagina h3 {
+    font-family: Cinzel, serif;
+    font-size: 18px;
+    color: var(--azul-claro);
+    margin: 25px 0 10px;
+}
+
+.pagina h4 {
+    font-size: 19px;
+    color: #8a682e;
+    margin: 18px 0 7px;
+}
+
+.pagina p {
+    font-size: 19px;
+    line-height: 1.65;
+    margin-bottom: 13px;
+    text-align: justify;
+}
+
+.pagina ul,
+.pagina ol {
+    margin: 10px 0 18px 25px;
+}
+
+.pagina li {
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 7px;
+}
+
+.linha-dourada {
+    width: 75px;
+    height: 3px;
+    background: var(--dourado);
+    margin: 15px 0 22px;
+}
+
+.destaque {
+    background: #f4f0e6;
+    border-left: 4px solid var(--dourado);
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.referencia {
+    color: #986d22;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.referencia:hover {
+    color: #c18a28;
+    text-decoration-style: solid;
+}
+
+.capa {
+    min-height: 570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(7,27,51,.94), rgba(7,27,51,.96));
+    color: white;
+    border: 5px double var(--dourado);
+}
+
+.capa::before {
+    display: none;
+}
+
+.capa .marca {
+    color: var(--dourado);
+    font-family: Cinzel, serif;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-bottom: 45px;
+}
+
+.capa h2 {
+    color: white;
+    font-size: clamp(30px, 6vw, 45px);
+    margin-bottom: 18px;
+}
+
+.capa .subtitulo {
+    max-width: 570px;
+    font-size: 21px;
+    color: #e5e8ec;
+    text-align: center;
+}
+
+.capa .aula {
+    margin-top: 45px;
+    color: var(--dourado);
+    font-family: Cinzel, serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+
+.capa .escola {
+    margin-top: 55px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #d5dbe2;
+}
+
+.controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 15px 25px;
+}
+
+.controles button {
+    border: none;
+    background: var(--azul);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.controles button:hover {
+    background: var(--azul-claro);
+}
+
+.controles button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+#contador {
+    color: var(--azul);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    min-width: 95px;
+    text-align: center;
+}
+
+.progresso {
+    width: min(500px, 85%);
+    height: 5px;
+    background: #d5dbe2;
+    margin: 0 auto 25px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progresso div {
+    height: 100%;
+    width: 0;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+footer {
+    background: var(--azul);
+    color: #dce2e9;
+    text-align: center;
+    padding: 22px 12px;
+    border-top: 3px solid var(--dourado);
+    font-size: 15px;
+}
+
+footer strong {
+    color: var(--dourado);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,.72);
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.aberto {
+    display: flex;
+}
+
+.modal-conteudo {
+    width: min(650px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--papel);
+    border-radius: 7px;
+    padding: 25px;
+    position: relative;
+}
+
+.modal-topo {
+    border-bottom: 2px solid var(--dourado);
+    padding-bottom: 12px;
+    margin-bottom: 17px;
+    padding-right: 35px;
+}
+
+.modal-topo h2 {
+    color: var(--azul);
+    font-family: Cinzel, serif;
+    font-size: 21px;
+}
+
+.fechar-modal {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    border: none;
+    background: var(--azul);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#textoBiblico {
+    font-size: 19px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+#textoBiblico .versiculo {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#textoBiblico .numero-versiculo {
+    color: #9a702c;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.aviso-modal {
+    font-size: 14px;
+    color: #7a8490;
+    margin-top: 18px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+@media(max-width:600px) {
+    header {
+        padding: 20px 12px;
+    }
+
+    .livro {
+        min-height: 650px;
+    }
+
+    .pagina {
+        min-height: 650px;
+        padding: 28px 23px 45px 28px;
+    }
+
+    .pagina p {
+        font-size: 18px;
+    }
+
+    .pagina li {
+        font-size: 17px;
+    }
+
+    .capa {
+        min-height: 650px;
+    }
+
+    .controles {
+        gap: 8px;
+    }
+
+    .controles button {
+        padding: 11px 15px;
+    }
+
+    .modal-conteudo {
+        padding: 20px;
+    }
+}
+
+@media print {
+    header,
+    .instrucoes,
+    .controles,
+    .progresso,
+    footer,
+    .modal {
+        display: none !important;
+    }
+
+    .pagina {
+        display: block !important;
+        min-height: auto;
+        page-break-after: always;
+        box-shadow: none;
+        border: none;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="ministerio">MINISTÉRIO ATALAIA</div>
+    <h1>O Pai Nosso</h1>
+    <p>Uma jornada de oração, comunhão e transformação</p>
+    <div class="identificacao">ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</div>
+</header>
+
+<div class="instrucoes">
+    <strong>Estudo bíblico interativo</strong><br>
+    Clique nas referências bíblicas sublinhadas para consultar os textos.
+</div>
+
+<main class="flipbook-area">
+<div class="livro" id="livro">
+
+<section class="pagina capa ativa">
+    <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+    <h2>SEJA FEITA<br>A TUA VONTADE</h2>
+    <div class="linha-dourada"></div>
+    <p class="subtitulo">
+        Assim na terra como no céu.<br>
+        Submissão, obediência e confiança na vontade do Pai.
+    </p>
+    <div class="aula">AULA 05</div>
+    <div class="escola">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+</section>
+
+<section class="pagina">
+    <h2>Apresentação do Estudo</h2>
+    <div class="linha-dourada"></div>
+
+    <p>A quinta expressão da oração ensinada por Jesus conduz o discípulo a uma profunda atitude de entrega: “Seja feita a tua vontade, assim na terra como no céu”. A oração não consiste apenas em apresentar pedidos a Deus; ela também nos ensina a desejar que a vontade do Pai seja realizada em nossa vida e no mundo.</p>
+
+    <p>Essa frase está diretamente relacionada ao pedido anterior: “Venha o teu Reino”. Onde o Reino de Deus é reconhecido, sua autoridade e seus propósitos são acolhidos.</p>
+
+    <div class="destaque">
+        A verdade central desta aula é que orar pela vontade de Deus significa confiar no Pai e estar disposto a obedecer-lhe, mesmo quando sua direção contraria nossos desejos imediatos.
+    </div>
+
+    <h3>Texto-base</h3>
+    <p><span class="referencia">Mateus 6:9–13</span>; <span class="referencia">Lucas 11:1–4</span>.</p>
+
+    <h3>Textos fundamentais</h3>
+    <p><span class="referencia">Mateus 6:10</span>; <span class="referencia">Lucas 22:42</span>; <span class="referencia">Romanos 12:1–2</span>.</p>
+</section>
+
+<section class="pagina">
+    <h2>1. O Significado da Petição</h2>
+    <div class="linha-dourada"></div>
+
+    <div class="texto-base">
+        <p><strong>“Seja feita a tua vontade, assim na terra como no céu.”</strong></p>
+        <p><span class="referencia">Mateus 6:10</span></p>
+    </div>
+
+    <p>Jesus ensina seus discípulos a orar para que a vontade do Pai seja realizada. A expressão não é uma fórmula vazia nem uma declaração de desistência. É uma petição: que aquilo que Deus deseja seja obedecido e manifeste-se na vida humana.</p>
+
+    <p>O pedido expressa reverência à autoridade divina. Deus não é apenas aquele a quem apresentamos nossas necessidades; Ele é o Senhor a quem pertencemos e cuja vontade devemos buscar.</p>
+
+    <p>Essa atitude aparece também em <span class="referencia">Salmos 40:8</span>: o salmista declara prazer em fazer a vontade de Deus. Jesus afirmou que sua comida era fazer a vontade daquele que o enviou e completar sua obra (<span class="referencia">João 4:34</span>).</p>
+
+    <h3>Referências para aprofundamento</h3>
+    <ul>
+        <li><span class="referencia">João 6:38</span> — Jesus veio para fazer a vontade do Pai.</li>
+        <li><span class="referencia">Salmos 143:10</span> — Pedido para aprender e cumprir a vontade divina.</li>
+        <li><span class="referencia">Mateus 7:21</span> — Fazer a vontade do Pai.</li>
+        <li><span class="referencia">1 João 2:17</span> — Aquele que faz a vontade de Deus permanece.</li>
+    </ul>
+</section>
+
+<section class="pagina">
+    <h2>2. A Vontade de Deus e o Seu Reino</h2>
+    <div class="linha-dourada"></div>
+
+    <p>Na oração do Pai Nosso, “Venha o teu Reino” e “Seja feita a tua vontade” estão ligados. O Reino de Deus não é somente uma ideia; envolve o reconhecimento de seu governo e a disposição de viver segundo seus caminhos.</p>
+
+    <p>Quando pedimos que o Reino venha, desejamos que Deus reine em nosso coração, em nossas atitudes, na comunidade cristã e em toda a criação, conforme seus propósitos.</p>
+
+    <p>Jesus orientou seus discípulos a buscar primeiro o Reino e a justiça de Deus (<span class="referencia">Mateus 6:33</span>). Paulo explica que o Reino de Deus se relaciona com justiça, paz e alegria no Espírito Santo (<span class="referencia">Romanos 14:17</span>).</p>
+
+    <h3>O governo de Deus</h3>
+    <ul>
+        <li><span class="referencia">Salmos 103:19–22</span> — O Senhor reina sobre tudo.</li>
+        <li><span class="referencia">Salmos 115:3</span> — Deus faz tudo o que lhe agrada.</li>
+        <li><span class="referencia">Daniel 4:34–35</span> — Seu domínio é eterno.</li>
+        <li><span class="referencia">Apocalipse 11:15</span> — O Reino do mundo pertence ao Senhor e ao seu Cristo.</li>
+    </ul>
+
+    <div class="destaque">
+        Orar pela vontade de Deus é pedir que seu governo seja reconhecido e obedecido, começando por nós.
+    </div>
+</section>
+
+<section class="pagina">
+    <h2>3. A Vontade de Deus: Soberania e Revelação</h2>
+    <div class="linha-dourada"></div>
+
+    <p>A Bíblia apresenta Deus como soberano. Seus propósitos não são frustrados por limitações humanas. Ele governa a história e conduz seus planos segundo sua sabedoria.</p>
+
+    <p>Leia <span class="referencia">Isaías 46:9–10</span>, <span class="referencia">Efésios 1:11</span> e <span class="referencia">Romanos 11:33–36</span>. Esses textos destacam a grandeza, a sabedoria e a autoridade do Senhor.</p>
+
+    <p>Ao mesmo tempo, Deus revelou em sua Palavra aquilo que espera de seus servos. Não precisamos viver tentando adivinhar cada detalhe oculto do futuro; somos chamados a obedecer ao que Ele já revelou.</p>
+
+    <h3>A vontade revelada nas Escrituras</h3>
+    <ul>
+        <li><span class="referencia">Deuteronômio 10:12–13</span> — Temer, amar e servir ao Senhor.</li>
+        <li><span class="referencia">Miqueias 6:8</span> — Praticar a justiça, amar a misericórdia e andar humildemente.</li>
+        <li><span class="referencia">1 Tessalonicenses 4:3</span> — A santificação.</li>
+        <li><span class="referencia">1 Tessalonicenses 5:18</span> — Dar graças em todas as circunstâncias.</li>
+        <li><span class="referencia">Efésios 5:17</span> — Compreender a vontade do Senhor.</li>
+    </ul>
+
+    <p>É importante distinguir entre aquilo que Deus permite acontecer e aquilo que Ele aprova moralmente. A existência do pecado e da injustiça não significa que Deus os considere bons. As Escrituras chamam o ser humano ao arrependimento e à responsabilidade (<span class="referencia">Tiago 1:13–15</span>; <span class="referencia">Romanos 1:18–32</span>).</p>
+</section>
+
+<section class="pagina">
+    <h2>4. Jesus: o Exemplo Perfeito de Obediência</h2>
+    <div class="linha-dourada"></div>
+
+    <p>Jesus é o maior exemplo de alguém que viveu em perfeita obediência ao Pai. Sua vida não foi guiada pela busca de aprovação humana, mas pelo cumprimento da missão recebida.</p>
+
+    <p>Ele declarou que não buscava sua própria vontade, mas a vontade daquele que o enviou (<span class="referencia">João 5:30</span>). Também afirmou que fazia sempre aquilo que agradava ao Pai (<span class="referencia">João 8:28–29</span>).</p>
+
+    <p>Na oração sacerdotal, Jesus declarou ter glorificado o Pai e completado a obra que lhe fora confiada (<span class="referencia">João 17:4</span>).</p>
+
+    <h3>A obediência de Cristo</h3>
+    <ul>
+        <li><span class="referencia">Filipenses 2:5–8</span> — Cristo humilhou-se e foi obediente.</li>
+        <li><span class="referencia">Hebreus 10:5–10</span> — Cristo veio para cumprir a vontade de Deus.</li>
+        <li><span class="referencia">Hebreus 5:7–9</span> — Sua obediência em meio ao sofrimento.</li>
+        <li><span class="referencia">1 Pedro 2:21–23</span> — Cristo deixou exemplo de perseverança.</li>
+    </ul>
+
+    <p>Seguir Jesus significa aprender com seu exemplo e permitir que sua Palavra transforme nossas escolhas (<span class="referencia">João 14:15</span>; <span class="referencia">1 Pedro 2:21</span>).</p>
+</section>
+
+<section class="pagina">
+    <h2>5. Getsêmani: “Não Seja Como Eu Quero”</h2>
+    <div class="linha-dourada"></div>
+
+    <div class="texto-base">
+        <p>“...não seja como eu quero, mas como tu queres.”</p>
+        <p><span class="referencia">Mateus 26:39</span></p>
+    </div>
+
+    <p>No Getsêmani, Jesus enfrentou profunda angústia diante do sofrimento que se aproximava. Ele não escondeu sua aflição, mas a apresentou ao Pai em oração.</p>
+
+    <p>Jesus pediu que, se possível, o cálice passasse dele; contudo, submeteu-se à vontade do Pai. Essa oração revela que submissão não significa ausência de sentimentos, perguntas ou sofrimento. Significa confiar em Deus e permanecer obediente.</p>
+
+    <p>Leia os relatos paralelos: <span class="referencia">Mateus 26:36–46</span>, <span class="referencia">Marcos 14:32–42</span> e <span class="referencia">Lucas 22:39–46</span>.</p>
+
+    <h3>O exemplo de Cristo no sofrimento</h3>
+    <ul>
+        <li><span class="referencia">Isaías 53:3–7</span> — O Servo sofredor.</li>
+        <li><span class="referencia">Mateus 20:22–23</span> — Jesus fala do cálice.</li>
+        <li><span class="referencia">João 10:17–18</span> — Cristo entrega sua vida voluntariamente.</li>
+        <li><span class="referencia">Atos 2:22–24</span> — A morte de Jesus dentro do propósito de Deus.</li>
+        <li><span class="referencia">Romanos 5:6–11</span> — A reconciliação realizada por Cristo.</li>
+    </ul>
+
+    <div class="destaque">
+        A oração de Jesus nos ensina a expressar nossa dor com sinceridade e, ao mesmo tempo, confiar na sabedoria e no propósito do Pai.
+    </div>
+</section>
+
+<section class="pagina">
+    <h2>6. “Assim na Terra como no Céu”</h2>
+    <div class="linha-dourada"></div>
+
+    <p>Essa expressão amplia o pedido. Jesus ensina a desejar que a vontade de Deus seja realizada na terra como é obedecida no céu. A oração aponta para uma vida de obediência, reverência e alinhamento com os propósitos divinos.</p>
+
+    <p>Os textos bíblicos descrevem os anjos como servos que cumprem a palavra do Senhor (<span class="referencia">Salmos 103:20–21</span>). A oração nos convida a desejar essa disposição de serviço e obediência.</p>
+
+    <p>Na terra, a vontade de Deus é frequentemente contrariada pelo pecado, pela injustiça e pela rebeldia humana. Por isso, orar por sua vontade também implica desejar transformação, santidade, justiça e fidelidade.</p>
+
+    <h3>Obediência no cotidiano</h3>
+    <ul>
+        <li><span class="referencia">Romanos 12:1–2</span> — Transformação e renovação da mente.</li>
+        <li><span class="referencia">Colossenses 3:17</span> — Fazer tudo em nome do Senhor.</li>
+        <li><span class="referencia">Tiago 1:22</span> — Ser praticante da Palavra.</li>
+        <li><span class="referencia">Efésios 6:6–7</span> — Servir de coração, como ao Senhor.</li>
+        <li><span class="referencia">Colossenses 3:23–24</span> — Trabalhar para o Senhor.</li>
+    </ul>
+
+    <p>O pedido não fica restrito ao culto ou ao momento devocional. Ele alcança nossas palavras, decisões, responsabilidades e relacionamentos.</p>
+</section>
+
+<section class="pagina">
+    <h2>7. Submissão Não é Passividade</h2>
+    <div class="linha-dourada"></div>
+
+    <p>Submeter-se à vontade de Deus não significa abandonar responsabilidades ou deixar de agir. A Bíblia ensina a orar e também a obedecer, trabalhar, servir, buscar justiça e tomar decisões sábias.</p>
+
+    <p>O discípulo ora, examina as Escrituras, busca conselho, considera as circunstâncias com prudência e age de acordo com os princípios de Deus.</p>
+
+    <h3>Negar a si mesmo e seguir Cristo</h3>
+    <p>Jesus chamou seus discípulos a negarem a si mesmos, tomarem a cruz e seguirem-no (<span class="referencia">Lucas 9:23–25</span>; <span class="referencia">Mateus 16:24–26</span>; <span class="referencia">Marcos 8:34–36</span>). Paulo descreve uma vida na qual Cristo vive nele (<span class="referencia">Gálatas 2:20</span>).</p>
+
+    <h3>Confiar e agir com sabedoria</h3>
+    <ul>
+        <li><span class="referencia">Provérbios 3:5–6</span> — Confiar no Senhor e reconhecê-lo nos caminhos.</li>
+        <li><span class="referencia">Salmos 37:5</span> — Entregar o caminho ao Senhor.</li>
+        <li><span class="referencia">Tiago 1:5</span> — Pedir sabedoria a Deus.</li>
+        <li><span class="referencia">Colossenses 1:9–10</span> — Buscar conhecimento da vontade de Deus para viver de modo digno.</li>
+    </ul>
+
+    <div class="destaque">
+        A submissão bíblica não é inércia: é uma vida ativa, guiada pela Palavra e dependente de Deus.
+    </div>
+</section>
+
+<section class="pagina">
+    <h2>8. Como Discernir a Vontade de Deus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>O cristão deseja compreender como agradar ao Senhor. A Bíblia orienta esse discernimento por meio da Palavra, da oração, da renovação da mente, da sabedoria e da comunhão com outros discípulos.</p>
+
+    <h3>Princípios para discernimento</h3>
+    <ol>
+        <li><strong>Examine as Escrituras:</strong> Deus não conduz seus filhos a desobedecerem à sua Palavra — <span class="referencia">Salmos 119:105</span>; <span class="referencia">2 Timóteo 3:16–17</span>.</li>
+        <li><strong>Renove a mente:</strong> busque transformação para discernir o que é bom, agradável e perfeito — <span class="referencia">Romanos 12:1–2</span>.</li>
+        <li><strong>Ore por sabedoria:</strong> apresente suas decisões ao Senhor — <span class="referencia">Tiago 1:5</span>; <span class="referencia">Filipenses 4:6–7</span>.</li>
+        <li><strong>Considere conselhos sábios:</strong> a segurança está na multiplicidade de conselheiros — <span class="referencia">Provérbios 11:14</span>; <span class="referencia">Provérbios 15:22</span>.</li>
+        <li><strong>Observe o fruto:</strong> avalie se a decisão conduz à santidade, amor e fidelidade — <span class="referencia">Gálatas 5:22–23</span>; <span class="referencia">Mateus 7:16–20</span>.</li>
+    </ol>
+
+    <p>Nem toda decisão terá uma resposta extraordinária ou imediata. Em muitas situações, Deus nos chama a agir com sabedoria e fidelidade dentro dos princípios que já revelou.</p>
+</section>
+
+<section class="pagina">
+    <h2>9. A Vontade de Deus nas Áreas da Vida</h2>
+    <div class="linha-dourada"></div>
+
+    <h3>Na família</h3>
+    <p>O discípulo busca amor, respeito, serviço e responsabilidade no lar. Leia <span class="referencia">Efésios 5:21–6:4</span>; <span class="referencia">Colossenses 3:18–21</span>; <span class="referencia">Deuteronômio 6:6–7</span>.</p>
+
+    <h3>No trabalho e nas responsabilidades</h3>
+    <p>O trabalho deve ser realizado com integridade e dedicação, como serviço ao Senhor. Leia <span class="referencia">Colossenses 3:23–24</span>; <span class="referencia">Efésios 6:5–8</span>; <span class="referencia">Provérbios 10:4</span>.</p>
+
+    <h3>Nos relacionamentos</h3>
+    <p>A vontade de Deus nos chama ao amor, à verdade, à reconciliação e ao perdão. Leia <span class="referencia">Romanos 12:9–18</span>; <span class="referencia">Efésios 4:25–32</span>; <span class="referencia">Colossenses 3:12–14</span>.</p>
+
+    <h3>Na vida espiritual</h3>
+    <p>Somos chamados à santificação, à oração, à gratidão e à prática da Palavra. Leia <span class="referencia">1 Tessalonicenses 4:3</span>; <span class="referencia">1 Tessalonicenses 5:16–18</span>; <span class="referencia">João 15:4–7</span>; <span class="referencia">Hebreus 10:24–25</span>.</p>
+
+    <div class="destaque">
+        A oração “seja feita a tua vontade” deve acompanhar cada área da vida, não apenas os momentos de culto.
+    </div>
+</section>
+
+<section class="pagina">
+    <h2>10. Quando Não Compreendemos os Caminhos de Deus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>Há momentos em que não compreendemos por que determinadas situações acontecem. A Bíblia não ensina que devemos fingir que não sentimos dor. Ela nos convida a levar nossas inquietações ao Senhor e a confiar em sua sabedoria.</p>
+
+    <p>Habacuque apresentou perguntas diante de Deus e, mesmo sem compreender plenamente o cenário, declarou sua confiança no Senhor (<span class="referencia">Habacuque 1:2–4</span>; <span class="referencia">Habacuque 3:17–19</span>).</p>
+
+    <p>Os caminhos de Deus são mais elevados que os nossos (<span class="referencia">Isaías 55:8–9</span>). Por isso, somos chamados a confiar nele, mesmo quando não enxergamos toda a realidade.</p>
+
+    <h3>Esperança em meio às dificuldades</h3>
+    <ul>
+        <li><span class="referencia">Salmos 62:5–8</span> — Esperar em Deus e derramar diante dele o coração.</li>
+        <li><span class="referencia">Jeremias 17:7–8</span> — Bem-aventurado aquele que confia no Senhor.</li>
+        <li><span class="referencia">Romanos 8:28</span> — Deus trabalha para o bem daqueles que o amam e são chamados segundo seu propósito.</li>
+        <li><span class="referencia">2 Coríntios 5:7</span> — Caminhar por fé.</li>
+        <li><span class="referencia">1 Pedro 5:6–7</span> — Lançar sobre Deus as ansiedades.</li>
+    </ul>
+
+    <p>Confiar na vontade de Deus não significa chamar o mal de bem, mas crer que o Senhor permanece sábio, justo e digno de confiança.</p>
+</section>
+<section class="pagina">
+    <h2>11. A Igreja e a Missão de Fazer a Vontade de Deus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>A oração do Pai Nosso também tem dimensão comunitária. Jesus ensinou seus discípulos a dizer “Pai nosso”, e não apenas “meu Pai”. A vontade de Deus deve ser buscada por toda a comunidade cristã.</p>
+
+    <p>A Igreja é chamada a anunciar o evangelho, fazer discípulos, servir e testemunhar de Cristo. Jesus enviou seus seguidores para ensinar a guardar tudo o que ordenou (<span class="referencia">Mateus 28:18–20</span>).</p>
+
+    <h3>Serviço e missão</h3>
+    <ul>
+        <li><span class="referencia">Mateus 9:37–38</span> — Orar pelos trabalhadores da seara.</li>
+        <li><span class="referencia">Atos 1:8</span> — Ser testemunha de Cristo.</li>
+        <li><span class="referencia">Efésios 2:10</span> — Criados para boas obras.</li>
+        <li><span class="referencia">1 Pedro 4:10–11</span> — Servir com os dons recebidos.</li>
+        <li><span class="referencia">Miquéias 6:8</span> — Justiça, misericórdia e humildade.</li>
+    </ul>
+
+    <p>Quando a Igreja ora para que a vontade de Deus seja feita, ela também se dispõe a participar da obra de Deus com fidelidade.</p>
+</section>
+
+<section class="pagina">
+    <h2>12. Aplicações, Reflexão e Oração</h2>
+    <div class="linha-dourada"></div>
+
+    <h3>Aplicações práticas</h3>
+    <ol>
+        <li>Apresente seus desejos a Deus com sinceridade, mas esteja disposto a obedecer à Palavra.</li>
+        <li>Antes de tomar decisões, ore, examine as Escrituras e busque sabedoria.</li>
+        <li>Identifique uma área da vida que precisa ser alinhada aos princípios de Deus.</li>
+        <li>Não confunda submissão com passividade: pratique aquilo que o Senhor já revelou.</li>
+        <li>Em tempos difíceis, expresse sua dor diante de Deus e continue confiando nele.</li>
+        <li>Busque servir à família, à igreja e ao próximo com amor e integridade.</li>
+    </ol>
+
+    <h3>Questões para reflexão</h3>
+    <ul>
+        <li>O que significa pedir que a vontade de Deus seja feita?</li>
+        <li>Como a oração de Jesus no Getsêmani nos ensina a lidar com a angústia?</li>
+        <li>Qual é a diferença entre confiar em Deus e permanecer passivo?</li>
+        <li>Como podemos discernir a vontade revelada de Deus?</li>
+        <li>Em qual área da sua vida você precisa praticar mais plenamente a vontade do Pai?</li>
+    </ul>
+
+    <h3>Desafio espiritual — 7 dias</h3>
+    <p>Durante uma semana, leia <span class="referencia">Mateus 6:9–10</span> e <span class="referencia">Romanos 12:1–2</span>. Ore diariamente: “Pai, ensina-me a compreender tua Palavra e a obedecer à tua vontade”. Registre uma atitude concreta de obediência por dia.</p>
+
+    <h3>Oração final</h3>
+    <p>Pai celestial, que tua vontade seja feita em minha vida, em minha família e em tudo aquilo que realizo. Ensina-me a confiar em ti quando não compreendo teus caminhos. Dá-me sabedoria para discernir tua Palavra e coragem para obedecer. Que meus desejos sejam transformados e que minha vida glorifique teu nome. Assim como Jesus se submeteu ao teu propósito, ajuda-me a viver em fidelidade. Em nome de Jesus. Amém.</p>
+</section>
+
+<section class="pagina">
+    <h2>Conclusão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>“Seja feita a tua vontade, assim na terra como no céu” é uma oração de confiança, submissão e obediência. Ela nos convida a reconhecer que Deus é Senhor e que seus caminhos são dignos de serem seguidos.</p>
+
+    <p>Jesus não ensinou uma submissão distante da realidade. No Getsêmani, apresentou sua angústia ao Pai e, ainda assim, permaneceu obediente. Seu exemplo nos mostra que podemos ser sinceros diante de Deus e confiar nele mesmo em meio às dificuldades.</p>
+
+    <p>Orar pela vontade do Pai significa buscar sua Palavra, renovar a mente, agir com sabedoria e viver de maneira coerente com o evangelho. Essa oração deve alcançar nossas decisões, relacionamentos, trabalho, família e serviço cristão.</p>
+
+    <div class="destaque">
+        Que a vontade de Deus não seja apenas um pedido pronunciado por nossos lábios, mas uma realidade demonstrada em nossa vida.
+    </div>
+
+    <h3>Versículo para memorizar</h3>
+    <p>“Seja feita a tua vontade, assim na terra como no céu.” — <span class="referencia">Mateus 6:10</span></p>
+</section>
+
+<section class="pagina">
+    <h2>Próxima Aula</h2>
+    <div class="linha-dourada"></div>
+
+    <h3>AULA 06</h3>
+    <h2>O Pão Nosso de Cada Dia</h2>
+
+    <p>Na próxima aula, estudaremos a petição: “O pão nosso de cada dia nos dá hoje”, refletindo sobre dependência, provisão diária, contentamento e confiança no cuidado do Pai.</p>
+
+    <h3>Texto-base</h3>
+    <p><span class="referencia">Mateus 6:11</span>; <span class="referencia">Lucas 11:3</span>.</p>
+
+    <div class="destaque">
+        “O pão nosso de cada dia nos dá hoje.” — Mateus 6:11
+    </div>
+
+    <div style="text-align:center;margin-top:50px">
+        <p style="font-family:Cinzel,serif;color:#9a702c;text-align:center">ESCOLA BÍBLICA ATALAIA</p>
+        <p style="text-align:center">Proclamando a Verdade. Formando Discípulos.</p>
+    </div>
+</section>
+
+</div>
+</main>
+
+<div class="progresso">
+    <div id="barraProgresso"></div>
+</div>
+
+<nav class="controles">
+    <button id="anterior" onclick="mudarPagina(-1)">&#8592; Anterior</button>
+    <span id="contador">Página 1</span>
+    <button id="proxima" onclick="mudarPagina(1)">Próxima &#8594;</button>
+</nav>
+
+<footer>
+    <p><strong>MINISTÉRIO ATALAIA</strong></p>
+    <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+    <p>Proclamando a Verdade. Formando Discípulos.</p>
+</footer>
+
+<!-- JANELA DE CONSULTA BÍBLICA -->
+<div class="modal" id="modalBiblia" onclick="fecharSeFora(event)">
+    <div class="modal-conteudo">
+        <button class="fechar-modal" onclick="fecharBiblia()" aria-label="Fechar">×</button>
+
+        <div class="modal-topo">
+            <h2 id="tituloReferencia">Texto bíblico</h2>
+        </div>
+
+        <div id="textoBiblico">Carregando texto bíblico...</div>
+
+        <div class="aviso-modal">
+            Texto consultado pela API Bible. A disponibilidade da tradução depende do serviço.
+        </div>
+    </div>
+</div>
+
+<script>
+/* =========================================
+   NAVEGAÇÃO DO FLIPBOOK
+========================================= */
+
+const paginas = document.querySelectorAll(".pagina");
+const contador = document.getElementById("contador");
+const anterior = document.getElementById("anterior");
+const proxima = document.getElementById("proxima");
+const barra = document.getElementById("barraProgresso");
+
+let atual = 0;
+
+function atualizar() {
+    paginas.forEach((pagina, indice) => {
+        pagina.classList.toggle("ativa", indice === atual);
+    });
+
+    contador.textContent = `Página ${atual + 1} de ${paginas.length}`;
+
+    anterior.disabled = atual === 0;
+    proxima.disabled = atual === paginas.length - 1;
+
+    barra.style.width = ((atual + 1) / paginas.length * 100) + "%";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function mudarPagina(direcao) {
+    if (atual + direcao >= 0 && atual + direcao < paginas.length) {
+        atual += direcao;
+        atualizar();
+    }
+}
+
+/* Navegação pelas setas do teclado */
+
+document.addEventListener("keydown", function(event) {
+    if (document.getElementById("modalBiblia").classList.contains("aberto")) {
+        if (event.key === "Escape") {
+            fecharBiblia();
+        }
+        return;
+    }
+
+    if (event.key === "ArrowRight") mudarPagina(1);
+    if (event.key === "ArrowLeft") mudarPagina(-1);
+});
+
+atualizar();
+
+
+/* =========================================
+   CONSULTA DOS TEXTOS BÍBLICOS
+========================================= */
+
+const modal = document.getElementById("modalBiblia");
+const titulo = document.getElementById("tituloReferencia");
+const texto = document.getElementById("textoBiblico");
+
+/* Conversão dos nomes dos livros para a API */
+
+const livros = {
+    "gênesis": "Genesis",
+    "genesis": "Genesis",
+    "êxodo": "Exodus",
+    "exodo": "Exodus",
+    "levítico": "Leviticus",
+    "levitico": "Leviticus",
+    "números": "Numbers",
+    "numeros": "Numbers",
+    "deuteronômio": "Deuteronomy",
+    "deuteronomio": "Deuteronomy",
+    "josué": "Joshua",
+    "josue": "Joshua",
+    "juízes": "Judges",
+    "juizes": "Judges",
+    "rute": "Ruth",
+    "1 samuel": "1 Samuel",
+    "2 samuel": "2 Samuel",
+    "1 reis": "1 Kings",
+    "2 reis": "2 Kings",
+    "1 crônicas": "1 Chronicles",
+    "1 cronicas": "1 Chronicles",
+    "2 crônicas": "2 Chronicles",
+    "2 cronicas": "2 Chronicles",
+    "esdras": "Ezra",
+    "neemias": "Nehemiah",
+    "ester": "Esther",
+    "jó": "Job",
+    "jo": "Job",
+    "salmos": "Psalms",
+    "salmo": "Psalms",
+    "provérbios": "Proverbs",
+    "proverbios": "Proverbs",
+    "eclesiastes": "Ecclesiastes",
+    "cantares": "Song of Solomon",
+    "cânticos": "Song of Solomon",
+    "isaias": "Isaiah",
+    "isaías": "Isaiah",
+    "jeremias": "Jeremiah",
+    "lamentações": "Lamentations",
+    "lamentacoes": "Lamentations",
+    "ezequiel": "Ezekiel",
+    "daniel": "Daniel",
+    "oseias": "Hosea",
+    "oséias": "Hosea",
+    "joel": "Joel",
+    "amós": "Amos",
+    "amos": "Amos",
+    "obadias": "Obadiah",
+    "jonas": "Jonah",
+    "miquéias": "Micah",
+    "miqueias": "Micah",
+    "naum": "Nahum",
+    "habacuque": "Habakkuk",
+    "sofonias": "Zephaniah",
+    "ageu": "Haggai",
+    "zacarias": "Zechariah",
+    "malaquias": "Malachi",
+    "mateus": "Matthew",
+    "marcos": "Mark",
+    "lucas": "Luke",
+    "joão": "John",
+    "joao": "John",
+    "atos": "Acts",
+    "romanos": "Romans",
+    "1 coríntios": "1 Corinthians",
+    "1 corintios": "1 Corinthians",
+    "2 coríntios": "2 Corinthians",
+    "2 corintios": "2 Corinthians",
+    "gálatas": "Galatians",
+    "galatas": "Galatians",
+    "efésios": "Ephesians",
+    "efesios": "Ephesians",
+    "filipenses": "Philippians",
+    "colossenses": "Colossians",
+    "1 tessalonicenses": "1 Thessalonians",
+    "2 tessalonicenses": "2 Thessalonians",
+    "1 timóteo": "1 Timothy",
+    "1 timoteo": "1 Timothy",
+    "2 timóteo": "2 Timothy",
+    "2 timoteo": "2 Timothy",
+    "tito": "Titus",
+    "filemom": "Philemon",
+    "hebreus": "Hebrews",
+    "tiago": "James",
+    "1 pedro": "1 Peter",
+    "2 pedro": "2 Peter",
+    "1 joão": "1 John",
+    "1 joao": "1 John",
+    "2 joão": "2 John",
+    "2 joao": "2 John",
+    "3 joão": "3 John",
+    "3 joao": "3 John",
+    "judas": "Jude",
+    "apocalipse": "Revelation"
+};
+
+
+/* Identifica livro, capítulo e versículos */
+
+function normalizar(ref) {
+    ref = ref
+        .replace(/[–—−]/g, "-")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const resultado = ref.match(/^(.+?)\s+(\d+)(?::([\d,-]+))?$/);
+
+    if (!resultado) {
+        throw Error("Referência não reconhecida: " + ref);
+    }
+
+    const livro = livros[resultado[1].toLowerCase()];
+
+    if (!livro) {
+        throw Error("Livro bíblico não reconhecido: " + resultado[1]);
+    }
+
+    return {
+        book: livro,
+        chapter: resultado[2],
+        verses: resultado[3] || null
+    };
+}
+
+
+/* Consulta a API e apresenta os versículos no popup */
+
+async function consultarBiblia(ref) {
+    modal.classList.add("aberto");
+
+    titulo.textContent = ref;
+    texto.textContent = "Carregando texto bíblico...";
+
+    try {
+        const referencia = normalizar(ref);
+
+        const apiRef =
+            `${referencia.book} ${referencia.chapter}` +
+            `${referencia.verses ? ":" + referencia.verses : ""}`;
+
+        const url =
+            "https://bible-api.com/" +
+            encodeURIComponent(apiRef) +
+            "?translation=almeida";
+
+        const resposta = await fetch(url);
+
+        if (!resposta.ok) {
+            throw Error("Falha ao consultar a API bíblica.");
+        }
+
+        const dados = await resposta.json();
+
+        if (!dados.verses || dados.verses.length === 0) {
+            throw Error("Não foram encontrados versículos.");
+        }
+
+        texto.innerHTML = dados.verses.map(versiculo => {
+            return `
+                <span class="versiculo">
+                    <span class="numero-versiculo">${versiculo.verse}</span>
+                    ${versiculo.text}
+                </span>
+            `;
+        }).join("");
+
+    } catch (erro) {
+        texto.innerHTML = `
+            Não foi possível carregar o texto automaticamente.
+            <br><br>
+            <strong>${ref}</strong>
+            <br>
+            <a
+                target="_blank"
+                rel="noopener"
+                href="https://www.bible.com/pt/bible/search/${encodeURIComponent(ref)}"
+            >
+                Consultar esta referência no Bible.com
+            </a>
+            <br>
+            <small>${erro.message}</small>
+        `;
+    }
+}
+
+
+/* Torna todas as referências clicáveis */
+
+document.querySelectorAll(".referencia").forEach(elemento => {
+
+    elemento.setAttribute("role", "button");
+    elemento.setAttribute("tabindex", "0");
+    elemento.title = "Clique para consultar o texto bíblico";
+
+    elemento.addEventListener("click", function() {
+        consultarBiblia(elemento.textContent.trim());
+    });
+
+    elemento.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            consultarBiblia(elemento.textContent.trim());
+        }
+    });
+
+});
+
+
+/* Fechar popup */
+
+function fecharBiblia() {
+    modal.classList.remove("aberto");
+}
+
+function fecharSeFora(event) {
+    if (event.target === modal) {
+        fecharBiblia();
+    }
+}
+</script>
+
+</body>
+</html>

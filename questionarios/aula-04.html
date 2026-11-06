@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — Aula 04 | Escola Bíblica Atalaia</title>
+
+<style>
+:root {
+    --azul: #17365d;
+    --azul-escuro: #102744;
+    --dourado: #c5a45d;
+    --fundo: #f3f5f8;
+    --texto: #263445;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+    overflow: hidden;
+}
+
+.cabecalho {
+    background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
+    color: white;
+    padding: 35px 25px;
+    text-align: center;
+    border-bottom: 5px solid var(--dourado);
+}
+
+.cabecalho h1 {
+    margin: 0 0 8px;
+    font-size: 27px;
+}
+
+.cabecalho p {
+    margin: 5px 0;
+}
+
+.conteudo {
+    padding: 28px;
+}
+
+.identificacao {
+    background: #f5f7fa;
+    border: 1px solid #dce2e9;
+    border-radius: 9px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.identificacao label {
+    display: block;
+    font-weight: bold;
+    color: var(--azul);
+    margin-bottom: 8px;
+}
+
+.identificacao input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd3dd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.instrucoes {
+    background: #fdfaf3;
+    border-left: 4px solid var(--dourado);
+    padding: 15px 18px;
+    margin-bottom: 25px;
+}
+
+.questao {
+    padding: 20px;
+    margin-bottom: 18px;
+    border: 1px solid #e1e5eb;
+    border-radius: 9px;
+    background: #fff;
+}
+
+.questao h3 {
+    margin: 0 0 13px;
+    color: var(--azul);
+    font-size: 16px;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.alternativa:hover {
+    background: #f0f4f8;
+}
+
+.alternativa input {
+    margin-top: 5px;
+    accent-color: var(--azul);
+}
+
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+.btn-finalizar {
+    background: var(--azul);
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-imprimir {
+    background: var(--dourado);
+    color: #172536;
+    margin-top: 20px;
+}
+
+.btn-refazer {
+    background: #e7ebf0;
+    color: var(--azul);
+    margin-top: 20px;
+}
+
+#resultado {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    background: #f4f6f8;
+}
+
+#resultado h2 {
+    color: var(--azul);
+}
+
+.aprovado {
+    color: #187443;
+    font-weight: bold;
+}
+
+.reprovado {
+    color: #b42318;
+    font-weight: bold;
+}
+
+#certificado {
+    display: none;
+    margin-top: 30px;
+    padding: 15px;
+}
+
+.certificado-folha {
+    position: relative;
+    min-height: 570px;
+    padding: 45px 35px;
+    border: 9px double var(--dourado);
+    outline: 1px solid var(--azul);
+    outline-offset: -17px;
+    text-align: center;
+    background: #fff;
+    color: var(--azul-escuro);
+}
+
+.certificado-folha .marca {
+    font-size: 15px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    color: var(--azul);
+}
+
+.certificado-folha h1 {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    color: var(--azul);
+    margin: 28px 0;
+    letter-spacing: 2px;
+}
+
+.certificado-folha .nome {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    font-weight: bold;
+    color: #9a7838;
+    margin: 22px 0;
+    border-bottom: 1px solid #c5a45d;
+    padding-bottom: 10px;
+}
+
+.certificado-folha .curso {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.certificado-folha .texto-certificado {
+    font-size: 17px;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+.certificado-folha .aproveitamento {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.assinatura {
+    margin: 55px auto 0;
+    max-width: 300px;
+    border-top: 1px solid var(--azul);
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.assinatura small {
+    display: block;
+    font-weight: normal;
+}
+
+.data-certificado {
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+@media(max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .conteudo {
+        padding: 15px;
+    }
+
+    .cabecalho h1 {
+        font-size: 22px;
+    }
+
+    .certificado-folha {
+        padding: 35px 20px;
+    }
+
+    .certificado-folha h1 {
+        font-size: 27px;
+    }
+
+    .certificado-folha .nome {
+        font-size: 22px;
+    }
+}
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container,
+    .cabecalho,
+    .conteudo,
+    #resultado,
+    .botoes {
+        display: none !important;
+    }
+
+    #certificado {
+        display: block !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .certificado-folha {
+        min-height: 180mm;
+        height: 180mm;
+        padding: 35px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cabecalho">
+        <h1>ESCOLA BÍBLICA ATALAIA</h1>
+        <p>Proclamando a Verdade. Formando Discípulos.</p>
+        <hr style="border:0;border-top:1px solid #c5a45d;max-width:180px;margin:18px auto;">
+        <h2>AVALIAÇÃO — AULA 04</h2>
+        <p><strong>VENHA O TEU REINO</strong></p>
+        <p>Vivendo sob o Governo de Deus</p>
+    </header>
+
+    <main class="conteudo">
+
+        <div class="identificacao">
+            <label for="nome">Nome completo do aluno:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="instrucoes">
+            <strong>Instruções:</strong>
+            <p>
+                Leia atentamente cada questão e marque apenas uma alternativa.
+                A avaliação contém 40 questões. Para aprovação e emissão do
+                certificado, é necessário alcançar pelo menos 70% de acertos,
+                correspondentes a 28 questões.
+            </p>
+        </div>
+
+        <form id="formulario">
+            <div id="questoes"></div>
+
+            <div class="botoes">
+                <button type="submit" class="btn-finalizar">
+                    Finalizar avaliação
+                </button>
+            </div>
+        </form>
+
+        <section id="resultado">
+            <h2>Resultado da avaliação</h2>
+            <p id="mensagemResultado"></p>
+            <p id="pontuacao"></p>
+            <div id="status"></div>
+
+            <button class="btn-imprimir" id="imprimir" style="display:none"
+                onclick="imprimirCertificado()">
+                Imprimir certificado
+            </button>
+
+            <br>
+
+            <button class="btn-refazer" onclick="refazerAvaliacao()">
+                Refazer avaliação
+            </button>
+        </section>
+
+        <section id="certificado">
+            <div class="certificado-folha">
+
+                <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+                <p>Proclamando a Verdade. Formando Discípulos.</p>
+
+                <h1>CERTIFICADO</h1>
+
+                <p>Certificamos que</p>
+
+                <div class="nome" id="nomeCertificado"></div>
+
+                <div class="texto-certificado">
+                    concluiu com aproveitamento satisfatório a avaliação
+                    da Aula 04 do curso <strong>O Pai Nosso</strong>,
+                    demonstrando conhecimento sobre o tema:
+                </div>
+
+                <div class="curso">
+                    VENHA O TEU REINO
+                </div>
+
+                <p>Vivendo sob o Governo de Deus</p>
+
+                <div class="aproveitamento" id="notaCertificado"></div>
+
+                <p class="texto-certificado">
+                    Que esta aprendizagem fortaleça sua caminhada cristã
+                    e seu compromisso com os valores do Reino de Deus.
+                </p>
+
+                <div class="assinatura">
+                    Diego Nascimento
+                    <small>Pastor Evangelista</small>
+                </div>
+
+                <div class="data-certificado" id="dataCertificado"></div>
+
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+const perguntas = [
+
+{
+    pergunta: "Qual é o texto bíblico principal da expressão “Venha o teu Reino”?",
+    opcoes: [
+        "Mateus 6:10",
+        "João 3:16",
+        "Salmos 23:1",
+        "Gênesis 1:1"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Na oração ensinada por Jesus, o pedido “Venha o teu Reino” está relacionado a qual realidade?",
+    opcoes: [
+        "À construção de um império humano",
+        "Ao governo e à autoridade de Deus",
+        "À conquista de riquezas materiais",
+        "À autoridade de governantes terrenos"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O Reino de Deus deve ser compreendido principalmente como:",
+    opcoes: [
+        "Um território limitado a uma nação",
+        "Uma organização política",
+        "O governo soberano de Deus",
+        "Uma instituição exclusivamente humana"
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Quem anunciou a chegada do Reino de Deus em seu ministério terreno?",
+    opcoes: [
+        "Somente os reis de Israel",
+        "Jesus Cristo",
+        "Os governantes de Roma",
+        "Os sacerdotes pagãos"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo Marcos 1:14-15, qual mensagem Jesus proclamava?",
+    opcoes: [
+        "O Reino de Deus está próximo; arrependei-vos e crede no evangelho",
+        "A riqueza é a principal evidência da fé",
+        "O poder político deve ser conquistado",
+        "A religião deve substituir a obediência"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O pedido “Venha o teu Reino” expressa o desejo de que:",
+    opcoes: [
+        "Nossa vontade prevaleça sobre todas as coisas",
+        "Deus governe e sua vontade seja realizada",
+        "Os homens controlem o Reino de Deus",
+        "A Igreja conquiste poder político"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "De acordo com Mateus 6:33, o que devemos buscar primeiramente?",
+    opcoes: [
+        "Reconhecimento público",
+        "Riquezas e prestígio",
+        "O Reino de Deus e a sua justiça",
+        "Poder e influência"
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "O que significa viver sob o governo de Deus?",
+    opcoes: [
+        "Submeter a vida à autoridade e aos princípios de Deus",
+        "Fazer apenas aquilo que desejamos",
+        "Buscar somente benefícios pessoais",
+        "Ignorar os ensinamentos de Jesus"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Em Lucas 17:20-21, Jesus ensina que o Reino de Deus:",
+    opcoes: [
+        "Depende exclusivamente de manifestações políticas",
+        "Não se limita a uma observação exterior, pois estava presente no meio daqueles a quem Jesus falava",
+        "Só existirá depois da construção de um templo",
+        "É uma criação dos governantes"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que significa dizer que o Reino de Deus possui uma realidade presente e futura?",
+    opcoes: [
+        "Que o Reino já se manifesta, mas sua consumação ainda será plenamente realizada",
+        "Que o Reino já terminou",
+        "Que o Reino só existirá no passado",
+        "Que o Reino depende dos governos humanos"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual é uma das evidências da atuação do Reino de Deus na vida do discípulo?",
+    opcoes: [
+        "Orgulho e arrogância",
+        "Indiferença ao próximo",
+        "Transformação de vida segundo os princípios de Deus",
+        "Busca constante por superioridade"
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Segundo Romanos 14:17, o Reino de Deus consiste em:",
+    opcoes: [
+        "Comida e bebida",
+        "Justiça, paz e alegria no Espírito Santo",
+        "Riqueza, fama e poder",
+        "Tradições e aparência exterior"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é a relação entre o Reino de Deus e a justiça?",
+    opcoes: [
+        "A justiça é um valor que deve caracterizar a vida dos que pertencem ao Reino",
+        "A justiça não tem relação com a fé",
+        "A justiça depende apenas das autoridades humanas",
+        "A justiça é dispensável para o discípulo"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O que Jesus ensina sobre a grandeza no Reino de Deus?",
+    opcoes: [
+        "Que o maior deve dominar os demais",
+        "Que a grandeza está relacionada ao serviço e à humildade",
+        "Que o maior é aquele que possui mais bens",
+        "Que a autoridade deve ser usada para benefício próprio"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Em Mateus 20:25-28, Jesus apresenta qual princípio?",
+    opcoes: [
+        "O domínio pela força",
+        "A superioridade dos ricos",
+        "O serviço como expressão de grandeza",
+        "A busca por posições de destaque"
+    ],
+    correta: 2
+},
+
+{
+    pergunta: "Qual é a importância das parábolas do Reino ensinadas por Jesus?",
+    opcoes: [
+        "Apresentar ensinamentos sobre a natureza e o crescimento do Reino",
+        "Ensinar técnicas de governo político",
+        "Substituir a necessidade de fé",
+        "Promover a busca por riqueza"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "A parábola do semeador, em Mateus 13, destaca especialmente:",
+    opcoes: [
+        "A importância de ouvir e receber a Palavra",
+        "A necessidade de conquistar territórios",
+        "A superioridade de uma classe social",
+        "A busca por reconhecimento público"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O que a parábola do grão de mostarda ensina sobre o Reino?",
+    opcoes: [
+        "Que o Reino é uma realidade insignificante",
+        "Que aquilo que começa pequeno pode crescer de maneira expressiva",
+        "Que o Reino depende de riqueza",
+        "Que o Reino é controlado pelos homens"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Em Mateus 13, a parábola do fermento é utilizada para ilustrar:",
+    opcoes: [
+        "A influência transformadora do Reino",
+        "A necessidade de poder militar",
+        "A conquista de riquezas",
+        "A rejeição da Palavra"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual deve ser a atitude do discípulo diante dos valores do Reino?",
+    opcoes: [
+        "Conhecê-los, praticá-los e testemunhá-los",
+        "Ignorá-los quando forem difíceis",
+        "Adaptá-los aos interesses pessoais",
+        "Praticá-los somente diante das pessoas"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Segundo Colossenses 1:13-14, Deus nos transportou para:",
+    opcoes: [
+        "O domínio das trevas",
+        "O Reino do Filho do seu amor",
+        "Um reino político terreno",
+        "Uma condição sem responsabilidade"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é o papel da Igreja em relação ao Reino de Deus?",
+    opcoes: [
+        "Anunciar o evangelho e testemunhar os valores do Reino",
+        "Substituir a autoridade de Deus",
+        "Promover interesses exclusivamente humanos",
+        "Impor a fé por meio da força"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Em Mateus 28:18-20, Jesus comissiona seus discípulos a:",
+    opcoes: [
+        "Abandonar as nações",
+        "Fazer discípulos de todas as nações",
+        "Buscar posições políticas",
+        "Guardar a mensagem somente para si"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é a relação entre o Reino de Deus e a missão evangelizadora?",
+    opcoes: [
+        "A missão anuncia o evangelho do Reino e chama pessoas à fé em Cristo",
+        "A missão existe apenas para construir edifícios",
+        "A missão substitui a oração",
+        "A missão não tem relação com o Reino"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Segundo Atos 1:8, o Espírito Santo capacita os discípulos para:",
+    opcoes: [
+        "Serem testemunhas de Jesus",
+        "Conquistarem riquezas",
+        "Exercerem domínio político",
+        "Evitarem o contato com outras pessoas"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "O pedido “Venha o teu Reino” deve influenciar:",
+    opcoes: [
+        "Somente as palavras pronunciadas durante a oração",
+        "Todas as áreas da vida do discípulo",
+        "Apenas os momentos de culto",
+        "Somente as decisões dos líderes"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é a relação entre “Venha o teu Reino” e “Seja feita a tua vontade”?",
+    opcoes: [
+        "São pedidos sem relação entre si",
+        "Ambos expressam submissão ao governo e à vontade de Deus",
+        "O segundo anula o primeiro",
+        "Ambos ensinam que Deus deve seguir nossa vontade"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que significa orar pedindo a chegada do Reino de Deus?",
+    opcoes: [
+        "Tentar obrigar Deus a cumprir nossos desejos",
+        "Expressar o desejo de que o governo de Deus se manifeste",
+        "Exigir prosperidade material",
+        "Determinar os planos de Deus"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo João 18:36, Jesus declarou que seu Reino:",
+    opcoes: [
+        "Tem origem nos sistemas políticos deste mundo",
+        "Não é deste mundo",
+        "Depende do poder militar",
+        "Pertence ao Império Romano"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Por que não devemos confundir o Reino de Deus com projetos políticos humanos?",
+    opcoes: [
+        "Porque o Reino de Deus é superior aos sistemas e poderes terrenos",
+        "Porque Deus não possui autoridade",
+        "Porque o Reino depende de eleições",
+        "Porque a Igreja deve abandonar sua missão"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual atitude demonstra que alguém está buscando o Reino em primeiro lugar?",
+    opcoes: [
+        "Colocar os interesses pessoais acima de tudo",
+        "Orientar suas escolhas pelos princípios e pela justiça de Deus",
+        "Buscar aprovação humana a qualquer custo",
+        "Ignorar a Palavra quando ela confronta seus desejos"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é a relação entre arrependimento e entrada na dinâmica do Reino?",
+    opcoes: [
+        "O arrependimento não tem importância",
+        "O arrependimento expressa mudança de direção diante da mensagem de Jesus",
+        "O arrependimento é apenas uma cerimônia",
+        "O arrependimento substitui a fé"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Em Mateus 5:3, Jesus declara bem-aventurados:",
+    opcoes: [
+        "Os soberbos",
+        "Os pobres em espírito",
+        "Os que buscam vingança",
+        "Os que confiam exclusivamente em riquezas"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "O que a expressão “valores do Reino” representa?",
+    opcoes: [
+        "Princípios que orientam a vida conforme os ensinamentos de Deus",
+        "Preferências pessoais sem fundamento bíblico",
+        "Regras criadas para obter prestígio",
+        "Costumes políticos de uma sociedade"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual é a esperança futura relacionada ao Reino de Deus?",
+    opcoes: [
+        "Sua derrota definitiva",
+        "Sua consumação plena, quando o governo de Deus será manifestado sem oposição",
+        "Sua substituição por governos humanos",
+        "Seu desaparecimento"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Segundo Apocalipse 11:15, qual declaração aponta para o reinado definitivo de Deus e de Cristo?",
+    opcoes: [
+        "Os reinos do mundo vieram a ser de nosso Senhor e do seu Cristo",
+        "Os reinos do mundo pertencem aos homens",
+        "O poder de Deus foi encerrado",
+        "O Reino não terá continuidade"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Em Apocalipse 21:1-5, qual realidade futura é apresentada?",
+    opcoes: [
+        "Novos céus e nova terra",
+        "O retorno dos impérios antigos",
+        "A permanência definitiva da morte",
+        "A destruição da esperança"
+    ],
+    correta: 0
+},
+
+{
+    pergunta: "Qual deve ser a resposta prática de quem ora “Venha o teu Reino”?",
+    opcoes: [
+        "Viver de maneira contrária aos ensinamentos de Jesus",
+        "Submeter-se a Deus e demonstrar os valores do Reino no cotidiano",
+        "Aguardar passivamente sem obedecer",
+        "Buscar apenas benefícios individuais"
+    ],
+    correta: 1
+},
+
+{
+    pergunta: "Qual afirmação resume melhor o ensinamento da Aula 04?",
+    opcoes: [
+        "O Reino de Deus é apenas uma ideia religiosa",
+        "O Reino de Deus significa viver sob o governo de Deus, refletindo seus valores e aguardando sua plena consumação",
+        "O Reino de Deus é uma organização política",
+        "O Reino de Deus depende da riqueza dos seus seguidores"
+    ],
+    correta: 1
+}
+
+];
+
+const areaQuestoes = document.getElementById("questoes");
+const formulario = document.getElementById("formulario");
+
+function carregarQuestoes() {
+    areaQuestoes.innerHTML = "";
+
+    perguntas.forEach((q, indice) => {
+        const bloco = document.createElement("div");
+        bloco.className = "questao";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = `${indice + 1}. ${q.pergunta}`;
+        bloco.appendChild(titulo);
+
+        q.opcoes.forEach((opcao, i) => {
+            const label = document.createElement("label");
+            label.className = "alternativa";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `questao${indice}`;
+            radio.value = i;
+            radio.required = i === 0;
+
+            const texto = document.createElement("span");
+            texto.textContent = `${String.fromCharCode(65 + i)}) ${opcao}`;
+
+            label.appendChild(radio);
+            label.appendChild(texto);
+            bloco.appendChild(label);
+        });
+
+        areaQuestoes.appendChild(bloco);
+    });
+}
+
+carregarQuestoes();
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo.");
+        document.getElementById("nome").focus();
+        return;
+    }
+
+    let acertos = 0;
+    let respondidas = 0;
+
+    perguntas.forEach((q, indice) => {
+        const resposta = document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        );
+
+        if (resposta) {
+            respondidas++;
+
+            if (Number(resposta.value) === q.correta) {
+                acertos++;
+            }
+        }
+    });
+
+    if (respondidas !== perguntas.length) {
+        alert("Responda todas as 40 questões antes de finalizar.");
+        return;
+    }
+
+    const total = perguntas.length;
+    const percentual = Math.round((acertos / total) * 100);
+    const aprovado = percentual >= 70;
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("mensagemResultado").textContent =
+        `Aluno(a): ${nome}`;
+
+    document.getElementById("pontuacao").textContent =
+        `Você acertou ${acertos} de ${total} questões (${percentual}%).`;
+
+    const status = document.getElementById("status");
+    const botaoImprimir = document.getElementById("imprimir");
+    const certificado = document.getElementById("certificado");
+
+    if (aprovado) {
+        status.className = "aprovado";
+        status.textContent =
+            "PARABÉNS! VOCÊ FOI APROVADO(A) NA AVALIAÇÃO.";
+
+        document.getElementById("nomeCertificado").textContent = nome;
+
+        document.getElementById("notaCertificado").textContent =
+            `Aproveitamento: ${acertos}/${total} — ${percentual}%`;
+
+        document.getElementById("dataCertificado").textContent =
+            "Manaus — Amazonas, " +
+            new Date().toLocaleDateString("pt-BR");
+
+        certificado.style.display = "block";
+        botaoImprimir.style.display = "inline-block";
+
+    } else {
+        status.className = "reprovado";
+        status.textContent =
+            "VOCÊ NÃO ALCANÇOU A NOTA MÍNIMA PARA APROVAÇÃO.";
+
+        const faltam = 28 - acertos;
+
+        document.getElementById("mensagemResultado").textContent =
+            `Aluno(a): ${nome}. Continue estudando e tente novamente.`;
+
+        document.getElementById("pontuacao").textContent =
+            `Você precisa de pelo menos 28 acertos. Faltaram ${faltam} acerto(s) para atingir a nota mínima.`;
+
+        certificado.style.display = "none";
+        botaoImprimir.style.display = "none";
+    }
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
+
+function imprimirCertificado() {
+    window.print();
+}
+
+function refazerAvaliacao() {
+    formulario.reset();
+
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("certificado").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
