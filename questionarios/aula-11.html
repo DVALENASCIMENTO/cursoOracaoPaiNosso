@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Avaliação — Aula 11 | Escola Bíblica Atalaia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul:#071b33;
+    --azul-claro:#102d4e;
+    --dourado:#c9a45c;
+    --papel:#fffdf7;
+    --texto:#293443;
+    --cinza:#e8e5dc;
+    --verde:#246b45;
+    --vermelho:#a83232;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body {
+    background:#e9edf2;
+    color:var(--texto);
+    font-family:"Crimson Text",Georgia,serif;
+    min-height:100vh;
+}
+
+header {
+    background:linear-gradient(135deg,var(--azul),var(--azul-claro));
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+    border-bottom:4px solid var(--dourado);
+}
+
+.ministerio {
+    color:var(--dourado);
+    font-family:"Cinzel",serif;
+    font-size:13px;
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+
+header h1 {
+    font-family:"Cinzel",serif;
+    font-size:clamp(22px,4vw,32px);
+    margin-bottom:10px;
+}
+
+header p {
+    color:#e4e8ed;
+    font-size:18px;
+}
+
+.identificacao {
+    margin-top:13px;
+    color:var(--dourado);
+    font-family:Arial,sans-serif;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.container {
+    width:min(900px,94%);
+    margin:30px auto;
+}
+
+.informacoes {
+    background:var(--papel);
+    padding:22px;
+    border-left:5px solid var(--dourado);
+    box-shadow:0 5px 18px rgba(0,0,0,.07);
+    margin-bottom:22px;
+}
+
+.informacoes h2 {
+    font-family:"Cinzel",serif;
+    color:var(--azul);
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.informacoes p {
+    font-size:18px;
+    line-height:1.5;
+    margin-bottom:8px;
+}
+
+.campo-nome {
+    margin-top:18px;
+}
+
+.campo-nome label {
+    display:block;
+    font-weight:bold;
+    font-size:18px;
+    margin-bottom:7px;
+    color:var(--azul);
+}
+
+.campo-nome input {
+    width:100%;
+    padding:13px;
+    border:1px solid #c9c3b6;
+    border-radius:4px;
+    font-size:17px;
+    font-family:Arial,sans-serif;
+}
+
+.progresso {
+    height:7px;
+    background:#d5dbe2;
+    border-radius:10px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.progresso div {
+    height:100%;
+    width:0;
+    background:var(--dourado);
+    transition:width .3s;
+}
+
+#contador {
+    text-align:center;
+    color:var(--azul);
+    font-family:Arial,sans-serif;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.questao {
+    background:var(--papel);
+    border:1px solid #ded8c9;
+    border-radius:5px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.questao h3 {
+    color:var(--azul);
+    font-family:"Cinzel",serif;
+    font-size:17px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.alternativa {
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:11px 12px;
+    margin:8px 0;
+    border:1px solid #e2ded5;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:18px;
+    line-height:1.4;
+    transition:.2s;
+}
+
+.alternativa:hover {
+    background:#f4f0e6;
+    border-color:var(--dourado);
+}
+
+.alternativa input {
+    margin-top:5px;
+    accent-color:var(--azul);
+    flex-shrink:0;
+}
+
+.alternativa.correta {
+    background:#e8f3eb;
+    border-color:var(--verde);
+}
+
+.alternativa.errada {
+    background:#f9e9e9;
+    border-color:var(--vermelho);
+}
+
+.botao {
+    display:block;
+    width:100%;
+    border:none;
+    background:var(--azul);
+    color:white;
+    padding:16px;
+    border-radius:4px;
+    font-family:"Cinzel",serif;
+    font-size:16px;
+    cursor:pointer;
+    margin:25px 0;
+    transition:.2s;
+}
+
+.botao:hover {
+    background:var(--azul-claro);
+}
+
+.botao:disabled {
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+#resultado {
+    display:none;
+    background:var(--papel);
+    padding:28px;
+    margin:30px 0;
+    text-align:center;
+    border-top:5px solid var(--dourado);
+    box-shadow:0 6px 20px rgba(0,0,0,.1);
+}
+
+#resultado h2 {
+    font-family:"Cinzel",serif;
+    color:var(--azul);
+    margin-bottom:15px;
+}
+
+.nota {
+    font-family:"Cinzel",serif;
+    font-size:42px;
+    color:var(--azul);
+    margin:15px 0;
+}
+
+.aprovado {
+    color:var(--verde);
+    font-weight:bold;
+}
+
+.reprovado {
+    color:var(--vermelho);
+    font-weight:bold;
+}
+
+#certificado {
+    display:none;
+    background:#fffdf7;
+    border:12px double var(--dourado);
+    outline:2px solid var(--azul);
+    outline-offset:-19px;
+    padding:55px 35px;
+    margin:30px 0;
+    text-align:center;
+    color:var(--azul);
+    min-height:550px;
+}
+
+.cert-marca {
+    font-family:"Cinzel",serif;
+    color:#a27c37;
+    letter-spacing:4px;
+    font-size:15px;
+    margin-bottom:28px;
+}
+
+#certificado h2 {
+    font-family:"Cinzel",serif;
+    font-size:clamp(27px,5vw,40px);
+    margin-bottom:20px;
+}
+
+.cert-subtitulo {
+    font-size:22px;
+    margin-bottom:25px;
+}
+
+.cert-nome {
+    font-family:"Cinzel",serif;
+    font-size:clamp(23px,4vw,32px);
+    color:#8a682e;
+    border-bottom:1px solid var(--dourado);
+    display:inline-block;
+    padding:8px 20px;
+    margin:15px auto 22px;
+}
+
+.cert-texto {
+    font-size:20px;
+    line-height:1.7;
+    max-width:650px;
+    margin:0 auto 20px;
+}
+
+.cert-curso {
+    font-family:"Cinzel",serif;
+    font-size:19px;
+    color:var(--azul);
+    margin:20px 0;
+}
+
+.cert-dados {
+    font-size:17px;
+    margin:15px 0 35px;
+}
+
+.assinatura {
+    border-top:1px solid #8a682e;
+    width:260px;
+    margin:35px auto 0;
+    padding-top:10px;
+    font-size:16px;
+    line-height:1.4;
+}
+
+.assinatura strong {
+    display:block;
+    font-family:"Cinzel",serif;
+    font-size:15px;
+}
+
+.botoes-certificado {
+    display:none;
+}
+
+footer {
+    background:var(--azul);
+    color:#dce2e9;
+    text-align:center;
+    padding:24px 12px;
+    border-top:3px solid var(--dourado);
+    font-size:16px;
+}
+
+footer strong {
+    color:var(--dourado);
+}
+
+@media(max-width:600px) {
+    .container {
+        width:94%;
+    }
+
+    .questao {
+        padding:17px;
+    }
+
+    .alternativa {
+        font-size:17px;
+    }
+
+    #certificado {
+        padding:45px 20px;
+    }
+}
+
+@media print {
+    body {
+        background:white;
+    }
+
+    header,
+    .container,
+    footer,
+    .botoes-certificado,
+    #resultado {
+        display:none !important;
+    }
+
+    #certificado {
+        display:block !important;
+        width:100%;
+        min-height:95vh;
+        margin:0;
+        box-shadow:none;
+        page-break-inside:avoid;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+    }
+
+    @page {
+        size:A4 landscape;
+        margin:8mm;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="ministerio">MINISTÉRIO ATALAIA</div>
+    <h1>O Pai Nosso</h1>
+    <p>Teu é o Reino, o Poder e a Glória para Sempre. Amém.</p>
+    <div class="identificacao">
+        ESCOLA BÍBLICA ATALAIA • AVALIAÇÃO DE APRENDIZAGEM
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="informacoes">
+        <h2>Avaliação — Aula 11</h2>
+
+        <p><strong>Tema:</strong> Teu é o Reino, o Poder e a Glória para Sempre. Amém.</p>
+        <p><strong>Quantidade:</strong> 40 questões de múltipla escolha.</p>
+        <p><strong>Aprovação:</strong> mínimo de 70% de acertos (28 questões).</p>
+        <p><strong>Orientação:</strong> leia atentamente cada pergunta e assinale apenas uma alternativa.</p>
+
+        <div class="campo-nome">
+            <label for="nomeAluno">Nome completo do aluno:</label>
+            <input type="text" id="nomeAluno" placeholder="Digite seu nome completo" autocomplete="name">
+        </div>
+    </section>
+
+    <div class="progresso">
+        <div id="barra"></div>
+    </div>
+
+    <div id="contador">0 de 40 questões respondidas</div>
+
+    <form id="formulario">
+
+        <div id="questoes"></div>
+
+        <button type="submit" class="botao" id="finalizar">
+            FINALIZAR A AVALIAÇÃO
+        </button>
+
+    </form>
+
+    <section id="resultado">
+        <h2>Resultado da Avaliação</h2>
+        <div class="nota" id="nota"></div>
+        <p id="mensagem"></p>
+        <p id="detalhes"></p>
+    </section>
+
+    <section id="certificado">
+
+        <div class="cert-marca">ESCOLA BÍBLICA ATALAIA</div>
+
+        <h2>CERTIFICADO</h2>
+
+        <div class="cert-subtitulo">DE CONCLUSÃO E APROVAÇÃO</div>
+
+        <p class="cert-texto">
+            Certificamos que
+        </p>
+
+        <div class="cert-nome" id="nomeCertificado"></div>
+
+        <p class="cert-texto">
+            concluiu com aproveitamento a avaliação da aula
+            <strong>“Teu é o Reino, o Poder e a Glória para Sempre. Amém”</strong>,
+            integrante do curso <strong>O Pai Nosso — Uma jornada de oração,
+            comunhão e transformação</strong>, demonstrando aproveitamento
+            satisfatório na avaliação de aprendizagem.
+        </p>
+
+        <div class="cert-curso">
+            ESCOLA BÍBLICA ATALAIA
+        </div>
+
+        <div class="cert-dados">
+            Aproveitamento: <strong id="aproveitamentoCert"></strong><br>
+            Resultado: <strong>APROVADO</strong><br>
+            Data de emissão: <strong id="dataCertificado"></strong>
+        </div>
+
+        <div class="assinatura">
+            <strong>Diego Nascimento</strong>
+            Pastor Evangelista
+        </div>
+
+        <p style="font-family:'Cinzel',serif;color:#9a702c;margin-top:35px;font-size:13px;letter-spacing:2px;">
+            PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.
+        </p>
+
+    </section>
+
+    <div class="botoes-certificado" id="botoesCertificado">
+        <button class="botao" onclick="window.print()">
+            IMPRIMIR CERTIFICADO
+        </button>
+        <button class="botao" onclick="location.reload()">
+            REALIZAR NOVA AVALIAÇÃO
+        </button>
+    </div>
+
+</main>
+
+<footer>
+    <p><strong>MINISTÉRIO ATALAIA</strong></p>
+    <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+    <p>Proclamando a Verdade. Formando Discípulos.</p>
+</footer>
+
+<script>
+const perguntas = [
+{
+p:"1. Qual é o significado central da expressão “Teu é o Reino”?",
+a:["O domínio pertence aos governos humanos.","Deus é o Rei soberano e seu governo prevalece.","O Reino de Deus é limitado a um território.","O Reino depende da autoridade dos homens."],
+c:1
+},
+{
+p:"2. Segundo Salmos 103:19, onde o Senhor estabeleceu seu trono?",
+a:["Na terra de Israel.","No templo de Jerusalém.","Nos céus.","No coração dos reis."],
+c:2
+},
+{
+p:"3. O que Daniel 2:20–21 ensina sobre a autoridade de Deus?",
+a:["Deus estabelece e remove reis e governa os tempos.","Os reis possuem autoridade independente de Deus.","O poder político é eterno.","A história acontece sem direção divina."],
+c:0
+},
+{
+p:"4. O que significa buscar primeiro o Reino de Deus, conforme Mateus 6:33?",
+a:["Buscar riquezas antes de tudo.","Colocar a vontade e a justiça de Deus como prioridade.","Abandonar todas as responsabilidades humanas.","Procurar reconhecimento religioso."],
+c:1
+},
+{
+p:"5. Segundo Romanos 14:17, o Reino de Deus é caracterizado por:",
+a:["Comida e bebida.","Poder político e riqueza.","Justiça, paz e alegria no Espírito Santo.","Fama e reconhecimento."],
+c:2
+},
+{
+p:"6. Em Colossenses 1:13–14, o que Deus fez pelos que pertencem a Cristo?",
+a:["Transportou-os para o Reino do Filho do seu amor.","Concedeu-lhes autoridade sobre todos os governos.","Livrou-os de toda responsabilidade.","Tornou-os independentes de Cristo."],
+c:0
+},
+{
+p:"7. De acordo com João 18:36, o Reino de Jesus:",
+a:["Depende das armas humanas.","É sustentado por governos terrenos.","É um reino cuja origem não é deste mundo.","É limitado ao território de Israel."],
+c:2
+},
+{
+p:"8. Segundo Mateus 7:21, quem entrará no Reino dos céus?",
+a:["Todo aquele que apenas pronuncia palavras religiosas.","Aquele que faz a vontade do Pai que está nos céus.","Somente os que possuem posição religiosa.","Quem é reconhecido publicamente."],
+c:1
+},
+{
+p:"9. O que significa a expressão “Teu é o Poder”?",
+a:["O poder pertence exclusivamente aos seres humanos.","Deus possui poder soberano sobre todas as coisas.","O poder de Deus depende da fé humana para existir.","O poder divino é limitado à natureza."],
+c:1
+},
+{
+p:"10. Segundo Gênesis 1, quem criou os céus e a terra?",
+a:["Os anjos.","Os seres humanos.","Deus.","Os elementos da natureza."],
+c:2
+},
+{
+p:"11. O que Jeremias 32:17 declara sobre Deus?",
+a:["Nada é difícil demais para o Senhor.","Deus precisa de auxílio para criar.","O poder divino possui limites.","A criação aconteceu por acaso."],
+c:0
+},
+{
+p:"12. De acordo com Lucas 1:37, qual verdade é apresentada?",
+a:["Todas as pessoas possuem poder ilimitado.","Para Deus não haverá impossíveis em suas promessas.","A vontade humana determina tudo.","Os milagres dependem de riqueza."],
+c:1
+},
+{
+p:"13. Segundo Mateus 19:26, o que é impossível aos homens, mas possível para Deus?",
+a:["Todas as coisas.","Apenas os acontecimentos naturais.","Somente os assuntos políticos.","A criação de relacionamentos."],
+c:0
+},
+{
+p:"14. O que Efésios 3:20 ensina sobre o poder de Deus?",
+a:["Deus age somente dentro das expectativas humanas.","Deus é poderoso para fazer muito mais do que pedimos ou pensamos.","Deus depende da capacidade humana.","O poder divino está restrito ao passado."],
+c:1
+},
+{
+p:"15. Em 2 Coríntios 12:9, o poder de Deus se aperfeiçoa:",
+a:["Na riqueza.","Na força física.","Na fraqueza.","Na fama."],
+c:2
+},
+{
+p:"16. Conforme Colossenses 1:16–17, qual é a relação de Cristo com a criação?",
+a:["Todas as coisas foram criadas por meio dele e para ele.","Cristo foi criado pelos elementos naturais.","Cristo não participa da sustentação da criação.","A criação existe independentemente dele."],
+c:0
+},
+{
+p:"17. O que significa afirmar “Tua é a Glória”?",
+a:["A glória deve pertencer aos líderes religiosos.","Deus é digno de honra, louvor e adoração.","A glória pertence às riquezas humanas.","A glória é uma conquista pessoal."],
+c:1
+},
+{
+p:"18. Segundo Isaías 42:8, Deus declara que:",
+a:["Divide sua glória com os ídolos.","Sua glória pertence aos reis.","Não dará sua glória a outro nem seu louvor às imagens de escultura.","A glória divina pode ser comprada."],
+c:2
+},
+{
+p:"19. Qual é a mensagem de Salmos 115:1?",
+a:["A glória pertence ao homem.","A nós pertence toda a honra.","Não a nós, mas ao nome do Senhor seja a glória.","A glória pertence aos poderosos."],
+c:2
+},
+{
+p:"20. De acordo com 1 Coríntios 10:31, devemos fazer tudo:",
+a:["Para nossa própria exaltação.","Para a glória de Deus.","Para receber reconhecimento público.","Para conquistar posição social."],
+c:1
+},
+{
+p:"21. Segundo Mateus 5:16, nossas boas obras devem:",
+a:["Levar as pessoas a glorificarem o Pai celestial.","Produzir fama para quem as pratica.","Ser realizadas somente em público.","Substituir a necessidade de fé."],
+c:0
+},
+{
+p:"22. O que João Batista ensina em João 3:30?",
+a:["É necessário que eu seja reconhecido.","Importa que eu cresça e os outros diminuam.","É necessário que ele cresça e que eu diminua.","A glória deve ser compartilhada igualmente."],
+c:2
+},
+{
+p:"23. Qual atitude é condenada em Provérbios 27:2?",
+a:["A humildade diante de Deus.","A gratidão pelas bênçãos.","O louvor próprio e a busca de exaltação pessoal.","O serviço ao próximo."],
+c:2
+},
+{
+p:"24. Segundo Filipenses 2:3, como devemos agir em nossos relacionamentos?",
+a:["Com egoísmo e competição.","Considerando os outros superiores a nós mesmos, em humildade.","Buscando sempre a primeira posição.","Desprezando as necessidades alheias."],
+c:1
+},
+{
+p:"25. O que significa a expressão “Para Sempre” na doxologia?",
+a:["O Reino de Deus é temporário.","O poder de Deus termina com a história humana.","Deus e seu Reino são eternos.","A eternidade depende das gerações humanas."],
+c:2
+},
+{
+p:"26. Segundo Salmos 90:1–2, Deus é:",
+a:["Eterno, de eternidade a eternidade.","Um ser limitado pelo tempo.","Dependente da criação.","Uma autoridade passageira."],
+c:0
+},
+{
+p:"27. O que Daniel 7:13–14 apresenta?",
+a:["O fim definitivo do domínio de Deus.","Um domínio eterno dado ao Filho do Homem.","A substituição do Reino por governos humanos.","A vitória permanente dos impérios terrenos."],
+c:1
+},
+{
+p:"28. Segundo Hebreus 12:28, os que recebem um Reino inabalável devem:",
+a:["Viver sem reverência.","Abandonar a gratidão.","Reter a graça e servir a Deus agradavelmente, com reverência e temor.","Buscar reconhecimento humano."],
+c:2
+},
+{
+p:"29. O que Apocalipse 11:15 anuncia?",
+a:["O Reino do mundo se tornou de nosso Senhor e do seu Cristo.","Os reinos humanos vencerão eternamente.","O Reino de Deus deixou de existir.","A história não terá consumação."],
+c:0
+},
+{
+p:"30. De acordo com Apocalipse 21:1–5, o que Deus promete?",
+a:["A permanência definitiva da morte.","Novos céus e nova terra, e a renovação de todas as coisas.","O retorno da dor como condição eterna.","O desaparecimento da esperança."],
+c:1
+},
+{
+p:"31. Qual é o sentido da palavra “Amém” em seu uso bíblico?",
+a:["Uma expressão sem significado.","Uma fórmula para obrigar Deus a agir.","Uma afirmação de confirmação, confiança e concordância.","Uma palavra exclusiva dos sacerdotes."],
+c:2
+},
+{
+p:"32. Em 2 Coríntios 1:20, o que aprendemos sobre as promessas de Deus?",
+a:["São incertas e temporárias.","Em Cristo, todas as promessas de Deus encontram o seu sim; por ele também dizemos amém.","Dependem exclusivamente das obras humanas.","Não possuem relação com Cristo."],
+c:1
+},
+{
+p:"33. Em Apocalipse 3:14, Jesus é apresentado como:",
+a:["O Amém, a testemunha fiel e verdadeira.","Um profeta sem autoridade.","Um rei temporário.","Um anjo criado."],
+c:0
+},
+{
+p:"34. O que Jesus ensina em Mateus 7:24–27?",
+a:["Ouvir a Palavra é suficiente, mesmo sem praticá-la.","A obediência não possui importância.","Quem ouve e pratica suas palavras é como o homem prudente que edificou sobre a rocha.","A vida cristã não exige fundamento."],
+c:2
+},
+{
+p:"35. Qual é a relação entre oração e vida diária, conforme o estudo?",
+a:["A oração deve ficar restrita a momentos religiosos.","A oração deve produzir uma vida coerente com a vontade de Deus.","A oração substitui a obediência.","A oração serve apenas para pedir bens materiais."],
+c:1
+},
+{
+p:"36. Segundo 1 Tessalonicenses 5:16–18, a orientação apostólica inclui:",
+a:["Regozijar-se sempre, orar sem cessar e dar graças em tudo.","Orar somente quando houver dificuldades.","Evitar a gratidão.","Depender apenas das próprias forças."],
+c:0
+},
+{
+p:"37. O que Efésios 5:18–20 relaciona à vida cheia do Espírito?",
+a:["A busca por prestígio.","A gratidão, o louvor e a adoração ao Senhor.","A competição religiosa.","A exaltação pessoal."],
+c:1
+},
+{
+p:"38. Segundo Hebreus 13:15–16, além do louvor, devemos:",
+a:["Negligenciar o próximo.","Praticar o bem e repartir com os outros.","Buscar somente benefícios pessoais.","Evitar a generosidade."],
+c:1
+},
+{
+p:"39. Qual é a principal atitude ensinada pela doxologia final do Pai Nosso?",
+a:["A exaltação do ser humano.","A confiança na soberania de Deus e a atribuição de toda glória a Ele.","A independência em relação ao Pai.","A busca de poder pessoal."],
+c:1
+},
+{
+p:"40. Qual deve ser a resposta prática de quem ora “Teu é o Reino, o Poder e a Glória para Sempre. Amém”?",
+a:["Viver para a própria honra.","Buscar apenas prosperidade material.","Reconhecer a soberania de Deus, confiar em seu poder e viver para sua glória.","Tratar a oração como uma repetição sem compromisso."],
+c:2
+}
+];
+
+const areaQuestoes = document.getElementById("questoes");
+const formulario = document.getElementById("formulario");
+const contador = document.getElementById("contador");
+const barra = document.getElementById("barra");
+
+let avaliacaoFinalizada = false;
+
+function criarQuestoes() {
+    perguntas.forEach((pergunta, indice) => {
+        const bloco = document.createElement("section");
+        bloco.className = "questao";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = pergunta.p;
+        bloco.appendChild(titulo);
+
+        pergunta.a.forEach((alternativa, numero) => {
+            const label = document.createElement("label");
+            label.className = "alternativa";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = "questao" + indice;
+            radio.value = numero;
+            radio.required = false;
+
+            radio.addEventListener("change", atualizarProgresso);
+
+            const texto = document.createElement("span");
+            texto.textContent = String.fromCharCode(65 + numero) + ") " + alternativa;
+
+            label.appendChild(radio);
+            label.appendChild(texto);
+            bloco.appendChild(label);
+        });
+
+        areaQuestoes.appendChild(bloco);
+    });
+}
+
+function atualizarProgresso() {
+    if (avaliacaoFinalizada) return;
+
+    let respondidas = 0;
+
+    perguntas.forEach((_, indice) => {
+        if (document.querySelector(`input[name="questao${indice}"]:checked`)) {
+            respondidas++;
+        }
+    });
+
+    contador.textContent = `${respondidas} de ${perguntas.length} questões respondidas`;
+    barra.style.width = (respondidas / perguntas.length * 100) + "%";
+}
+
+function corrigirAvaliacao() {
+    let acertos = 0;
+
+    perguntas.forEach((pergunta, indice) => {
+        const resposta = document.querySelector(`input[name="questao${indice}"]:checked`);
+        const alternativas = document.querySelectorAll(`input[name="questao${indice}"]`);
+
+        alternativas.forEach((radio, numero) => {
+            radio.disabled = true;
+
+            const label = radio.closest(".alternativa");
+
+            if (numero === pergunta.c) {
+                label.classList.add("correta");
+            } else if (radio.checked) {
+                label.classList.add("errada");
+            }
+        });
+
+        if (resposta && Number(resposta.value) === pergunta.c) {
+            acertos++;
+        }
+    });
+
+    return acertos;
+}
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (avaliacaoFinalizada) return;
+
+    const nome = document.getElementById("nomeAluno").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo antes de finalizar.");
+        document.getElementById("nomeAluno").focus();
+        return;
+    }
+
+    let respondidas = 0;
+
+    perguntas.forEach((_, indice) => {
+        if (document.querySelector(`input[name="questao${indice}"]:checked`)) {
+            respondidas++;
+        }
+    });
+
+    if (respondidas < perguntas.length) {
+        alert(`Você respondeu ${respondidas} de ${perguntas.length} questões. Responda todas antes de finalizar.`);
+        return;
+    }
+
+    if (!confirm("Deseja finalizar sua avaliação? Após a confirmação, suas respostas não poderão ser alteradas.")) {
+        return;
+    }
+
+    avaliacaoFinalizada = true;
+
+    const acertos = corrigirAvaliacao();
+    const percentual = Math.round((acertos / perguntas.length) * 100);
+    const aprovacao = percentual >= 70;
+
+    document.getElementById("resultado").style.display = "block";
+    document.getElementById("nota").textContent = `${percentual}%`;
+
+    document.getElementById("mensagem").textContent = aprovacao
+        ? "PARABÉNS! VOCÊ FOI APROVADO!"
+        : "VOCÊ NÃO ATINGIU A NOTA MÍNIMA.";
+
+    document.getElementById("mensagem").className =
+        aprovacao ? "aprovado" : "reprovado";
+
+    document.getElementById("detalhes").textContent =
+        `Você acertou ${acertos} de ${perguntas.length} questões. Nota mínima: 28 acertos.`;
+
+    formulario.querySelector("#finalizar").disabled = true;
+
+    if (aprovacao) {
+        document.getElementById("certificado").style.display = "block";
+        document.getElementById("botoesCertificado").style.display = "block";
+
+        document.getElementById("nomeCertificado").textContent = nome;
+        document.getElementById("aproveitamentoCert").textContent = `${percentual}% (${acertos}/40)`;
+
+        const data = new Date();
+
+        document.getElementById("dataCertificado").textContent =
+            data.toLocaleDateString("pt-BR", {
+                day:"2-digit",
+                month:"long",
+                year:"numeric"
+            });
+    }
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+});
+
+criarQuestoes();
+</script>
+
+</body>
+</html>

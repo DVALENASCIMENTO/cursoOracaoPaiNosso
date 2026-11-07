@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 09 — Não nos Deixes Cair em Tentação | Escola Bíblica Atalaia</title>
+
+    <meta name="description"
+        content="Estudo bíblico aprofundado sobre tentação, fragilidade humana, vigilância e fortalecimento espiritual, com referências bíblicas clicáveis.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --azul: #071b33;
+            --azul-claro: #102d4e;
+            --dourado: #c9a45c;
+            --papel: #fffdf7;
+            --texto: #293443;
+            --cinza: #e8e5dc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #e9edf2;
+            color: var(--texto);
+            font-family: "Crimson Text", Georgia, serif;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+            color: white;
+            text-align: center;
+            padding: 25px 15px 22px;
+            border-bottom: 4px solid var(--dourado);
+        }
+
+        header .ministerio {
+            font-family: "Cinzel", serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--dourado);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: "Cinzel", serif;
+            font-size: clamp(23px, 4vw, 34px);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+            color: #e4e8ed;
+        }
+
+        .identificacao {
+            margin-top: 12px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--dourado);
+        }
+
+        .instrucoes {
+            text-align: center;
+            padding: 15px 10px 5px;
+            color: #536173;
+            font-size: 16px;
+        }
+
+        .instrucoes strong {
+            color: var(--azul);
+        }
+
+        .flipbook-area {
+            width: 100%;
+            padding: 20px 12px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .livro {
+            width: min(100%, 850px);
+            min-height: 570px;
+            position: relative;
+            perspective: 1800px;
+        }
+
+        .pagina {
+            display: none;
+            width: 100%;
+            min-height: 570px;
+            background: var(--papel);
+            border: 1px solid #ded8c9;
+            border-radius: 5px;
+            padding: clamp(25px, 5vw, 55px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .13);
+            animation: aparecer .35s ease;
+            position: relative;
+        }
+
+        .pagina.ativa {
+            display: block;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: .3;
+                transform: rotateY(-3deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+
+        .pagina::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--dourado), #ead9b4, var(--dourado));
+            opacity: .75;
+        }
+
+        .pagina h2 {
+            font-family: "Cinzel", serif;
+            color: var(--azul);
+            font-size: clamp(20px, 3vw, 27px);
+            line-height: 1.35;
+            margin-bottom: 12px;
+        }
+
+        .pagina h3 {
+            font-family: "Cinzel", serif;
+            font-size: 18px;
+            color: var(--azul-claro);
+            margin: 25px 0 10px;
+        }
+
+        .pagina h4 {
+            font-size: 19px;
+            color: #8a682e;
+            margin: 18px 0 7px;
+        }
+
+        .pagina p {
+            font-size: 19px;
+            line-height: 1.65;
+            margin-bottom: 13px;
+            text-align: justify;
+        }
+
+        .pagina ul,
+        .pagina ol {
+            margin: 10px 0 18px 25px;
+        }
+
+        .pagina li {
+            font-size: 18px;
+            line-height: 1.55;
+            margin-bottom: 7px;
+        }
+
+        .linha-dourada {
+            width: 75px;
+            height: 3px;
+            background: var(--dourado);
+            margin: 15px 0 22px;
+        }
+
+        .texto-base {
+            background: #f4f0e6;
+            border-left: 4px solid var(--dourado);
+            padding: 15px 18px;
+            margin: 18px 0;
+        }
+
+        .texto-base p {
+            margin-bottom: 5px;
+        }
+
+        .destaque {
+            background: #f4f0e6;
+            border-left: 4px solid var(--dourado);
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 19px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .referencia {
+            color: #986d22;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            white-space: normal;
+        }
+
+        .referencia:hover {
+            color: #c18a28;
+            text-decoration-style: solid;
+        }
+
+        .capa {
+            min-height: 570px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(7, 27, 51, .96), rgba(7, 27, 51, .98));
+            color: white;
+            border: 5px double var(--dourado);
+        }
+
+        .capa::before {
+            display: none;
+        }
+
+        .capa .marca {
+            color: var(--dourado);
+            font-family: "Cinzel", serif;
+            letter-spacing: 5px;
+            font-size: 14px;
+            margin-bottom: 45px;
+        }
+
+        .capa h2 {
+            color: white;
+            font-size: clamp(30px, 6vw, 45px);
+            margin-bottom: 18px;
+        }
+
+        .capa .subtitulo {
+            max-width: 570px;
+            font-size: 21px;
+            color: #e5e8ec;
+            text-align: center;
+        }
+
+        .capa .aula {
+            margin-top: 45px;
+            color: var(--dourado);
+            font-family: "Cinzel", serif;
+            font-size: 15px;
+            letter-spacing: 3px;
+        }
+
+        .capa .escola {
+            margin-top: 55px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #d5dbe2;
+        }
+
+        .rodape-pagina {
+            position: absolute;
+            bottom: 18px;
+            right: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #9b927f;
+        }
+
+        .controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 0 15px 25px;
+        }
+
+        .controles button {
+            border: none;
+            background: var(--azul);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .controles button:hover {
+            background: var(--azul-claro);
+        }
+
+        .controles button:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        #contador {
+            color: var(--azul);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            min-width: 105px;
+            text-align: center;
+        }
+
+        .progresso {
+            width: min(500px, 85%);
+            height: 5px;
+            background: #d5dbe2;
+            margin: 0 auto 25px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progresso div {
+            height: 100%;
+            width: 0;
+            background: var(--dourado);
+            transition: width .3s;
+        }
+
+        .questionario {
+            background: #f4f0e6;
+            border: 1px solid #e0d6c3;
+            padding: 16px;
+            margin: 18px 0;
+        }
+
+        .questionario p {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: var(--azul);
+            color: #dce2e9;
+            text-align: center;
+            padding: 22px 12px;
+            border-top: 3px solid var(--dourado);
+            font-size: 15px;
+        }
+
+        footer strong {
+            color: var(--dourado);
+        }
+
+        /* POPUP BÍBLICO */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0, 0, 0, .72);
+            padding: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.aberto {
+            display: flex;
+        }
+
+        .modal-conteudo {
+            width: min(650px, 100%);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: var(--papel);
+            border-radius: 7px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .35);
+            padding: 25px;
+            position: relative;
+            animation: modalEntrada .25s ease;
+        }
+
+        @keyframes modalEntrada {
+            from {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-topo {
+            border-bottom: 2px solid var(--dourado);
+            padding-bottom: 12px;
+            margin-bottom: 17px;
+            padding-right: 35px;
+        }
+
+        .modal-topo h2 {
+            color: var(--azul);
+            font-family: "Cinzel", serif;
+            font-size: 21px;
+        }
+
+        .fechar-modal {
+            position: absolute;
+            right: 17px;
+            top: 13px;
+            border: none;
+            background: var(--azul);
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #textoBiblico {
+            font-size: 19px;
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        #textoBiblico .versiculo {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        #textoBiblico .numero-versiculo {
+            color: #9a702c;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .aviso-modal {
+            font-size: 14px;
+            color: #7a8490;
+            margin-top: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+        }
+
+        .link-alternativo {
+            display: inline-block;
+            margin-top: 12px;
+            color: #986d22;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 12px;
+            }
+
+            .livro {
+                min-height: 650px;
+            }
+
+            .pagina {
+                min-height: 650px;
+                padding: 28px 23px 45px 28px;
+            }
+
+            .pagina p {
+                font-size: 18px;
+            }
+
+            .pagina li {
+                font-size: 17px;
+            }
+
+            .capa {
+                min-height: 650px;
+            }
+
+            .controles {
+                gap: 8px;
+            }
+
+            .controles button {
+                padding: 11px 15px;
+            }
+
+            .modal-conteudo {
+                padding: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            header,
+            .instrucoes,
+            .controles,
+            .progresso,
+            footer,
+            .modal {
+                display: none !important;
+            }
+
+            .flipbook-area {
+                display: block;
+                padding: 0;
+            }
+
+            .livro {
+                width: 100%;
+            }
+
+            .pagina {
+                display: block !important;
+                min-height: auto;
+                page-break-after: always;
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="ministerio">MINISTÉRIO ATALAIA</div>
+        <h1>O Pai Nosso</h1>
+        <p>Uma jornada de oração, comunhão e transformação</p>
+        <div class="identificacao">ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</div>
+    </header>
+
+    <div class="instrucoes">
+        <strong>Estudo bíblico interativo</strong><br>
+        Clique nas referências bíblicas sublinhadas para consultar os textos.
+        Utilize as setas do teclado ou os botões para navegar.
+    </div>
+
+    <main class="flipbook-area">
+        <div class="livro" id="livro">
+
+            <!-- CAPA -->
+            <section class="pagina capa ativa">
+                <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+                <h2>NÃO NOS DEIXES<br>CAIR EM TENTAÇÃO</h2>
+                <div class="linha-dourada"></div>
+                <p class="subtitulo">
+                    Vigilância e fortalecimento espiritual.
+                    A fragilidade humana e a necessidade de buscar
+                    a força de Deus para permanecer fiel.
+                </p>
+                <div class="aula">AULA 09</div>
+                <div class="escola">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+            </section>
+
+            <!-- PÁGINA 2 -->
+            <section class="pagina">
+                <h2>Apresentação do Estudo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Na oração ensinada por Jesus, encontramos um pedido que
+                    revela a consciência da fragilidade humana e a necessidade
+                    permanente de depender de Deus: não sermos conduzidos à
+                    tentação.
+                </p>
+
+                <p>
+                    A tentação é uma realidade enfrentada pelo ser humano.
+                    As Escrituras mostram que até mesmo pessoas que desejavam
+                    servir ao Senhor precisaram lidar com desejos, pressões,
+                    conflitos e situações capazes de comprometer sua fidelidade.
+                </p>
+
+                <p>
+                    Jesus não ensinou seus discípulos a confiarem exclusivamente
+                    na própria força. Ensinou-os a orar, vigiar e buscar a
+                    proteção e o auxílio do Pai.
+                </p>
+
+                <p>
+                    Neste estudo, examinaremos a realidade da tentação, a
+                    fragilidade humana, a responsabilidade pessoal, a importância
+                    da Palavra, a oração e o fortalecimento pelo Espírito Santo.
+                </p>
+
+                <div class="destaque">
+                    Verdade central: o discípulo de Jesus precisa reconhecer
+                    sua fragilidade, vigiar continuamente e buscar em Deus
+                    a força necessária para permanecer fiel.
+                </div>
+
+                <h3>Texto-base</h3>
+                <p><span class="referencia">Mateus 6:13</span>.</p>
+
+                <h3>Textos fundamentais</h3>
+                <p>
+                    <span class="referencia">Mateus 26:41</span>;
+                    <span class="referencia">Tiago 1:13–15</span>;
+                    <span class="referencia">1 Coríntios 10:12–13</span>;
+                    <span class="referencia">Hebreus 4:15–16</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 3 -->
+            <section class="pagina">
+                <h2>1. O Significado do Pedido</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Em <span class="referencia">Mateus 6:13</span>, Jesus
+                    ensina seus discípulos a orarem pedindo que não sejam
+                    conduzidos à tentação. Essa súplica demonstra que o
+                    cristão não deve tratar o perigo espiritual com
+                    autoconfiança ou despreocupação.
+                </p>
+
+                <p>
+                    A oração reconhece que precisamos da direção, do cuidado
+                    e da proteção de Deus. Não se trata de afirmar que Deus
+                    seduz alguém ao pecado, mas de pedir que Ele nos guarde
+                    e nos sustente diante das situações que podem nos levar
+                    à desobediência.
+                </p>
+
+                <h3>O contexto da oração</h3>
+
+                <p>
+                    O pedido está inserido no modelo de oração apresentado
+                    por Jesus. Depois de ensinar sobre a santidade do nome
+                    de Deus, seu Reino, sua vontade, a provisão e o perdão,
+                    Jesus conduz os discípulos a reconhecerem também sua
+                    necessidade de proteção espiritual.
+                </p>
+
+                <p>
+                    A oração cristã não ignora os perigos da caminhada.
+                    Ela reconhece que a vida de fé exige dependência diária
+                    do Pai.
+                </p>
+
+                <h3>Referências para aprofundamento</h3>
+
+                <ul>
+                    <li><span class="referencia">Lucas 11:1–4</span> — O ensino de Jesus sobre a oração.</li>
+                    <li><span class="referencia">Mateus 6:9–13</span> — O modelo de oração.</li>
+                    <li><span class="referencia">Salmos 121:1–8</span> — O Senhor como guarda de seu povo.</li>
+                    <li><span class="referencia">Salmos 141:3–4</span> — O pedido por guarda da boca e do coração.</li>
+                    <li><span class="referencia">Provérbios 3:5–6</span> — Confiança e direção do Senhor.</li>
+                    <li><span class="referencia">2 Tessalonicenses 3:3</span> — O Senhor fortalece e guarda do maligno.</li>
+                </ul>
+
+                <div class="destaque">
+                    Quem reconhece que precisa de Deus aprende a orar
+                    antes de enfrentar o perigo, e não somente depois
+                    de ter caído.
+                </div>
+            </section>
+
+            <!-- PÁGINA 4 -->
+            <section class="pagina">
+                <h2>2. A Realidade da Tentação</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A tentação é uma experiência real na vida humana.
+                    Ela envolve situações, desejos e pressões que podem
+                    conduzir uma pessoa ao pecado e ao afastamento da
+                    vontade de Deus.
+                </p>
+
+                <p>
+                    A Bíblia não apresenta a tentação como uma realidade
+                    imaginária ou exclusiva de pessoas que não conhecem
+                    a Deus. Os servos do Senhor também enfrentaram
+                    situações de provação e tentação.
+                </p>
+
+                <h3>Jesus enfrentou a tentação</h3>
+
+                <p>
+                    Depois de seu batismo, Jesus foi conduzido pelo Espírito
+                    ao deserto, onde foi tentado pelo diabo
+                    (<span class="referencia">Mateus 4:1–11</span>).
+                    O episódio também é registrado em
+                    <span class="referencia">Lucas 4:1–13</span>.
+                </p>
+
+                <p>
+                    As tentações apresentadas a Jesus envolveram a satisfação
+                    de necessidades, a busca de reconhecimento e o exercício
+                    de poder fora da submissão à vontade do Pai.
+                </p>
+
+                <p>
+                    Jesus respondeu utilizando as Escrituras. Ele não cedeu
+                    às propostas do tentador e permaneceu fiel à Palavra
+                    de Deus.
+                </p>
+
+                <h3>Jesus compreende nossas lutas</h3>
+
+                <p>
+                    <span class="referencia">Hebreus 4:15</span> ensina que
+                    Jesus foi tentado em todas as coisas, à nossa semelhança,
+                    mas sem pecado. Isso demonstra que Ele conhece a realidade
+                    da tentação, sem jamais ter cedido ao pecado.
+                </p>
+
+                <p>
+                    Por isso, somos convidados a nos aproximar do trono da
+                    graça para receber misericórdia e encontrar auxílio
+                    em ocasião oportuna
+                    (<span class="referencia">Hebreus 4:16</span>).
+                </p>
+
+                <h3>Outras referências</h3>
+
+                <ul>
+                    <li><span class="referencia">Gênesis 3:1–6</span> — A tentação no jardim.</li>
+                    <li><span class="referencia">Jó 1:6–12</span> — A provação de Jó.</li>
+                    <li><span class="referencia">Lucas 22:28</span> — Jesus menciona as provações enfrentadas por seus discípulos.</li>
+                    <li><span class="referencia">1 Pedro 1:6–7</span> — A fé provada.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 5 -->
+            <section class="pagina">
+                <h2>3. A Fragilidade Humana</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Uma das maiores lições que aprendemos nas Escrituras
+                    é que o ser humano não deve confiar de maneira arrogante
+                    em sua própria capacidade de resistir ao pecado.
+                </p>
+
+                <p>
+                    Em <span class="referencia">Mateus 26:41</span>, Jesus
+                    orientou seus discípulos a vigiarem e orarem para que
+                    não entrassem em tentação. Ele também declarou que
+                    o espírito estava pronto, mas a carne era fraca.
+                </p>
+
+                <p>
+                    Os discípulos tinham disposição para acompanhar Jesus,
+                    mas, naquele momento, não conseguiram permanecer
+                    despertos em oração.
+                </p>
+
+                <h3>A advertência contra a autoconfiança</h3>
+
+                <p>
+                    <span class="referencia">1 Coríntios 10:12</span>
+                    apresenta uma advertência importante: aquele que pensa
+                    estar em pé deve cuidar para não cair.
+                </p>
+
+                <p>
+                    O orgulho espiritual pode fazer alguém acreditar que
+                    jamais será vencido por determinada tentação. Essa
+                    confiança exagerada pode produzir descuido, exposição
+                    desnecessária ao perigo e falta de vigilância.
+                </p>
+
+                <h3>Exemplos bíblicos</h3>
+
+                <ul>
+                    <li><strong>Pedro:</strong> demonstrou confiança em sua própria fidelidade, mas negou Jesus — <span class="referencia">Mateus 26:33–35</span> e <span class="referencia">Mateus 26:69–75</span>.</li>
+                    <li><strong>Davi:</strong> cedeu ao pecado e enfrentou suas consequências — <span class="referencia">2 Samuel 11:1–27</span>.</li>
+                    <li><strong>Sansão:</strong> não tratou adequadamente os perigos relacionados às suas escolhas — <span class="referencia">Juízes 16:1–21</span>.</li>
+                </ul>
+
+                <h3>O reconhecimento da fraqueza</h3>
+
+                <p>
+                    Reconhecer a fragilidade não significa aceitar o pecado
+                    como inevitável. Significa abandonar a arrogância e
+                    buscar a ajuda de Deus.
+                </p>
+
+                <p>
+                    Leia também <span class="referencia">Romanos 7:18–25</span>,
+                    <span class="referencia">2 Coríntios 12:9–10</span> e
+                    <span class="referencia">Salmos 51:10–12</span>.
+                </p>
+
+                <div class="destaque">
+                    A consciência da própria fragilidade deve nos conduzir
+                    à dependência de Deus, e não ao desespero.
+                </div>
+            </section>
+
+            <!-- PÁGINA 6 -->
+            <section class="pagina">
+                <h2>4. A Origem da Tentação e a Responsabilidade Pessoal</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A Bíblia apresenta diferentes aspectos relacionados
+                    à tentação. Ela pode envolver a ação do tentador,
+                    as influências do mundo e os desejos desordenados
+                    presentes no próprio ser humano.
+                </p>
+
+                <p>
+                    É importante compreender que nem toda dificuldade
+                    representa uma tentação demoníaca. As Escrituras
+                    também ensinam que desejos humanos podem atrair
+                    e conduzir uma pessoa ao pecado.
+                </p>
+
+                <h3>Deus não tenta ninguém ao mal</h3>
+
+                <p>
+                    <span class="referencia">Tiago 1:13</span> ensina
+                    claramente que Deus não pode ser tentado pelo mal
+                    e a ninguém tenta.
+                </p>
+
+                <p>
+                    Deus é santo e não conduz o ser humano à prática
+                    da maldade. A tentação para o pecado não deve ser
+                    atribuída ao caráter de Deus.
+                </p>
+
+                <h3>O desejo desordenado</h3>
+
+                <p>
+                    <span class="referencia">Tiago 1:14–15</span> explica
+                    que cada pessoa pode ser atraída e seduzida por seu
+                    próprio desejo. Quando o desejo concebe, dá origem
+                    ao pecado; e o pecado, quando amadurecido, produz morte.
+                </p>
+
+                <p>
+                    Essa passagem demonstra a importância de examinar
+                    o coração e não alimentar pensamentos e vontades
+                    que conduzem à desobediência.
+                </p>
+
+                <h3>As influências do mundo</h3>
+
+                <p>
+                    <span class="referencia">1 João 2:15–17</span> adverte
+                    contra o amor ao mundo e apresenta a concupiscência
+                    da carne, a concupiscência dos olhos e a soberba da vida.
+                </p>
+
+                <h3>A ação do tentador</h3>
+
+                <p>
+                    <span class="referencia">Mateus 4:1–11</span> mostra
+                    Satanás tentando Jesus. Já
+                    <span class="referencia">1 Pedro 5:8–9</span> orienta
+                    os cristãos a serem sóbrios, vigilantes e firmes na fé.
+                </p>
+
+                <h3>Referências complementares</h3>
+
+                <ul>
+                    <li><span class="referencia">Gênesis 3:1–6</span> — A sedução da serpente.</li>
+                    <li><span class="referencia">Provérbios 4:23</span> — Guardar o coração.</li>
+                    <li><span class="referencia">Marcos 7:20–23</span> — O que procede do coração humano.</li>
+                    <li><span class="referencia">Gálatas 5:16–17</span> — O conflito entre a carne e o Espírito.</li>
+                    <li><span class="referencia">Efésios 4:26–27</span> — Não dar lugar ao diabo.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 7 -->
+            <section class="pagina">
+                <h2>5. A Vigilância Espiritual</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Vigiar significa permanecer atento, cuidadoso e
+                    consciente dos perigos que podem comprometer a
+                    caminhada espiritual.
+                </p>
+
+                <p>
+                    A vigilância não é viver dominado pelo medo.
+                    É desenvolver discernimento, reconhecer situações
+                    de risco e agir com sabedoria diante delas.
+                </p>
+
+                <h3>Jesus ordenou que seus discípulos vigiassem</h3>
+
+                <p>
+                    No Getsêmani, Jesus encontrou os discípulos dormindo
+                    e os advertiu: deveriam vigiar e orar para não entrar
+                    em tentação
+                    (<span class="referencia">Mateus 26:36–41</span>).
+                </p>
+
+                <p>
+                    A mesma orientação aparece em
+                    <span class="referencia">Marcos 14:37–38</span> e
+                    <span class="referencia">Lucas 22:40–46</span>.
+                </p>
+
+                <p>
+                    O episódio ensina que momentos de pressão exigem
+                    preparação espiritual. A oração não deve ser
+                    negligenciada justamente quando mais precisamos
+                    da força de Deus.
+                </p>
+
+                <h3>Vigiar os pensamentos</h3>
+
+                <p>
+                    O cuidado com a vida espiritual também envolve
+                    aquilo que permitimos permanecer em nossa mente.
+                    A Palavra orienta a meditar no que é verdadeiro,
+                    justo, puro e digno de louvor
+                    (<span class="referencia">Filipenses 4:8</span>).
+                </p>
+
+                <p>
+                    <span class="referencia">2 Coríntios 10:4–5</span>
+                    ensina sobre a importância de levar todo pensamento
+                    cativo à obediência de Cristo.
+                </p>
+
+                <h3>Vigiar as atitudes e os caminhos</h3>
+
+                <ul>
+                    <li><span class="referencia">Provérbios 4:14–15</span> — Não entrar no caminho dos perversos.</li>
+                    <li><span class="referencia">Salmos 1:1–2</span> — O caminho e a meditação do justo.</li>
+                    <li><span class="referencia">Salmos 119:9–11</span> — Guardar a Palavra no coração.</li>
+                    <li><span class="referencia">Efésios 5:15–16</span> — Andar prudentemente.</li>
+                    <li><span class="referencia">1 Tessalonicenses 5:6–8</span> — Permanecer vigilante e sóbrio.</li>
+                </ul>
+
+                <div class="destaque">
+                    A vigilância espiritual começa quando deixamos de
+                    brincar com aquilo que pode nos afastar de Deus.
+                </div>
+            </section>
+
+            <!-- PÁGINA 8 -->
+            <section class="pagina">
+                <h2>6. A Oração como Fortalecimento</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A oração é uma das principais expressões de dependência
+                    de Deus. Por meio dela, apresentamos nossas necessidades,
+                    confessamos nossas limitações e buscamos direção
+                    para permanecer fiéis.
+                </p>
+
+                <p>
+                    Jesus não apenas ensinou seus discípulos a pedirem
+                    livramento da tentação. Ele próprio cultivou uma vida
+                    de oração e demonstrou submissão ao Pai.
+                </p>
+
+                <h3>Jesus no Getsêmani</h3>
+
+                <p>
+                    Diante da proximidade de sua prisão e crucificação,
+                    Jesus orou ao Pai
+                    (<span class="referencia">Mateus 26:36–44</span>).
+                    Sua oração revela profunda angústia, mas também
+                    submissão à vontade divina.
+                </p>
+
+                <p>
+                    Jesus não tratou aquele momento com indiferença.
+                    Ele buscou o Pai em oração e permaneceu obediente.
+                </p>
+
+                <h3>Perseverança na oração</h3>
+
+                <ul>
+                    <li><span class="referencia">Lucas 18:1</span> — Orar sempre e nunca desfalecer.</li>
+                    <li><span class="referencia">Romanos 12:12</span> — Perseverar na oração.</li>
+                    <li><span class="referencia">Colossenses 4:2</span> — Perseverar em oração com vigilância.</li>
+                    <li><span class="referencia">1 Tessalonicenses 5:17</span> — Orar sem cessar.</li>
+                    <li><span class="referencia">Efésios 6:18</span> — Orar em todo tempo no Espírito.</li>
+                </ul>
+
+                <h3>Buscar auxílio de Deus</h3>
+
+                <p>
+                    <span class="referencia">Hebreus 4:16</span> convida
+                    os cristãos a se aproximarem do trono da graça com
+                    confiança, para receberem misericórdia e encontrarem
+                    graça em ocasião oportuna.
+                </p>
+
+                <p>
+                    <span class="referencia">Filipenses 4:6–7</span>
+                    orienta a apresentar as necessidades a Deus em oração,
+                    súplica e ações de graças. O texto relaciona essa
+                    prática à paz de Deus que guarda o coração e a mente
+                    em Cristo Jesus.
+                </p>
+
+                <div class="destaque">
+                    A oração não é apenas uma reação depois da queda.
+                    É uma prática diária de comunhão que fortalece
+                    o discípulo para permanecer firme.
+                </div>
+            </section>
+
+            <!-- PÁGINA 9 -->
+            <section class="pagina">
+                <h2>7. A Palavra de Deus como Fundamento</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Durante a tentação no deserto, Jesus respondeu ao
+                    tentador utilizando as Escrituras. Sua atitude
+                    demonstra a importância de conhecer, guardar
+                    e obedecer à Palavra de Deus.
+                </p>
+
+                <p>
+                    A Palavra não deve ser utilizada apenas como uma
+                    informação religiosa. Ela precisa orientar decisões,
+                    pensamentos, atitudes e escolhas.
+                </p>
+
+                <h3>Jesus respondeu com as Escrituras</h3>
+
+                <p>
+                    Em <span class="referencia">Mateus 4:1–11</span>,
+                    Jesus respondeu às propostas do tentador citando
+                    a Palavra. Entre as passagens utilizadas estão
+                    <span class="referencia">Deuteronômio 8:3</span>,
+                    <span class="referencia">Deuteronômio 6:13</span> e
+                    <span class="referencia">Deuteronômio 6:16</span>.
+                </p>
+
+                <p>
+                    Jesus demonstrou que a fidelidade a Deus não pode
+                    ser negociada em troca de satisfação imediata,
+                    reconhecimento ou poder.
+                </p>
+
+                <h3>Guardar a Palavra no coração</h3>
+
+                <p>
+                    O salmista declara que guardou a Palavra no coração
+                    para não pecar contra Deus
+                    (<span class="referencia">Salmos 119:11</span>).
+                </p>
+
+                <p>
+                    Isso revela a importância da meditação contínua
+                    nas Escrituras. Quando a Palavra está presente
+                    em nosso entendimento, ela nos ajuda a discernir
+                    o caminho correto.
+                </p>
+
+                <h3>A Palavra transforma a mente</h3>
+
+                <ul>
+                    <li><span class="referencia">Josué 1:8</span> — Meditar na Palavra e praticá-la.</li>
+                    <li><span class="referencia">Salmos 1:1–3</span> — O prazer na lei do Senhor.</li>
+                    <li><span class="referencia">Salmos 119:105</span> — A Palavra como lâmpada e luz.</li>
+                    <li><span class="referencia">Romanos 12:2</span> — A renovação da mente.</li>
+                    <li><span class="referencia">2 Timóteo 3:16–17</span> — A utilidade das Escrituras.</li>
+                    <li><span class="referencia">Hebreus 4:12</span> — A Palavra viva e eficaz.</li>
+                </ul>
+
+                <div class="destaque">
+                    Não basta conhecer referências bíblicas.
+                    É necessário permitir que a Palavra governe
+                    nossas escolhas e nossa maneira de viver.
+                </div>
+            </section>
+
+            <!-- PÁGINA 10 -->
+            <section class="pagina">
+                <h2>8. Deus Proporciona Escape</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A Bíblia ensina que Deus é fiel e não abandona
+                    seus servos diante das tentações. Isso não significa
+                    que o cristão jamais enfrentará dificuldades,
+                    mas que pode buscar em Deus o auxílio necessário
+                    para permanecer fiel.
+                </p>
+
+                <h3>A fidelidade de Deus</h3>
+
+                <p>
+                    <span class="referencia">1 Coríntios 10:13</span>
+                    ensina que as tentações enfrentadas pelos cristãos
+                    são humanas e que Deus é fiel. O texto afirma que
+                    Ele não permitirá que sejam tentados além do que
+                    podem suportar e providenciará livramento para
+                    que possam suportar.
+                </p>
+
+                <p>
+                    Essa promessa não deve ser interpretada como autorização
+                    para brincar com o pecado ou se expor deliberadamente
+                    ao perigo. O escape de Deus deve ser recebido com
+                    fé, obediência e responsabilidade.
+                </p>
+
+                <h3>José e a fuga da tentação</h3>
+
+                <p>
+                    Em <span class="referencia">Gênesis 39:7–12</span>,
+                    José foi pressionado a cometer pecado. Ele recusou
+                    a proposta e, quando a situação se tornou ainda
+                    mais perigosa, fugiu.
+                </p>
+
+                <p>
+                    José reconheceu que aquela atitude seria uma grande
+                    maldade e pecado contra Deus. Seu exemplo demonstra
+                    que resistir também pode exigir afastamento imediato
+                    de uma situação perigosa.
+                </p>
+
+                <h3>Atitudes diante da tentação</h3>
+
+                <ul>
+                    <li>Reconhecer o perigo — <span class="referencia">Provérbios 22:3</span>.</li>
+                    <li>Fugir das paixões da mocidade — <span class="referencia">2 Timóteo 2:22</span>.</li>
+                    <li>Resistir ao diabo — <span class="referencia">Tiago 4:7–8</span>.</li>
+                    <li>Abandonar práticas pecaminosas — <span class="referencia">Provérbios 28:13</span>.</li>
+                    <li>Buscar a santificação — <span class="referencia">1 Tessalonicenses 4:3–7</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    Em algumas situações, resistir à tentação significa
+                    permanecer firme. Em outras, significa fugir,
+                    afastar-se e não permanecer próximo daquilo
+                    que pode conduzir ao pecado.
+                </div>
+            </section>
+
+            <!-- PÁGINA 11 -->
+            <section class="pagina">
+                <h2>9. O Fortalecimento pelo Espírito Santo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A vida cristã não deve ser conduzida somente pela
+                    força de vontade humana. As Escrituras ensinam
+                    que o Espírito Santo atua na vida dos discípulos,
+                    conduzindo-os e fortalecendo-os para viverem
+                    de maneira agradável a Deus.
+                </p>
+
+                <h3>Andar no Espírito</h3>
+
+                <p>
+                    <span class="referencia">Gálatas 5:16</span> orienta
+                    os cristãos a andarem no Espírito para não satisfazerem
+                    os desejos da carne.
+                </p>
+
+                <p>
+                    O mesmo capítulo apresenta o conflito entre a carne
+                    e o Espírito e descreve o fruto do Espírito
+                    (<span class="referencia">Gálatas 5:17–25</span>).
+                </p>
+
+                <h3>O fruto do Espírito</h3>
+
+                <p>
+                    Em <span class="referencia">Gálatas 5:22–23</span>,
+                    encontramos o fruto do Espírito: amor, alegria,
+                    paz, longanimidade, benignidade, bondade, fidelidade,
+                    mansidão e domínio próprio.
+                </p>
+
+                <p>
+                    O domínio próprio é especialmente importante para
+                    compreender a necessidade de autocontrole diante
+                    de desejos e impulsos. Entretanto, todo o fruto
+                    do Espírito revela a transformação do caráter
+                    cristão.
+                </p>
+
+                <h3>O Espírito nos ajuda em nossa fraqueza</h3>
+
+                <p>
+                    <span class="referencia">Romanos 8:12–14</span>
+                    apresenta a responsabilidade de viver segundo
+                    o Espírito, e não segundo a carne.
+                </p>
+
+                <p>
+                    <span class="referencia">Romanos 8:26–27</span>
+                    ensina que o Espírito nos auxilia em nossas fraquezas.
+                </p>
+
+                <h3>Referências complementares</h3>
+
+                <ul>
+                    <li><span class="referencia">João 14:16–17</span> — A promessa do Consolador.</li>
+                    <li><span class="referencia">João 14:26</span> — O Espírito Santo ensina e faz lembrar.</li>
+                    <li><span class="referencia">João 16:13</span> — O Espírito da verdade guia.</li>
+                    <li><span class="referencia">Atos 1:8</span> — O poder do Espírito Santo.</li>
+                    <li><span class="referencia">Efésios 3:16</span> — Fortalecimento no homem interior.</li>
+                    <li><span class="referencia">Efésios 5:18</span> — Ser cheio do Espírito.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 12 -->
+            <section class="pagina">
+                <h2>10. A Armadura Espiritual</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Em <span class="referencia">Efésios 6:10–18</span>,
+                    Paulo orienta os cristãos a se fortalecerem no Senhor
+                    e na força do seu poder. Em seguida, apresenta a
+                    armadura de Deus como uma figura de preparação
+                    espiritual para permanecer firme.
+                </p>
+
+                <p>
+                    O texto não ensina que a força está no esforço humano
+                    isolado. A orientação é permanecer fortalecido no Senhor.
+                </p>
+
+                <h3>Os elementos da armadura</h3>
+
+                <ul>
+                    <li><strong>Cinturão da verdade:</strong> viver firmados na verdade de Deus.</li>
+                    <li><strong>Couraça da justiça:</strong> permanecer comprometidos com a justiça.</li>
+                    <li><strong>Calçados do evangelho da paz:</strong> estar preparados para permanecer firmes.</li>
+                    <li><strong>Escudo da fé:</strong> apagar os dardos inflamados do maligno.</li>
+                    <li><strong>Capacete da salvação:</strong> proteger a mente com a esperança da salvação.</li>
+                    <li><strong>Espada do Espírito:</strong> a Palavra de Deus.</li>
+                    <li><strong>Oração:</strong> perseverar em oração e súplica no Espírito.</li>
+                </ul>
+
+                <p>
+                    A armadura apresenta uma vida de firmeza, verdade,
+                    justiça, fé, salvação, conhecimento da Palavra
+                    e dependência de Deus em oração.
+                </p>
+
+                <h3>Resistir e permanecer firme</h3>
+
+                <p>
+                    <span class="referencia">Tiago 4:7</span> ensina
+                    a sujeitar-se a Deus e resistir ao diabo.
+                    <span class="referencia">1 Pedro 5:8–9</span>
+                    orienta a manter vigilância e resistir firmes na fé.
+                </p>
+
+                <p>
+                    A resistência cristã não é baseada em arrogância,
+                    mas na submissão a Deus e na confiança em seu poder.
+                </p>
+
+                <h3>Outras referências</h3>
+
+                <ul>
+                    <li><span class="referencia">2 Coríntios 10:3–5</span> — As armas da batalha espiritual.</li>
+                    <li><span class="referencia">Romanos 13:12–14</span> — Revestir-se das armas da luz.</li>
+                    <li><span class="referencia">1 Tessalonicenses 5:8</span> — Fé, amor e esperança.</li>
+                    <li><span class="referencia">2 Timóteo 2:3–4</span> — A figura do soldado de Cristo.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 13 -->
+            <section class="pagina">
+                <h2>11. Vigilância Diária e Perseverança</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A vigilância espiritual não deve ser praticada somente
+                    em momentos de crise. Ela precisa fazer parte da
+                    caminhada diária do discípulo de Jesus.
+                </p>
+
+                <p>
+                    A tentação pode surgir em diferentes circunstâncias:
+                    nas relações pessoais, no uso do dinheiro, na vida
+                    familiar, nas palavras, nos pensamentos, nas decisões
+                    e na maneira como lidamos com nossos desejos.
+                </p>
+
+                <h3>Desenvolver hábitos espirituais</h3>
+
+                <ul>
+                    <li><strong>Leitura bíblica:</strong> alimentar a mente com a Palavra — <span class="referencia">Salmos 119:9–11</span>.</li>
+                    <li><strong>Oração:</strong> cultivar comunhão com Deus — <span class="referencia">Colossenses 4:2</span>.</li>
+                    <li><strong>Comunhão:</strong> caminhar com outros discípulos — <span class="referencia">Hebreus 10:24–25</span>.</li>
+                    <li><strong>Confissão:</strong> reconhecer os pecados diante de Deus — <span class="referencia">1 João 1:8–9</span>.</li>
+                    <li><strong>Autocontrole:</strong> desenvolver domínio próprio — <span class="referencia">Gálatas 5:22–23</span>.</li>
+                    <li><strong>Obediência:</strong> praticar o que a Palavra ensina — <span class="referencia">Tiago 1:22</span>.</li>
+                </ul>
+
+                <h3>Não brincar com o pecado</h3>
+
+                <p>
+                    O cristão precisa reconhecer que determinadas situações
+                    podem enfraquecer sua resistência. Por isso, deve
+                    estabelecer limites, evitar ambientes prejudiciais
+                    e abandonar práticas que alimentam desejos pecaminosos.
+                </p>
+
+                <p>
+                    <span class="referencia">Romanos 13:14</span> orienta
+                    a não cuidar dos desejos da carne em suas concupiscências.
+                    <span class="referencia">1 Pedro 2:11</span> exorta
+                    os cristãos a se absterem das paixões carnais.
+                </p>
+
+                <h3>Perseverar até o fim</h3>
+
+                <p>
+                    A perseverança é parte importante da caminhada cristã.
+                    <span class="referencia">Hebreus 12:1–4</span> orienta
+                    a deixar todo embaraço e pecado e correr com perseverança
+                    a carreira proposta, olhando para Jesus.
+                </p>
+
+                <p>
+                    Leia também <span class="referencia">Apocalipse 2:10</span>,
+                    <span class="referencia">Tiago 1:12</span> e
+                    <span class="referencia">2 Timóteo 4:7–8</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 14 -->
+            <section class="pagina">
+                <h2>12. Aplicações para a Vida Cristã</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O pedido “não nos deixes cair em tentação” precisa
+                    ultrapassar o momento da oração e produzir atitudes
+                    concretas na vida do discípulo.
+                </p>
+
+                <h3>Princípios para colocar em prática</h3>
+
+                <ol>
+                    <li>
+                        <strong>Reconheça sua fragilidade.</strong>
+                        Não confie de maneira arrogante na própria força.
+                        Busque o auxílio de Deus diariamente.
+                    </li>
+                    <li>
+                        <strong>Vigie seus pensamentos.</strong>
+                        Examine aquilo que ocupa sua mente e não alimente
+                        pensamentos que conduzem ao pecado.
+                    </li>
+                    <li>
+                        <strong>Conheça a Palavra.</strong>
+                        Leia, medite e pratique as Escrituras.
+                    </li>
+                    <li>
+                        <strong>Ore continuamente.</strong>
+                        Não espere enfrentar uma crise para buscar a presença
+                        de Deus.
+                    </li>
+                    <li>
+                        <strong>Afaste-se do perigo.</strong>
+                        Não permaneça voluntariamente em situações que
+                        favorecem a queda.
+                    </li>
+                    <li>
+                        <strong>Busque o fortalecimento do Espírito.</strong>
+                        Desenvolva uma vida conduzida pelo Espírito Santo.
+                    </li>
+                    <li>
+                        <strong>Permaneça em comunhão.</strong>
+                        Não caminhe isolado. Busque relacionamentos
+                        cristãos saudáveis.
+                    </li>
+                    <li>
+                        <strong>Levante-se e busque restauração.</strong>
+                        Se houver queda, não esconda o pecado.
+                        Confesse, arrependa-se e busque a restauração
+                        em Deus.
+                    </li>
+                </ol>
+
+                <h3>Leituras para aprofundamento</h3>
+
+                <ul>
+                    <li><span class="referencia">Mateus 4:1–11</span>.</li>
+                    <li><span class="referencia">Mateus 26:36–41</span>.</li>
+                    <li><span class="referencia">Tiago 1:12–15</span>.</li>
+                    <li><span class="referencia">1 Coríntios 10:12–13</span>.</li>
+                    <li><span class="referencia">Gálatas 5:16–25</span>.</li>
+                    <li><span class="referencia">Efésios 6:10–18</span>.</li>
+                    <li><span class="referencia">Hebreus 4:14–16</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    A vitória espiritual não nasce da autoconfiança,
+                    mas da dependência de Deus, da obediência à Palavra
+                    e da perseverança na fé.
+                </div>
+            </section>
+
+            <!-- PÁGINA 15 -->
+            <section class="pagina">
+                <h2>13. Questões para Reflexão</h2>
+                <div class="linha-dourada"></div>
+
+                <div class="questionario">
+                    <ol>
+                        <li>O que Jesus ensinou ao incluir o pedido para não cairmos em tentação?</li>
+                        <li>Por que o cristão precisa reconhecer sua fragilidade?</li>
+                        <li>Qual foi a orientação de Jesus aos discípulos no Getsêmani?</li>
+                        <li>De acordo com Tiago 1:13, Deus tenta alguém ao mal?</li>
+                        <li>Como os desejos desordenados podem conduzir ao pecado?</li>
+                        <li>Quais foram as atitudes de Jesus diante das tentações no deserto?</li>
+                        <li>Qual é a importância de guardar a Palavra no coração?</li>
+                        <li>O que aprendemos com José em Gênesis 39?</li>
+                        <li>Como o Espírito Santo fortalece a vida cristã?</li>
+                        <li>Quais são os elementos da armadura de Deus?</li>
+                    </ol>
+                </div>
+
+                <h3>Desafio espiritual — 7 dias</h3>
+
+                <ol>
+                    <li>
+                        <strong>Dia 1:</strong> Leia
+                        <span class="referencia">Mateus 4:1–11</span>
+                        e observe como Jesus respondeu à tentação.
+                    </li>
+                    <li>
+                        <strong>Dia 2:</strong> Leia
+                        <span class="referencia">Mateus 26:36–41</span>
+                        e reserve um tempo para oração e vigilância.
+                    </li>
+                    <li>
+                        <strong>Dia 3:</strong> Leia
+                        <span class="referencia">Tiago 1:12–15</span>
+                        e examine suas motivações.
+                    </li>
+                    <li>
+                        <strong>Dia 4:</strong> Leia
+                        <span class="referencia">Salmos 119:9–16</span>
+                        e medite na importância da Palavra.
+                    </li>
+                    <li>
+                        <strong>Dia 5:</strong> Leia
+                        <span class="referencia">Gálatas 5:16–25</span>
+                        e reflita sobre o fruto do Espírito.
+                    </li>
+                    <li>
+                        <strong>Dia 6:</strong> Leia
+                        <span class="referencia">Efésios 6:10–18</span>
+                        e ore sobre a armadura de Deus.
+                    </li>
+                    <li>
+                        <strong>Dia 7:</strong> Leia
+                        <span class="referencia">1 Coríntios 10:12–13</span>
+                        e escreva uma oração de dependência do Senhor.
+                    </li>
+                </ol>
+            </section>
+
+            <!-- PÁGINA 16 -->
+            <section class="pagina">
+                <h2>14. Conclusão</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O pedido “não nos deixes cair em tentação” revela
+                    uma verdade fundamental da vida cristã: precisamos
+                    continuamente da presença, da direção e do fortalecimento
+                    de Deus.
+                </p>
+
+                <p>
+                    A tentação é uma realidade, mas não deve ser tratada
+                    com indiferença. Jesus ensinou seus discípulos a vigiarem
+                    e orarem. A Palavra orienta a reconhecer os desejos
+                    que podem conduzir ao pecado, resistir ao mal e buscar
+                    o auxílio do Senhor.
+                </p>
+
+                <p>
+                    Aprendemos também que Deus não tenta ninguém ao mal.
+                    Ele é fiel e oferece auxílio para que seus filhos
+                    permaneçam firmes. Essa confiança não elimina nossa
+                    responsabilidade de vigiar, fugir do pecado e obedecer
+                    à Palavra.
+                </p>
+
+                <p>
+                    Jesus enfrentou a tentação sem pecar e nos convida
+                    a buscar misericórdia e graça. O Espírito Santo
+                    fortalece o discípulo, e as Escrituras fornecem
+                    direção para uma vida de fidelidade.
+                </p>
+
+                <div class="destaque">
+                    Não confie apenas em sua própria força.
+                    Vigie, ore, permaneça na Palavra e dependa de Deus
+                    para continuar firme na caminhada cristã.
+                </div>
+
+                <h3>Oração final</h3>
+
+                <p>
+                    Pai celestial, reconhecemos nossa fragilidade e
+                    nossa necessidade de tua presença. Ensina-nos a
+                    vigiar e a orar, para que não sejamos vencidos
+                    pela tentação. Guarda nossos pensamentos, nossas
+                    palavras, nossas atitudes e nossos caminhos.
+                </p>
+
+                <p>
+                    Dá-nos discernimento para reconhecer o perigo,
+                    coragem para fugir do pecado e firmeza para obedecer
+                    à tua Palavra. Fortalece-nos pelo teu Espírito Santo
+                    e ajuda-nos a permanecer fiéis a Jesus Cristo.
+                </p>
+
+                <p>
+                    Que nossa confiança não esteja em nossa própria
+                    capacidade, mas em tua graça e fidelidade.
+                    Em nome de Jesus. Amém.
+                </p>
+            </section>
+
+            <!-- PÁGINA 17 -->
+            <section class="pagina">
+                <h2>Próxima Aula</h2>
+                <div class="linha-dourada"></div>
+
+                <div style="text-align:center; margin-top:35px;">
+                    <h3 style="color:#9a702c; letter-spacing:3px;">AULA 10</h3>
+
+                    <h2 style="font-size:clamp(25px,5vw,36px); margin-top:20px;">
+                        Livra-nos do Mal
+                    </h2>
+
+                    <div class="linha-dourada" style="margin:20px auto;"></div>
+
+                    <p style="text-align:center; font-size:21px;">
+                        Proteção divina, libertação e confiança no cuidado
+                        de Deus diante do mal.
+                    </p>
+                </div>
+
+                <h3>Texto-base</h3>
+
+                <p>
+                    <span class="referencia">Mateus 6:13</span>.
+                </p>
+
+                <p>
+                    Na próxima aula, aprofundaremos o pedido de livramento
+                    do mal, considerando a proteção divina, a realidade
+                    do maligno, a autoridade de Deus e a confiança que
+                    o discípulo pode depositar no Senhor.
+                </p>
+
+                <div class="destaque">
+                    Continue estudando as Escrituras, consultando as
+                    referências bíblicas e desenvolvendo uma vida
+                    de oração fundamentada na Palavra de Deus.
+                </div>
+
+                <div style="text-align:center; margin-top:55px;">
+                    <p style="font-family:'Cinzel',serif; color:#9a702c; font-size:16px; text-align:center;">
+                        ESCOLA BÍBLICA ATALAIA
+                    </p>
+                    <p style="font-size:15px; text-align:center;">
+                        Proclamando a Verdade. Formando Discípulos.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div class="progresso">
+        <div id="barraProgresso"></div>
+    </div>
+
+    <nav class="controles">
+        <button id="anterior" onclick="mudarPagina(-1)">&#8592; Anterior</button>
+        <span id="contador">Página 1 de 17</span>
+        <button id="proxima" onclick="mudarPagina(1)">Próxima &#8594;</button>
+    </nav>
+
+    <footer>
+        <p><strong>MINISTÉRIO ATALAIA</strong></p>
+        <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+        <p>Proclamando a Verdade. Formando Discípulos.</p>
+    </footer>
+
+    <!-- JANELA DE TEXTO BÍBLICO -->
+    <div class="modal" id="modalBiblia" onclick="fecharSeFora(event)">
+        <div class="modal-conteudo">
+            <button class="fechar-modal" onclick="fecharBiblia()" aria-label="Fechar">×</button>
+
+            <div class="modal-topo">
+                <h2 id="tituloReferencia">Texto bíblico</h2>
+            </div>
+
+            <div id="textoBiblico">
+                Carregando texto bíblico...
+            </div>
+
+            <div class="aviso-modal">
+                Texto bíblico consultado pela API Bible. A disponibilidade
+                da tradução depende do serviço externo.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================
+           NAVEGAÇÃO DO FLIPBOOK
+        ========================================== */
+
+        const paginas = document.querySelectorAll(".pagina");
+        const contador = document.getElementById("contador");
+        const botaoAnterior = document.getElementById("anterior");
+        const botaoProxima = document.getElementById("proxima");
+        const barraProgresso = document.getElementById("barraProgresso");
+
+        let paginaAtual = 0;
+
+        function atualizarFlipbook() {
+            paginas.forEach((pagina, indice) => {
+                pagina.classList.toggle("ativa", indice === paginaAtual);
+            });
+
+            contador.textContent =
+                `Página ${paginaAtual + 1} de ${paginas.length}`;
+
+            botaoAnterior.disabled = paginaAtual === 0;
+            botaoProxima.disabled = paginaAtual === paginas.length - 1;
+
+            const progresso =
+                ((paginaAtual + 1) / paginas.length) * 100;
+
+            barraProgresso.style.width = progresso + "%";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function mudarPagina(direcao) {
+            const novaPagina = paginaAtual + direcao;
+
+            if (novaPagina >= 0 && novaPagina < paginas.length) {
+                paginaAtual = novaPagina;
+                atualizarFlipbook();
+            }
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (modalBiblia.classList.contains("aberto")) {
+                if (event.key === "Escape") fecharBiblia();
+                return;
+            }
+
+            if (event.key === "ArrowRight") mudarPagina(1);
+            if (event.key === "ArrowLeft") mudarPagina(-1);
+        });
+
+        atualizarFlipbook();
+
+
+        /* ==========================================
+           REFERÊNCIAS BÍBLICAS CLICÁVEIS
+        ========================================== */
+
+        const modalBiblia = document.getElementById("modalBiblia");
+        const tituloReferencia = document.getElementById("tituloReferencia");
+        const textoBiblico = document.getElementById("textoBiblico");
+
+        document.querySelectorAll(".referencia").forEach(elemento => {
+            elemento.setAttribute("role", "button");
+            elemento.setAttribute("tabindex", "0");
+            elemento.setAttribute("title", "Clique para consultar o texto bíblico");
+
+            elemento.addEventListener("click", function () {
+                consultarBiblia(this.textContent.trim());
+            });
+
+            elemento.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    consultarBiblia(this.textContent.trim());
+                }
+            });
+        });
+
+
+        /* ==========================================
+           NOMES DOS LIVROS — PORTUGUÊS PARA INGLÊS
+        ========================================== */
+
+        const livrosBiblia = {
+            "genesis": "Genesis",
+            "gênesis": "Genesis",
+            "exodo": "Exodus",
+            "êxodo": "Exodus",
+            "levitico": "Leviticus",
+            "levítico": "Leviticus",
+            "numeros": "Numbers",
+            "números": "Numbers",
+            "deuteronomio": "Deuteronomy",
+            "deuteronômio": "Deuteronomy",
+            "josue": "Joshua",
+            "josué": "Joshua",
+            "juizes": "Judges",
+            "juízes": "Judges",
+            "rute": "Ruth",
+            "1 samuel": "1 Samuel",
+            "2 samuel": "2 Samuel",
+            "1 reis": "1 Kings",
+            "2 reis": "2 Kings",
+            "1 cronicas": "1 Chronicles",
+            "1 crônicas": "1 Chronicles",
+            "2 cronicas": "2 Chronicles",
+            "2 crônicas": "2 Chronicles",
+            "esdras": "Ezra",
+            "neemias": "Nehemiah",
+            "ester": "Esther",
+            "jó": "Job",
+            "jo": "Job",
+            "salmos": "Psalms",
+            "salmo": "Psalms",
+            "proverbios": "Proverbs",
+            "provérbios": "Proverbs",
+            "eclesiastes": "Ecclesiastes",
+            "cantares": "Song of Solomon",
+            "canticos": "Song of Solomon",
+            "cânticos": "Song of Solomon",
+            "isaias": "Isaiah",
+            "isaías": "Isaiah",
+            "jeremias": "Jeremiah",
+            "lamentacoes": "Lamentations",
+            "lamentações": "Lamentations",
+            "ezequiel": "Ezekiel",
+            "daniel": "Daniel",
+            "oseias": "Hosea",
+            "oséias": "Hosea",
+            "joel": "Joel",
+            "amos": "Amos",
+            "amós": "Amos",
+            "obadias": "Obadiah",
+            "jonas": "Jonah",
+            "miqueias": "Micah",
+            "miquéias": "Micah",
+            "naum": "Nahum",
+            "habacuque": "Habakkuk",
+            "sofonias": "Zephaniah",
+            "ageu": "Haggai",
+            "zacarias": "Zechariah",
+            "malaquias": "Malachi",
+            "malaquías": "Malachi",
+
+            "mateus": "Matthew",
+            "marcos": "Mark",
+            "lucas": "Luke",
+            "joao": "John",
+            "joão": "John",
+            "atos": "Acts",
+            "romanos": "Romans",
+            "1 corintios": "1 Corinthians",
+            "1 coríntios": "1 Corinthians",
+            "2 corintios": "2 Corinthians",
+            "2 coríntios": "2 Corinthians",
+            "galatas": "Galatians",
+            "gálatas": "Galatians",
+            "efesios": "Ephesians",
+            "efésios": "Ephesians",
+            "filipenses": "Philippians",
+            "colossenses": "Colossians",
+            "1 tessalonicenses": "1 Thessalonians",
+            "2 tessalonicenses": "2 Thessalonians",
+            "1 timoteo": "1 Timothy",
+            "1 timóteo": "1 Timothy",
+            "2 timoteo": "2 Timothy",
+            "2 timóteo": "2 Timothy",
+            "tito": "Titus",
+            "filemom": "Philemon",
+            "hebreus": "Hebrews",
+            "tiago": "James",
+            "1 pedro": "1 Peter",
+            "2 pedro": "2 Peter",
+            "1 joao": "1 John",
+            "1 joão": "1 John",
+            "2 joao": "2 John",
+            "2 joão": "2 John",
+            "3 joao": "3 John",
+            "3 joão": "3 John",
+            "judas": "Jude",
+            "apocalipse": "Revelation"
+        };
+
+
+        /* ==========================================
+           NORMALIZAR REFERÊNCIA
+        ========================================== */
+
+        function normalizarReferencia(referencia) {
+            referencia = referencia
+                .replace(/[–—−]/g, "-")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            const resultado = referencia.match(/^(.+?)\s+(\d+)(?::([\d,-]+))?$/);
+
+            if (!resultado) {
+                throw new Error("Formato de referência não reconhecido.");
+            }
+
+            const nomeLivro = resultado[1].trim().toLowerCase();
+            const capitulo = resultado[2];
+            const versiculos = resultado[3] || null;
+
+            const livroIngles = livrosBiblia[nomeLivro];
+
+            if (!livroIngles) {
+                throw new Error("Livro bíblico não reconhecido: " + nomeLivro);
+            }
+
+            return {
+                livro: livroIngles,
+                capitulo: capitulo,
+                versiculos: versiculos
+            };
+        }
+
+
+        /* ==========================================
+           CONSULTAR TEXTO BÍBLICO
+        ========================================== */
+
+        async function buscarCapitulo(livro, capitulo, versiculos = null) {
+            let referencia = `${livro} ${capitulo}`;
+
+            if (versiculos) {
+                referencia += `:${versiculos}`;
+            }
+
+            const url =
+                "https://bible-api.com/" +
+                encodeURIComponent(referencia) +
+                "?translation=almeida";
+
+            const resposta = await fetch(url);
+
+            if (!resposta.ok) {
+                throw new Error("Erro HTTP " + resposta.status);
+            }
+
+            const dados = await resposta.json();
+
+            if (!dados.verses || !Array.isArray(dados.verses)) {
+                throw new Error("A API não retornou os versículos.");
+            }
+
+            return dados;
+        }
+
+
+        /* ==========================================
+           EXIBIR TEXTO BÍBLICO NO POPUP
+        ========================================== */
+
+        async function consultarBiblia(referencia) {
+            modalBiblia.classList.add("aberto");
+
+            tituloReferencia.textContent = referencia;
+            textoBiblico.textContent = "Carregando texto bíblico...";
+
+            try {
+                const dadosReferencia = normalizarReferencia(referencia);
+
+                let resultados = [];
+
+                /*
+                   Consulta referências de intervalo de capítulos,
+                   como Mateus 5-7.
+                */
+
+                if (
+                    !dadosReferencia.versiculos &&
+                    dadosReferencia.capitulo.includes("-")
+                ) {
+                    const partes = dadosReferencia.capitulo.split("-");
+
+                    const inicio = Number(partes[0]);
+                    const fim = Number(partes[1]);
+
+                    if (
+                        !Number.isInteger(inicio) ||
+                        !Number.isInteger(fim) ||
+                        fim < inicio ||
+                        fim - inicio > 10
+                    ) {
+                        throw new Error("Intervalo de capítulos inválido.");
+                    }
+
+                    for (let cap = inicio; cap <= fim; cap++) {
+                        const dados = await buscarCapitulo(
+                            dadosReferencia.livro,
+                            cap
+                        );
+
+                        resultados.push(dados);
+                    }
+
+                } else {
+                    const dados = await buscarCapitulo(
+                        dadosReferencia.livro,
+                        dadosReferencia.capitulo,
+                        dadosReferencia.versiculos
+                    );
+
+                    resultados.push(dados);
+                }
+
+                textoBiblico.innerHTML = "";
+
+                resultados.forEach(dados => {
+                    if (dados.reference) {
+                        const subtitulo = document.createElement("h3");
+
+                        subtitulo.textContent = dados.reference;
+
+                        subtitulo.style.cssText = `
+                            font-family: Cinzel, serif;
+                            color: #102d4e;
+                            font-size: 16px;
+                            margin: 15px 0;
+                        `;
+
+                        textoBiblico.appendChild(subtitulo);
+                    }
+
+                    dados.verses.forEach(versiculo => {
+                        const linha = document.createElement("p");
+                        linha.className = "versiculo";
+
+                        const numero = document.createElement("strong");
+                        numero.className = "numero-versiculo";
+                        numero.textContent = versiculo.verse + ".";
+
+                        const texto = document.createTextNode(
+                            " " + versiculo.text.trim()
+                        );
+
+                        linha.appendChild(numero);
+                        linha.appendChild(texto);
+
+                        textoBiblico.appendChild(linha);
+                    });
+                });
+
+                const identificacao = document.createElement("p");
+
+                identificacao.style.cssText = `
+                    margin-top: 20px;
+                    padding-top: 12px;
+                    border-top: 1px solid #ddd;
+                    font-size: 13px;
+                    color: #777;
+                `;
+
+                identificacao.textContent =
+                    "Tradução disponibilizada pelo serviço Bible API.";
+
+                textoBiblico.appendChild(identificacao);
+
+            } catch (erro) {
+                console.error("Erro na consulta bíblica:", erro);
+
+                textoBiblico.innerHTML = "";
+
+                const mensagem = document.createElement("p");
+                mensagem.textContent =
+                    "Não foi possível carregar automaticamente o texto bíblico. " +
+                    "Verifique sua conexão ou consulte a referência no link abaixo.";
+
+                textoBiblico.appendChild(mensagem);
+
+                const link = document.createElement("a");
+                link.className = "link-alternativo";
+                link.href =
+                    "https://www.bibliaonline.com.br/acf/" +
+                    encodeURIComponent(referencia.toLowerCase().replace(/\s+/g, "/"));
+
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = "Consultar referência bíblica";
+
+                textoBiblico.appendChild(link);
+            }
+        }
+
+
+        /* ==========================================
+           FECHAR POPUP
+        ========================================== */
+
+        function fecharBiblia() {
+            modalBiblia.classList.remove("aberto");
+        }
+
+        function fecharSeFora(event) {
+            if (event.target === modalBiblia) {
+                fecharBiblia();
+            }
+        }
+    </script>
+
+</body>
+</html>

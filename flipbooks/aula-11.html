@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 11 — Teu é o Reino, o Poder e a Glória para Sempre. Amém. | Escola Bíblica Atalaia</title>
+
+    <meta name="description"
+        content="Estudo bíblico aprofundado sobre a doxologia final do Pai Nosso, com referências bíblicas clicáveis e textos em janelas de leitura.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --azul: #071b33;
+            --azul-claro: #102d4e;
+            --dourado: #c9a45c;
+            --papel: #fffdf7;
+            --texto: #293443;
+            --cinza: #e8e5dc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #e9edf2;
+            color: var(--texto);
+            font-family: "Crimson Text", Georgia, serif;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+            color: white;
+            text-align: center;
+            padding: 25px 15px 22px;
+            border-bottom: 4px solid var(--dourado);
+        }
+
+        header .ministerio {
+            font-family: "Cinzel", serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--dourado);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: "Cinzel", serif;
+            font-size: clamp(22px, 4vw, 34px);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+            color: #e4e8ed;
+        }
+
+        .identificacao {
+            margin-top: 12px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--dourado);
+        }
+
+        .instrucoes {
+            text-align: center;
+            padding: 15px 10px 5px;
+            color: #536173;
+            font-size: 16px;
+        }
+
+        .instrucoes strong {
+            color: var(--azul);
+        }
+
+        .flipbook-area {
+            width: 100%;
+            padding: 20px 12px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .livro {
+            width: min(100%, 850px);
+            min-height: 570px;
+            position: relative;
+            perspective: 1800px;
+        }
+
+        .pagina {
+            display: none;
+            width: 100%;
+            min-height: 570px;
+            background: var(--papel);
+            border: 1px solid #ded8c9;
+            border-radius: 5px;
+            padding: clamp(25px, 5vw, 55px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .13);
+            animation: aparecer .35s ease;
+            position: relative;
+        }
+
+        .pagina.ativa {
+            display: block;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: .3;
+                transform: rotateY(-3deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+
+        .pagina::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--dourado), #ead9b4, var(--dourado));
+            opacity: .75;
+        }
+
+        .pagina h2 {
+            font-family: "Cinzel", serif;
+            color: var(--azul);
+            font-size: clamp(20px, 3vw, 27px);
+            line-height: 1.35;
+            margin-bottom: 12px;
+        }
+
+        .pagina h3 {
+            font-family: "Cinzel", serif;
+            font-size: 18px;
+            color: var(--azul-claro);
+            margin: 25px 0 10px;
+        }
+
+        .pagina h4 {
+            font-size: 19px;
+            color: #8a682e;
+            margin: 18px 0 7px;
+        }
+
+        .pagina p {
+            font-size: 19px;
+            line-height: 1.65;
+            margin-bottom: 13px;
+            text-align: justify;
+        }
+
+        .pagina ul,
+        .pagina ol {
+            margin: 10px 0 18px 25px;
+        }
+
+        .pagina li {
+            font-size: 18px;
+            line-height: 1.55;
+            margin-bottom: 7px;
+        }
+
+        .linha-dourada {
+            width: 75px;
+            height: 3px;
+            background: var(--dourado);
+            margin: 15px 0 22px;
+        }
+
+        .texto-base {
+            background: #f4f0e6;
+            border-left: 4px solid var(--dourado);
+            padding: 15px 18px;
+            margin: 18px 0;
+        }
+
+        .texto-base p {
+            margin-bottom: 5px;
+        }
+
+        .destaque {
+            background: #f4f0e6;
+            border-left: 4px solid var(--dourado);
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 19px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .referencia {
+            color: #986d22;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+            cursor: pointer;
+        }
+
+        .referencia:hover {
+            color: #c18a28;
+            text-decoration-style: solid;
+        }
+
+        .capa {
+            min-height: 570px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(7, 27, 51, .96), rgba(7, 27, 51, .98));
+            color: white;
+            border: 5px double var(--dourado);
+        }
+
+        .capa::before {
+            display: none;
+        }
+
+        .capa .marca {
+            color: var(--dourado);
+            font-family: "Cinzel", serif;
+            letter-spacing: 5px;
+            font-size: 14px;
+            margin-bottom: 45px;
+        }
+
+        .capa h2 {
+            color: white;
+            font-size: clamp(28px, 6vw, 43px);
+            margin-bottom: 18px;
+        }
+
+        .capa .subtitulo {
+            max-width: 570px;
+            font-size: 21px;
+            color: #e5e8ec;
+            text-align: center;
+        }
+
+        .capa .aula {
+            margin-top: 45px;
+            color: var(--dourado);
+            font-family: "Cinzel", serif;
+            font-size: 15px;
+            letter-spacing: 3px;
+        }
+
+        .capa .escola {
+            margin-top: 55px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #d5dbe2;
+        }
+
+        .rodape-pagina {
+            position: absolute;
+            bottom: 18px;
+            right: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #9b927f;
+        }
+
+        .controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 0 15px 25px;
+        }
+
+        .controles button {
+            border: none;
+            background: var(--azul);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .controles button:hover {
+            background: var(--azul-claro);
+        }
+
+        .controles button:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        #contador {
+            color: var(--azul);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            min-width: 105px;
+            text-align: center;
+        }
+
+        .progresso {
+            width: min(500px, 85%);
+            height: 5px;
+            background: #d5dbe2;
+            margin: 0 auto 25px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progresso div {
+            height: 100%;
+            width: 0;
+            background: var(--dourado);
+            transition: width .3s;
+        }
+
+        .questionario {
+            background: #f4f0e6;
+            border: 1px solid #e0d6c3;
+            padding: 16px;
+            margin: 18px 0;
+        }
+
+        .questionario p {
+            margin-bottom: 8px;
+        }
+
+        .questionario ol {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background: var(--azul);
+            color: #dce2e9;
+            text-align: center;
+            padding: 22px 12px;
+            border-top: 3px solid var(--dourado);
+            font-size: 15px;
+        }
+
+        footer strong {
+            color: var(--dourado);
+        }
+
+        /* POPUP BÍBLICO */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0, 0, 0, .72);
+            padding: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.aberto {
+            display: flex;
+        }
+
+        .modal-conteudo {
+            width: min(650px, 100%);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: var(--papel);
+            border-radius: 7px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .35);
+            padding: 25px;
+            position: relative;
+            animation: modalEntrada .25s ease;
+        }
+
+        @keyframes modalEntrada {
+            from {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-topo {
+            border-bottom: 2px solid var(--dourado);
+            padding-bottom: 12px;
+            margin-bottom: 17px;
+            padding-right: 35px;
+        }
+
+        .modal-topo h2 {
+            color: var(--azul);
+            font-family: "Cinzel", serif;
+            font-size: 21px;
+        }
+
+        .fechar-modal {
+            position: absolute;
+            right: 17px;
+            top: 13px;
+            border: none;
+            background: var(--azul);
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #textoBiblico {
+            font-size: 19px;
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        #textoBiblico .versiculo {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        #textoBiblico .numero-versiculo {
+            color: #9a702c;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .aviso-modal {
+            font-size: 14px;
+            color: #7a8490;
+            margin-top: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 12px;
+            }
+
+            .livro {
+                min-height: 650px;
+            }
+
+            .pagina {
+                min-height: 650px;
+                padding: 28px 23px 45px 28px;
+            }
+
+            .pagina p {
+                font-size: 18px;
+            }
+
+            .pagina li {
+                font-size: 17px;
+            }
+
+            .capa {
+                min-height: 650px;
+            }
+
+            .controles {
+                gap: 8px;
+            }
+
+            .controles button {
+                padding: 11px 15px;
+            }
+
+            .modal-conteudo {
+                padding: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            header,
+            .instrucoes,
+            .controles,
+            .progresso,
+            footer,
+            .modal {
+                display: none !important;
+            }
+
+            .flipbook-area {
+                display: block;
+                padding: 0;
+            }
+
+            .livro {
+                width: 100%;
+            }
+
+            .pagina {
+                display: block !important;
+                min-height: auto;
+                page-break-after: always;
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="ministerio">MINISTÉRIO ATALAIA</div>
+        <h1>O Pai Nosso</h1>
+        <p>Uma jornada de oração, comunhão e transformação</p>
+        <div class="identificacao">ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</div>
+    </header>
+
+    <div class="instrucoes">
+        <strong>Estudo bíblico interativo</strong><br>
+        Clique nas referências bíblicas sublinhadas para consultar os textos.
+    </div>
+
+    <main class="flipbook-area">
+        <div class="livro" id="livro">
+
+            <!-- CAPA -->
+            <section class="pagina capa ativa">
+                <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+                <h2>TEU É O REINO,<br>O PODER E A GLÓRIA</h2>
+                <div class="linha-dourada"></div>
+                <p class="subtitulo">
+                    Para sempre. Amém.<br>
+                    A doxologia final do Pai Nosso e a soberania eterna de Deus.
+                </p>
+                <div class="aula">AULA 11</div>
+                <div class="escola">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+            </section>
+
+            <!-- PÁGINA 2 -->
+            <section class="pagina">
+                <h2>Apresentação do Estudo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A oração que Jesus ensinou aos seus discípulos termina, na forma
+                    tradicionalmente conhecida, com uma declaração de adoração:
+                    “Porque teu é o Reino, e o poder, e a glória, para sempre. Amém”.
+                </p>
+
+                <p>
+                    Essa conclusão é conhecida como doxologia, uma expressão de louvor
+                    que atribui a Deus honra, autoridade e glória. Ela nos conduz a
+                    reconhecer que o Reino pertence ao Senhor, que o poder procede
+                    dele e que toda glória deve ser dirigida a Ele.
+                </p>
+
+                <p>
+                    A oração não termina com a exaltação das necessidades humanas,
+                    mas com o reconhecimento da grandeza de Deus. Depois de apresentar
+                    pedidos relacionados à santidade, ao Reino, à vontade divina,
+                    à provisão, ao perdão e ao livramento, o discípulo volta seus olhos
+                    para aquele que é a fonte de todas as coisas.
+                </p>
+
+                <div class="destaque">
+                    Verdade central: a oração cristã começa reconhecendo quem Deus é
+                    e termina reconhecendo que tudo pertence a Ele. Seu Reino não
+                    tem fim, seu poder não encontra limites e sua glória não deve
+                    ser compartilhada com ídolos.
+                </div>
+
+                <h3>Texto-base</h3>
+                <p><span class="referencia">Mateus 6:9–13</span>.</p>
+
+                <h3>Texto paralelo</h3>
+                <p><span class="referencia">Lucas 11:1–4</span>.</p>
+
+                <h3>Textos complementares</h3>
+                <p>
+                    <span class="referencia">1 Crônicas 29:10–13</span>;
+                    <span class="referencia">Romanos 11:33–36</span>;
+                    <span class="referencia">Apocalipse 5:11–14</span>.
+                </p>
+
+                <p>
+                    <strong>Observação textual:</strong> a doxologia aparece na
+                    tradição de muitos manuscritos e traduções de Mateus 6:13.
+                    Algumas edições baseadas em manuscritos gregos antigos a
+                    apresentam em nota ou não a incluem no texto principal.
+                    Isso não altera a verdade bíblica de que o Reino, o poder
+                    e a glória pertencem ao Senhor, afirmação confirmada em
+                    diversas outras passagens das Escrituras.
+                </p>
+            </section>
+
+            <!-- PÁGINA 3 -->
+            <section class="pagina">
+                <h2>1. A Doxologia: Uma Declaração de Adoração</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A palavra “doxologia” é utilizada para descrever uma expressão
+                    de louvor e atribuição de glória a Deus. Na conclusão tradicional
+                    do Pai Nosso, encontramos três declarações fundamentais:
+                    o Reino pertence a Deus, o poder pertence a Deus e a glória
+                    pertence a Deus.
+                </p>
+
+                <p>
+                    Não se trata apenas de uma frase bonita para encerrar uma oração.
+                    É uma confissão de fé. O discípulo reconhece que Deus governa,
+                    sustenta e merece toda honra.
+                </p>
+
+                <p>
+                    Uma declaração semelhante aparece na oração de Davi, quando
+                    ele reconhece a grandeza, o poder, a glória, a vitória e a
+                    majestade do Senhor.
+                    Leia <span class="referencia">1 Crônicas 29:10–13</span>.
+                </p>
+
+                <h3>O louvor reconhece quem Deus é</h3>
+
+                <p>
+                    A adoração bíblica não depende apenas das circunstâncias.
+                    Deus é digno de louvor por sua própria natureza e por suas obras.
+                    Os céus proclamam sua glória
+                    (<span class="referencia">Salmos 19:1</span>), e toda a criação
+                    manifesta sua grandeza
+                    (<span class="referencia">Salmos 148:1–13</span>).
+                </p>
+
+                <p>
+                    O salmista declara que o Senhor é grande e digno de ser louvado
+                    (<span class="referencia">Salmos 145:3</span>).
+                    O apóstolo Paulo conclui uma exposição sobre a sabedoria e
+                    a soberania divina atribuindo a Deus a glória para sempre
+                    (<span class="referencia">Romanos 11:33–36</span>).
+                </p>
+
+                <h3>Uma oração que termina em adoração</h3>
+
+                <p>
+                    Ao concluir a oração com uma declaração de louvor, o discípulo
+                    é lembrado de que suas necessidades não são maiores que a
+                    grandeza de Deus. A oração apresenta pedidos, mas também
+                    desenvolve reverência, gratidão e confiança.
+                </p>
+
+                <div class="destaque">
+                    A adoração não é somente o encerramento de uma oração.
+                    Ela deve ser uma atitude permanente diante de Deus.
+                </div>
+
+                <h3>Referências para aprofundamento</h3>
+                <ul>
+                    <li><span class="referencia">Salmos 96:7–9</span> — Atribuir ao Senhor glória e força.</li>
+                    <li><span class="referencia">Salmos 103:19–22</span> — O governo soberano de Deus.</li>
+                    <li><span class="referencia">1 Timóteo 1:17</span> — Honra e glória ao Rei eterno.</li>
+                    <li><span class="referencia">Judas 1:24–25</span> — Glória, majestade, domínio e autoridade.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 4 -->
+            <section class="pagina">
+                <h2>2. Teu é o Reino</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A primeira declaração da doxologia reconhece que o Reino pertence
+                    a Deus. Ele não é apenas um governante entre outros, mas o Senhor
+                    soberano sobre toda a criação.
+                </p>
+
+                <p>
+                    O Reino de Deus expressa seu governo, sua autoridade e seu domínio.
+                    O Senhor reina sobre todas as coisas, mesmo quando os acontecimentos
+                    da história parecem fugir ao controle humano.
+                </p>
+
+                <h3>2.1. Deus é Rei sobre toda a criação</h3>
+
+                <p>
+                    O salmista declara que o Senhor estabeleceu seu trono nos céus
+                    e domina sobre tudo. Seu governo não está limitado a uma região,
+                    nação ou geração.
+                    Leia <span class="referencia">Salmos 103:19</span>.
+                </p>
+
+                <p>
+                    O profeta Daniel reconhece que Deus muda os tempos e as estações,
+                    remove reis e estabelece reis
+                    (<span class="referencia">Daniel 2:20–21</span>).
+                    Essa declaração mostra que as autoridades humanas não estão
+                    acima da soberania divina.
+                </p>
+
+                <p>
+                    A soberania do Senhor também é apresentada em
+                    <span class="referencia">Salmos 47:2</span>,
+                    <span class="referencia">Salmos 93:1–2</span>,
+                    <span class="referencia">Salmos 97:1</span> e
+                    <span class="referencia">Jeremias 10:10</span>.
+                </p>
+
+                <h3>2.2. O Reino de Deus não é um sistema meramente humano</h3>
+
+                <p>
+                    Quando Jesus foi questionado por Pilatos, declarou que seu Reino
+                    não era deste mundo. Sua autoridade e sua missão não procediam
+                    dos sistemas políticos humanos.
+                    Leia <span class="referencia">João 18:36–37</span>.
+                </p>
+
+                <p>
+                    Jesus anunciou a chegada do Reino de Deus e chamou as pessoas
+                    ao arrependimento e à fé
+                    (<span class="referencia">Marcos 1:14–15</span>).
+                    Também ensinou que o Reino deve ocupar o lugar de prioridade
+                    na vida dos discípulos
+                    (<span class="referencia">Mateus 6:33</span>).
+                </p>
+
+                <p>
+                    O Reino está relacionado à justiça, à paz e à alegria no Espírito
+                    Santo (<span class="referencia">Romanos 14:17</span>).
+                    Deus nos transporta para o Reino do Filho do seu amor
+                    (<span class="referencia">Colossenses 1:13–14</span>).
+                </p>
+
+                <h3>2.3. O Reino precisa governar nossa vida</h3>
+
+                <p>
+                    Reconhecer Deus como Rei significa submeter nossas escolhas,
+                    atitudes e prioridades à sua Palavra. Não basta declarar
+                    que Deus governa; é necessário viver em obediência.
+                </p>
+
+                <p>
+                    Jesus ensina que nem todo aquele que o chama de Senhor entra
+                    no Reino dos céus, mas aquele que faz a vontade do Pai
+                    (<span class="referencia">Mateus 7:21</span>).
+                    O amor a Cristo também se manifesta na obediência aos seus
+                    mandamentos (<span class="referencia">João 14:15</span>).
+                </p>
+
+                <p>
+                    Leia também <span class="referencia">Romanos 6:12–14</span>,
+                    <span class="referencia">Gálatas 5:16–25</span>,
+                    <span class="referencia">Tiago 1:22–25</span> e
+                    <span class="referencia">Hebreus 12:28</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 5 -->
+            <section class="pagina">
+                <h2>3. O Reino de Deus e o Governo de Cristo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O Novo Testamento apresenta Jesus como aquele que anuncia,
+                    manifesta e governa no Reino de Deus. Seu ministério demonstra
+                    autoridade sobre enfermidades, demônios, natureza e pecado.
+                </p>
+
+                <p>
+                    Jesus declarou que, se expulsava demônios pelo Espírito de Deus,
+                    então o Reino de Deus havia chegado aos seus ouvintes
+                    (<span class="referencia">Mateus 12:28</span>).
+                </p>
+
+                <h3>O Reino anunciado por Jesus</h3>
+
+                <p>
+                    O anúncio do Reino aparece desde o início do ministério público
+                    de Jesus. Ele chama ao arrependimento porque o Reino dos céus
+                    está próximo (<span class="referencia">Mateus 4:17</span>).
+                </p>
+
+                <p>
+                    Em suas parábolas, Jesus revela aspectos do Reino, mostrando
+                    seu crescimento, seu valor e a necessidade de uma resposta
+                    verdadeira. Leia
+                    <span class="referencia">Mateus 13:1–52</span>.
+                </p>
+
+                <p>
+                    O Reino também é apresentado como uma realidade que exige
+                    prioridade e compromisso
+                    (<span class="referencia">Mateus 13:44–46</span>).
+                </p>
+
+                <h3>Cristo recebeu domínio e autoridade</h3>
+
+                <p>
+                    Daniel teve uma visão na qual um como o Filho do Homem recebeu
+                    domínio, glória e Reino, para que povos e nações o servissem.
+                    Seu domínio é eterno e não passará.
+                    Leia <span class="referencia">Daniel 7:13–14</span>.
+                </p>
+
+                <p>
+                    O anjo anunciou a Maria que Jesus receberia o trono de Davi
+                    e que seu Reino não teria fim
+                    (<span class="referencia">Lucas 1:32–33</span>).
+                </p>
+
+                <p>
+                    O livro de Apocalipse anuncia que o Reino do mundo se tornou
+                    de nosso Senhor e do seu Cristo, e que Ele reinará para sempre
+                    (<span class="referencia">Apocalipse 11:15</span>).
+                </p>
+
+                <h3>O que significa reconhecer o Reino?</h3>
+
+                <ul>
+                    <li>Reconhecer a autoridade de Deus sobre a própria vida.</li>
+                    <li>Buscar primeiro o Reino e sua justiça — <span class="referencia">Mateus 6:33</span>.</li>
+                    <li>Viver de acordo com a Palavra — <span class="referencia">João 14:21</span>.</li>
+                    <li>Praticar a justiça, a paz e a alegria no Espírito — <span class="referencia">Romanos 14:17</span>.</li>
+                    <li>Servir a Cristo com gratidão e reverência — <span class="referencia">Hebreus 12:28</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    Quando declaramos “Teu é o Reino”, reconhecemos que nossa vida
+                    não deve ser governada pelo orgulho, pelo pecado ou pelos
+                    valores deste mundo, mas pela autoridade de Deus.
+                </div>
+            </section>
+
+            <!-- PÁGINA 6 -->
+            <section class="pagina">
+                <h2>4. Teu é o Poder</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A segunda declaração da doxologia reconhece que o poder pertence
+                    a Deus. A Bíblia apresenta o Senhor como Criador, sustentador
+                    e aquele que realiza seus propósitos segundo sua vontade.
+                </p>
+
+                <p>
+                    O poder de Deus não depende de recursos humanos. Ele não precisa
+                    de auxílio para criar, sustentar ou governar sua criação.
+                </p>
+
+                <h3>4.1. Deus é o Criador e sustentador</h3>
+
+                <p>
+                    O primeiro capítulo de Gênesis apresenta Deus criando os céus
+                    e a terra por sua palavra
+                    (<span class="referencia">Gênesis 1:1–31</span>).
+                    O salmista declara que os céus foram feitos pela palavra
+                    do Senhor e todo o seu exército pelo sopro de sua boca
+                    (<span class="referencia">Salmos 33:6–9</span>).
+                </p>
+
+                <p>
+                    A criação não apenas teve sua origem em Deus; ela continua
+                    dependendo dele. O apóstolo Paulo afirma que todas as coisas
+                    foram criadas por meio de Cristo e para Cristo, e nele tudo
+                    subsiste (<span class="referencia">Colossenses 1:16–17</span>).
+                </p>
+
+                <p>
+                    O autor de Hebreus declara que o Filho sustenta todas as coisas
+                    pela palavra do seu poder
+                    (<span class="referencia">Hebreus 1:1–3</span>).
+                </p>
+
+                <h3>4.2. O poder de Deus não encontra limites humanos</h3>
+
+                <p>
+                    Deus se revelou a Abraão como o Deus Todo-Poderoso
+                    (<span class="referencia">Gênesis 17:1</span>).
+                    Jó reconheceu que o Senhor pode todas as coisas e que nenhum
+                    dos seus planos pode ser impedido
+                    (<span class="referencia">Jó 42:1–2</span>).
+                </p>
+
+                <p>
+                    Jeremias declarou que nada é demasiado difícil para Deus
+                    (<span class="referencia">Jeremias 32:17</span>).
+                    Jesus afirmou que para Deus todas as coisas são possíveis
+                    (<span class="referencia">Mateus 19:26</span>).
+                </p>
+
+                <p>
+                    O anjo anunciou a Maria que para Deus nada é impossível
+                    (<span class="referencia">Lucas 1:26–38</span>).
+                </p>
+
+                <h3>4.3. O poder demonstrado na história bíblica</h3>
+
+                <ul>
+                    <li>A libertação de Israel do Egito — <span class="referencia">Êxodo 14:13–31</span>.</li>
+                    <li>A provisão de maná no deserto — <span class="referencia">Êxodo 16:4–18</span>.</li>
+                    <li>A preservação dos jovens na fornalha — <span class="referencia">Daniel 3:16–28</span>.</li>
+                    <li>O livramento de Daniel na cova dos leões — <span class="referencia">Daniel 6:16–23</span>.</li>
+                    <li>A ressurreição de Jesus — <span class="referencia">Mateus 28:1–10</span>.</li>
+                </ul>
+
+                <p>
+                    Leia também <span class="referencia">Isaías 40:25–29</span>,
+                    <span class="referencia">Salmos 147:4–5</span> e
+                    <span class="referencia">João 1:1–3</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 7 -->
+            <section class="pagina">
+                <h2>5. O Poder de Deus na Vida do Discípulo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O poder de Deus não é apresentado nas Escrituras somente por
+                    meio de acontecimentos extraordinários. Ele também se manifesta
+                    na transformação interior, na perseverança, na santificação
+                    e na capacitação para viver segundo a vontade divina.
+                </p>
+
+                <h3>5.1. O poder que transforma</h3>
+
+                <p>
+                    O Evangelho é o poder de Deus para a salvação de todo aquele
+                    que crê (<span class="referencia">Romanos 1:16</span>).
+                    A mensagem da cruz, embora pareça loucura para os que perecem,
+                    é o poder de Deus para os salvos
+                    (<span class="referencia">1 Coríntios 1:18</span>).
+                </p>
+
+                <p>
+                    A transformação cristã não é produzida apenas pela força
+                    de vontade humana. Deus opera no discípulo tanto o querer
+                    quanto o realizar, segundo sua boa vontade
+                    (<span class="referencia">Filipenses 2:13</span>).
+                </p>
+
+                <h3>5.2. O poder aperfeiçoado na fraqueza</h3>
+
+                <p>
+                    Paulo relata que recebeu uma resposta do Senhor:
+                    a graça divina lhe era suficiente, pois o poder de Deus
+                    se aperfeiçoa na fraqueza.
+                    Leia <span class="referencia">2 Coríntios 12:9–10</span>.
+                </p>
+
+                <p>
+                    Essa passagem não ensina que a fraqueza humana seja motivo
+                    de orgulho, mas demonstra que a suficiência de Deus não
+                    depende da autossuficiência do ser humano.
+                </p>
+
+                <p>
+                    A força do discípulo está no Senhor e na força do seu poder
+                    (<span class="referencia">Efésios 6:10–18</span>).
+                </p>
+
+                <h3>5.3. Poder para testemunhar</h3>
+
+                <p>
+                    Jesus prometeu que seus discípulos receberiam poder ao descer
+                    sobre eles o Espírito Santo e que seriam suas testemunhas
+                    (<span class="referencia">Atos 1:8</span>).
+                </p>
+
+                <p>
+                    O poder do Espírito capacita a Igreja para testemunhar de Cristo,
+                    anunciar o Evangelho e servir segundo a vontade de Deus.
+                </p>
+
+                <h3>5.4. Poder para viver uma nova vida</h3>
+
+                <ul>
+                    <li>O poder que ressuscitou Cristo — <span class="referencia">Efésios 1:19–21</span>.</li>
+                    <li>O Espírito de poder, amor e equilíbrio — <span class="referencia">2 Timóteo 1:7</span>.</li>
+                    <li>A força que sustenta o discípulo — <span class="referencia">Isaías 40:29–31</span>.</li>
+                    <li>O poder que age além do que pedimos ou pensamos — <span class="referencia">Efésios 3:20–21</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    Declarar “Teu é o Poder” é reconhecer que nossa confiança
+                    não está na capacidade humana, mas no Deus que salva,
+                    transforma, sustenta e capacita seus filhos.
+                </div>
+            </section>
+
+            <!-- PÁGINA 8 -->
+            <section class="pagina">
+                <h2>6. Tua é a Glória</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A terceira declaração da doxologia afirma que a glória pertence
+                    a Deus. A Bíblia apresenta o Senhor como aquele que merece
+                    adoração, honra, louvor e reconhecimento.
+                </p>
+
+                <p>
+                    A glória de Deus está relacionada à manifestação de sua grandeza,
+                    santidade, majestade e excelência. Nenhum ser humano pode ocupar
+                    o lugar que pertence exclusivamente ao Criador.
+                </p>
+
+                <h3>6.1. Deus é digno de adoração</h3>
+
+                <p>
+                    Moisés exaltou a majestade do Senhor, declarando que Ele é
+                    glorioso em santidade e admirável em louvores
+                    (<span class="referencia">Êxodo 15:11</span>).
+                </p>
+
+                <p>
+                    Os salmos convidam os povos a atribuírem ao Senhor glória
+                    e força, adorando-o na beleza da santidade
+                    (<span class="referencia">Salmos 29:1–2</span>;
+                    <span class="referencia">Salmos 96:7–9</span>).
+                </p>
+
+                <p>
+                    Isaías contempla o Senhor assentado em um alto e sublime trono,
+                    enquanto os serafins proclamam sua santidade
+                    (<span class="referencia">Isaías 6:1–3</span>).
+                </p>
+
+                <p>
+                    No Apocalipse, os seres viventes e os anciãos adoram aquele
+                    que está assentado no trono
+                    (<span class="referencia">Apocalipse 4:9–11</span>).
+                    A adoração também é dirigida ao Cordeiro
+                    (<span class="referencia">Apocalipse 5:11–14</span>).
+                </p>
+
+                <h3>6.2. A glória não deve ser atribuída aos ídolos</h3>
+
+                <p>
+                    Deus declara que não dará sua glória a outro
+                    (<span class="referencia">Isaías 42:8</span>).
+                    O salmista pede que a glória seja atribuída ao nome do Senhor,
+                    e não aos seres humanos
+                    (<span class="referencia">Salmos 115:1</span>).
+                </p>
+
+                <p>
+                    A idolatria tenta transferir para a criatura a honra que pertence
+                    ao Criador. Paulo trata desse desvio em
+                    <span class="referencia">Romanos 1:21–25</span>.
+                </p>
+
+                <h3>6.3. A glória de Deus revelada em Cristo</h3>
+
+                <p>
+                    João declara que o Verbo se fez carne e habitou entre nós,
+                    e os discípulos contemplaram sua glória
+                    (<span class="referencia">João 1:14</span>).
+                </p>
+
+                <p>
+                    Cristo é a expressão exata do ser de Deus
+                    (<span class="referencia">Hebreus 1:1–3</span>).
+                    Por meio dele conhecemos a revelação divina.
+                </p>
+
+                <p>
+                    Leia também <span class="referencia">Filipenses 2:9–11</span>
+                    e <span class="referencia">Colossenses 1:15–20</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 9 -->
+            <section class="pagina">
+                <h2>7. Uma Vida que Glorifica a Deus</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A declaração “Tua é a Glória” não deve permanecer somente
+                    em nossos lábios. Ela precisa influenciar a maneira como
+                    trabalhamos, servimos, falamos, tratamos as pessoas e
+                    conduzimos nossa vida.
+                </p>
+
+                <h3>7.1. Glorificar a Deus em tudo</h3>
+
+                <p>
+                    Paulo ensina que devemos fazer todas as coisas para a glória
+                    de Deus, inclusive nas atividades mais comuns da vida
+                    (<span class="referencia">1 Coríntios 10:31</span>).
+                </p>
+
+                <p>
+                    Também orienta que tudo o que fizermos, por palavra ou por obra,
+                    seja realizado em nome do Senhor Jesus, dando graças a Deus Pai
+                    (<span class="referencia">Colossenses 3:17</span>).
+                </p>
+
+                <p>
+                    O corpo do discípulo pertence ao Senhor e deve glorificá-lo
+                    (<span class="referencia">1 Coríntios 6:19–20</span>).
+                </p>
+
+                <h3>7.2. Boas obras que apontam para Deus</h3>
+
+                <p>
+                    Jesus ensina que a luz dos discípulos deve brilhar diante
+                    das pessoas, para que vejam suas boas obras e glorifiquem
+                    o Pai que está nos céus
+                    (<span class="referencia">Mateus 5:14–16</span>).
+                </p>
+
+                <p>
+                    O objetivo não é construir uma reputação pessoal, mas conduzir
+                    as pessoas ao reconhecimento da bondade e da grandeza de Deus.
+                </p>
+
+                <h3>7.3. O serviço cristão deve glorificar a Deus</h3>
+
+                <p>
+                    Pedro orienta que cada pessoa sirva conforme o dom recebido,
+                    para que Deus seja glorificado por meio de Jesus Cristo
+                    (<span class="referencia">1 Pedro 4:10–11</span>).
+                </p>
+
+                <p>
+                    Paulo afirma que não pregava a si mesmo, mas a Jesus Cristo
+                    como Senhor (<span class="referencia">2 Coríntios 4:5–7</span>).
+                    O ministério cristão não deve ser utilizado para exaltar
+                    o mensageiro, mas para anunciar Cristo.
+                </p>
+
+                <h3>7.4. O perigo de buscar a própria glória</h3>
+
+                <ul>
+                    <li>O orgulho precede a queda — <span class="referencia">Provérbios 16:18</span>.</li>
+                    <li>O louvor deve vir de Deus, não da autopromoção — <span class="referencia">Provérbios 27:2</span>.</li>
+                    <li>Jesus condena a prática religiosa feita para receber aplausos — <span class="referencia">Mateus 6:1–4</span>.</li>
+                    <li>João Batista reconhece a necessidade de Cristo crescer — <span class="referencia">João 3:27–30</span>.</li>
+                    <li>O discípulo deve agir com humildade — <span class="referencia">Filipenses 2:3–8</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    O verdadeiro serviço cristão não procura construir o nome
+                    do servo. Procura tornar conhecido o nome daquele a quem
+                    o servo pertence.
+                </div>
+            </section>
+
+            <!-- PÁGINA 10 -->
+            <section class="pagina">
+                <h2>8. Para Sempre</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A expressão “para sempre” declara a eternidade do governo
+                    de Deus. Seu Reino não está sujeito ao tempo, à decadência
+                    ou à substituição por outro poder.
+                </p>
+
+                <h3>8.1. Deus é eterno</h3>
+
+                <p>
+                    Moisés declara que o Senhor é Deus de eternidade a eternidade
+                    (<span class="referencia">Salmos 90:1–2</span>).
+                    Antes que os montes nascessem e antes da formação da terra,
+                    Deus já existia.
+                </p>
+
+                <p>
+                    O profeta Isaías afirma que o Senhor é o Deus eterno,
+                    Criador dos confins da terra, que não se cansa nem se fatiga
+                    (<span class="referencia">Isaías 40:28</span>).
+                </p>
+
+                <p>
+                    O Senhor é apresentado como aquele que habita a eternidade
+                    (<span class="referencia">Isaías 57:15</span>).
+                    Ele é o Rei eterno, imortal e invisível
+                    (<span class="referencia">1 Timóteo 1:17</span>).
+                </p>
+
+                <h3>8.2. O Reino de Deus não terá fim</h3>
+
+                <p>
+                    Daniel anuncia um Reino que jamais será destruído e que não
+                    passará a outro povo
+                    (<span class="referencia">Daniel 2:44</span>).
+                </p>
+
+                <p>
+                    A visão do Filho do Homem apresenta um domínio eterno,
+                    que não passará, e um Reino que não será destruído
+                    (<span class="referencia">Daniel 7:13–14</span>).
+                </p>
+
+                <p>
+                    O anjo anuncia que o Reino de Jesus não terá fim
+                    (<span class="referencia">Lucas 1:32–33</span>).
+                    O autor de Hebreus também fala de um Reino inabalável
+                    (<span class="referencia">Hebreus 12:28</span>).
+                </p>
+
+                <h3>8.3. Cristo reina para sempre</h3>
+
+                <p>
+                    O Apocalipse declara que o Reino pertence ao Senhor e ao seu
+                    Cristo, que reinará pelos séculos dos séculos
+                    (<span class="referencia">Apocalipse 11:15</span>).
+                </p>
+
+                <p>
+                    A visão final das Escrituras apresenta o trono de Deus e
+                    do Cordeiro, seus servos o servindo e reinando pelos séculos
+                    dos séculos (<span class="referencia">Apocalipse 22:3–5</span>).
+                </p>
+
+                <p>
+                    Leia também <span class="referencia">Salmos 145:13</span>,
+                    <span class="referencia">Jeremias 10:10</span>,
+                    <span class="referencia">Hebreus 1:8</span> e
+                    <span class="referencia">Apocalipse 1:8</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 11 -->
+            <section class="pagina">
+                <h2>9. A Esperança da Eternidade</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A eternidade do Reino de Deus oferece esperança aos discípulos.
+                    A história humana não termina no sofrimento, na injustiça
+                    ou na morte. As Escrituras apontam para a consumação dos
+                    propósitos divinos.
+                </p>
+
+                <h3>9.1. Uma esperança que ultrapassa esta vida</h3>
+
+                <p>
+                    Paulo ensina que os sofrimentos do tempo presente não podem
+                    ser comparados com a glória que será revelada
+                    (<span class="referencia">Romanos 8:18–25</span>).
+                </p>
+
+                <p>
+                    A esperança cristã não está limitada às circunstâncias
+                    passageiras. O apóstolo orienta a olhar para as coisas
+                    eternas, que não se veem, e não apenas para as temporais
+                    (<span class="referencia">2 Coríntios 4:16–18</span>).
+                </p>
+
+                <h3>9.2. A ressurreição e a vitória final</h3>
+
+                <p>
+                    Paulo apresenta a ressurreição dos mortos e a transformação
+                    dos que pertencem a Cristo
+                    (<span class="referencia">1 Coríntios 15:50–58</span>).
+                </p>
+
+                <p>
+                    A esperança da ressurreição também consola os discípulos
+                    diante da morte
+                    (<span class="referencia">1 Tessalonicenses 4:13–18</span>).
+                </p>
+
+                <p>
+                    Nossa cidadania está nos céus, de onde aguardamos o Salvador,
+                    que transformará nosso corpo
+                    (<span class="referencia">Filipenses 3:20–21</span>).
+                </p>
+
+                <h3>9.3. Novos céus e nova terra</h3>
+
+                <p>
+                    Pedro anuncia a esperança de novos céus e nova terra,
+                    nos quais habita a justiça
+                    (<span class="referencia">2 Pedro 3:13</span>).
+                </p>
+
+                <p>
+                    Apocalipse apresenta um novo céu e uma nova terra.
+                    Deus habitará com seu povo, e não haverá mais morte,
+                    pranto, clamor ou dor
+                    (<span class="referencia">Apocalipse 21:1–5</span>).
+                </p>
+
+                <p>
+                    Jesus também prometeu preparar lugar para os seus discípulos
+                    e voltar para recebê-los
+                    (<span class="referencia">João 14:1–3</span>).
+                </p>
+
+                <div class="destaque">
+                    Declarar “para sempre” é reconhecer que a fidelidade de Deus
+                    não termina com uma geração e que a esperança dos discípulos
+                    está firmada no Reino eterno do Senhor.
+                </div>
+
+                <h3>Leitura complementar</h3>
+                <ul>
+                    <li><span class="referencia">Salmos 102:25–27</span>.</li>
+                    <li><span class="referencia">Daniel 7:13–14</span>.</li>
+                    <li><span class="referencia">Hebreus 12:26–29</span>.</li>
+                    <li><span class="referencia">Apocalipse 21–22</span>.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 12 -->
+            <section class="pagina">
+                <h2>10. Amém</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A palavra “Amém” é uma expressão de confirmação, concordância
+                    e confiança. Sua origem está relacionada à ideia de firmeza,
+                    fidelidade e certeza.
+                </p>
+
+                <p>
+                    Quando o discípulo diz “Amém”, não está apenas encerrando
+                    uma frase. Está expressando concordância com aquilo que foi
+                    declarado diante de Deus e confiança naquele que é fiel.
+                </p>
+
+                <h3>10.1. O uso de Amém nas Escrituras</h3>
+
+                <p>
+                    No Antigo Testamento, o povo utilizava “Amém” para confirmar
+                    declarações e responder às palavras proclamadas
+                    (<span class="referencia">Deuteronômio 27:15–26</span>).
+                </p>
+
+                <p>
+                    Davi conclui uma expressão de louvor declarando:
+                    “Bendito seja o Senhor, Deus de Israel, de eternidade
+                    a eternidade”, e o povo responde “Amém”
+                    (<span class="referencia">1 Crônicas 16:36</span>).
+                </p>
+
+                <p>
+                    Na reunião do povo durante a leitura da Lei, a resposta
+                    “Amém” também expressa concordância e adoração
+                    (<span class="referencia">Neemias 8:5–6</span>).
+                </p>
+
+                <h3>10.2. Cristo e as promessas de Deus</h3>
+
+                <p>
+                    Paulo declara que todas as promessas de Deus encontram
+                    em Cristo o seu “sim”, e por meio dele o “Amém” é pronunciado
+                    para a glória de Deus
+                    (<span class="referencia">2 Coríntios 1:20</span>).
+                </p>
+
+                <p>
+                    Em Apocalipse, Jesus é apresentado como o Amém, a testemunha
+                    fiel e verdadeira
+                    (<span class="referencia">Apocalipse 3:14</span>).
+                </p>
+
+                <p>
+                    A palavra também aparece na conclusão das Escrituras
+                    (<span class="referencia">Apocalipse 22:20–21</span>).
+                </p>
+
+                <h3>10.3. Amém deve corresponder à nossa vida</h3>
+
+                <p>
+                    Jesus ensina que aquele que ouve suas palavras e as pratica
+                    é semelhante ao homem prudente que edificou sua casa sobre
+                    a rocha (<span class="referencia">Mateus 7:24–27</span>).
+                </p>
+
+                <p>
+                    A fé verdadeira não deve permanecer apenas na declaração
+                    verbal. Ela precisa produzir obediência e atitudes coerentes
+                    com a Palavra
+                    (<span class="referencia">Tiago 2:17–18</span>).
+                </p>
+
+                <div class="destaque">
+                    Dizer “Amém” é concordar com a verdade de Deus e confiar
+                    em sua fidelidade. Nossa vida também deve confirmar aquilo
+                    que confessamos com os lábios.
+                </div>
+            </section>
+
+            <!-- PÁGINA 13 -->
+            <section class="pagina">
+                <h2>11. A Oração Termina, a Adoração Continua</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A conclusão do Pai Nosso nos ensina que a oração não deve
+                    ser separada da vida cotidiana. O discípulo não deve buscar
+                    a Deus somente em momentos específicos, mas cultivar uma
+                    vida de comunhão, obediência e adoração.
+                </p>
+
+                <h3>Perseverança na oração</h3>
+
+                <p>
+                    Jesus ensinou sobre a necessidade de orar sempre e nunca
+                    desfalecer (<span class="referencia">Lucas 18:1</span>).
+                    Paulo orienta os discípulos a perseverarem na oração
+                    (<span class="referencia">Colossenses 4:2</span>) e a orarem
+                    sem cessar (<span class="referencia">1 Tessalonicenses 5:17</span>).
+                </p>
+
+                <h3>Adoração em toda a vida</h3>
+
+                <p>
+                    A vida cristã deve ser apresentada a Deus como sacrifício vivo,
+                    santo e agradável. Essa é uma forma de culto que envolve
+                    a existência inteira
+                    (<span class="referencia">Romanos 12:1–2</span>).
+                </p>
+
+                <p>
+                    Paulo também orienta a cantar salmos, hinos e cânticos
+                    espirituais, com gratidão no coração
+                    (<span class="referencia">Efésios 5:18–20</span>).
+                </p>
+
+                <h3>Uma vida de gratidão</h3>
+
+                <p>
+                    A gratidão deve acompanhar a oração e a súplica
+                    (<span class="referencia">Filipenses 4:6–7</span>).
+                    O discípulo é chamado a dar graças em todas as circunstâncias
+                    (<span class="referencia">1 Tessalonicenses 5:18</span>).
+                </p>
+
+                <p>
+                    O autor de Hebreus ensina que devemos oferecer continuamente
+                    sacrifício de louvor a Deus, fruto de lábios que confessam
+                    seu nome (<span class="referencia">Hebreus 13:15–16</span>).
+                </p>
+
+                <h3>Uma vida de vigilância</h3>
+
+                <p>
+                    A oração também está relacionada à vigilância espiritual.
+                    Paulo orienta a orar em todo tempo no Espírito
+                    (<span class="referencia">Efésios 6:18</span>).
+                    Jesus chama seus discípulos a vigiar e orar
+                    (<span class="referencia">Mateus 26:41</span>).
+                </p>
+
+                <div class="destaque">
+                    A oração pode terminar com a palavra “Amém”, mas a vida
+                    de comunhão com Deus deve continuar em nossas escolhas,
+                    palavras, relacionamentos e atitudes.
+                </div>
+            </section>
+
+            <!-- PÁGINA 14 -->
+            <section class="pagina">
+                <h2>12. Aplicações Práticas</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O estudo da doxologia final do Pai Nosso nos conduz a atitudes
+                    concretas. Reconhecer que o Reino, o poder e a glória pertencem
+                    a Deus deve produzir uma vida coerente com essa confissão.
+                </p>
+
+                <ol>
+                    <li>
+                        <strong>Reconheça a soberania de Deus:</strong>
+                        coloque suas decisões e prioridades diante do Senhor.
+                        Leia <span class="referencia">Provérbios 3:5–6</span>.
+                    </li>
+
+                    <li>
+                        <strong>Busque primeiro o Reino:</strong>
+                        não permita que preocupações e interesses pessoais
+                        ocupem o lugar da vontade de Deus.
+                        Leia <span class="referencia">Mateus 6:33</span>.
+                    </li>
+
+                    <li>
+                        <strong>Confie no poder divino:</strong>
+                        apresente suas limitações ao Senhor e dependa de sua graça.
+                        Leia <span class="referencia">2 Coríntios 12:9</span>.
+                    </li>
+
+                    <li>
+                        <strong>Glorifique a Deus em suas atitudes:</strong>
+                        procure honrar o Senhor no trabalho, na família,
+                        no serviço e nos relacionamentos.
+                        Leia <span class="referencia">Colossenses 3:17</span>.
+                    </li>
+
+                    <li>
+                        <strong>Sirva com humildade:</strong>
+                        utilize os dons recebidos para edificar outras pessoas.
+                        Leia <span class="referencia">1 Pedro 4:10–11</span>.
+                    </li>
+
+                    <li>
+                        <strong>Não busque reconhecimento pessoal:</strong>
+                        permita que suas boas obras conduzam outras pessoas
+                        a glorificar o Pai.
+                        Leia <span class="referencia">Mateus 5:16</span>.
+                    </li>
+
+                    <li>
+                        <strong>Viva com esperança eterna:</strong>
+                        não coloque sua confiança apenas nas coisas passageiras.
+                        Leia <span class="referencia">2 Coríntios 4:16–18</span>.
+                    </li>
+
+                    <li>
+                        <strong>Permaneça na oração:</strong>
+                        desenvolva uma vida constante de comunhão com Deus.
+                        Leia <span class="referencia">Colossenses 4:2</span>.
+                    </li>
+
+                    <li>
+                        <strong>Confirme sua fé com atitudes:</strong>
+                        pratique aquilo que aprende nas Escrituras.
+                        Leia <span class="referencia">Tiago 1:22</span>.
+                    </li>
+
+                    <li>
+                        <strong>Adore a Deus continuamente:</strong>
+                        faça de sua vida uma expressão de gratidão e louvor.
+                        Leia <span class="referencia">Hebreus 13:15–16</span>.
+                    </li>
+                </ol>
+            </section>
+
+            <!-- PÁGINA 15 -->
+            <section class="pagina">
+                <h2>13. Síntese da Doxologia</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A conclusão tradicional do Pai Nosso reúne verdades fundamentais
+                    sobre Deus e sobre a maneira como seus discípulos devem viver.
+                </p>
+
+                <h3>Teu é o Reino</h3>
+                <p>
+                    Deus governa sobre toda a criação. Seu Reino é eterno e sua
+                    autoridade deve orientar a vida dos discípulos.
+                    Referências: <span class="referencia">Salmos 103:19</span>;
+                    <span class="referencia">Daniel 7:13–14</span>;
+                    <span class="referencia">Mateus 6:33</span>.
+                </p>
+
+                <h3>Teu é o Poder</h3>
+                <p>
+                    Deus é o Criador e sustentador de todas as coisas. Seu poder
+                    salva, transforma, fortalece e capacita seus filhos.
+                    Referências: <span class="referencia">Jeremias 32:17</span>;
+                    <span class="referencia">Efésios 3:20–21</span>;
+                    <span class="referencia">Atos 1:8</span>.
+                </p>
+
+                <h3>Tua é a Glória</h3>
+                <p>
+                    Deus é digno de toda honra e adoração. Nossa vida deve apontar
+                    para sua grandeza, sem buscar exaltação pessoal.
+                    Referências: <span class="referencia">Isaías 42:8</span>;
+                    <span class="referencia">1 Coríntios 10:31</span>;
+                    <span class="referencia">Apocalipse 4:11</span>.
+                </p>
+
+                <h3>Para Sempre</h3>
+                <p>
+                    Deus é eterno e seu Reino jamais será destruído. Nossa esperança
+                    está firmada em sua promessa e na consumação de seu Reino.
+                    Referências: <span class="referencia">Salmos 90:1–2</span>;
+                    <span class="referencia">Daniel 2:44</span>;
+                    <span class="referencia">Apocalipse 22:3–5</span>.
+                </p>
+
+                <h3>Amém</h3>
+                <p>
+                    Expressa confirmação, concordância e confiança. Nossa confissão
+                    deve corresponder a uma vida de fé e obediência.
+                    Referências: <span class="referencia">2 Coríntios 1:20</span>;
+                    <span class="referencia">Mateus 7:24–27</span>;
+                    <span class="referencia">Apocalipse 22:20–21</span>.
+                </p>
+
+                <div class="destaque">
+                    Reino, poder e glória pertencem ao Senhor. Nossa resposta
+                    é viver em submissão, confiança, gratidão e adoração.
+                </div>
+            </section>
+
+            <!-- PÁGINA 16 -->
+            <section class="pagina">
+                <h2>14. Questões para Reflexão</h2>
+                <div class="linha-dourada"></div>
+
+                <div class="questionario">
+                    <ol>
+                        <li>O que significa a expressão “doxologia”?</li>
+                        <li>Por que a oração termina com uma declaração de adoração?</li>
+                        <li>O que significa afirmar que o Reino pertence a Deus?</li>
+                        <li>Como o governo de Deus deve influenciar nossas escolhas?</li>
+                        <li>Qual é a relação entre o Reino de Deus e o ministério de Jesus?</li>
+                        <li>O que significa reconhecer que o poder pertence ao Senhor?</li>
+                        <li>Como o poder de Deus se manifesta na transformação do discípulo?</li>
+                        <li>Por que a glória deve ser atribuída exclusivamente a Deus?</li>
+                        <li>Como podemos glorificar a Deus em nossas atividades diárias?</li>
+                        <li>Qual é o perigo de buscar reconhecimento pessoal no serviço cristão?</li>
+                        <li>O que a expressão “para sempre” ensina sobre o Reino de Deus?</li>
+                        <li>Como a esperança da eternidade fortalece o discípulo?</li>
+                        <li>Qual é o significado da palavra “Amém”?</li>
+                        <li>Como nossas atitudes podem confirmar aquilo que confessamos?</li>
+                        <li>De que maneira a adoração deve continuar depois que a oração termina?</li>
+                    </ol>
+                </div>
+
+                <h3>Desafio espiritual — 7 dias</h3>
+
+                <ol>
+                    <li>
+                        Leia <span class="referencia">1 Crônicas 29:10–13</span>
+                        e reconheça a soberania de Deus.
+                    </li>
+                    <li>
+                        Leia <span class="referencia">Salmos 103:19–22</span>
+                        e medite sobre o governo do Senhor.
+                    </li>
+                    <li>
+                        Leia <span class="referencia">Jeremias 32:17</span>
+                        e apresente suas limitações a Deus.
+                    </li>
+                    <li>
+                        Leia <span class="referencia">1 Coríntios 10:31</span>
+                        e examine suas atitudes diárias.
+                    </li>
+                    <li>
+                        Leia <span class="referencia">Daniel 7:13–14</span>
+                        e medite sobre o Reino eterno.
+                    </li>
+                    <li>
+                        Leia <span class="referencia">2 Coríntios 1:20</span>
+                        e agradeça pelas promessas de Deus em Cristo.
+                    </li>
+                    <li>
+                        Leia <span class="referencia">Apocalipse 22:1–5</span>
+                        e encerre a semana em adoração.
+                    </li>
+                </ol>
+            </section>
+
+            <!-- PÁGINA 17 -->
+            <section class="pagina">
+                <h2>15. Leitura Bíblica Complementar</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Para aprofundar o conteúdo desta aula, recomendamos a leitura
+                    dos seguintes textos, organizados conforme os temas estudados.
+                </p>
+
+                <h3>O Reino de Deus</h3>
+                <ul>
+                    <li><span class="referencia">Salmos 47</span>.</li>
+                    <li><span class="referencia">Salmos 93</span>.</li>
+                    <li><span class="referencia">Salmos 103:19–22</span>.</li>
+                    <li><span class="referencia">Daniel 2:20–22</span>.</li>
+                    <li><span class="referencia">Daniel 7:13–14</span>.</li>
+                    <li><span class="referencia">Mateus 6:25–34</span>.</li>
+                    <li><span class="referencia">Colossenses 1:13–20</span>.</li>
+                </ul>
+
+                <h3>O Poder de Deus</h3>
+                <ul>
+                    <li><span class="referencia">Gênesis 1</span>.</li>
+                    <li><span class="referencia">Êxodo 14</span>.</li>
+                    <li><span class="referencia">Jó 42:1–2</span>.</li>
+                    <li><span class="referencia">Isaías 40:25–31</span>.</li>
+                    <li><span class="referencia">Jeremias 32:17–27</span>.</li>
+                    <li><span class="referencia">Efésios 1:15–23</span>.</li>
+                    <li><span class="referencia">Efésios 3:14–21</span>.</li>
+                </ul>
+
+                <h3>A Glória de Deus</h3>
+                <ul>
+                    <li><span class="referencia">Êxodo 15:1–18</span>.</li>
+                    <li><span class="referencia">Isaías 6:1–8</span>.</li>
+                    <li><span class="referencia">Isaías 42:5–9</span>.</li>
+                    <li><span class="referencia">João 1:1–18</span>.</li>
+                    <li><span class="referencia">1 Coríntios 10:23–33</span>.</li>
+                    <li><span class="referencia">Apocalipse 4–5</span>.</li>
+                </ul>
+
+                <h3>A Eternidade e o Amém</h3>
+                <ul>
+                    <li><span class="referencia">Salmos 90</span>.</li>
+                    <li><span class="referencia">Salmos 145</span>.</li>
+                    <li><span class="referencia">2 Coríntios 1:18–22</span>.</li>
+                    <li><span class="referencia">1 Coríntios 15:50–58</span>.</li>
+                    <li><span class="referencia">2 Pedro 3:8–13</span>.</li>
+                    <li><span class="referencia">Apocalipse 21–22</span>.</li>
+                </ul>
+            </section>
+
+            <!-- PÁGINA 18 -->
+            <section class="pagina">
+                <h2>16. Conclusão</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A doxologia final do Pai Nosso nos conduz a uma visão ampla
+                    da grandeza de Deus. Depois de apresentar as necessidades
+                    humanas, Jesus nos ensina a reconhecer a soberania, o poder
+                    e a glória do Pai.
+                </p>
+
+                <p>
+                    O Reino pertence ao Senhor. Ele governa sobre toda a criação,
+                    estabelece sua vontade e conduz a história segundo seus
+                    propósitos eternos.
+                </p>
+
+                <p>
+                    O poder pertence ao Senhor. Ele criou todas as coisas,
+                    sustenta a vida, salva os que creem e capacita seus filhos
+                    para viverem segundo sua Palavra.
+                </p>
+
+                <p>
+                    A glória pertence ao Senhor. Ele é digno de adoração,
+                    e nossa vida deve refletir sua grandeza. O serviço cristão
+                    não deve promover a exaltação humana, mas apontar para Cristo.
+                </p>
+
+                <p>
+                    Seu Reino permanece para sempre. Nossa esperança não está
+                    limitada às circunstâncias presentes, mas firmada na promessa
+                    de Deus e na eternidade que Ele preparou.
+                </p>
+
+                <p>
+                    Finalmente, dizemos “Amém” como expressão de concordância,
+                    confiança e fé. Que nossas palavras sejam acompanhadas
+                    por uma vida de obediência, gratidão e adoração.
+                </p>
+
+                <div class="destaque">
+                    Teu é o Reino, porque tu governas.<br>
+                    Teu é o Poder, porque tudo depende de ti.<br>
+                    Tua é a Glória, porque somente tu és digno.<br>
+                    Para sempre, porque és eterno.<br>
+                    Amém, porque confiamos em tua fidelidade.
+                </div>
+
+                <h3>Oração final</h3>
+
+                <p>
+                    Pai eterno, reconhecemos que teu é o Reino, o poder e a glória.
+                    Tu és soberano sobre todas as coisas, Criador dos céus e da terra,
+                    e digno de toda honra e adoração.
+                </p>
+
+                <p>
+                    Ensina-nos a viver debaixo do teu governo. Que nossas escolhas
+                    sejam conduzidas por tua Palavra e que nossas atitudes
+                    glorifiquem o teu nome. Fortalece-nos pelo teu Espírito,
+                    ajuda-nos a confiar em teu poder e sustenta nossa esperança
+                    nas tuas promessas.
+                </p>
+
+                <p>
+                    Livra-nos do orgulho, da busca por reconhecimento e de tudo
+                    aquilo que tenta ocupar o lugar que pertence somente a ti.
+                    Que nossa vida seja uma expressão de gratidão, serviço,
+                    fidelidade e adoração.
+                </p>
+
+                <p>
+                    Tu és o Rei eterno. Teu Reino não terá fim. A ti sejam
+                    a honra, a majestade, o domínio e a glória para sempre.
+                    Em nome de Jesus. Amém!
+                </p>
+            </section>
+
+            <!-- PÁGINA 19 -->
+            <section class="pagina">
+                <h2>Encerramento da Série</h2>
+                <div class="linha-dourada"></div>
+
+                <h3>O Pai Nosso</h3>
+
+                <p>
+                    Ao longo desta série, estudamos a oração ensinada por Jesus,
+                    observando seus fundamentos e suas implicações para a vida
+                    de comunhão com Deus.
+                </p>
+
+                <p>
+                    Aprendemos que a oração começa com o reconhecimento de Deus
+                    como Pai, passa pela santificação de seu nome, pelo desejo
+                    de seu Reino e pela submissão à sua vontade.
+                </p>
+
+                <p>
+                    Também examinamos a dependência da provisão divina, a
+                    importância do perdão, a necessidade de vigilância e o pedido
+                    de livramento do mal.
+                </p>
+
+                <p>
+                    Nesta última aula, concluímos reconhecendo que o Reino,
+                    o poder e a glória pertencem ao Senhor para sempre.
+                </p>
+
+                <div class="destaque">
+                    O Pai Nosso não deve ser apenas uma oração que conhecemos
+                    de memória. Seus princípios devem orientar nossa comunhão
+                    com Deus e nossa maneira de viver.
+                </div>
+
+                <h3>Textos para guardar no coração</h3>
+
+                <ul>
+                    <li><span class="referencia">Mateus 6:9–13</span> — O modelo de oração ensinado por Jesus.</li>
+                    <li><span class="referencia">1 Crônicas 29:11</span> — A grandeza e o domínio pertencem ao Senhor.</li>
+                    <li><span class="referencia">Romanos 11:36</span> — Todas as coisas são dele, por Ele e para Ele.</li>
+                    <li><span class="referencia">Apocalipse 11:15</span> — O Reino eterno do Senhor e de Cristo.</li>
+                </ul>
+
+                <div style="text-align:center; margin-top:55px;">
+                    <p style="font-family:'Cinzel',serif; color:#9a702c; font-size:17px; text-align:center;">
+                        ESCOLA BÍBLICA ATALAIA
+                    </p>
+                    <p style="font-size:16px; text-align:center;">
+                        Proclamando a Verdade. Formando Discípulos.
+                    </p>
+                    <p style="font-size:15px; text-align:center; margin-top:18px;">
+                        Ministério Atalaia
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div class="progresso">
+        <div id="barraProgresso"></div>
+    </div>
+
+    <nav class="controles">
+        <button id="anterior" onclick="mudarPagina(-1)">&#8592; Anterior</button>
+        <span id="contador">Página 1 de 19</span>
+        <button id="proxima" onclick="mudarPagina(1)">Próxima &#8594;</button>
+    </nav>
+
+    <footer>
+        <p><strong>MINISTÉRIO ATALAIA</strong></p>
+        <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+        <p>Proclamando a Verdade. Formando Discípulos.</p>
+    </footer>
+
+    <!-- JANELA DE TEXTO BÍBLICO -->
+    <div class="modal" id="modalBiblia" onclick="fecharSeFora(event)">
+        <div class="modal-conteudo">
+            <button class="fechar-modal" onclick="fecharBiblia()" aria-label="Fechar">×</button>
+
+            <div class="modal-topo">
+                <h2 id="tituloReferencia">Texto bíblico</h2>
+            </div>
+
+            <div id="textoBiblico">
+                Carregando texto bíblico...
+            </div>
+
+            <div class="aviso-modal">
+                Texto bíblico consultado pela API Bible. A tradução disponível
+                depende da disponibilidade do serviço.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================
+           NAVEGAÇÃO DO FLIPBOOK
+        ========================================== */
+
+        const paginas = document.querySelectorAll(".pagina");
+        const contador = document.getElementById("contador");
+        const botaoAnterior = document.getElementById("anterior");
+        const botaoProxima = document.getElementById("proxima");
+        const barraProgresso = document.getElementById("barraProgresso");
+
+        let paginaAtual = 0;
+
+        function atualizarFlipbook() {
+            paginas.forEach((pagina, indice) => {
+                pagina.classList.toggle("ativa", indice === paginaAtual);
+            });
+
+            contador.textContent =
+                `Página ${paginaAtual + 1} de ${paginas.length}`;
+
+            botaoAnterior.disabled = paginaAtual === 0;
+            botaoProxima.disabled = paginaAtual === paginas.length - 1;
+
+            const progresso =
+                ((paginaAtual + 1) / paginas.length) * 100;
+
+            barraProgresso.style.width = progresso + "%";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function mudarPagina(direcao) {
+            const novaPagina = paginaAtual + direcao;
+
+            if (novaPagina >= 0 && novaPagina < paginas.length) {
+                paginaAtual = novaPagina;
+                atualizarFlipbook();
+            }
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (modalBiblia.classList.contains("aberto")) {
+                if (event.key === "Escape") fecharBiblia();
+                return;
+            }
+
+            if (event.key === "ArrowRight") mudarPagina(1);
+            if (event.key === "ArrowLeft") mudarPagina(-1);
+        });
+
+        atualizarFlipbook();
+
+
+        /* ==========================================
+           REFERÊNCIAS BÍBLICAS CLICÁVEIS
+        ========================================== */
+
+        const modalBiblia = document.getElementById("modalBiblia");
+        const tituloReferencia = document.getElementById("tituloReferencia");
+        const textoBiblico = document.getElementById("textoBiblico");
+
+        document.querySelectorAll(".referencia").forEach(elemento => {
+            elemento.setAttribute("role", "button");
+            elemento.setAttribute("tabindex", "0");
+            elemento.setAttribute("title", "Clique para consultar o texto bíblico");
+
+            elemento.addEventListener("click", function () {
+                consultarBiblia(this.textContent.trim());
+            });
+
+            elemento.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    consultarBiblia(this.textContent.trim());
+                }
+            });
+        });
+
+
+        /* ==========================================
+           NOMES DOS LIVROS — PORTUGUÊS PARA INGLÊS
+        ========================================== */
+
+        const livrosBiblia = {
+            "genesis": "Genesis",
+            "gênesis": "Genesis",
+            "exodo": "Exodus",
+            "êxodo": "Exodus",
+            "levitico": "Leviticus",
+            "levítico": "Leviticus",
+            "numeros": "Numbers",
+            "números": "Numbers",
+            "deuteronomio": "Deuteronomy",
+            "deuteronômio": "Deuteronomy",
+            "josue": "Joshua",
+            "josué": "Joshua",
+            "juizes": "Judges",
+            "juízes": "Judges",
+            "rute": "Ruth",
+            "1 samuel": "1 Samuel",
+            "2 samuel": "2 Samuel",
+            "1 reis": "1 Kings",
+            "2 reis": "2 Kings",
+            "1 cronicas": "1 Chronicles",
+            "1 crônicas": "1 Chronicles",
+            "2 cronicas": "2 Chronicles",
+            "2 crônicas": "2 Chronicles",
+            "esdras": "Ezra",
+            "neemias": "Nehemiah",
+            "ester": "Esther",
+            "jo": "Job",
+            "jó": "Job",
+            "salmos": "Psalms",
+            "salmo": "Psalms",
+            "proverbios": "Proverbs",
+            "provérbios": "Proverbs",
+            "eclesiastes": "Ecclesiastes",
+            "cantares": "Song of Solomon",
+            "canticos": "Song of Solomon",
+            "cânticos": "Song of Solomon",
+            "isaias": "Isaiah",
+            "isaías": "Isaiah",
+            "jeremias": "Jeremiah",
+            "lamentacoes": "Lamentations",
+            "lamentações": "Lamentations",
+            "ezequiel": "Ezekiel",
+            "daniel": "Daniel",
+            "oseias": "Hosea",
+            "oséias": "Hosea",
+            "joel": "Joel",
+            "amos": "Amos",
+            "amós": "Amos",
+            "obadias": "Obadiah",
+            "jonas": "Jonah",
+            "miqueias": "Micah",
+            "miquéias": "Micah",
+            "naum": "Nahum",
+            "habacuque": "Habakkuk",
+            "sofonias": "Zephaniah",
+            "ageu": "Haggai",
+            "zacarias": "Zechariah",
+            "malaquias": "Malachi",
+            "malaquías": "Malachi",
+
+            "mateus": "Matthew",
+            "marcos": "Mark",
+            "lucas": "Luke",
+            "joao": "John",
+            "joão": "John",
+            "atos": "Acts",
+            "romanos": "Romans",
+            "1 corintios": "1 Corinthians",
+            "1 coríntios": "1 Corinthians",
+            "2 corintios": "2 Corinthians",
+            "2 coríntios": "2 Corinthians",
+            "galatas": "Galatians",
+            "gálatas": "Galatians",
+            "efesios": "Ephesians",
+            "efésios": "Ephesians",
+            "filipenses": "Philippians",
+            "colossenses": "Colossians",
+            "1 tessalonicenses": "1 Thessalonians",
+            "2 tessalonicenses": "2 Thessalonians",
+            "1 timoteo": "1 Timothy",
+            "1 timóteo": "1 Timothy",
+            "2 timoteo": "2 Timothy",
+            "2 timóteo": "2 Timothy",
+            "tito": "Titus",
+            "filemom": "Philemon",
+            "hebreus": "Hebrews",
+            "tiago": "James",
+            "1 pedro": "1 Peter",
+            "2 pedro": "2 Peter",
+            "1 joao": "1 John",
+            "1 joão": "1 John",
+            "2 joao": "2 John",
+            "2 joão": "2 John",
+            "3 joao": "3 John",
+            "3 joão": "3 John",
+            "judas": "Jude",
+            "apocalipse": "Revelation"
+        };
+
+
+        /* ==========================================
+           NORMALIZAR REFERÊNCIA
+        ========================================== */
+
+        function normalizarReferencia(referencia) {
+            referencia = referencia
+                .replace(/[–—−]/g, "-")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            /*
+              Exemplos aceitos:
+              Mateus 6:9-13
+              Salmos 90
+              Mateus 5-7
+              1 Crônicas 29:10-13
+              Apocalipse 21:1-5
+            */
+
+            const resultado = referencia.match(/^(.+?)\s+(\d+(?:-\d+)?)(?::([\d,-]+))?$/);
+
+            if (!resultado) {
+                throw new Error("Formato de referência não reconhecido.");
+            }
+
+            const nomeLivro = resultado[1].trim().toLowerCase();
+            const capitulo = resultado[2];
+            const versiculos = resultado[3] || null;
+
+            const livroIngles = livrosBiblia[nomeLivro];
+
+            if (!livroIngles) {
+                throw new Error("Livro bíblico não reconhecido: " + nomeLivro);
+            }
+
+            return {
+                livro: livroIngles,
+                capitulo: capitulo,
+                versiculos: versiculos
+            };
+        }
+
+
+        /* ==========================================
+           CONSULTAR CAPÍTULO OU VERSÍCULOS
+        ========================================== */
+
+        async function buscarCapitulo(livro, capitulo, versiculos = null) {
+            let referencia = `${livro} ${capitulo}`;
+
+            if (versiculos) {
+                referencia += `:${versiculos}`;
+            }
+
+            const url =
+                "https://bible-api.com/" +
+                encodeURIComponent(referencia) +
+                "?translation=almeida";
+
+            const resposta = await fetch(url);
+
+            if (!resposta.ok) {
+                throw new Error("Erro ao consultar " + referencia);
+            }
+
+            const dados = await resposta.json();
+
+            if (!dados.verses || !Array.isArray(dados.verses)) {
+                throw new Error("A API não retornou os versículos.");
+            }
+
+            return dados;
+        }
+
+
+        /* ==========================================
+           EXIBIR TEXTO BÍBLICO NO POPUP
+        ========================================== */
+
+        async function consultarBiblia(referencia) {
+            modalBiblia.classList.add("aberto");
+            tituloReferencia.textContent = referencia;
+            textoBiblico.textContent = "Carregando texto bíblico...";
+
+            try {
+                const dadosReferencia = normalizarReferencia(referencia);
+                let resultados = [];
+
+                /*
+                  Referência de capítulos consecutivos:
+                  Exemplo: Mateus 5-7
+                */
+
+                if (
+                    !dadosReferencia.versiculos &&
+                    dadosReferencia.capitulo.includes("-")
+                ) {
+                    const partes = dadosReferencia.capitulo.split("-");
+                    const inicio = Number(partes[0]);
+                    const fim = Number(partes[1]);
+
+                    if (
+                        !Number.isInteger(inicio) ||
+                        !Number.isInteger(fim) ||
+                        fim < inicio ||
+                        fim - inicio > 10
+                    ) {
+                        throw new Error("Intervalo de capítulos inválido.");
+                    }
+
+                    for (let cap = inicio; cap <= fim; cap++) {
+                        const dados = await buscarCapitulo(
+                            dadosReferencia.livro,
+                            cap
+                        );
+
+                        resultados.push(dados);
+                    }
+
+                } else {
+                    const dados = await buscarCapitulo(
+                        dadosReferencia.livro,
+                        dadosReferencia.capitulo,
+                        dadosReferencia.versiculos
+                    );
+
+                    resultados.push(dados);
+                }
+
+                textoBiblico.innerHTML = "";
+
+                resultados.forEach(dados => {
+                    if (dados.reference) {
+                        const subtitulo = document.createElement("h3");
+
+                        subtitulo.textContent = dados.reference;
+
+                        subtitulo.style.cssText = `
+                            font-family: Cinzel, serif;
+                            color: #102d4e;
+                            font-size: 16px;
+                            margin: 15px 0;
+                        `;
+
+                        textoBiblico.appendChild(subtitulo);
+                    }
+
+                    dados.verses.forEach(versiculo => {
+                        const linha = document.createElement("p");
+                        linha.className = "versiculo";
+
+                        const numero = document.createElement("strong");
+                        numero.className = "numero-versiculo";
+                        numero.textContent = versiculo.verse + ".";
+
+                        const texto = document.createTextNode(
+                            " " + versiculo.text.trim()
+                        );
+
+                        linha.appendChild(numero);
+                        linha.appendChild(texto);
+                        textoBiblico.appendChild(linha);
+                    });
+                });
+
+                const identificacao = document.createElement("p");
+
+                identificacao.style.cssText = `
+                    margin-top: 20px;
+                    padding-top: 12px;
+                    border-top: 1px solid #ddd;
+                    font-size: 13px;
+                    color: #777;
+                `;
+
+                identificacao.textContent =
+                    "Tradução: João Ferreira de Almeida. A disponibilidade do texto depende do serviço consultado.";
+
+                textoBiblico.appendChild(identificacao);
+
+            } catch (erro) {
+                console.error("Erro na consulta bíblica:", erro);
+
+                textoBiblico.textContent =
+                    "Não foi possível carregar os versículos desta referência. " +
+                    "Verifique sua conexão com a internet e tente novamente. " +
+                    "Referência: " + referencia;
+            }
+        }
+
+
+        /* ==========================================
+           FECHAR POPUP
+        ========================================== */
+
+        function fecharBiblia() {
+            modalBiblia.classList.remove("aberto");
+        }
+
+        function fecharSeFora(event) {
+            if (event.target === modalBiblia) {
+                fecharBiblia();
+            }
+        }
+    </script>
+
+</body>
+</html>

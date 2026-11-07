@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 10 — Livra-nos do Mal | Escola Bíblica Atalaia</title>
+
+    <meta name="description"
+        content="Estudo bíblico aprofundado sobre o pedido Livra-nos do mal, com referências bíblicas clicáveis e textos em janelas de leitura.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --azul: #071b33;
+            --azul-claro: #102d4e;
+            --dourado: #c9a45c;
+            --papel: #fffdf7;
+            --texto: #293443;
+            --cinza: #e8e5dc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #e9edf2;
+            color: var(--texto);
+            font-family: "Crimson Text", Georgia, serif;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+            color: white;
+            text-align: center;
+            padding: 25px 15px 22px;
+            border-bottom: 4px solid var(--dourado);
+        }
+
+        header .ministerio {
+            font-family: "Cinzel", serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--dourado);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: "Cinzel", serif;
+            font-size: clamp(23px, 4vw, 34px);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+            color: #e4e8ed;
+        }
+
+        .identificacao {
+            margin-top: 12px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--dourado);
+        }
+
+        .instrucoes {
+            text-align: center;
+            padding: 15px 10px 5px;
+            color: #536173;
+            font-size: 16px;
+        }
+
+        .instrucoes strong {
+            color: var(--azul);
+        }
+
+        .flipbook-area {
+            width: 100%;
+            padding: 20px 12px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .livro {
+            width: min(100%, 850px);
+            min-height: 570px;
+            position: relative;
+            perspective: 1800px;
+        }
+
+        .pagina {
+            display: none;
+            width: 100%;
+            min-height: 570px;
+            background: var(--papel);
+            border: 1px solid #ded8c9;
+            border-radius: 5px;
+            padding: clamp(25px, 5vw, 55px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .13);
+            animation: aparecer .35s ease;
+            position: relative;
+        }
+
+        .pagina.ativa {
+            display: block;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: .3;
+                transform: rotateY(-3deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+
+        .pagina::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--dourado), #ead9b4, var(--dourado));
+            opacity: .75;
+        }
+
+        .pagina h2 {
+            font-family: "Cinzel", serif;
+            color: var(--azul);
+            font-size: clamp(20px, 3vw, 27px);
+            line-height: 1.35;
+            margin-bottom: 12px;
+        }
+
+        .pagina h3 {
+            font-family: "Cinzel", serif;
+            font-size: 18px;
+            color: var(--azul-claro);
+            margin: 25px 0 10px;
+        }
+
+        .pagina h4 {
+            font-size: 19px;
+            color: #8a682e;
+            margin: 18px 0 7px;
+        }
+
+        .pagina p {
+            font-size: 19px;
+            line-height: 1.65;
+            margin-bottom: 13px;
+            text-align: justify;
+        }
+
+        .pagina ul,
+        .pagina ol {
+            margin: 10px 0 18px 25px;
+        }
+
+        .pagina li {
+            font-size: 18px;
+            line-height: 1.55;
+            margin-bottom: 7px;
+        }
+
+        .linha-dourada {
+            width: 75px;
+            height: 3px;
+            background: var(--dourado);
+            margin: 15px 0 22px;
+        }
+
+        .texto-base {
+            background: #f4f0e6;
+            border-left: 4px solid var(--dourado);
+            padding: 15px 18px;
+            margin: 18px 0;
+        }
+
+        .texto-base p {
+            margin-bottom: 5px;
+        }
+
+        .destaque {
+            background: #f4f0e6;
+            border-left: 4px solid var(--dourado);
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 19px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .referencia {
+            color: #986d22;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            white-space: normal;
+        }
+
+        .referencia:hover {
+            color: #c18a28;
+            text-decoration-style: solid;
+        }
+
+        .capa {
+            min-height: 570px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(7, 27, 51, .96), rgba(7, 27, 51, .98));
+            color: white;
+            border: 5px double var(--dourado);
+        }
+
+        .capa::before {
+            display: none;
+        }
+
+        .capa .marca {
+            color: var(--dourado);
+            font-family: "Cinzel", serif;
+            letter-spacing: 5px;
+            font-size: 14px;
+            margin-bottom: 45px;
+        }
+
+        .capa h2 {
+            color: white;
+            font-size: clamp(30px, 6vw, 45px);
+            margin-bottom: 18px;
+        }
+
+        .capa .subtitulo {
+            max-width: 570px;
+            font-size: 21px;
+            color: #e5e8ec;
+            text-align: center;
+        }
+
+        .capa .aula {
+            margin-top: 45px;
+            color: var(--dourado);
+            font-family: "Cinzel", serif;
+            font-size: 15px;
+            letter-spacing: 3px;
+        }
+
+        .capa .escola {
+            margin-top: 55px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #d5dbe2;
+        }
+
+        .rodape-pagina {
+            position: absolute;
+            bottom: 18px;
+            right: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #9b927f;
+        }
+
+        .controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 0 15px 25px;
+        }
+
+        .controles button {
+            border: none;
+            background: var(--azul);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .controles button:hover {
+            background: var(--azul-claro);
+        }
+
+        .controles button:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        #contador {
+            color: var(--azul);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            min-width: 105px;
+            text-align: center;
+        }
+
+        .progresso {
+            width: min(500px, 85%);
+            height: 5px;
+            background: #d5dbe2;
+            margin: 0 auto 25px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progresso div {
+            height: 100%;
+            width: 0;
+            background: var(--dourado);
+            transition: width .3s;
+        }
+
+        .questionario {
+            background: #f4f0e6;
+            border: 1px solid #e0d6c3;
+            padding: 16px;
+            margin: 18px 0;
+        }
+
+        .questionario p {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: var(--azul);
+            color: #dce2e9;
+            text-align: center;
+            padding: 22px 12px;
+            border-top: 3px solid var(--dourado);
+            font-size: 15px;
+        }
+
+        footer strong {
+            color: var(--dourado);
+        }
+
+        /* POPUP BÍBLICO */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0, 0, 0, .72);
+            padding: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.aberto {
+            display: flex;
+        }
+
+        .modal-conteudo {
+            width: min(650px, 100%);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: var(--papel);
+            border-radius: 7px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .35);
+            padding: 25px;
+            position: relative;
+            animation: modalEntrada .25s ease;
+        }
+
+        @keyframes modalEntrada {
+            from {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-topo {
+            border-bottom: 2px solid var(--dourado);
+            padding-bottom: 12px;
+            margin-bottom: 17px;
+            padding-right: 35px;
+        }
+
+        .modal-topo h2 {
+            color: var(--azul);
+            font-family: "Cinzel", serif;
+            font-size: 21px;
+        }
+
+        .fechar-modal {
+            position: absolute;
+            right: 17px;
+            top: 13px;
+            border: none;
+            background: var(--azul);
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #textoBiblico {
+            font-size: 19px;
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        #textoBiblico .versiculo {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        #textoBiblico .numero-versiculo {
+            color: #9a702c;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .aviso-modal {
+            font-size: 14px;
+            color: #7a8490;
+            margin-top: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 12px;
+            }
+
+            .livro {
+                min-height: 650px;
+            }
+
+            .pagina {
+                min-height: 650px;
+                padding: 28px 23px 45px 28px;
+            }
+
+            .pagina p {
+                font-size: 18px;
+            }
+
+            .pagina li {
+                font-size: 17px;
+            }
+
+            .capa {
+                min-height: 650px;
+            }
+
+            .controles {
+                gap: 8px;
+            }
+
+            .controles button {
+                padding: 11px 15px;
+            }
+
+            .modal-conteudo {
+                padding: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            header,
+            .instrucoes,
+            .controles,
+            .progresso,
+            footer,
+            .modal {
+                display: none !important;
+            }
+
+            .flipbook-area {
+                display: block;
+                padding: 0;
+            }
+
+            .livro {
+                width: 100%;
+            }
+
+            .pagina {
+                display: block !important;
+                min-height: auto;
+                page-break-after: always;
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="ministerio">MINISTÉRIO ATALAIA</div>
+        <h1>O Pai Nosso</h1>
+        <p>Uma jornada de oração, comunhão e transformação</p>
+        <div class="identificacao">ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</div>
+    </header>
+
+    <div class="instrucoes">
+        <strong>Estudo bíblico interativo</strong><br>
+        Clique nas referências bíblicas sublinhadas para consultar os textos.
+    </div>
+
+    <main class="flipbook-area">
+        <div class="livro" id="livro">
+
+            <!-- CAPA -->
+            <section class="pagina capa ativa">
+                <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+                <h2>LIVRA-NOS<br>DO MAL</h2>
+                <div class="linha-dourada"></div>
+                <p class="subtitulo">
+                    Proteção e confiança em Deus:
+                    o cuidado do Pai, o livramento em Cristo
+                    e a esperança diante do mal.
+                </p>
+                <div class="aula">AULA 10</div>
+                <div class="escola">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+            </section>
+
+            <!-- PÁGINA 2 -->
+            <section class="pagina">
+                <h2>Apresentação do Estudo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A expressão “Livra-nos do mal”, presente no modelo de oração
+                    ensinado por Jesus, revela a necessidade humana de proteção
+                    e dependência de Deus. O discípulo reconhece que vive em um
+                    mundo marcado pelo pecado, pela injustiça, pela oposição ao
+                    bem e pela atuação do maligno.
+                </p>
+
+                <p>
+                    Ao ensinar essa oração, Jesus não apresenta seus discípulos
+                    como pessoas que jamais enfrentarão dificuldades. Ele os
+                    ensina a buscar o Pai, confiar em seu cuidado e permanecer
+                    firmes diante das forças que se opõem à vontade divina.
+                </p>
+
+                <p>
+                    O pedido de livramento precisa ser compreendido à luz de
+                    toda a Escritura. Deus é apresentado como refúgio, fortaleza,
+                    libertador e protetor. Em Cristo, somos transportados do
+                    domínio das trevas para o Reino do Filho amado
+                    (<span class="referencia">Colossenses 1:13–14</span>).
+                </p>
+
+                <div class="destaque">
+                    Verdade central: pedir que Deus nos livre do mal é reconhecer
+                    nossa dependência do Pai, confiar na obra de Cristo e buscar
+                    uma vida de vigilância, fidelidade e perseverança.
+                </div>
+
+                <h3>Texto-base</h3>
+                <p><strong><span class="referencia">Mateus 6:13</span>.</strong></p>
+
+                <h3>Textos complementares</h3>
+                <p>
+                    <span class="referencia">João 17:15</span>;
+                    <span class="referencia">Salmos 91</span>;
+                    <span class="referencia">Romanos 8:31–39</span>;
+                    <span class="referencia">Efésios 6:10–18</span>;
+                    <span class="referencia">1 Pedro 5:8–9</span>.
+                </p>
+            </section>
+
+            <!-- PÁGINA 3 -->
+            <section class="pagina">
+                <h2>1. A Realidade do Mal no Mundo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Para compreender o pedido “Livra-nos do mal”, precisamos
+                    reconhecer que o mal é uma realidade presente na experiência
+                    humana. As Escrituras apresentam sua entrada na história
+                    humana por meio da desobediência, conforme o relato de
+                    <span class="referencia">Gênesis 3:1–19</span>.
+                </p>
+
+                <p>
+                    A desobediência de Adão e Eva trouxe consequências para
+                    a humanidade. O pecado afetou o relacionamento com Deus,
+                    a relação entre as pessoas e a própria criação
+                    (<span class="referencia">Romanos 5:12</span>;
+                    <span class="referencia">Romanos 8:20–22</span>).
+                </p>
+
+                <p>
+                    O mal se manifesta de diferentes maneiras: pecado,
+                    violência, mentira, injustiça, opressão, corrupção,
+                    sofrimento e morte. A Bíblia não ignora essas realidades.
+                    Pelo contrário, apresenta a necessidade de redenção e
+                    restauração.
+                </p>
+
+                <h3>O pecado e suas consequências</h3>
+
+                <ul>
+                    <li>A desobediência humana — <span class="referencia">Gênesis 3:1–19</span>.</li>
+                    <li>Todos pecaram — <span class="referencia">Romanos 3:23</span>.</li>
+                    <li>O salário do pecado — <span class="referencia">Romanos 6:23</span>.</li>
+                    <li>O pecado produz morte — <span class="referencia">Tiago 1:14–15</span>.</li>
+                    <li>A criação geme — <span class="referencia">Romanos 8:20–22</span>.</li>
+                    <li>O mundo inteiro está sob a influência do maligno — <span class="referencia">1 João 5:19</span>.</li>
+                </ul>
+
+                <h3>O mal não é maior que Deus</h3>
+
+                <p>
+                    Reconhecer a realidade do mal não significa atribuir a ele
+                    poder equivalente ao de Deus. A Escritura apresenta o Senhor
+                    como soberano sobre toda a criação
+                    (<span class="referencia">Salmos 103:19</span>;
+                    <span class="referencia">Daniel 4:34–35</span>;
+                    <span class="referencia">Colossenses 1:16–17</span>).
+                </p>
+
+                <div class="destaque">
+                    O discípulo de Jesus não ignora a realidade do mal,
+                    mas também não vive dominado pelo medo. Sua confiança
+                    está no Deus que reina e sustenta todas as coisas.
+                </div>
+            </section>
+
+            <!-- PÁGINA 4 -->
+            <section class="pagina">
+                <h2>2. A Origem e a Atuação do Mal</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A Bíblia apresenta o pecado como uma realidade que envolve
+                    a rebelião contra Deus e a corrupção da vontade humana.
+                    Também revela a atuação de Satanás como adversário,
+                    enganador e tentador.
+                </p>
+
+                <p>
+                    Em <span class="referencia">Gênesis 3:1–5</span>, a serpente
+                    questiona a Palavra de Deus e apresenta uma mentira.
+                    O episódio demonstra o perigo do engano e da desobediência.
+                </p>
+
+                <h3>O adversário e o engano</h3>
+
+                <p>
+                    Jesus identifica o diabo como mentiroso e pai da mentira
+                    (<span class="referencia">João 8:44</span>).
+                    Em <span class="referencia">1 Pedro 5:8</span>, os cristãos
+                    são advertidos a manter vigilância diante do adversário,
+                    que procura a quem possa devorar.
+                </p>
+
+                <p>
+                    O inimigo também é apresentado como aquele que procura
+                    cegar o entendimento dos incrédulos
+                    (<span class="referencia">2 Coríntios 4:4</span>)
+                    e que pode utilizar estratégias para prejudicar a vida
+                    espiritual (<span class="referencia">2 Coríntios 2:11</span>).
+                </p>
+
+                <h3>O pecado também envolve a responsabilidade humana</h3>
+
+                <p>
+                    Nem todo mal deve ser atribuído diretamente a uma ação
+                    demoníaca. Tiago ensina que a pessoa pode ser atraída e
+                    seduzida pelos próprios desejos
+                    (<span class="referencia">Tiago 1:13–15</span>).
+                </p>
+
+                <p>
+                    As Escrituras também alertam sobre a cobiça e os valores
+                    contrários à vontade de Deus
+                    (<span class="referencia">1 João 2:15–17</span>).
+                    Por isso, o discípulo precisa examinar suas atitudes,
+                    pensamentos e escolhas.
+                </p>
+
+                <h3>Três aspectos que exigem vigilância</h3>
+
+                <ul>
+                    <li>O engano e a oposição do maligno — <span class="referencia">João 8:44</span>.</li>
+                    <li>Os desejos humanos desordenados — <span class="referencia">Tiago 1:14–15</span>.</li>
+                    <li>Os valores de um mundo contrário a Deus — <span class="referencia">1 João 2:15–17</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    O discernimento bíblico evita dois extremos: ignorar
+                    a atuação do maligno ou atribuir toda dificuldade
+                    humana a uma ação demoníaca.
+                </div>
+            </section>
+
+            <!-- PÁGINA 5 -->
+            <section class="pagina">
+                <h2>3. Deus é Refúgio e Protetor</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Um dos grandes testemunhos das Escrituras é que Deus
+                    cuida daqueles que nele confiam. O Senhor é apresentado
+                    como refúgio, fortaleza, socorro e proteção.
+                </p>
+
+                <p>
+                    O Salmo 23 descreve o Senhor como pastor que guia,
+                    sustenta e acompanha seu povo. Mesmo atravessando o
+                    vale da sombra da morte, o salmista declara que não
+                    precisa viver dominado pelo medo, pois Deus está com ele
+                    (<span class="referencia">Salmos 23:1–6</span>).
+                </p>
+
+                <h3>O Senhor é fortaleza</h3>
+
+                <p>
+                    O salmista declara que Deus é refúgio e fortaleza,
+                    socorro bem presente na angústia
+                    (<span class="referencia">Salmos 46:1–3</span>).
+                    Essa confiança não significa ausência de problemas,
+                    mas segurança na presença do Senhor.
+                </p>
+
+                <p>
+                    Em <span class="referencia">Salmos 27:1–5</span>,
+                    o Senhor é apresentado como luz, salvação e fortaleza
+                    da vida. O salmista encontra motivo para confiar,
+                    mesmo diante de adversários.
+                </p>
+
+                <h3>O cuidado de Deus nas Escrituras</h3>
+
+                <ul>
+                    <li>Deus é refúgio e fortaleza — <span class="referencia">Salmos 46:1</span>.</li>
+                    <li>O Senhor livra os justos de suas aflições — <span class="referencia">Salmos 34:17–19</span>.</li>
+                    <li>Deus é esconderijo e proteção — <span class="referencia">Salmos 32:7</span>.</li>
+                    <li>O Senhor guarda a entrada e a saída — <span class="referencia">Salmos 121:5–8</span>.</li>
+                    <li>O anjo do Senhor acampa ao redor dos que o temem — <span class="referencia">Salmos 34:7</span>.</li>
+                    <li>O Senhor é escudo para os que nele confiam — <span class="referencia">Provérbios 30:5</span>.</li>
+                </ul>
+
+                <h3>A proteção não significa ausência de sofrimento</h3>
+
+                <p>
+                    A Bíblia não promete que o servo de Deus jamais enfrentará
+                    perseguições, enfermidades, perdas ou aflições.
+                    O próprio Jesus afirmou que seus discípulos enfrentariam
+                    tribulações no mundo, mas deveriam ter bom ânimo
+                    (<span class="referencia">João 16:33</span>).
+                </p>
+
+                <div class="destaque">
+                    A segurança do cristão não está na ideia de uma vida
+                    sem dificuldades, mas na fidelidade de Deus e em sua
+                    presença durante toda a caminhada.
+                </div>
+            </section>
+
+            <!-- PÁGINA 6 -->
+            <section class="pagina">
+                <h2>4. O Livramento de Deus em Cristo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O livramento do mal precisa ser compreendido a partir
+                    da obra de Jesus Cristo. O Filho de Deus veio ao mundo
+                    para salvar os pecadores e destruir as obras do diabo.
+                </p>
+
+                <p>
+                    A Escritura declara que Jesus se manifestou para tirar
+                    os pecados e que nele não há pecado
+                    (<span class="referencia">1 João 3:5</span>).
+                    Também afirma que o Filho de Deus se manifestou para
+                    desfazer as obras do diabo
+                    (<span class="referencia">1 João 3:8</span>).
+                </p>
+
+                <h3>Libertação do domínio das trevas</h3>
+
+                <p>
+                    Em <span class="referencia">Colossenses 1:13–14</span>,
+                    Paulo apresenta uma verdade fundamental: Deus nos
+                    libertou do poder das trevas e nos transportou para
+                    o Reino do Filho do seu amor, em quem temos redenção
+                    e perdão dos pecados.
+                </p>
+
+                <p>
+                    A salvação em Cristo não é apenas uma mudança de
+                    comportamento. É uma nova condição diante de Deus,
+                    recebida pela graça mediante a fé
+                    (<span class="referencia">Efésios 2:1–10</span>).
+                </p>
+
+                <h3>A vitória de Cristo</h3>
+
+                <ul>
+                    <li>Jesus veio buscar e salvar o perdido — <span class="referencia">Lucas 19:10</span>.</li>
+                    <li>O Filho liberta verdadeiramente — <span class="referencia">João 8:31–36</span>.</li>
+                    <li>Cristo venceu o mundo — <span class="referencia">João 16:33</span>.</li>
+                    <li>Jesus desarmou os principados e potestades — <span class="referencia">Colossenses 2:13–15</span>.</li>
+                    <li>O poder da morte foi vencido por Cristo — <span class="referencia">Hebreus 2:14–15</span>.</li>
+                    <li>Não há condenação para os que estão em Cristo — <span class="referencia">Romanos 8:1–2</span>.</li>
+                </ul>
+
+                <h3>O livramento começa na obra da salvação</h3>
+
+                <p>
+                    O maior livramento não é simplesmente escapar de uma
+                    situação difícil. É ser reconciliado com Deus, receber
+                    perdão dos pecados e pertencer a Cristo.
+                </p>
+
+                <div class="destaque">
+                    Em Jesus encontramos redenção, perdão e libertação
+                    do domínio das trevas. Nossa esperança está na vitória
+                    que Ele conquistou.
+                </div>
+            </section>
+
+            <!-- PÁGINA 7 -->
+            <section class="pagina">
+                <h2>5. Guardados do Mal</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Uma passagem especialmente importante para compreender
+                    o pedido de livramento está na oração de Jesus registrada
+                    em <span class="referencia">João 17:9–19</span>.
+                </p>
+
+                <p>
+                    Jesus ora pelos discípulos e pede ao Pai que os guarde.
+                    Em <span class="referencia">João 17:15</span>, esclarece
+                    que não pede que sejam tirados do mundo, mas que sejam
+                    guardados do mal.
+                </p>
+
+                <p>
+                    Esse ensino é fundamental: Jesus não apresenta a vida
+                    cristã como uma fuga da realidade. Seus discípulos
+                    continuariam no mundo, vivendo sua missão, mas precisariam
+                    da proteção e da santificação do Pai.
+                </p>
+
+                <h3>Guardados sem abandonar a missão</h3>
+
+                <p>
+                    O cristão não é chamado a se esconder de toda convivência
+                    humana. Jesus enviou seus discípulos ao mundo para
+                    testemunhar a verdade
+                    (<span class="referencia">João 17:18</span>;
+                    <span class="referencia">João 20:21</span>).
+                </p>
+
+                <p>
+                    A proteção divina não elimina a missão. Pelo contrário,
+                    sustenta os discípulos para que permaneçam fiéis em
+                    meio às dificuldades e influências contrárias à Palavra.
+                </p>
+
+                <h3>A Palavra como instrumento de santificação</h3>
+
+                <p>
+                    Jesus também pede ao Pai que santifique os discípulos
+                    na verdade e declara que a Palavra de Deus é a verdade
+                    (<span class="referencia">João 17:17</span>).
+                </p>
+
+                <p>
+                    A Palavra orienta o pensamento, corrige caminhos,
+                    revela o pecado e fortalece a fé
+                    (<span class="referencia">Salmos 119:9–11</span>;
+                    <span class="referencia">2 Timóteo 3:16–17</span>;
+                    <span class="referencia">Hebreus 4:12</span>).
+                </p>
+
+                <h3>Outras referências sobre o cuidado de Deus</h3>
+
+                <ul>
+                    <li>O Senhor guarda os seus — <span class="referencia">Salmos 121:7–8</span>.</li>
+                    <li>Deus é fiel e fortalece — <span class="referencia">2 Tessalonicenses 3:3</span>.</li>
+                    <li>Jesus intercede pelos seus — <span class="referencia">Hebreus 7:25</span>.</li>
+                    <li>O Senhor é poderoso para guardar — <span class="referencia">Judas 1:24–25</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    Ser guardado do mal não significa abandonar o mundo,
+                    mas permanecer fiel a Deus enquanto cumprimos nossa
+                    missão nele.
+                </div>
+            </section>
+
+            <!-- PÁGINA 8 -->
+            <section class="pagina">
+                <h2>6. A Armadura de Deus</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    A vida cristã exige vigilância e firmeza espiritual.
+                    Em <span class="referencia">Efésios 6:10–18</span>,
+                    Paulo ensina que os discípulos devem se fortalecer
+                    no Senhor e na força do seu poder, revestindo-se
+                    de toda a armadura de Deus.
+                </p>
+
+                <p>
+                    O texto apresenta uma luta que não deve ser reduzida
+                    a conflitos humanos. Paulo descreve a realidade de
+                    forças espirituais e orienta os cristãos a permanecer
+                    firmes em Deus.
+                </p>
+
+                <h3>As partes da armadura</h3>
+
+                <ul>
+                    <li><strong>Cinturão da verdade:</strong> permanecer na verdade de Deus — <span class="referencia">Efésios 6:14</span>; <span class="referencia">João 17:17</span>.</li>
+                    <li><strong>Couraça da justiça:</strong> viver segundo a justiça — <span class="referencia">Efésios 6:14</span>; <span class="referencia">Filipenses 1:11</span>.</li>
+                    <li><strong>Calçados do evangelho da paz:</strong> prontidão para anunciar o evangelho — <span class="referencia">Efésios 6:15</span>; <span class="referencia">Romanos 10:15</span>.</li>
+                    <li><strong>Escudo da fé:</strong> apagar os dardos inflamados do maligno — <span class="referencia">Efésios 6:16</span>.</li>
+                    <li><strong>Capacete da salvação:</strong> permanecer firme na esperança da salvação — <span class="referencia">Efésios 6:17</span>; <span class="referencia">1 Tessalonicenses 5:8</span>.</li>
+                    <li><strong>Espada do Espírito:</strong> a Palavra de Deus — <span class="referencia">Efésios 6:17</span>; <span class="referencia">Hebreus 4:12</span>.</li>
+                </ul>
+
+                <h3>A oração faz parte da vigilância</h3>
+
+                <p>
+                    Paulo conclui a apresentação da armadura orientando os
+                    cristãos a orar em todo tempo, com toda oração e súplica,
+                    mantendo vigilância e perseverança
+                    (<span class="referencia">Efésios 6:18</span>).
+                </p>
+
+                <p>
+                    A oração não substitui a obediência, a Palavra ou a
+                    vigilância. Ela acompanha uma vida de dependência
+                    do Senhor.
+                </p>
+
+                <div class="destaque">
+                    A armadura de Deus não é um objeto físico nem uma fórmula
+                    automática. É uma orientação espiritual para permanecer
+                    firme no Senhor e em sua verdade.
+                </div>
+            </section>
+
+            <!-- PÁGINA 9 -->
+            <section class="pagina">
+                <h2>7. A Oração, o Discernimento e a Vigilância</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O pedido “Livra-nos do mal” nos conduz a uma vida de
+                    oração constante. Orar é reconhecer que não somos
+                    autossuficientes e que precisamos da direção de Deus.
+                </p>
+
+                <p>
+                    Jesus ensinou seus discípulos a vigiar e orar
+                    (<span class="referencia">Mateus 26:41</span>).
+                    A advertência foi apresentada em um momento de grande
+                    angústia, quando os discípulos precisavam permanecer
+                    atentos e preparados.
+                </p>
+
+                <h3>Vigiar e orar</h3>
+
+                <p>
+                    A vigilância envolve atenção às próprias atitudes,
+                    aos pensamentos e às influências que podem conduzir
+                    ao pecado. A oração expressa dependência e busca
+                    pela direção divina.
+                </p>
+
+                <ul>
+                    <li>Vigiar e orar — <span class="referencia">Mateus 26:41</span>.</li>
+                    <li>Orar sem cessar — <span class="referencia">1 Tessalonicenses 5:17</span>.</li>
+                    <li>Perseverar em oração — <span class="referencia">Colossenses 4:2</span>.</li>
+                    <li>Orar em todo tempo — <span class="referencia">Efésios 6:18</span>.</li>
+                    <li>Apresentar pedidos a Deus — <span class="referencia">Filipenses 4:6–7</span>.</li>
+                </ul>
+
+                <h3>Discernir o que é bom</h3>
+
+                <p>
+                    O discípulo precisa examinar aquilo que ouve, lê,
+                    pratica e aceita como verdade. Nem toda mensagem
+                    religiosa corresponde ao ensino das Escrituras.
+                </p>
+
+                <p>
+                    A Bíblia orienta a provar os espíritos
+                    (<span class="referencia">1 João 4:1</span>),
+                    examinar todas as coisas e reter o que é bom
+                    (<span class="referencia">1 Tessalonicenses 5:21</span>).
+                </p>
+
+                <p>
+                    A sabedoria também é necessária para reconhecer
+                    caminhos perigosos
+                    (<span class="referencia">Provérbios 4:23–27</span>).
+                    O cristão deve buscar a vontade de Deus
+                    (<span class="referencia">Romanos 12:2</span>).
+                </p>
+
+                <h3>O Espírito Santo nos auxilia</h3>
+
+                <p>
+                    Jesus prometeu o Espírito Santo como Consolador e
+                    ensinador dos discípulos
+                    (<span class="referencia">João 14:16–17</span>;
+                    <span class="referencia">João 14:26</span>).
+                    O Espírito guia à verdade
+                    (<span class="referencia">João 16:13</span>).
+                </p>
+
+                <div class="destaque">
+                    A oração bíblica não é separada do discernimento.
+                    Quem pede livramento também precisa aprender a reconhecer
+                    os caminhos que deve evitar.
+                </div>
+            </section>
+
+            <!-- PÁGINA 10 -->
+            <section class="pagina">
+                <h2>8. A Responsabilidade do Discípulo</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Pedir a Deus que nos livre do mal não significa transferir
+                    para Ele toda a responsabilidade pelas nossas escolhas.
+                    A Bíblia ensina que devemos resistir ao pecado, fugir
+                    de situações perigosas e praticar a justiça.
+                </p>
+
+                <h3>Resistir ao diabo</h3>
+
+                <p>
+                    <span class="referencia">Tiago 4:7</span> apresenta uma
+                    orientação clara: sujeitar-se a Deus e resistir ao diabo.
+                    A resistência espiritual começa com submissão ao Senhor.
+                </p>
+
+                <p>
+                    A mesma orientação aparece em
+                    <span class="referencia">1 Pedro 5:8–9</span>, que une
+                    vigilância, resistência firme na fé e consciência de
+                    que outros irmãos também enfrentam sofrimentos.
+                </p>
+
+                <h3>Fugir do pecado</h3>
+
+                <p>
+                    Algumas situações exigem resistência; outras exigem
+                    afastamento. José, diante da tentativa de sedução
+                    da mulher de Potifar, decidiu fugir e não pecar contra
+                    Deus (<span class="referencia">Gênesis 39:7–12</span>).
+                </p>
+
+                <p>
+                    Paulo orienta Timóteo a fugir das paixões da mocidade
+                    e seguir a justiça, a fé, o amor e a paz
+                    (<span class="referencia">2 Timóteo 2:22</span>).
+                    Também orienta a fugir da idolatria
+                    (<span class="referencia">1 Coríntios 10:14</span>).
+                </p>
+
+                <h3>Escolhas que demonstram vigilância</h3>
+
+                <ul>
+                    <li>Guardar o coração — <span class="referencia">Provérbios 4:23</span>.</li>
+                    <li>Não dar lugar ao diabo — <span class="referencia">Efésios 4:27</span>.</li>
+                    <li>Abster-se da aparência do mal — <span class="referencia">1 Tessalonicenses 5:22</span>.</li>
+                    <li>Buscar as coisas do alto — <span class="referencia">Colossenses 3:1–5</span>.</li>
+                    <li>Andar no Espírito — <span class="referencia">Gálatas 5:16</span>.</li>
+                    <li>Não se conformar com este mundo — <span class="referencia">Romanos 12:2</span>.</li>
+                </ul>
+
+                <h3>Deus providencia escape</h3>
+
+                <p>
+                    Em <span class="referencia">1 Coríntios 10:12–13</span>,
+                    Paulo adverte contra a autoconfiança e ensina que Deus
+                    é fiel, não permitindo que a tentação ultrapasse aquilo
+                    que podemos suportar, mas providenciando também o escape.
+                </p>
+
+                <div class="destaque">
+                    A confiança em Deus não elimina nossa responsabilidade.
+                    O discípulo ora, vigia, obedece, resiste ao pecado
+                    e escolhe permanecer no caminho do Senhor.
+                </div>
+            </section>
+
+            <!-- PÁGINA 11 -->
+            <section class="pagina">
+                <h2>9. O Livramento na Família e na Igreja</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O pedido de livramento também nos leva a interceder
+                    por outras pessoas. A oração cristã não deve permanecer
+                    limitada às necessidades individuais.
+                </p>
+
+                <p>
+                    As Escrituras orientam a orar por todos, incluindo
+                    autoridades, famílias e pessoas que necessitam de
+                    cuidado e direção
+                    (<span class="referencia">1 Timóteo 2:1–4</span>).
+                </p>
+
+                <h3>A responsabilidade espiritual no lar</h3>
+
+                <p>
+                    A família precisa ser um ambiente de ensino, cuidado,
+                    oração e prática da Palavra. Deus orientou Israel a
+                    ensinar seus mandamentos aos filhos no cotidiano
+                    (<span class="referencia">Deuteronômio 6:4–9</span>).
+                </p>
+
+                <p>
+                    Pais são chamados a criar os filhos na disciplina
+                    e instrução do Senhor
+                    (<span class="referencia">Efésios 6:4</span>).
+                    A orientação bíblica também destaca a importância
+                    de ensinar a Palavra às próximas gerações
+                    (<span class="referencia">Salmos 78:1–7</span>).
+                </p>
+
+                <h3>A Igreja deve permanecer em oração</h3>
+
+                <p>
+                    A Igreja do primeiro século perseverava na doutrina,
+                    na comunhão, no partir do pão e nas orações
+                    (<span class="referencia">Atos 2:42</span>).
+                </p>
+
+                <p>
+                    Quando Pedro foi preso, a Igreja fazia contínua oração
+                    por ele (<span class="referencia">Atos 12:5</span>).
+                    Em outra ocasião, os discípulos oraram reunidos,
+                    pedindo ousadia para anunciar a Palavra
+                    (<span class="referencia">Atos 4:23–31</span>).
+                </p>
+
+                <h3>Intercessão e cuidado mútuo</h3>
+
+                <ul>
+                    <li>Levar as cargas uns dos outros — <span class="referencia">Gálatas 6:2</span>.</li>
+                    <li>Orar uns pelos outros — <span class="referencia">Tiago 5:16</span>.</li>
+                    <li>Edificar e encorajar — <span class="referencia">1 Tessalonicenses 5:11</span>.</li>
+                    <li>Buscar a unidade — <span class="referencia">Efésios 4:1–6</span>.</li>
+                    <li>Perseverar na oração — <span class="referencia">Romanos 12:12</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    Uma comunidade cristã vigilante não vive isolada.
+                    Ela ora, ensina a Palavra, cuida dos irmãos e permanece
+                    firme na missão recebida de Cristo.
+                </div>
+            </section>
+
+            <!-- PÁGINA 12 -->
+            <section class="pagina">
+                <h2>10. A Esperança Final: O Mal Será Vencido</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O pedido “Livra-nos do mal” também aponta para a esperança
+                    futura. A história não terminará com o domínio do pecado,
+                    da morte, da injustiça ou do sofrimento.
+                </p>
+
+                <p>
+                    A Bíblia apresenta a vitória final de Deus e a restauração
+                    de todas as coisas. Em <span class="referencia">Apocalipse 21:1–5</span>,
+                    João descreve novos céus e nova terra, e a promessa de
+                    que Deus enxugará dos olhos toda lágrima.
+                </p>
+
+                <h3>Nada poderá nos separar do amor de Deus</h3>
+
+                <p>
+                    Em <span class="referencia">Romanos 8:31–39</span>,
+                    Paulo apresenta a segurança daqueles que pertencem
+                    a Cristo. Tribulação, angústia, perseguição, fome,
+                    perigo e espada não podem separar os filhos de Deus
+                    do amor que está em Cristo Jesus.
+                </p>
+
+                <p>
+                    Essa passagem não ensina que o cristão nunca sofrerá.
+                    Ela ensina que o sofrimento não tem poder para anular
+                    o amor de Deus nem desfazer sua fidelidade.
+                </p>
+
+                <h3>A morte será vencida</h3>
+
+                <ul>
+                    <li>Cristo ressuscitou como primícias — <span class="referencia">1 Coríntios 15:20–26</span>.</li>
+                    <li>A morte será tragada pela vitória — <span class="referencia">1 Coríntios 15:54–57</span>.</li>
+                    <li>Deus destruirá a morte — <span class="referencia">Apocalipse 21:4</span>.</li>
+                    <li>O Senhor fará novas todas as coisas — <span class="referencia">Apocalipse 21:5</span>.</li>
+                    <li>O Reino de Deus permanecerá — <span class="referencia">Daniel 7:13–14</span>.</li>
+                </ul>
+
+                <h3>A perseverança até o fim</h3>
+
+                <p>
+                    Enquanto aguardamos a consumação da promessa, somos
+                    chamados a permanecer firmes na fé
+                    (<span class="referencia">1 Coríntios 15:58</span>),
+                    conservar a esperança
+                    (<span class="referencia">Hebreus 10:23</span>)
+                    e correr com perseverança a carreira proposta
+                    (<span class="referencia">Hebreus 12:1–2</span>).
+                </p>
+
+                <div class="destaque">
+                    O mal não terá a palavra final. A esperança cristã
+                    está na vitória definitiva de Deus, realizada em Cristo
+                    e aguardada por aqueles que nele confiam.
+                </div>
+            </section>
+
+            <!-- PÁGINA 13 -->
+            <section class="pagina">
+                <h2>11. A Diferença entre Tentação e Livramento</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    No Pai Nosso, as expressões “não nos deixes cair em
+                    tentação” e “livra-nos do mal” aparecem próximas,
+                    mas possuem ênfases que precisam ser observadas.
+                </p>
+
+                <p>
+                    O pedido relacionado à tentação destaca a necessidade
+                    de Deus nos guardar diante das situações de prova e
+                    das oportunidades de pecar. Já o pedido de livramento
+                    amplia a súplica, expressando a necessidade de proteção
+                    diante do mal em suas diferentes manifestações.
+                </p>
+
+                <h3>Não confundir a origem da tentação</h3>
+
+                <p>
+                    Tiago ensina que Deus não pode ser tentado pelo mal
+                    e a ninguém tenta
+                    (<span class="referencia">Tiago 1:13</span>).
+                    O mesmo texto mostra que os desejos humanos podem
+                    seduzir e conduzir ao pecado
+                    (<span class="referencia">Tiago 1:14–15</span>).
+                </p>
+
+                <p>
+                    Jesus enfrentou a tentação no deserto, mas permaneceu
+                    sem pecado (<span class="referencia">Mateus 4:1–11</span>;
+                    <span class="referencia">Hebreus 4:15</span>).
+                </p>
+
+                <h3>O pedido de livramento</h3>
+
+                <p>
+                    Quando pedimos livramento, reconhecemos que precisamos
+                    da proteção divina diante do pecado, do engano, da
+                    maldade, da opressão e das ações contrárias à vontade
+                    de Deus.
+                </p>
+
+                <p>
+                    A Bíblia apresenta Deus como aquele que livra,
+                    fortalece e guarda
+                    (<span class="referencia">Salmos 34:17</span>;
+                    <span class="referencia">Salmos 121:7–8</span>;
+                    <span class="referencia">2 Tessalonicenses 3:3</span>).
+                </p>
+
+                <h3>Uma vida de dependência</h3>
+
+                <ul>
+                    <li>Buscar a proteção do Pai — <span class="referencia">João 17:15</span>.</li>
+                    <li>Resistir ao diabo — <span class="referencia">Tiago 4:7</span>.</li>
+                    <li>Vigiar e orar — <span class="referencia">Mateus 26:41</span>.</li>
+                    <li>Confiar na fidelidade de Deus — <span class="referencia">1 Coríntios 10:13</span>.</li>
+                    <li>Revestir-se da armadura de Deus — <span class="referencia">Efésios 6:10–18</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    O discípulo pede para ser guardado da tentação e,
+                    ao mesmo tempo, busca o livramento de Deus diante
+                    de toda manifestação do mal.
+                </div>
+            </section>
+
+            <!-- PÁGINA 14 -->
+            <section class="pagina">
+                <h2>12. Aplicações Práticas</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    O estudo sobre o pedido “Livra-nos do mal” precisa
+                    produzir atitudes concretas na vida do discípulo.
+                    A confiança em Deus deve caminhar junto com a
+                    obediência à sua Palavra.
+                </p>
+
+                <ol>
+                    <li>
+                        <strong>Reconheça sua dependência de Deus:</strong>
+                        não confie exclusivamente em sua própria força.
+                        Leia <span class="referencia">Provérbios 3:5–6</span>.
+                    </li>
+                    <li>
+                        <strong>Desenvolva uma vida de oração:</strong>
+                        apresente suas necessidades e interceda por outras
+                        pessoas. Leia <span class="referencia">Filipenses 4:6–7</span>.
+                    </li>
+                    <li>
+                        <strong>Vigie seus pensamentos e atitudes:</strong>
+                        examine aquilo que ocupa seu coração.
+                        Leia <span class="referencia">Provérbios 4:23</span>.
+                    </li>
+                    <li>
+                        <strong>Permaneça na Palavra:</strong>
+                        conheça as Escrituras e pratique seus ensinamentos.
+                        Leia <span class="referencia">Salmos 119:11</span>.
+                    </li>
+                    <li>
+                        <strong>Resista ao pecado:</strong>
+                        submeta-se a Deus e não dê lugar ao diabo.
+                        Leia <span class="referencia">Tiago 4:7</span> e
+                        <span class="referencia">Efésios 4:27</span>.
+                    </li>
+                    <li>
+                        <strong>Afaste-se de situações perigosas:</strong>
+                        aprenda com a atitude de José.
+                        Leia <span class="referencia">Gênesis 39:7–12</span>.
+                    </li>
+                    <li>
+                        <strong>Cuide de sua família:</strong>
+                        ensine a Palavra e cultive a oração no lar.
+                        Leia <span class="referencia">Deuteronômio 6:4–9</span>.
+                    </li>
+                    <li>
+                        <strong>Interceda pela Igreja:</strong>
+                        ore pelos irmãos, líderes e missionários.
+                        Leia <span class="referencia">Efésios 6:18–20</span>.
+                    </li>
+                    <li>
+                        <strong>Permaneça firme nas dificuldades:</strong>
+                        confie que Deus continua presente.
+                        Leia <span class="referencia">Romanos 8:31–39</span>.
+                    </li>
+                    <li>
+                        <strong>Viva com esperança:</strong>
+                        mantenha os olhos na promessa da restauração final.
+                        Leia <span class="referencia">Apocalipse 21:1–5</span>.
+                    </li>
+                </ol>
+
+                <h3>Desafio espiritual — 7 dias</h3>
+
+                <ol>
+                    <li>Leia <span class="referencia">Salmos 91</span> e reflita sobre a confiança em Deus.</li>
+                    <li>Ore com base em <span class="referencia">João 17:15–17</span>.</li>
+                    <li>Examine suas atitudes à luz de <span class="referencia">Tiago 1:13–15</span>.</li>
+                    <li>Leia e medite em <span class="referencia">Efésios 6:10–18</span>.</li>
+                    <li>Ore por sua família e pela Igreja.</li>
+                    <li>Pratique uma atitude concreta de obediência à Palavra.</li>
+                    <li>Leia <span class="referencia">Romanos 8:31–39</span> e agradeça a Deus por sua fidelidade.</li>
+                </ol>
+            </section>
+
+            <!-- PÁGINA 15 -->
+            <section class="pagina">
+                <h2>13. Conclusão</h2>
+                <div class="linha-dourada"></div>
+
+                <p>
+                    Ao ensinar seus discípulos a pedir “Livra-nos do mal”,
+                    Jesus os conduz ao reconhecimento de que a vida cristã
+                    exige dependência de Deus. O mundo apresenta situações
+                    de sofrimento, pecado, injustiça e oposição à verdade,
+                    mas o discípulo não precisa enfrentar essa realidade
+                    confiando apenas em suas próprias forças.
+                </p>
+
+                <p>
+                    As Escrituras revelam o Senhor como refúgio e fortaleza.
+                    Em Cristo, recebemos redenção e perdão, somos libertos
+                    do domínio das trevas e chamados a viver sob a autoridade
+                    do Reino de Deus.
+                </p>
+
+                <p>
+                    A proteção divina não deve ser confundida com uma promessa
+                    de ausência de dificuldades. Jesus orou para que seus
+                    discípulos fossem guardados do mal enquanto permaneciam
+                    no mundo e cumpriam sua missão.
+                </p>
+
+                <p>
+                    Por isso, pedir livramento também envolve responsabilidade:
+                    vigiar, orar, conhecer a Palavra, resistir ao pecado,
+                    fugir das situações perigosas, cuidar da família e
+                    permanecer em comunhão com a Igreja.
+                </p>
+
+                <p>
+                    Nossa esperança está na fidelidade de Deus e na vitória
+                    definitiva de Cristo. O mal não terá a palavra final,
+                    pois o Senhor prometeu fazer novas todas as coisas.
+                </p>
+
+                <div class="destaque">
+                    Pedir “Livra-nos do mal” é declarar nossa dependência
+                    de Deus, confiar na vitória de Cristo e permanecer
+                    firmes na fé até o fim.
+                </div>
+
+                <h3>Oração final</h3>
+
+                <p>
+                    Pai, reconhecemos que precisamos do teu cuidado e da
+                    tua proteção. Livra-nos do mal, guarda nosso coração
+                    e fortalece nossa fé. Ajuda-nos a discernir aquilo que
+                    não vem de ti e a permanecer firmes na tua Palavra.
+                    Ensina-nos a vigiar, orar e resistir ao pecado.
+                    Guarda nossas famílias, nossa comunidade e tua Igreja.
+                    Que, em meio às dificuldades, permaneçamos confiantes
+                    na vitória de Jesus Cristo. Conduze-nos em teus caminhos
+                    e conserva-nos firmes até o fim. Em nome de Jesus. Amém.
+                </p>
+            </section>
+
+            <!-- PÁGINA 16 -->
+            <section class="pagina">
+                <h2>Próxima Aula</h2>
+                <div class="linha-dourada"></div>
+
+                <h3>AULA 11</h3>
+                <h2>Teu é o Reino, o Poder e a Glória para Sempre. Amém.</h2>
+
+                <p>
+                    Depois de apresentar os pedidos relacionados à provisão,
+                    ao perdão e ao livramento, a oração se volta novamente
+                    para a grandeza de Deus.
+                </p>
+
+                <p>
+                    Na próxima aula, estudaremos a doxologia final do Pai Nosso,
+                    considerando a soberania divina, a autoridade do Reino,
+                    o poder de Deus, sua glória e a eternidade de seu governo.
+                </p>
+
+                <h3>Texto-base</h3>
+                <p><span class="referencia">Mateus 6:13</span>.</p>
+
+                <h3>Temas de aprofundamento</h3>
+
+                <ul>
+                    <li>A soberania de Deus — <span class="referencia">Salmos 103:19</span>.</li>
+                    <li>O Reino eterno — <span class="referencia">Daniel 7:13–14</span>.</li>
+                    <li>O poder pertence a Deus — <span class="referencia">1 Crônicas 29:11–12</span>.</li>
+                    <li>A glória do Senhor — <span class="referencia">Salmos 29:1–2</span>.</li>
+                    <li>A eternidade de Deus — <span class="referencia">Salmos 90:1–2</span>.</li>
+                    <li>O significado do Amém — <span class="referencia">2 Coríntios 1:20</span>.</li>
+                </ul>
+
+                <div class="destaque">
+                    A oração termina exaltando aquele a quem pertencem
+                    o Reino, o poder e a glória.
+                </div>
+
+                <div style="text-align:center; margin-top:45px;">
+                    <p style="font-family:'Cinzel',serif; color:#9a702c; font-size:16px; text-align:center;">
+                        ESCOLA BÍBLICA ATALAIA
+                    </p>
+                    <p style="font-size:15px; text-align:center;">
+                        Proclamando a Verdade. Formando Discípulos.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div class="progresso">
+        <div id="barraProgresso"></div>
+    </div>
+
+    <nav class="controles">
+        <button id="anterior" onclick="mudarPagina(-1)">&#8592; Anterior</button>
+        <span id="contador">Página 1 de 16</span>
+        <button id="proxima" onclick="mudarPagina(1)">Próxima &#8594;</button>
+    </nav>
+
+    <footer>
+        <p><strong>MINISTÉRIO ATALAIA</strong></p>
+        <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+        <p>Proclamando a Verdade. Formando Discípulos.</p>
+    </footer>
+
+    <!-- JANELA DE TEXTO BÍBLICO -->
+    <div class="modal" id="modalBiblia" onclick="fecharSeFora(event)">
+        <div class="modal-conteudo">
+            <button class="fechar-modal" onclick="fecharBiblia()" aria-label="Fechar">×</button>
+
+            <div class="modal-topo">
+                <h2 id="tituloReferencia">Texto bíblico</h2>
+            </div>
+
+            <div id="textoBiblico">
+                Carregando texto bíblico...
+            </div>
+
+            <div class="aviso-modal">
+                Texto bíblico consultado pela API Bible. A tradução disponível
+                depende da disponibilidade do serviço.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================
+           NAVEGAÇÃO DO FLIPBOOK
+        ========================================== */
+
+        const paginas = document.querySelectorAll(".pagina");
+        const contador = document.getElementById("contador");
+        const botaoAnterior = document.getElementById("anterior");
+        const botaoProxima = document.getElementById("proxima");
+        const barraProgresso = document.getElementById("barraProgresso");
+
+        let paginaAtual = 0;
+
+        function atualizarFlipbook() {
+            paginas.forEach((pagina, indice) => {
+                pagina.classList.toggle("ativa", indice === paginaAtual);
+            });
+
+            contador.textContent =
+                `Página ${paginaAtual + 1} de ${paginas.length}`;
+
+            botaoAnterior.disabled = paginaAtual === 0;
+            botaoProxima.disabled = paginaAtual === paginas.length - 1;
+
+            const progresso =
+                ((paginaAtual + 1) / paginas.length) * 100;
+
+            barraProgresso.style.width = progresso + "%";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function mudarPagina(direcao) {
+            const novaPagina = paginaAtual + direcao;
+
+            if (novaPagina >= 0 && novaPagina < paginas.length) {
+                paginaAtual = novaPagina;
+                atualizarFlipbook();
+            }
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (modalBiblia.classList.contains("aberto")) {
+                if (event.key === "Escape") fecharBiblia();
+                return;
+            }
+
+            if (event.key === "ArrowRight") mudarPagina(1);
+            if (event.key === "ArrowLeft") mudarPagina(-1);
+        });
+
+        atualizarFlipbook();
+
+
+        /* ==========================================
+           REFERÊNCIAS BÍBLICAS CLICÁVEIS
+        ========================================== */
+
+        const modalBiblia = document.getElementById("modalBiblia");
+        const tituloReferencia = document.getElementById("tituloReferencia");
+        const textoBiblico = document.getElementById("textoBiblico");
+
+        document.querySelectorAll(".referencia").forEach(elemento => {
+            elemento.setAttribute("role", "button");
+            elemento.setAttribute("tabindex", "0");
+            elemento.setAttribute("title", "Clique para consultar o texto bíblico");
+
+            elemento.addEventListener("click", function () {
+                consultarBiblia(this.textContent.trim());
+            });
+
+            elemento.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    consultarBiblia(this.textContent.trim());
+                }
+            });
+        });
+
+
+        /* ==========================================
+           NOMES DOS LIVROS — PORTUGUÊS PARA INGLÊS
+        ========================================== */
+
+        const livrosBiblia = {
+            "genesis": "Genesis",
+            "gênesis": "Genesis",
+            "exodo": "Exodus",
+            "êxodo": "Exodus",
+            "levitico": "Leviticus",
+            "levítico": "Leviticus",
+            "numeros": "Numbers",
+            "números": "Numbers",
+            "deuteronomio": "Deuteronomy",
+            "deuteronômio": "Deuteronomy",
+            "josue": "Joshua",
+            "josué": "Joshua",
+            "juizes": "Judges",
+            "juízes": "Judges",
+            "rute": "Ruth",
+            "1 samuel": "1 Samuel",
+            "2 samuel": "2 Samuel",
+            "1 reis": "1 Kings",
+            "2 reis": "2 Kings",
+            "1 cronicas": "1 Chronicles",
+            "1 crônicas": "1 Chronicles",
+            "2 cronicas": "2 Chronicles",
+            "2 crônicas": "2 Chronicles",
+            "esdras": "Ezra",
+            "neemias": "Nehemiah",
+            "ester": "Esther",
+            "jo": "Job",
+            "jó": "Job",
+            "salmos": "Psalms",
+            "salmo": "Psalms",
+            "proverbios": "Proverbs",
+            "provérbios": "Proverbs",
+            "eclesiastes": "Ecclesiastes",
+            "cantares": "Song of Solomon",
+            "canticos": "Song of Solomon",
+            "cânticos": "Song of Solomon",
+            "isaias": "Isaiah",
+            "isaías": "Isaiah",
+            "jeremias": "Jeremiah",
+            "lamentacoes": "Lamentations",
+            "lamentações": "Lamentations",
+            "ezequiel": "Ezekiel",
+            "daniel": "Daniel",
+            "oseias": "Hosea",
+            "oséias": "Hosea",
+            "joel": "Joel",
+            "amos": "Amos",
+            "amós": "Amos",
+            "obadias": "Obadiah",
+            "jonas": "Jonah",
+            "miqueias": "Micah",
+            "miquéias": "Micah",
+            "naum": "Nahum",
+            "habacuque": "Habakkuk",
+            "sofonias": "Zephaniah",
+            "ageu": "Haggai",
+            "zacarias": "Zechariah",
+            "malaquias": "Malachi",
+            "malaquías": "Malachi",
+
+            "mateus": "Matthew",
+            "marcos": "Mark",
+            "lucas": "Luke",
+            "joao": "John",
+            "joão": "John",
+            "atos": "Acts",
+            "romanos": "Romans",
+            "1 corintios": "1 Corinthians",
+            "1 coríntios": "1 Corinthians",
+            "2 corintios": "2 Corinthians",
+            "2 coríntios": "2 Corinthians",
+            "galatas": "Galatians",
+            "gálatas": "Galatians",
+            "efesios": "Ephesians",
+            "efésios": "Ephesians",
+            "filipenses": "Philippians",
+            "colossenses": "Colossians",
+            "1 tessalonicenses": "1 Thessalonians",
+            "2 tessalonicenses": "2 Thessalonians",
+            "1 timoteo": "1 Timothy",
+            "1 timóteo": "1 Timothy",
+            "2 timoteo": "2 Timothy",
+            "2 timóteo": "2 Timothy",
+            "tito": "Titus",
+            "filemom": "Philemon",
+            "hebreus": "Hebrews",
+            "tiago": "James",
+            "1 pedro": "1 Peter",
+            "2 pedro": "2 Peter",
+            "1 joao": "1 John",
+            "1 joão": "1 John",
+            "2 joao": "2 John",
+            "2 joão": "2 John",
+            "3 joao": "3 John",
+            "3 joão": "3 John",
+            "judas": "Jude",
+            "apocalipse": "Revelation"
+        };
+
+
+        /* ==========================================
+           NORMALIZAR REFERÊNCIA
+        ========================================== */
+
+        function normalizarReferencia(referencia) {
+
+            referencia = referencia
+                .replace(/[–—−]/g, "-")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            const resultado = referencia.match(/^(.+?)\s+(\d+)(?::([\d,-]+))?$/);
+
+            if (!resultado) {
+                throw new Error("Formato de referência não reconhecido.");
+            }
+
+            const nomeLivro = resultado[1].trim().toLowerCase();
+            const capitulo = resultado[2];
+            const versiculos = resultado[3] || null;
+
+            const livroIngles = livrosBiblia[nomeLivro];
+
+            if (!livroIngles) {
+                throw new Error("Livro bíblico não reconhecido: " + nomeLivro);
+            }
+
+            return {
+                livro: livroIngles,
+                capitulo: capitulo,
+                versiculos: versiculos
+            };
+        }
+
+
+        /* ==========================================
+           CONSULTAR TEXTO BÍBLICO
+        ========================================== */
+
+        async function buscarCapitulo(livro, capitulo, versiculos = null) {
+
+            let referencia = `${livro} ${capitulo}`;
+
+            if (versiculos) {
+                referencia += `:${versiculos}`;
+            }
+
+            const url =
+                "https://bible-api.com/" +
+                encodeURIComponent(referencia) +
+                "?translation=almeida";
+
+            const resposta = await fetch(url);
+
+            if (!resposta.ok) {
+                throw new Error("Erro ao consultar " + referencia);
+            }
+
+            const dados = await resposta.json();
+
+            if (!dados.verses || !Array.isArray(dados.verses)) {
+                throw new Error("A API não retornou os versículos.");
+            }
+
+            return dados;
+        }
+
+
+        /* ==========================================
+           EXIBIR TEXTO BÍBLICO NO POPUP
+        ========================================== */
+
+        async function consultarBiblia(referencia) {
+
+            modalBiblia.classList.add("aberto");
+
+            tituloReferencia.textContent = referencia;
+            textoBiblico.textContent = "Carregando texto bíblico...";
+
+            try {
+
+                const dadosReferencia = normalizarReferencia(referencia);
+                let resultados = [];
+
+                /*
+                   Referências de capítulos consecutivos:
+                   Exemplo: Salmos 23-24
+                */
+
+                if (
+                    !dadosReferencia.versiculos &&
+                    dadosReferencia.capitulo.includes("-")
+                ) {
+
+                    const partes = dadosReferencia.capitulo.split("-");
+
+                    const inicio = Number(partes[0]);
+                    const fim = Number(partes[1]);
+
+                    if (
+                        !Number.isInteger(inicio) ||
+                        !Number.isInteger(fim) ||
+                        fim < inicio ||
+                        fim - inicio > 10
+                    ) {
+                        throw new Error("Intervalo de capítulos inválido.");
+                    }
+
+                    for (let cap = inicio; cap <= fim; cap++) {
+                        const dados = await buscarCapitulo(
+                            dadosReferencia.livro,
+                            cap
+                        );
+
+                        resultados.push(dados);
+                    }
+
+                } else {
+
+                    const dados = await buscarCapitulo(
+                        dadosReferencia.livro,
+                        dadosReferencia.capitulo,
+                        dadosReferencia.versiculos
+                    );
+
+                    resultados.push(dados);
+                }
+
+                textoBiblico.innerHTML = "";
+
+                resultados.forEach(dados => {
+
+                    if (dados.reference) {
+
+                        const subtitulo = document.createElement("h3");
+
+                        subtitulo.textContent = dados.reference;
+
+                        subtitulo.style.cssText = `
+                            font-family: Cinzel, serif;
+                            color: #102d4e;
+                            font-size: 16px;
+                            margin: 15px 0;
+                        `;
+
+                        textoBiblico.appendChild(subtitulo);
+                    }
+
+                    dados.verses.forEach(versiculo => {
+
+                        const linha = document.createElement("p");
+                        linha.className = "versiculo";
+
+                        const numero = document.createElement("strong");
+                        numero.className = "numero-versiculo";
+                        numero.textContent = versiculo.verse + ".";
+
+                        const texto = document.createTextNode(
+                            " " + versiculo.text.trim()
+                        );
+
+                        linha.appendChild(numero);
+                        linha.appendChild(texto);
+
+                        textoBiblico.appendChild(linha);
+                    });
+
+                });
+
+                const identificacao = document.createElement("p");
+
+                identificacao.style.cssText = `
+                    margin-top: 20px;
+                    padding-top: 12px;
+                    border-top: 1px solid #ddd;
+                    font-size: 13px;
+                    color: #777;
+                `;
+
+                identificacao.textContent =
+                    "Tradução: João Ferreira de Almeida.";
+
+                textoBiblico.appendChild(identificacao);
+
+            } catch (erro) {
+
+                console.error("Erro na consulta bíblica:", erro);
+
+                textoBiblico.textContent =
+                    "Não foi possível carregar os versículos desta referência. " +
+                    "Verifique sua conexão com a internet e tente novamente. " +
+                    "Referência: " + referencia;
+            }
+        }
+
+
+        /* ==========================================
+           FECHAR POPUP
+        ========================================== */
+
+        function fecharBiblia() {
+            modalBiblia.classList.remove("aberto");
+        }
+
+        function fecharSeFora(event) {
+            if (event.target === modalBiblia) {
+                fecharBiblia();
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação — Aula 12 | Escola Bíblica Atalaia</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap');
+
+:root {
+    --azul: #071b33;
+    --azul-claro: #102d4e;
+    --dourado: #c9a45c;
+    --fundo: #f3f1eb;
+    --branco: #ffffff;
+    --texto: #263445;
+    --verde: #216b43;
+    --vermelho: #a52a2a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 15px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 19px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    background: var(--branco);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.09);
+}
+
+.cabecalho {
+    text-align: center;
+    background: var(--azul);
+    color: white;
+    padding: 35px 20px;
+    border: 4px double var(--dourado);
+    margin-bottom: 30px;
+}
+
+.cabecalho .ministerio {
+    color: var(--dourado);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.cabecalho h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 27px;
+    margin: 10px 0;
+}
+
+.cabecalho p {
+    margin: 8px 0;
+    font-size: 19px;
+}
+
+.identificacao {
+    color: var(--dourado);
+    font-size: 15px !important;
+    letter-spacing: 1px;
+    margin-top: 20px !important;
+}
+
+.instrucoes {
+    background: #f7f4ed;
+    border-left: 5px solid var(--dourado);
+    padding: 18px 22px;
+    margin-bottom: 25px;
+}
+
+.instrucoes h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+    font-size: 21px;
+    margin-top: 0;
+}
+
+.campo-nome {
+    margin: 25px 0;
+}
+
+.campo-nome label {
+    display: block;
+    font-weight: bold;
+    color: var(--azul);
+    margin-bottom: 8px;
+}
+
+.campo-nome input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #b9c0c8;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 19px;
+}
+
+.progresso-area {
+    margin: 25px 0;
+}
+
+.progresso-texto {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.progresso-fundo {
+    height: 9px;
+    background: #e4e6e8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progresso {
+    height: 100%;
+    width: 0%;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.questao {
+    border: 1px solid #e0e3e6;
+    border-radius: 7px;
+    padding: 20px;
+    margin: 20px 0;
+    background: #fff;
+}
+
+.questao h3 {
+    color: var(--azul);
+    font-size: 20px;
+    margin: 0 0 15px;
+    line-height: 1.4;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 12px;
+    margin: 7px 0;
+    border: 1px solid #e2e5e8;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.alternativa:hover {
+    background: #f5f2e9;
+}
+
+.alternativa input {
+    margin-top: 6px;
+    accent-color: var(--azul);
+    transform: scale(1.15);
+}
+
+.alternativa.selecionada {
+    background: #f5f2e9;
+    border-color: var(--dourado);
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 35px 0 15px;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 14px 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+.btn-enviar {
+    background: var(--azul);
+    color: white;
+}
+
+.btn-limpar {
+    background: #e8e8e8;
+    color: var(--azul);
+}
+
+.resultado {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    border: 2px solid var(--dourado);
+    text-align: center;
+    background: #fbfaf6;
+}
+
+.resultado h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+}
+
+.nota {
+    font-family: 'Cinzel', serif;
+    font-size: 38px;
+    color: var(--azul);
+    margin: 15px 0;
+}
+
+.aprovado {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.reprovado {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+.certificado {
+    display: none;
+    margin: 35px auto;
+    padding: 35px 25px;
+    max-width: 850px;
+    min-height: 480px;
+    border: 9px double var(--dourado);
+    outline: 2px solid var(--azul);
+    outline-offset: -17px;
+    text-align: center;
+    background: #fffefa;
+    color: var(--azul);
+}
+
+.certificado .marca {
+    font-family: 'Cinzel', serif;
+    color: var(--dourado);
+    font-size: 17px;
+    letter-spacing: 3px;
+    margin-top: 20px;
+}
+
+.certificado h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 34px;
+    margin: 25px 0;
+}
+
+.certificado .subtitulo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.certificado .nome-certificado {
+    font-family: 'Cinzel', serif;
+    font-size: 27px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--dourado);
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+}
+
+.certificado .texto-certificado {
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 15px auto;
+}
+
+.certificado .detalhes {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.assinatura {
+    margin: 45px auto 10px;
+    width: 280px;
+    border-top: 1px solid var(--azul);
+    padding-top: 8px;
+    font-size: 18px;
+}
+
+.assinatura strong {
+    display: block;
+}
+
+.rodape {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 35px;
+    color: #657080;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .cabecalho {
+        padding: 25px 12px;
+    }
+
+    .cabecalho h1 {
+        font-size: 21px;
+    }
+
+    .questao {
+        padding: 15px;
+    }
+
+    .certificado {
+        padding: 25px 15px;
+    }
+
+    .certificado h1 {
+        font-size: 25px;
+    }
+
+    .certificado .nome-certificado {
+        font-size: 21px;
+    }
+}
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 12mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container,
+    .cabecalho,
+    .instrucoes,
+    .campo-nome,
+    .progresso-area,
+    #questionario,
+    .botoes,
+    .resultado,
+    .rodape {
+        display: none !important;
+    }
+
+    .certificado {
+        display: block !important;
+        width: 100%;
+        max-width: none;
+        min-height: 175mm;
+        margin: 0;
+        page-break-inside: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cabecalho">
+        <div class="ministerio">MINISTÉRIO ATALAIA</div>
+        <h1>AVALIAÇÃO FINAL</h1>
+        <p>Aprendendo a Orar como Jesus</p>
+        <p>Desenvolvendo uma vida de oração</p>
+        <p class="identificacao">AULA 12 • ESCOLA BÍBLICA ATALAIA</p>
+    </header>
+
+    <section class="instrucoes">
+        <h2>Orientações da avaliação</h2>
+        <p>Esta avaliação contém 40 questões de múltipla escolha sobre os ensinamentos da Aula 12.</p>
+        <p>Leia cada questão com atenção e marque apenas uma alternativa.</p>
+        <p><strong>Critério de aprovação:</strong> mínimo de 70% de acertos, correspondente a 28 questões.</p>
+        <p>O certificado será disponibilizado automaticamente após a aprovação.</p>
+    </section>
+
+    <div class="campo-nome">
+        <label for="nome">Nome completo do aluno:</label>
+        <input type="text" id="nome" placeholder="Digite seu nome completo" autocomplete="name">
+    </div>
+
+    <div class="progresso-area">
+        <div class="progresso-texto">
+            <span>Progresso da avaliação</span>
+            <strong id="contador">0 de 40 respondidas</strong>
+        </div>
+        <div class="progresso-fundo">
+            <div class="progresso" id="barraProgresso"></div>
+        </div>
+    </div>
+
+    <form id="questionario">
+        <div id="questoes"></div>
+
+        <div class="botoes">
+            <button type="button" class="btn-enviar" onclick="corrigirAvaliacao()">
+                Finalizar avaliação
+            </button>
+            <button type="reset" class="btn-limpar" onclick="limparResultado()">
+                Limpar respostas
+            </button>
+        </div>
+    </form>
+
+    <section class="resultado" id="resultado" aria-live="polite"></section>
+
+    <section class="certificado" id="certificado">
+        <div class="marca">MINISTÉRIO ATALAIA</div>
+        <h1>CERTIFICADO</h1>
+        <p class="subtitulo">DE CONCLUSÃO DE AULA</p>
+
+        <p class="texto-certificado">
+            Certificamos que
+        </p>
+
+        <div class="nome-certificado" id="nomeCertificado"></div>
+
+        <p class="texto-certificado">
+            concluiu com aproveitamento a avaliação da
+            <strong>Aula 12 — Aprendendo a Orar como Jesus</strong>,
+            demonstrando conhecimento sobre os princípios bíblicos
+            da oração, intimidade com o Pai, perseverança,
+            sinceridade e desenvolvimento de uma vida diária de oração.
+        </p>
+
+        <div class="detalhes">
+            <strong>Escola Bíblica Atalaia</strong><br>
+            Aproveitamento: <span id="aproveitamentoCertificado"></span><br>
+            Resultado: APROVADO(A)
+        </div>
+
+        <div class="assinatura">
+            <strong>Diego Nascimento</strong>
+            Pastor Evangelista
+        </div>
+
+        <div class="marca">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+    </section>
+
+    <div class="botoes" id="botoesCertificado" style="display:none;">
+        <button type="button" class="btn-enviar" onclick="imprimirCertificado()">
+            Imprimir certificado
+        </button>
+    </div>
+
+    <footer class="rodape">
+        <strong>MINISTÉRIO ATALAIA</strong><br>
+        Escola Bíblica Atalaia — Curso de Formação Cristã<br>
+        Proclamando a Verdade. Formando Discípulos.
+    </footer>
+
+</div>
+
+<script>
+const perguntas = [
+{
+    pergunta: "Qual é o principal propósito da Aula 12?",
+    alternativas: [
+        "Aprender fórmulas para conseguir tudo o que desejamos",
+        "Desenvolver uma vida de oração seguindo o exemplo de Jesus",
+        "Substituir a leitura bíblica por momentos de oração",
+        "Conhecer apenas as orações realizadas pelos apóstolos"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Segundo Marcos 1:35, o que Jesus fez de madrugada, antes do amanhecer?",
+    alternativas: [
+        "Reuniu uma multidão para ensinar",
+        "Foi ao templo oferecer sacrifícios",
+        "Retirou-se para um lugar deserto e orou",
+        "Enviou os discípulos para outra cidade"
+    ],
+    correta: 2
+},
+{
+    pergunta: "O que Lucas 5:16 ensina sobre o hábito de Jesus?",
+    alternativas: [
+        "Jesus frequentemente se retirava para lugares solitários e orava",
+        "Jesus orava somente quando estava com os discípulos",
+        "Jesus evitava momentos de silêncio",
+        "Jesus orava apenas durante as festas religiosas"
+    ],
+    correta: 0
+},
+{
+    pergunta: "Por que Jesus se retirava para orar?",
+    alternativas: [
+        "Para evitar definitivamente as pessoas",
+        "Para demonstrar superioridade espiritual",
+        "Para abandonar sua missão",
+        "Para cultivar comunhão com o Pai"
+    ],
+    correta: 3
+},
+{
+    pergunta: "Em Lucas 6:12-13, o que Jesus fez antes de escolher os doze apóstolos?",
+    alternativas: [
+        "Consultou os governantes da cidade",
+        "Passou a noite em oração a Deus",
+        "Realizou uma votação entre a multidão",
+        "Esperou que os discípulos escolhessem"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Segundo Mateus 6:6, como Jesus orientou seus discípulos a orar?",
+    alternativas: [
+        "Procurando sempre ser vistos pelas pessoas",
+        "Repetindo palavras sem prestar atenção",
+        "Entrando no quarto, fechando a porta e orando ao Pai em secreto",
+        "Orando somente em lugares públicos"
+    ],
+    correta: 2
+},
+{
+    pergunta: "O que significa chamar Deus de Pai na oração ensinada por Jesus?",
+    alternativas: [
+        "Reconhecer relacionamento, pertencimento e confiança diante de Deus",
+        "Tratar Deus sem reverência",
+        "Considerar Deus obrigado a realizar todos os nossos desejos",
+        "Dispensar a necessidade de obediência"
+    ],
+    correta: 0
+},
+{
+    pergunta: "Na expressão 'Santificado seja o teu nome', qual atitude está sendo ensinada?",
+    alternativas: [
+        "Buscar reconhecimento humano",
+        "Pedir riquezas materiais",
+        "Exigir que todos concordem conosco",
+        "Honrar e reverenciar o nome de Deus"
+    ],
+    correta: 3
+},
+{
+    pergunta: "O que pedimos ao dizer 'Venha o teu Reino'?",
+    alternativas: [
+        "Que nosso próprio reino seja estabelecido",
+        "Que o governo e a vontade de Deus se manifestem",
+        "Que todas as dificuldades desapareçam imediatamente",
+        "Que tenhamos autoridade sobre todas as pessoas"
+    ],
+    correta: 1
+},
+{
+    pergunta: "O que significa orar 'Seja feita a tua vontade'?",
+    alternativas: [
+        "Desistir de apresentar pedidos a Deus",
+        "Acreditar que nossas decisões são sempre corretas",
+        "Submeter nossos desejos e decisões à vontade de Deus",
+        "Esperar que Deus aprove qualquer atitude nossa"
+    ],
+    correta: 2
+},
+{
+    pergunta: "Na oração do Pai Nosso, o pedido pelo pão de cada dia ensina principalmente:",
+    alternativas: [
+        "Dependência de Deus e confiança em sua provisão",
+        "Acumulação de riquezas sem limites",
+        "Independência completa de Deus",
+        "Que devemos orar somente por necessidades materiais"
+    ],
+    correta: 0
+},
+{
+    pergunta: "O pedido 'Perdoa-nos as nossas dívidas' está relacionado a:",
+    alternativas: [
+        "Esquecer todas as responsabilidades",
+        "Exigir que outras pessoas nos sirvam",
+        "Evitar reconhecer nossos erros",
+        "Buscar o perdão de Deus e reconhecer a importância de perdoar"
+    ],
+    correta: 3
+},
+{
+    pergunta: "O que Jesus ensina ao incluir o pedido para não cairmos em tentação?",
+    alternativas: [
+        "Que o cristão nunca enfrentará tentações",
+        "Que devemos viver em vigilância e dependência de Deus",
+        "Que a tentação é sempre impossível de resistir",
+        "Que não precisamos tomar decisões responsáveis"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Segundo Mateus 6:5, qual comportamento Jesus condenou?",
+    alternativas: [
+        "Orar em favor de outras pessoas",
+        "Orar em momentos de dificuldade",
+        "Orar para ser visto e admirado pelos homens",
+        "Orar em família"
+    ],
+    correta: 2
+},
+{
+    pergunta: "O que Jesus ensina em Mateus 6:7-8 sobre as palavras na oração?",
+    alternativas: [
+        "Não devemos confiar em repetições vazias, pois o Pai conhece nossas necessidades",
+        "Devemos repetir a mesma frase sem pensar",
+        "Quanto mais palavras pronunciarmos, mais obrigaremos Deus a responder",
+        "A oração deve ser sempre longa para ser aceita"
+    ],
+    correta: 0
+},
+{
+    pergunta: "Na parábola do fariseu e do publicano, em Lucas 18:9-14, qual atitude foi aprovada por Jesus?",
+    alternativas: [
+        "A confiança na própria justiça",
+        "A comparação com os pecados dos outros",
+        "A exaltação das próprias obras",
+        "A humildade e o reconhecimento da necessidade da misericórdia de Deus"
+    ],
+    correta: 3
+},
+{
+    pergunta: "O que o Salmo 51:17 ensina sobre o coração diante de Deus?",
+    alternativas: [
+        "Deus aceita apenas pessoas que nunca erraram",
+        "Um coração quebrantado e contrito Deus não despreza",
+        "A aparência exterior é mais importante que o arrependimento",
+        "O arrependimento não tem relação com a oração"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Segundo Lucas 18:1, qual ensinamento Jesus apresentou por meio da parábola da viúva persistente?",
+    alternativas: [
+        "Que devemos orar somente uma vez",
+        "Que a oração serve apenas para momentos de emergência",
+        "Que devemos orar sempre e não desanimar",
+        "Que Deus não deseja ouvir nossas petições"
+    ],
+    correta: 2
+},
+{
+    pergunta: "Na passagem de Lucas 11:9, Jesus ensina:",
+    alternativas: [
+        "Pedi, buscai e batei",
+        "Desisti, esperai e esquecei",
+        "Trabalhai, acumulai e dominai",
+        "Julgai, condenai e afastai-vos"
+    ],
+    correta: 0
+},
+{
+    pergunta: "A perseverança na oração significa:",
+    alternativas: [
+        "Tentar obrigar Deus a cumprir nossa vontade",
+        "Repetir palavras sem fé ou atenção",
+        "Nunca aceitar uma resposta diferente da esperada",
+        "Continuar buscando a Deus com fé, confiança e constância"
+    ],
+    correta: 3
+},
+{
+    pergunta: "O que Jesus demonstrou no Getsêmani, conforme Mateus 26:39?",
+    alternativas: [
+        "Que não devemos apresentar nossas angústias a Deus",
+        "Que podemos expressar nossos sentimentos e nos submeter à vontade do Pai",
+        "Que a oração elimina automaticamente todo sofrimento",
+        "Que devemos fugir de toda responsabilidade"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Em Lucas 22:42, qual foi a atitude de Jesus diante do sofrimento que enfrentaria?",
+    alternativas: [
+        "Rejeitou completamente a vontade do Pai",
+        "Exigiu que os discípulos resolvessem a situação",
+        "Submeteu-se à vontade do Pai",
+        "Abandonou sua missão"
+    ],
+    correta: 2
+},
+{
+    pergunta: "Segundo 1 João 5:14, podemos ter confiança de que Deus nos ouve quando:",
+    alternativas: [
+        "Pedimos segundo a sua vontade",
+        "Exigimos tudo o que desejamos",
+        "Oramos para receber elogios",
+        "Ignoramos seus ensinamentos"
+    ],
+    correta: 0
+},
+{
+    pergunta: "O que João 15:7 ensina sobre permanecer em Cristo e a oração?",
+    alternativas: [
+        "Que não precisamos guardar suas palavras",
+        "Que a oração substitui a obediência",
+        "Que podemos viver independentemente de Cristo",
+        "Que permanecer em Cristo e ter suas palavras em nós está relacionado aos nossos pedidos"
+    ],
+    correta: 3
+},
+{
+    pergunta: "Qual é a relação entre a Palavra de Deus e a oração?",
+    alternativas: [
+        "A Palavra deve ser deixada de lado durante a vida cristã",
+        "A Escritura orienta, corrige e alimenta o conteúdo de nossas orações",
+        "A oração torna desnecessário conhecer a Bíblia",
+        "A leitura bíblica serve apenas para preparar sermões"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Segundo Filipenses 4:6-7, como devemos apresentar nossas preocupações a Deus?",
+    alternativas: [
+        "Guardando toda ansiedade sem buscar ajuda",
+        "Desistindo de orar quando surgem dificuldades",
+        "Com oração, súplicas e ações de graças",
+        "Reclamando continuamente das pessoas"
+    ],
+    correta: 2
+},
+{
+    pergunta: "O que 1 Pedro 5:7 nos orienta a fazer?",
+    alternativas: [
+        "Lançar sobre Deus toda a nossa ansiedade, porque Ele cuida de nós",
+        "Esconder de Deus nossas preocupações",
+        "Confiar exclusivamente na força humana",
+        "Evitar conversar com outras pessoas"
+    ],
+    correta: 0
+},
+{
+    pergunta: "De acordo com Tiago 5:16, qual é uma prática importante na vida cristã?",
+    alternativas: [
+        "Esconder os erros e nunca buscar reconciliação",
+        "Julgar publicamente todas as pessoas",
+        "Orar somente por nós mesmos",
+        "Confessar as faltas e orar uns pelos outros"
+    ],
+    correta: 3
+},
+{
+    pergunta: "Segundo 1 Timóteo 2:1-2, por quem devemos interceder?",
+    alternativas: [
+        "Somente por nossos familiares",
+        "Por todos, incluindo autoridades e pessoas em posições de liderança",
+        "Apenas por aqueles que pensam como nós",
+        "Somente por pessoas que conhecemos pessoalmente"
+    ],
+    correta: 1
+},
+{
+    pergunta: "O que Mateus 5:44 ensina sobre a oração em relação aos inimigos?",
+    alternativas: [
+        "Que devemos desejar vingança",
+        "Que devemos ignorar completamente essas pessoas",
+        "Que devemos orar por aqueles que nos perseguem",
+        "Que a oração deve ser reservada aos nossos amigos"
+    ],
+    correta: 2
+},
+{
+    pergunta: "Qual é a importância da oração comunitária, conforme Atos 2:42?",
+    alternativas: [
+        "A igreja perseverava na comunhão, no ensino, no partir do pão e nas orações",
+        "Os discípulos abandonaram as reuniões",
+        "A oração foi substituída por atividades sociais",
+        "Cada cristão deveria viver isolado"
+    ],
+    correta: 0
+},
+{
+    pergunta: "Em Atos 12:5, o que a igreja fazia enquanto Pedro estava preso?",
+    alternativas: [
+        "Esperava sem fazer nada",
+        "Organizava uma celebração",
+        "Discutia quem deveria substituí-lo",
+        "Fazia contínua oração a Deus por ele"
+    ],
+    correta: 3
+},
+{
+    pergunta: "O que significa desenvolver uma rotina diária de oração?",
+    alternativas: [
+        "Cumprir horários como uma obrigação sem relacionamento com Deus",
+        "Separar momentos constantes para buscar a Deus, com sinceridade e perseverança",
+        "Orar apenas quando alguém solicita",
+        "Acreditar que Deus só ouve orações feitas pela manhã"
+    ],
+    correta: 1
+},
+{
+    pergunta: "Qual passagem apresenta Daniel mantendo o hábito de orar três vezes ao dia?",
+    alternativas: [
+        "Gênesis 12:1-3",
+        "Êxodo 20:1-17",
+        "Daniel 6:10",
+        "Apocalipse 21:1-4"
+    ],
+    correta: 2
+},
+{
+    pergunta: "Qual atitude pode ajudar a vencer as distrações durante a oração?",
+    alternativas: [
+        "Escolher um momento e um lugar apropriados, buscando atenção e concentração",
+        "Manter todas as distrações deliberadamente",
+        "Desistir de orar quando houver interrupções",
+        "Acreditar que somente um lugar específico permite orar"
+    ],
+    correta: 0
+},
+{
+    pergunta: "Segundo Romanos 8:26, como o Espírito Santo nos auxilia na oração?",
+    alternativas: [
+        "Eliminando nossa responsabilidade de buscar a Deus",
+        "Impedindo que expressemos nossas dificuldades",
+        "Fazendo com que nunca precisemos de ajuda",
+        "Auxiliando-nos em nossa fraqueza e intercedendo por nós"
+    ],
+    correta: 3
+},
+{
+    pergunta: "Qual é a relação entre oração e obediência?",
+    alternativas: [
+        "Quem ora não precisa obedecer",
+        "A oração deve caminhar com uma vida de fé, obediência e prática da Palavra",
+        "A obediência é desnecessária quando conhecemos orações bíblicas",
+        "A oração substitui a responsabilidade pelas nossas atitudes"
+    ],
+    correta: 1
+},
+{
+    pergunta: "O que Tiago 1:22 ensina aos cristãos?",
+    alternativas: [
+        "Que basta ouvir a Palavra",
+        "Que a prática da Palavra não é necessária",
+        "Que devemos ser praticantes da Palavra, e não apenas ouvintes",
+        "Que a fé não tem relação com nossas atitudes"
+    ],
+    correta: 2
+},
+{
+    pergunta: "Qual das alternativas apresenta práticas que podem compor uma vida de oração saudável?",
+    alternativas: [
+        "Adoração, confissão, gratidão, petição e intercessão",
+        "Orgulho, comparação, exigência e vingança",
+        "Repetição automática, vaidade e competição",
+        "Apenas pedidos por bens materiais"
+    ],
+    correta: 0
+},
+{
+    pergunta: "Qual deve ser o resultado esperado de uma vida de oração desenvolvida segundo os ensinamentos de Jesus?",
+    alternativas: [
+        "Uma vida sem dificuldades ou responsabilidades",
+        "A capacidade de controlar todas as pessoas",
+        "O reconhecimento público como pessoa superior",
+        "Uma comunhão mais profunda com Deus que influencia nossas atitudes e escolhas"
+    ],
+    correta: 3
+}
+];
+
+const areaQuestoes = document.getElementById("questoes");
+
+function criarQuestoes() {
+    perguntas.forEach((questao, indice) => {
+        const bloco = document.createElement("div");
+        bloco.className = "questao";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = `${indice + 1}. ${questao.pergunta}`;
+        bloco.appendChild(titulo);
+
+        questao.alternativas.forEach((alternativa, opcao) => {
+            const label = document.createElement("label");
+            label.className = "alternativa";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `questao${indice}`;
+            radio.value = opcao;
+
+            radio.addEventListener("change", () => {
+                bloco.querySelectorAll(".alternativa").forEach(item => {
+                    item.classList.remove("selecionada");
+                });
+
+                label.classList.add("selecionada");
+                atualizarProgresso();
+            });
+
+            const texto = document.createElement("span");
+            texto.textContent = `${String.fromCharCode(65 + opcao)}) ${alternativa}`;
+
+            label.appendChild(radio);
+            label.appendChild(texto);
+            bloco.appendChild(label);
+        });
+
+        areaQuestoes.appendChild(bloco);
+    });
+}
+
+function atualizarProgresso() {
+    let respondidas = 0;
+
+    perguntas.forEach((_, indice) => {
+        if (document.querySelector(`input[name="questao${indice}"]:checked`)) {
+            respondidas++;
+        }
+    });
+
+    document.getElementById("contador").textContent =
+        `${respondidas} de ${perguntas.length} respondidas`;
+
+    document.getElementById("barraProgresso").style.width =
+        `${(respondidas / perguntas.length) * 100}%`;
+}
+
+function corrigirAvaliacao() {
+    const nome = document.getElementById("nome").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo antes de finalizar a avaliação.");
+        document.getElementById("nome").focus();
+        return;
+    }
+
+    let respondidas = 0;
+    let acertos = 0;
+
+    perguntas.forEach((questao, indice) => {
+        const resposta = document.querySelector(`input[name="questao${indice}"]:checked`);
+
+        if (resposta) {
+            respondidas++;
+
+            if (Number(resposta.value) === questao.correta) {
+                acertos++;
+            }
+        }
+    });
+
+    if (respondidas < perguntas.length) {
+        const continuar = confirm(
+            `Você respondeu ${respondidas} de ${perguntas.length} questões. Deseja finalizar mesmo assim?`
+        );
+
+        if (!continuar) return;
+    }
+
+    const total = perguntas.length;
+    const percentual = Math.round((acertos / total) * 100);
+    const aprovacao = acertos >= 28;
+
+    const resultado = document.getElementById("resultado");
+
+    resultado.style.display = "block";
+    resultado.innerHTML = "";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = "Resultado da avaliação";
+
+    const nota = document.createElement("div");
+    nota.className = "nota";
+    nota.textContent = `${acertos} / ${total}`;
+
+    const percentualTexto = document.createElement("p");
+    percentualTexto.textContent = `Aproveitamento: ${percentual}%`;
+
+    const status = document.createElement("p");
+    status.className = aprovacao ? "aprovado" : "reprovado";
+    status.textContent = aprovacao
+        ? "PARABÉNS! VOCÊ FOI APROVADO(A)!"
+        : "VOCÊ AINDA NÃO ALCANÇOU A NOTA MÍNIMA.";
+
+    const mensagem = document.createElement("p");
+    mensagem.textContent = aprovacao
+        ? "Você atingiu o mínimo de 70% de acertos e está apto(a) a receber seu certificado."
+        : `Você precisa acertar pelo menos 28 questões. Faltaram ${28 - acertos} acerto(s) para alcançar a aprovação.`;
+
+    resultado.append(titulo, nota, percentualTexto, status, mensagem);
+
+    const certificado = document.getElementById("certificado");
+    const botoesCertificado = document.getElementById("botoesCertificado");
+
+    if (aprovacao) {
+        document.getElementById("nomeCertificado").textContent = nome;
+        document.getElementById("aproveitamentoCertificado").textContent =
+            `${acertos} de ${total} questões (${percentual}%)`;
+
+        certificado.style.display = "block";
+        botoesCertificado.style.display = "flex";
+    } else {
+        certificado.style.display = "none";
+        botoesCertificado.style.display = "none";
+    }
+
+    resultado.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function imprimirCertificado() {
+    window.print();
+}
+
+function limparResultado() {
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("certificado").style.display = "none";
+    document.getElementById("botoesCertificado").style.display = "none";
+
+    document.querySelectorAll(".alternativa").forEach(label => {
+        label.classList.remove("selecionada");
+    });
+
+    setTimeout(atualizarProgresso, 0);
+}
+
+criarQuestoes();
+atualizarProgresso();
+</script>
+
+</body>
+</html>

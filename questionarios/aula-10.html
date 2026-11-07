@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Questionário — Aula 10 | Livra-nos do Mal</title>
+
+    <meta name="description" content="Questionário avaliativo da Aula 10 — Livra-nos do Mal. Escola Bíblica Atalaia.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --azul: #071b33;
+            --azul2: #102d4e;
+            --dourado: #c9a45c;
+            --fundo: #f3f0e8;
+            --papel: #fffdf8;
+            --texto: #283342;
+            --verde: #287a4b;
+            --vermelho: #a83232;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px 15px;
+            background: var(--fundo);
+            color: var(--texto);
+            font-family: 'Crimson Text', serif;
+            font-size: 19px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background: var(--papel);
+            border: 1px solid #d9cba9;
+            box-shadow: 0 8px 30px rgba(0,0,0,.10);
+        }
+
+        header {
+            padding: 35px 25px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, var(--azul), var(--azul2));
+            border-bottom: 5px solid var(--dourado);
+        }
+
+        header .instituicao {
+            color: var(--dourado);
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(25px, 5vw, 39px);
+            color: #fff;
+        }
+
+        header h2 {
+            margin: 12px 0 0;
+            font-size: 23px;
+            font-weight: 400;
+            color: #e8dfcf;
+        }
+
+        header p {
+            margin: 18px 0 0;
+            color: #d9cba9;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        .introducao {
+            padding: 20px;
+            background: #f5f0e5;
+            border-left: 4px solid var(--dourado);
+            margin-bottom: 25px;
+        }
+
+        .introducao h3 {
+            margin-top: 0;
+            color: var(--azul);
+            font-family: 'Cinzel', serif;
+            font-size: 19px;
+        }
+
+        .campo-nome {
+            margin: 25px 0;
+        }
+
+        .campo-nome label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--azul);
+            font-weight: bold;
+        }
+
+        .campo-nome input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #c9b98f;
+            border-radius: 4px;
+            background: white;
+            font-family: inherit;
+            font-size: 19px;
+        }
+
+        .campo-nome input:focus {
+            outline: 2px solid var(--dourado);
+        }
+
+        .progresso-container {
+            margin: 25px 0;
+        }
+
+        .progresso-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: var(--azul);
+            font-size: 16px;
+        }
+
+        .progresso-fundo {
+            height: 10px;
+            background: #e3dfd5;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #barraProgresso {
+            width: 0%;
+            height: 100%;
+            background: var(--dourado);
+            transition: width .3s;
+        }
+
+        .questao {
+            padding: 22px;
+            margin: 22px 0;
+            background: #fff;
+            border: 1px solid #e3dccd;
+            border-radius: 5px;
+        }
+
+        .questao h3 {
+            margin: 0 0 17px;
+            color: var(--azul);
+            font-size: 21px;
+            line-height: 1.4;
+        }
+
+        .numero {
+            color: #9a793b;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .alternativa {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 11px 12px;
+            margin: 8px 0;
+            background: #faf8f2;
+            border: 1px solid #e9e2d5;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .alternativa:hover {
+            background: #f2ead8;
+        }
+
+        .alternativa input {
+            margin-top: 5px;
+            accent-color: var(--azul2);
+            transform: scale(1.15);
+        }
+
+        .alternativa span {
+            flex: 1;
+        }
+
+        .acoes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 35px 0 15px;
+        }
+
+        button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: .92;
+        }
+
+        .btn-finalizar {
+            color: white;
+            background: var(--azul);
+        }
+
+        .btn-limpar {
+            color: var(--azul);
+            background: #e8e1d2;
+        }
+
+        #resultado {
+            display: none;
+            margin-top: 35px;
+            padding: 28px;
+            text-align: center;
+            background: #f5f0e5;
+            border: 2px solid var(--dourado);
+        }
+
+        #resultado h2 {
+            color: var(--azul);
+            font-family: 'Cinzel', serif;
+        }
+
+        .nota {
+            margin: 15px 0;
+            color: var(--azul);
+            font-family: 'Cinzel', serif;
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .aprovado {
+            color: var(--verde);
+            font-weight: bold;
+        }
+
+        .reprovado {
+            color: var(--vermelho);
+            font-weight: bold;
+        }
+
+        .detalhes {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .detalhes p {
+            padding: 10px;
+            border-bottom: 1px solid #ddd2bd;
+        }
+
+        #certificado {
+            display: none;
+            margin: 35px auto;
+            padding: 20px;
+            background: white;
+        }
+
+        .certificado-papel {
+            position: relative;
+            min-height: 570px;
+            padding: 45px 35px;
+            border: 12px double var(--dourado);
+            text-align: center;
+            background: #fffdf8;
+        }
+
+        .certificado-instituicao {
+            color: var(--azul);
+            font-family: 'Cinzel', serif;
+            font-size: 19px;
+            letter-spacing: 3px;
+        }
+
+        .certificado-titulo {
+            margin: 40px 0 20px;
+            color: var(--azul);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(25px, 5vw, 38px);
+        }
+
+        .certificado-texto {
+            font-size: 21px;
+            line-height: 1.7;
+        }
+
+        #nomeCertificado {
+            display: block;
+            margin: 25px 0;
+            padding-bottom: 8px;
+            color: var(--azul);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(22px, 4vw, 31px);
+            font-weight: bold;
+            border-bottom: 1px solid var(--dourado);
+        }
+
+        .certificado-dados {
+            margin-top: 25px;
+            color: #5d6470;
+            font-size: 17px;
+        }
+
+        .assinatura {
+            margin-top: 65px;
+            color: var(--azul);
+            font-size: 19px;
+        }
+
+        .assinatura strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 18px;
+        }
+
+        .certificado-rodape {
+            margin-top: 35px;
+            color: #9a793b;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        footer {
+            padding: 22px;
+            text-align: center;
+            color: #d9cba9;
+            background: var(--azul);
+            font-size: 15px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+
+            main {
+                padding: 18px;
+            }
+
+            header {
+                padding: 28px 15px;
+            }
+
+            .questao {
+                padding: 16px;
+            }
+
+            .certificado-papel {
+                padding: 35px 18px;
+                min-height: 550px;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 10mm;
+            }
+
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            body * {
+                visibility: hidden;
+            }
+
+            #certificado,
+            #certificado * {
+                visibility: visible;
+            }
+
+            #certificado {
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .certificado-papel {
+                min-height: 175mm;
+                border: 10px double var(--dourado);
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .nao-imprimir {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="instituicao">MINISTÉRIO ATALAIA</div>
+        <h1>QUESTIONÁRIO AVALIATIVO</h1>
+        <h2>Aula 10 — Livra-nos do Mal</h2>
+        <p>ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</p>
+    </header>
+
+    <main>
+
+        <section class="introducao">
+            <h3>Orientações para a avaliação</h3>
+            <p>
+                Este questionário contém 40 questões de múltipla escolha sobre
+                a décima aula da série de estudos sobre a oração do Pai Nosso.
+            </p>
+            <p>
+                Leia cada questão com atenção e marque apenas uma alternativa.
+                Para obter aprovação e receber o certificado, é necessário
+                alcançar no mínimo <strong>70% de acertos</strong>,
+                correspondentes a 28 questões.
+            </p>
+            <p><strong>Valor:</strong> 1 ponto por questão. <strong>Total:</strong> 40 pontos.</p>
+        </section>
+
+        <div class="campo-nome">
+            <label for="nomeAluno">Nome completo do aluno:</label>
+            <input
+                type="text"
+                id="nomeAluno"
+                placeholder="Digite seu nome completo"
+                autocomplete="name"
+                required
+            >
+        </div>
+
+        <div class="progresso-container">
+            <div class="progresso-info">
+                <span>Progresso da avaliação</span>
+                <strong id="progressoTexto">0 de 40 respondidas</strong>
+            </div>
+            <div class="progresso-fundo">
+                <div id="barraProgresso"></div>
+            </div>
+        </div>
+
+        <form id="formulario">
+
+            <div id="questoes"></div>
+
+            <div class="acoes">
+                <button type="button" class="btn-finalizar" onclick="finalizarAvaliacao()">
+                    FINALIZAR AVALIAÇÃO
+                </button>
+
+                <button type="reset" class="btn-limpar" onclick="limparResultado()">
+                    LIMPAR RESPOSTAS
+                </button>
+            </div>
+
+        </form>
+
+        <section id="resultado">
+            <h2>Resultado da Avaliação</h2>
+            <div class="nota" id="notaFinal">0%</div>
+            <p id="mensagemResultado"></p>
+
+            <div class="detalhes">
+                <p><strong>Aluno:</strong> <span id="nomeResultado"></span></p>
+                <p><strong>Questões corretas:</strong> <span id="acertos"></span> de 40</p>
+                <p><strong>Questões incorretas:</strong> <span id="erros"></span></p>
+                <p><strong>Percentual de aproveitamento:</strong> <span id="percentual"></span></p>
+                <p><strong>Nota mínima para aprovação:</strong> 70%</p>
+            </div>
+
+            <div class="acoes nao-imprimir" id="acoesCertificado" style="display:none;">
+                <button type="button" class="btn-finalizar" onclick="imprimirCertificado()">
+                    IMPRIMIR CERTIFICADO
+                </button>
+            </div>
+        </section>
+
+        <section id="certificado">
+            <div class="certificado-papel">
+
+                <div class="certificado-instituicao">
+                    MINISTÉRIO ATALAIA
+                </div>
+
+                <h1 class="certificado-titulo">
+                    CERTIFICADO
+                </h1>
+
+                <p class="certificado-texto">
+                    A Escola Bíblica Atalaia certifica que
+                </p>
+
+                <span id="nomeCertificado"></span>
+
+                <p class="certificado-texto">
+                    concluiu com aproveitamento a avaliação da
+                    <strong>Aula 10 — Livra-nos do Mal</strong>,
+                    demonstrando conhecimento sobre os fundamentos bíblicos
+                    da proteção divina, da libertação em Cristo e da confiança em Deus.
+                </p>
+
+                <div class="certificado-dados">
+                    <p><strong>Curso:</strong> O Pai Nosso — Uma jornada de oração, comunhão e transformação</p>
+                    <p><strong>Aproveitamento:</strong> <span id="notaCertificado"></span></p>
+                    <p><strong>Resultado:</strong> APROVADO</p>
+                    <p><strong>Data de emissão:</strong> <span id="dataCertificado"></span></p>
+                </div>
+
+                <div class="assinatura">
+                    ______________________________________
+                    <strong>Diego Nascimento - Pastor Evangelista</strong>
+                    <span>Escola Bíblica Atalaia</span>
+                </div>
+
+                <div class="certificado-rodape">
+                    PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Escola Bíblica Atalaia • Ministério Atalaia
+        <br>
+        Proclamando a Verdade. Formando Discípulos.
+    </footer>
+
+</div>
+
+<script>
+const perguntas = [
+
+    {
+        pergunta: "Qual é a expressão do Pai Nosso estudada nesta aula?",
+        opcoes: [
+            "Venha o teu Reino",
+            "Livra-nos do mal",
+            "O pão nosso de cada dia nos dá hoje",
+            "Perdoa as nossas dívidas"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Em qual passagem bíblica encontramos a oração do Pai Nosso na forma apresentada em Mateus?",
+        opcoes: [
+            "Mateus 5:1-12",
+            "Mateus 6:9-13",
+            "Mateus 7:7-11",
+            "Mateus 10:1-5"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "O que pedimos a Deus ao orar: 'Livra-nos do mal'?",
+        opcoes: [
+            "Que sejamos livres de toda responsabilidade",
+            "Que nunca enfrentemos dificuldades",
+            "Que Deus nos proteja e nos livre do mal",
+            "Que possamos controlar todas as circunstâncias"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "A expressão 'Livra-nos do mal' pode ser compreendida como um pedido de proteção contra:",
+        opcoes: [
+            "Somente problemas financeiros",
+            "O mal em sentido amplo e o maligno",
+            "Apenas enfermidades físicas",
+            "Somente pessoas que discordam de nós"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo Gênesis 3, qual acontecimento introduziu o pecado na experiência humana?",
+        opcoes: [
+            "A construção da arca",
+            "A desobediência de Adão e Eva",
+            "A saída de Israel do Egito",
+            "A divisão das tribos de Israel"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "De acordo com João 10:10, o ladrão vem para:",
+        opcoes: [
+            "Ensinar a verdade",
+            "Dar vida em abundância",
+            "Roubar, matar e destruir",
+            "Conduzir as pessoas à reconciliação"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "O que 1 Pedro 5:8 ensina sobre a atitude do cristão?",
+        opcoes: [
+            "Viver sem prestar atenção ao que acontece",
+            "Ser sóbrio e vigilante",
+            "Ignorar os perigos espirituais",
+            "Confiar exclusivamente na própria força"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo 1 Pedro 5:9, como devemos enfrentar o diabo?",
+        opcoes: [
+            "Com medo e desespero",
+            "Com arrogância pessoal",
+            "Resistindo-lhe firmes na fé",
+            "Fugindo de toda convivência humana"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "O Salmo 23 apresenta Deus principalmente como:",
+        opcoes: [
+            "Um juiz indiferente",
+            "O nosso Pastor",
+            "Um governante limitado",
+            "Um observador distante"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "De acordo com Salmos 27:1, o Senhor é:",
+        opcoes: [
+            "A nossa luz e a nossa salvação",
+            "A origem de todo medo",
+            "Um auxílio temporário",
+            "Um caminho desconhecido"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "O que Salmos 46:1 declara sobre Deus?",
+        opcoes: [
+            "Que Ele está distante dos necessitados",
+            "Que Ele é refúgio e fortaleza, socorro bem presente na angústia",
+            "Que Ele protege apenas os fortes",
+            "Que Ele não intervém na história"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Qual é a principal mensagem do Salmo 91?",
+        opcoes: [
+            "A confiança e a segurança daquele que habita no esconderijo do Altíssimo",
+            "A conquista de riquezas materiais",
+            "A ausência de qualquer responsabilidade humana",
+            "A superioridade de uma pessoa sobre as outras"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "Segundo Salmos 121, de onde vem o nosso socorro?",
+        opcoes: [
+            "Exclusivamente dos recursos humanos",
+            "Dos montes considerados sagrados",
+            "Do Senhor, que fez os céus e a terra",
+            "Da capacidade de controlar o futuro"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "O que Provérbios 18:10 ensina sobre o nome do Senhor?",
+        opcoes: [
+            "É uma torre forte, para a qual corre o justo e está seguro",
+            "É uma expressão sem significado espiritual",
+            "É uma referência apenas histórica",
+            "É uma garantia de riqueza imediata"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "Segundo Isaías 41:10, qual é uma das promessas de Deus ao seu povo?",
+        opcoes: [
+            "Nunca haverá oposição",
+            "Não temas, porque eu sou contigo",
+            "Todos terão uma vida sem dificuldades",
+            "O ser humano não precisará de fé"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "De acordo com Colossenses 1:13, o que Deus fez pelos que pertencem a Cristo?",
+        opcoes: [
+            "Transferiu-os para o reino do Filho do seu amor",
+            "Prometeu que nunca seriam perseguidos",
+            "Retirou-os de toda responsabilidade",
+            "Tornou-os independentes de Cristo"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "Segundo Colossenses 1:14, em Cristo temos:",
+        opcoes: [
+            "Apenas conhecimento intelectual",
+            "Redenção e perdão dos pecados",
+            "Garantia de riqueza",
+            "Poder para controlar outras pessoas"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "O que Colossenses 2:13-15 destaca sobre a obra de Cristo?",
+        opcoes: [
+            "Apenas sua atuação como mestre moral",
+            "O perdão dos pecados e seu triunfo sobre os poderes",
+            "A necessidade de acrescentar algo à cruz",
+            "A impossibilidade de vencer o pecado"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo Hebreus 2:14-15, a obra de Cristo está relacionada à vitória sobre:",
+        opcoes: [
+            "A morte e o poder daquele que tinha o império da morte",
+            "As dificuldades econômicas de todos os povos",
+            "A existência de qualquer sofrimento",
+            "A necessidade de comunhão"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "De acordo com 1 João 3:8, o Filho de Deus se manifestou para:",
+        opcoes: [
+            "Aumentar o domínio do pecado",
+            "Desfazer as obras do diabo",
+            "Eliminar a responsabilidade humana",
+            "Ensinar que o mal não existe"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "O que Romanos 8:38-39 ensina?",
+        opcoes: [
+            "Que o sofrimento prova que Deus abandonou o cristão",
+            "Que nenhuma criatura poderá nos separar do amor de Deus em Cristo",
+            "Que a fé elimina todas as dificuldades",
+            "Que o amor de Deus depende das circunstâncias"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Em João 17:15, Jesus pede ao Pai que:",
+        opcoes: [
+            "Retire imediatamente os discípulos do mundo",
+            "Os livre do mal, guardando-os enquanto permanecem no mundo",
+            "Os torne superiores às demais pessoas",
+            "Elimine toda oposição humana"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "O pedido de Jesus em João 17:15 demonstra que:",
+        opcoes: [
+            "Os discípulos deveriam abandonar sua missão",
+            "A proteção divina pode acompanhar os discípulos em sua missão no mundo",
+            "A vida cristã não envolve desafios",
+            "O mundo deixou de ser um lugar de testemunho"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo 2 Tessalonicenses 3:3, o Senhor é fiel e:",
+        opcoes: [
+            "Fortalecerá e guardará os seus do maligno",
+            "Impedirá toda decisão humana",
+            "Garantirá ausência de perseguição",
+            "Retirará a necessidade de oração"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "O que Efésios 6:11 orienta os cristãos a fazer?",
+        opcoes: [
+            "Confiar somente na força física",
+            "Revestir-se de toda a armadura de Deus",
+            "Evitar qualquer atividade espiritual",
+            "Enfrentar o mal com vingança"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo Efésios 6:12, a luta espiritual não é contra:",
+        opcoes: [
+            "Principados e potestades",
+            "Dominadores deste mundo tenebroso",
+            "Carne e sangue",
+            "Forças espirituais do mal"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "Qual elemento da armadura de Deus representa a justiça em Efésios 6?",
+        opcoes: [
+            "O capacete da salvação",
+            "A couraça da justiça",
+            "O escudo da fé",
+            "A espada do Espírito"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Em Efésios 6:17, a espada do Espírito é identificada como:",
+        opcoes: [
+            "A tradição humana",
+            "A Palavra de Deus",
+            "A força física",
+            "A opinião popular"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Qual é a relação entre a fé e o escudo descrito em Efésios 6:16?",
+        opcoes: [
+            "A fé é apresentada como o escudo capaz de apagar os dardos inflamados do maligno",
+            "A fé substitui todas as outras partes da armadura",
+            "A fé é apenas um sentimento passageiro",
+            "A fé elimina a necessidade de vigilância"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "Segundo Tiago 4:7, qual é a orientação bíblica diante do diabo?",
+        opcoes: [
+            "Resistir ao diabo, e ele fugirá",
+            "Negociar com o diabo",
+            "Ignorar a necessidade de resistência",
+            "Confiar na própria superioridade"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "Qual atitude Jesus recomendou em Mateus 26:41?",
+        opcoes: [
+            "Dormir e esquecer as responsabilidades",
+            "Vigiar e orar para não entrar em tentação",
+            "Depender somente da força de vontade",
+            "Evitar qualquer relacionamento"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo Filipenses 4:6-7, diante das preocupações devemos:",
+        opcoes: [
+            "Entregar tudo à ansiedade",
+            "Apresentar nossos pedidos a Deus em oração e súplicas, com ações de graças",
+            "Esconder nossas dificuldades de Deus",
+            "Depender exclusivamente de soluções humanas"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "O que 1 João 4:1 orienta sobre as manifestações espirituais?",
+        opcoes: [
+            "Aceitar todas sem questionamento",
+            "Provar os espíritos para verificar se procedem de Deus",
+            "Rejeitar toda orientação bíblica",
+            "Confiar apenas nas aparências"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "De acordo com Romanos 12:21, como devemos vencer o mal?",
+        opcoes: [
+            "Praticando vingança",
+            "Retribuindo o mal com mal",
+            "Vencendo o mal com o bem",
+            "Ignorando todas as necessidades do próximo"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "Qual deve ser a postura do cristão diante de influências e práticas contrárias à vontade de Deus?",
+        opcoes: [
+            "Aceitar tudo sem discernimento",
+            "Examinar todas as coisas e reter o que é bom",
+            "Seguir sempre a opinião da maioria",
+            "Abandonar os princípios bíblicos"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Qual é uma atitude saudável para proteger espiritualmente a família?",
+        opcoes: [
+            "Cultivar medo e desconfiança dentro de casa",
+            "Promover oração, ensino das Escrituras, amor e comunhão",
+            "Impedir qualquer diálogo",
+            "Substituir o cuidado familiar por acusações"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "O que Hebreus 10:24-25 ensina sobre a vida cristã em comunidade?",
+        opcoes: [
+            "Que devemos abandonar a comunhão",
+            "Que devemos estimular uns aos outros ao amor e às boas obras",
+            "Que a fé deve ser vivida sem relacionamentos",
+            "Que cada pessoa deve cuidar apenas de si"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Segundo Gálatas 6:2, uma forma de expressar o amor cristão é:",
+        opcoes: [
+            "Levar as cargas uns dos outros",
+            "Ignorar o sofrimento alheio",
+            "Julgar sem oferecer ajuda",
+            "Evitar toda responsabilidade comunitária"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "Qual afirmação expressa corretamente o ensino bíblico sobre a proteção divina?",
+        opcoes: [
+            "O cristão nunca enfrentará doença, perseguição ou sofrimento",
+            "A proteção de Deus significa que não precisamos tomar decisões responsáveis",
+            "Deus permanece fiel e sustenta seus filhos, mesmo em meio às dificuldades",
+            "Toda dificuldade é necessariamente uma ação direta do diabo"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "Qual é a esperança final apresentada em Apocalipse 21:1-5?",
+        opcoes: [
+            "A continuidade eterna do sofrimento",
+            "A renovação de todas as coisas e o fim da morte, do pranto e da dor",
+            "A vitória definitiva da injustiça",
+            "O abandono da criação por Deus"
+        ],
+        correta: 1
+    }
+
+];
+
+const letras = ["A", "B", "C", "D"];
+
+const areaQuestoes = document.getElementById("questoes");
+
+perguntas.forEach((q, indice) => {
+
+    const bloco = document.createElement("section");
+    bloco.className = "questao";
+
+    const titulo = document.createElement("h3");
+    titulo.innerHTML =
+        `<span class="numero">QUESTÃO ${String(indice + 1).padStart(2, "0")}</span><br>${q.pergunta}`;
+
+    bloco.appendChild(titulo);
+
+    q.opcoes.forEach((opcao, i) => {
+
+        const label = document.createElement("label");
+        label.className = "alternativa";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = `questao${indice}`;
+        input.value = i;
+        input.addEventListener("change", atualizarProgresso);
+
+        const texto = document.createElement("span");
+        texto.textContent = `${letras[i]}) ${opcao}`;
+
+        label.appendChild(input);
+        label.appendChild(texto);
+
+        bloco.appendChild(label);
+    });
+
+    areaQuestoes.appendChild(bloco);
+});
+
+function atualizarProgresso() {
+
+    const respondidas = perguntas.filter((q, i) =>
+        document.querySelector(`input[name="questao${i}"]:checked`)
+    ).length;
+
+    const percentual = (respondidas / perguntas.length) * 100;
+
+    document.getElementById("barraProgresso").style.width =
+        percentual + "%";
+
+    document.getElementById("progressoTexto").textContent =
+        `${respondidas} de ${perguntas.length} respondidas`;
+}
+
+function finalizarAvaliacao() {
+
+    const nome = document.getElementById("nomeAluno").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo antes de finalizar a avaliação.");
+        document.getElementById("nomeAluno").focus();
+        return;
+    }
+
+    const respondidas = perguntas.filter((q, i) =>
+        document.querySelector(`input[name="questao${i}"]:checked`)
+    ).length;
+
+    if (respondidas < perguntas.length) {
+        const faltam = perguntas.length - respondidas;
+
+        const confirmar = confirm(
+            `Você ainda não respondeu todas as questões.\n\n` +
+            `Respondidas: ${respondidas} de 40.\n` +
+            `Não respondidas: ${faltam}.\n\n` +
+            `Deseja finalizar mesmo assim?`
+        );
+
+        if (!confirmar) return;
+    }
+
+    let acertos = 0;
+    let erros = 0;
+
+    perguntas.forEach((q, i) => {
+
+        const marcada = document.querySelector(
+            `input[name="questao${i}"]:checked`
+        );
+
+        if (marcada && Number(marcada.value) === q.correta) {
+            acertos++;
+        } else {
+            erros++;
+        }
+    });
+
+    const percentual = (acertos / perguntas.length) * 100;
+    const aprovado = percentual >= 70;
+
+    document.getElementById("nomeResultado").textContent = nome;
+    document.getElementById("acertos").textContent = acertos;
+    document.getElementById("erros").textContent = erros;
+    document.getElementById("percentual").textContent =
+        percentual.toFixed(1).replace(".", ",") + "%";
+
+    document.getElementById("notaFinal").textContent =
+        percentual.toFixed(1).replace(".", ",") + "%";
+
+    const mensagem = document.getElementById("mensagemResultado");
+
+    if (aprovado) {
+
+        mensagem.innerHTML =
+            '<span class="aprovado">PARABÉNS! VOCÊ FOI APROVADO!</span><br>' +
+            'Você alcançou o aproveitamento mínimo exigido e está habilitado ' +
+            'a receber o certificado desta aula.';
+
+        document.getElementById("acoesCertificado").style.display = "flex";
+
+        document.getElementById("nomeCertificado").textContent = nome;
+
+        document.getElementById("notaCertificado").textContent =
+            `${acertos}/40 questões — ${percentual.toFixed(1).replace(".", ",")}%`;
+
+        document.getElementById("dataCertificado").textContent =
+            new Date().toLocaleDateString("pt-BR");
+
+        document.getElementById("certificado").style.display = "block";
+
+    } else {
+
+        mensagem.innerHTML =
+            '<span class="reprovado">AVALIAÇÃO NÃO CONCLUÍDA COM APROVAÇÃO.</span><br>' +
+            'É necessário alcançar pelo menos 70% de aproveitamento, ' +
+            'ou seja, 28 acertos. Revise o conteúdo da aula e tente novamente.';
+
+        document.getElementById("acoesCertificado").style.display = "none";
+        document.getElementById("certificado").style.display = "none";
+    }
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function imprimirCertificado() {
+    window.print();
+}
+
+function limparResultado() {
+
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("certificado").style.display = "none";
+    document.getElementById("acoesCertificado").style.display = "none";
+
+    atualizarProgresso();
+}
+
+</script>
+
+</body>
+</html>

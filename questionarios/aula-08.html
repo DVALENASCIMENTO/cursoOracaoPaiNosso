@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Questionário - Aula 08 | Escola Bíblica Atalaia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #102642;
+    --azul-escuro: #09182b;
+    --dourado: #c6a45b;
+    --fundo: #f3f0e8;
+    --texto: #263447;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: var(--fundo);
+    font-family: 'Crimson Text', serif;
+    color: var(--texto);
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: var(--branco);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+    border-top: 7px solid var(--dourado);
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--dourado);
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    color: var(--dourado);
+    margin: 8px 0;
+}
+
+header p {
+    font-size: 18px;
+    margin: 5px;
+}
+
+.instrucoes {
+    background: #f5f1e6;
+    border-left: 4px solid var(--dourado);
+    padding: 15px;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.nome-area {
+    margin-bottom: 25px;
+}
+
+.nome-area label {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.nome-area input {
+    width: 100%;
+    padding: 13px;
+    font-size: 18px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-family: 'Crimson Text', serif;
+}
+
+.questao {
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.questao h3 {
+    color: var(--azul);
+    font-size: 21px;
+    margin-top: 0;
+}
+
+.opcao {
+    display: block;
+    padding: 10px;
+    margin: 7px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 19px;
+    transition: background 0.2s;
+}
+
+.opcao:hover {
+    background: #f1eee5;
+}
+
+.opcao input {
+    margin-right: 10px;
+    accent-color: var(--azul);
+}
+
+button {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px 5px;
+}
+
+button:hover {
+    background: var(--azul-escuro);
+}
+
+#resultado {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    background: #f5f1e6;
+    border: 2px solid var(--dourado);
+}
+
+#resultado h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+}
+
+#certificado {
+    display: none;
+    margin-top: 30px;
+    padding: 35px;
+    text-align: center;
+    border: 10px double var(--dourado);
+    background: #fffdf7;
+    color: var(--azul);
+}
+
+#certificado h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    color: var(--azul);
+}
+
+#certificado h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--dourado);
+}
+
+.nome-certificado {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 25px 0;
+    border-bottom: 1px solid var(--dourado);
+    padding-bottom: 10px;
+}
+
+.assinatura {
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.assinatura strong {
+    display: block;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 18px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    #certificado {
+        padding: 18px;
+    }
+
+    #certificado h1 {
+        font-size: 25px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        box-shadow: none;
+        border: none;
+    }
+
+    header,
+    .instrucoes,
+    .nome-area,
+    #questionario,
+    #resultado,
+    .botoes,
+    .nao-imprimir {
+        display: none !important;
+    }
+
+    #certificado {
+        display: block !important;
+        page-break-inside: avoid;
+        margin: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>Escola Bíblica Atalaia</h1>
+    <h2>Proclamando a Verdade. Formando Discípulos.</h2>
+    <p>Curso: O Pai Nosso</p>
+    <p><strong>Aula 08 — Não nos Deixes Cair em Tentação, mas Livra-nos do Mal</strong></p>
+    <p>Ministério Atalaia</p>
+</header>
+
+<div class="instrucoes">
+    <strong>Instruções:</strong>
+    Responda às 40 questões de múltipla escolha.
+    Cada questão vale 2,5 pontos.
+    A aprovação exige pelo menos 70% de acertos, equivalentes a 28 questões.
+    Preencha seu nome completo antes de iniciar.
+</div>
+
+<div class="nome-area">
+    <label for="nome">Nome completo do aluno:</label>
+    <input type="text" id="nome" placeholder="Digite seu nome completo">
+</div>
+
+<form id="questionario">
+
+<div id="questoes"></div>
+
+<div class="botoes">
+    <button type="button" onclick="corrigir()">Finalizar e Corrigir</button>
+    <button type="reset" onclick="reiniciar()">Limpar Respostas</button>
+</div>
+
+</form>
+
+<div id="resultado"></div>
+
+<div id="certificado">
+    <h2>Escola Bíblica Atalaia</h2>
+    <h1>Certificado de Aprovação</h1>
+
+    <p>Certificamos que</p>
+
+    <div class="nome-certificado" id="nomeAluno"></div>
+
+    <p>concluiu com aproveitamento o questionário da</p>
+
+    <h2>Aula 08 — O Pai Nosso</h2>
+
+    <p>
+        <strong>“Não nos deixes cair em tentação, mas livra-nos do mal.”</strong>
+    </p>
+
+    <p>Mateus 6:13</p>
+
+    <p>
+        Obtendo aprovação na avaliação de conhecimentos,
+        com aproveitamento mínimo de 70%.
+    </p>
+
+    <p id="notaCertificado"></p>
+
+    <div class="assinatura">
+        ______________________________________
+        <strong>Diego Nascimento</strong>
+        Pastor Evangelista
+        <br>
+        Escola Bíblica Atalaia
+    </div>
+
+    <p style="margin-top:30px;">
+        <strong>Ministério Atalaia</strong>
+    </p>
+</div>
+
+<div class="botoes nao-imprimir" id="botoesCertificado" style="display:none;text-align:center;">
+    <button onclick="imprimirCertificado()">Imprimir Certificado</button>
+</div>
+
+</div>
+
+<script>
+const perguntas = [
+{
+q:"Qual é a passagem bíblica que contém a frase “Não nos deixes cair em tentação, mas livra-nos do mal”?",
+a:["Mateus 5:9","Mateus 6:13","Lucas 10:27","João 17:3"],
+c:1
+},
+{
+q:"Qual é o pedido principal apresentado na primeira parte de Mateus 6:13?",
+a:["Que Deus nos dê riquezas","Que Deus nos livre de toda responsabilidade","Que Deus não nos deixe cair em tentação","Que Deus elimine todas as dificuldades"],
+c:2
+},
+{
+q:"Segundo Tiago 1:13, Deus:",
+a:["Tenta as pessoas ao pecado","É tentado pelo mal e tenta os outros","Não tenta ninguém ao mal","Abandona todos os que enfrentam tentações"],
+c:2
+},
+{
+q:"De acordo com Tiago 1:14, a tentação pode surgir:",
+a:["Da própria cobiça ou desejo desordenado","Somente de pessoas externas","Somente de circunstâncias financeiras","Da leitura das Escrituras"],
+c:0
+},
+{
+q:"Segundo Tiago 1:15, quando o desejo pecaminoso é concebido, pode produzir:",
+a:["Santificação automática","Pecado e morte","Sabedoria perfeita","Imunidade espiritual"],
+c:1
+},
+{
+q:"O que Jesus recomendou aos discípulos em Mateus 26:41?",
+a:["Dormir para evitar preocupações","Vigiar e orar para não entrar em tentação","Abandonar a oração","Confiar exclusivamente na própria força"],
+c:1
+},
+{
+q:"Segundo Mateus 26:41, qual é a relação entre espírito e carne?",
+a:["A carne é sempre mais forte","O espírito está pronto, mas a carne é fraca","O espírito não precisa de vigilância","A carne não influencia a vida espiritual"],
+c:1
+},
+{
+q:"Em 1 Coríntios 10:12, Paulo adverte que aquele que pensa estar em pé deve:",
+a:["Desprezar os demais","Vigiar para não cair","Abandonar a comunhão","Evitar toda responsabilidade"],
+c:1
+},
+{
+q:"Segundo 1 Coríntios 10:13, Deus é:",
+a:["Infiel diante das tentações","Fiel e capaz de providenciar escape","Responsável por todo pecado","Indiferente às dificuldades humanas"],
+c:1
+},
+{
+q:"O que 1 Coríntios 10:13 ensina sobre as tentações?",
+a:["São sempre impossíveis de suportar","Deus não permite nenhuma dificuldade","Deus é fiel e providencia meios para suportá-las","O cristão nunca precisa tomar decisões"],
+c:2
+},
+{
+q:"Segundo Hebreus 4:15, Jesus:",
+a:["Foi tentado e pecou","Foi tentado em todas as coisas, mas sem pecado","Nunca enfrentou tentações","Não compreende nossas fraquezas"],
+c:1
+},
+{
+q:"De acordo com Hebreus 4:16, devemos nos aproximar do trono da graça para:",
+a:["Receber misericórdia e encontrar graça e socorro","Exigir prosperidade","Evitar qualquer oração","Julgar os outros"],
+c:0
+},
+{
+q:"Quem tentou Jesus no deserto, conforme Mateus 4:1–11?",
+a:["Pedro","João Batista","O diabo","Herodes"],
+c:2
+},
+{
+q:"Como Jesus respondeu às tentações no deserto?",
+a:["Usando a Palavra de Deus","Fugindo da oração","Aceitando as propostas do tentador","Buscando poder político"],
+c:0
+},
+{
+q:"Qual passagem apresenta a armadura de Deus?",
+a:["Efésios 6:10–18","Gênesis 12:1–3","João 2:1–11","Salmos 23:1–6"],
+c:0
+},
+{
+q:"Segundo Efésios 6:11, a armadura de Deus é necessária para:",
+a:["Conquistar fama","Ficar firme contra as ciladas do diabo","Evitar o trabalho","Dominar outras pessoas"],
+c:1
+},
+{
+q:"De acordo com Efésios 6:12, a luta espiritual não é apenas contra:",
+a:["Pessoas de outras culturas","Carne e sangue","A natureza","As dificuldades financeiras"],
+c:1
+},
+{
+q:"Segundo 1 Pedro 5:8, o cristão deve:",
+a:["Viver distraído","Ser sóbrio e vigilante","Desprezar a oração","Ignorar os perigos espirituais"],
+c:1
+},
+{
+q:"Em 1 Pedro 5:9, qual atitude é recomendada diante do diabo?",
+a:["Resistir firme na fé","Adorar o adversário","Abandonar a comunhão","Viver sem esperança"],
+c:0
+},
+{
+q:"Segundo 1 João 2:16, quais elementos caracterizam o mundo?",
+a:["A oração, a fé e a esperança","A concupiscência da carne, dos olhos e a soberba da vida","A justiça, a misericórdia e a paz","A humildade, a paciência e o amor"],
+c:1
+},
+{
+q:"Qual é a orientação de Gálatas 5:16?",
+a:["Andar segundo a carne","Andar no Espírito","Abandonar a comunhão","Viver sem oração"],
+c:1
+},
+{
+q:"Segundo Gálatas 5:22–23, o fruto do Espírito inclui:",
+a:["Inveja e orgulho","Amor, alegria, paz e domínio próprio","Ódio e vingança","Ganância e arrogância"],
+c:1
+},
+{
+q:"Qual salmo apresenta o pedido para que Deus guarde a boca do salmista?",
+a:["Salmo 141:3","Salmo 1:1","Salmo 150:6","Salmo 8:1"],
+c:0
+},
+{
+q:"Segundo Salmo 119:11, guardar a Palavra no coração ajuda a:",
+a:["Esquecer os mandamentos","Não pecar contra Deus","Evitar toda responsabilidade","Substituir a oração"],
+c:1
+},
+{
+q:"Em Provérbios 4:23, somos instruídos a guardar:",
+a:["Somente os bens materiais","O coração, porque dele procedem as fontes da vida","A reputação acima de tudo","A opinião dos outros"],
+c:1
+},
+{
+q:"Qual personagem bíblico resistiu à tentação sexual apresentada pela esposa de Potifar?",
+a:["Davi","José","Sansão","Salomão"],
+c:1
+},
+{
+q:"Qual foi a atitude de José diante da tentação em Gênesis 39?",
+a:["Permaneceu no lugar e aceitou a proposta","Fugiu da situação","Negociou com o pecado","Abandonou sua fé"],
+c:1
+},
+{
+q:"Segundo Romanos 12:2, o cristão deve:",
+a:["Conformar-se com este mundo","Ser transformado pela renovação da mente","Abandonar o discernimento","Buscar somente reconhecimento"],
+c:1
+},
+{
+q:"Em 2 Timóteo 2:22, Paulo aconselha Timóteo a:",
+a:["Fugir das paixões da mocidade e seguir a justiça, a fé, o amor e a paz","Buscar vingança","Desprezar os irmãos","Evitar toda responsabilidade"],
+c:0
+},
+{
+q:"Segundo Mateus 4:4, Jesus ensina que o ser humano não viverá:",
+a:["Somente de pão, mas de toda palavra que procede de Deus","Somente de riquezas","Somente de trabalho","Somente de conhecimento humano"],
+c:0
+},
+{
+q:"Qual é a orientação de Salmo 19:13?",
+a:["Pedir proteção contra pecados voluntários","Buscar fama","Ignorar os erros","Desprezar os mandamentos"],
+c:0
+},
+{
+q:"Segundo 2 Coríntios 12:9, o poder de Deus se aperfeiçoa:",
+a:["Na força humana independente","Na fraqueza","Na riqueza","Na fama"],
+c:1
+},
+{
+q:"Qual passagem afirma que Deus pode livrar os piedosos da provação?",
+a:["2 Pedro 2:9","Gênesis 1:1","João 2:1","Salmo 150:1"],
+c:0
+},
+{
+q:"Segundo Romanos 8:1, para os que estão em Cristo Jesus:",
+a:["Há condenação permanente","Não há condenação","Não existe necessidade de fé","O pecado não importa"],
+c:1
+},
+{
+q:"Em 1 João 4:4, a vitória dos cristãos é relacionada ao fato de:",
+a:["Serem mais ricos","Aquele que está neles ser maior do que aquele que está no mundo","Nunca enfrentarem dificuldades","Possuírem poder político"],
+c:1
+},
+{
+q:"O que Jesus ensina sobre o maligno em João 17:15?",
+a:["Que os discípulos sejam retirados do mundo","Que sejam guardados do maligno","Que abandonem a fé","Que não tenham comunhão"],
+c:1
+},
+{
+q:"Segundo Colossenses 3:5, os cristãos devem:",
+a:["Mortificar as práticas pecaminosas","Alimentar a cobiça","Buscar vingança","Abandonar a santidade"],
+c:0
+},
+{
+q:"Qual é o sentido de pedir “livra-nos do mal” na oração?",
+a:["Pedir proteção, auxílio e livramento diante do mal","Exigir ausência de qualquer sofrimento","Garantir que nunca haverá dificuldades","Evitar toda responsabilidade pessoal"],
+c:0
+},
+{
+q:"Qual atitude combina com o ensino de Mateus 6:13?",
+a:["Viver sem vigilância","Orar, buscar a Deus e resistir ao mal","Confiar apenas na própria força","Desprezar a Palavra"],
+c:1
+},
+{
+q:"Qual é a conclusão prática desta aula?",
+a:["A oração dispensa a vigilância","A vigilância dispensa a oração","Devemos orar, vigiar, confiar em Deus e resistir ao mal","O cristão nunca enfrenta tentações"],
+c:2
+}
+];
+
+const letras = ["A", "B", "C", "D"];
+
+function carregarQuestoes() {
+    const area = document.getElementById("questoes");
+
+    perguntas.forEach((p, i) => {
+        const div = document.createElement("div");
+        div.className = "questao";
+
+        let html = `<h3>${i + 1}. ${p.q}</h3>`;
+
+        p.a.forEach((alternativa, j) => {
+            html += `
+                <label class="opcao">
+                    <input type="radio" name="q${i}" value="${j}">
+                    <strong>${letras[j]})</strong> ${alternativa}
+                </label>
+            `;
+        });
+
+        div.innerHTML = html;
+        area.appendChild(div);
+    });
+}
+
+function corrigir() {
+    const nome = document.getElementById("nome").value.trim();
+
+    if (!nome) {
+        alert("Por favor, informe seu nome completo.");
+        document.getElementById("nome").focus();
+        return;
+    }
+
+    let acertos = 0;
+    let respondidas = 0;
+
+    perguntas.forEach((p, i) => {
+        const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+
+        if (resposta) {
+            respondidas++;
+
+            if (Number(resposta.value) === p.c) {
+                acertos++;
+            }
+        }
+    });
+
+    if (respondidas < perguntas.length) {
+        const confirmar = confirm(
+            `Você respondeu ${respondidas} de ${perguntas.length} questões. Deseja finalizar mesmo assim?`
+        );
+
+        if (!confirmar) return;
+    }
+
+    const percentual = Math.round((acertos / perguntas.length) * 100);
+    const nota = (acertos / perguntas.length * 100).toFixed(1);
+    const aprovado = percentual >= 70;
+
+    const resultado = document.getElementById("resultado");
+    resultado.style.display = "block";
+
+    resultado.innerHTML = `
+        <h2>Resultado da Avaliação</h2>
+        <p><strong>Aluno:</strong> ${escaparHTML(nome)}</p>
+        <p><strong>Questões respondidas:</strong> ${respondidas} de 40</p>
+        <p><strong>Acertos:</strong> ${acertos} de 40</p>
+        <p><strong>Nota:</strong> ${nota}%</p>
+        <h2>${aprovado ? "APROVADO!" : "NÃO APROVADO"}</h2>
+        <p>
+            ${aprovado
+                ? "Parabéns! Você alcançou o aproveitamento mínimo exigido."
+                : "Você precisa alcançar pelo menos 70% de acertos para obter o certificado."}
+        </p>
+    `;
+
+    const certificado = document.getElementById("certificado");
+    const botoesCertificado = document.getElementById("botoesCertificado");
+
+    if (aprovado) {
+        document.getElementById("nomeAluno").textContent = nome;
+        document.getElementById("notaCertificado").textContent =
+            `Aproveitamento: ${nota}% — ${acertos} acertos de 40 questões.`;
+
+        certificado.style.display = "block";
+        botoesCertificado.style.display = "block";
+    } else {
+        certificado.style.display = "none";
+        botoesCertificado.style.display = "none";
+    }
+
+    resultado.scrollIntoView({ behavior: "smooth" });
+}
+
+function imprimirCertificado() {
+    window.print();
+}
+
+function reiniciar() {
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("certificado").style.display = "none";
+    document.getElementById("botoesCertificado").style.display = "none";
+}
+
+function escaparHTML(texto) {
+    return texto.replace(/[&<>"']/g, function (caractere) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[caractere];
+    });
+}
+
+carregarQuestoes();
+</script>
+
+</body>
+</html>

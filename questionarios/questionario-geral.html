@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário Geral — O Pai Nosso | Escola Bíblica Atalaia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #071b33;
+    --azul-claro: #102d4e;
+    --dourado: #c9a45c;
+    --fundo: #f3f1eb;
+    --texto: #263445;
+    --verde: #216b43;
+    --vermelho: #a52a2a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 25px 15px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 19px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+}
+
+.cabecalho {
+    padding: 35px 20px;
+    text-align: center;
+    color: white;
+    background: var(--azul);
+    border: 4px double var(--dourado);
+}
+
+.cabecalho .marca {
+    color: var(--dourado);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+
+.cabecalho h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 29px;
+    margin: 18px 0 10px;
+}
+
+.cabecalho p {
+    margin: 8px 0;
+}
+
+.cabecalho .identificacao {
+    color: var(--dourado);
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.apresentacao {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f7f4ed;
+    border-left: 5px solid var(--dourado);
+}
+
+.apresentacao h2,
+.grupo-aula h2 {
+    color: var(--azul);
+    font-family: 'Cinzel', serif;
+}
+
+.apresentacao h2 {
+    margin-top: 0;
+    font-size: 21px;
+}
+
+.identificacao-aluno {
+    padding: 22px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    margin: 25px 0;
+}
+
+.identificacao-aluno h2 {
+    color: var(--azul);
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.campo {
+    margin: 17px 0;
+}
+
+.campo label {
+    display: block;
+    color: var(--azul);
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #b9c0c8;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 19px;
+}
+
+.campo input:focus {
+    outline: 2px solid var(--dourado);
+    border-color: var(--dourado);
+}
+
+.aviso {
+    font-size: 16px;
+    color: #66717c;
+    margin-top: 6px;
+}
+
+.progresso-area {
+    margin: 25px 0;
+}
+
+.progresso-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.progresso-fundo {
+    height: 10px;
+    background: #e5e7e9;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progresso-barra {
+    width: 0;
+    height: 100%;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+.grupo-aula {
+    margin: 35px 0;
+}
+
+.grupo-aula h2 {
+    padding: 13px 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    background: #f2efe7;
+    border-left: 4px solid var(--dourado);
+}
+
+.questao {
+    padding: 20px;
+    margin: 16px 0;
+    border: 1px solid #e0e3e6;
+    border-radius: 7px;
+}
+
+.questao h3 {
+    color: var(--azul);
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 0 0 15px;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px;
+    margin: 7px 0;
+    border: 1px solid #e2e5e8;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.alternativa:hover,
+.alternativa.selecionada {
+    background: #f7f4ed;
+    border-color: var(--dourado);
+}
+
+.alternativa input {
+    margin-top: 6px;
+    accent-color: var(--azul);
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px 0;
+}
+
+button {
+    border: 0;
+    border-radius: 5px;
+    padding: 14px 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+.btn-principal {
+    color: white;
+    background: var(--azul);
+}
+
+.btn-secundario {
+    color: var(--azul);
+    background: #e8e8e8;
+}
+
+.resultado {
+    display: none;
+    margin: 30px 0;
+    padding: 25px;
+    text-align: center;
+    background: #fbfaf6;
+    border: 2px solid var(--dourado);
+}
+
+.resultado h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul);
+}
+
+.resultado .nota {
+    color: var(--azul);
+    font-family: 'Cinzel', serif;
+    font-size: 40px;
+    margin: 12px;
+}
+
+.aprovado {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.reprovado {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+/* CERTIFICADO */
+
+.certificado {
+    display: none;
+    position: relative;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 650px;
+    margin: 35px auto;
+    padding: 42px 55px;
+    text-align: center;
+    color: var(--azul);
+    background: #fffefa;
+    border: 10px double var(--dourado);
+    outline: 2px solid var(--azul);
+    outline-offset: -19px;
+}
+
+.certificado .marca {
+    color: var(--dourado);
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-top: 12px;
+}
+
+.certificado h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 39px;
+    margin: 30px 0 5px;
+}
+
+.certificado .subtitulo {
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    letter-spacing: 2px;
+}
+
+.certificado .texto {
+    max-width: 760px;
+    margin: 25px auto;
+    font-size: 22px;
+    line-height: 1.55;
+}
+
+.certificado .nome-aluno {
+    display: inline-block;
+    min-width: 60%;
+    padding: 10px 20px;
+    margin: 12px auto;
+    border-bottom: 1px solid var(--dourado);
+    font-family: 'Cinzel', serif;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.certificado .cpf-certificado {
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+.certificado .dados {
+    margin: 22px auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.assinatura-area {
+    width: 320px;
+    max-width: 90%;
+    margin: 28px auto 15px;
+    text-align: center;
+}
+
+.assinatura-imagem {
+    display: block;
+    width: 230px;
+    height: 95px;
+    object-fit: contain;
+    margin: 0 auto -5px;
+}
+
+.assinatura-linha {
+    width: 100%;
+    border-top: 1px solid var(--azul);
+    margin: 0 auto 7px;
+}
+
+.assinatura-nome {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.assinatura-cargo {
+    font-size: 17px;
+}
+
+.certificado .lema {
+    color: var(--dourado);
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-top: 25px;
+}
+
+.rodape {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 35px;
+    color: #657080;
+    font-size: 16px;
+}
+
+@media(max-width:650px) {
+    body { padding: 10px; }
+    .container { padding: 15px; }
+    .cabecalho h1 { font-size: 22px; }
+    .questao { padding: 14px; }
+    .certificado {
+        min-height: auto;
+        padding: 30px 22px;
+    }
+    .certificado h1 { font-size: 27px; }
+    .certificado .nome-aluno { font-size: 21px; }
+    .certificado .texto { font-size: 18px; }
+}
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 8mm;
+    }
+
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .container,
+    .botoes,
+    .resultado,
+    .rodape {
+        display: none !important;
+    }
+
+    .certificado {
+        display: block !important;
+        width: 100%;
+        max-width: none;
+        min-height: 185mm;
+        margin: 0;
+        padding: 35px 45px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        page-break-inside: avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cabecalho">
+        <div class="marca">MINISTÉRIO ATALAIA</div>
+        <h1>QUESTIONÁRIO GERAL</h1>
+        <p>O Pai Nosso</p>
+        <p>Uma jornada de oração, comunhão e transformação</p>
+        <div class="identificacao">
+            ESCOLA BÍBLICA ATALAIA • AVALIAÇÃO FINAL DO CURSO
+        </div>
+    </header>
+
+    <section class="apresentacao">
+        <h2>Avaliação Geral do Curso</h2>
+        <p>
+            Esta avaliação reúne os principais ensinamentos das 12 aulas
+            do curso <strong>O Pai Nosso</strong>. São 60 questões de múltipla
+            escolha, distribuídas igualmente entre as aulas.
+        </p>
+        <p>
+            Leia atentamente cada questão e selecione apenas uma alternativa.
+            Ao concluir, o sistema apresentará sua pontuação e o resultado.
+        </p>
+        <p>
+            <strong>Critério de aprovação:</strong> mínimo de 70% de acertos,
+            equivalente a 42 questões corretas.
+        </p>
+    </section>
+
+    <section class="identificacao-aluno">
+        <h2>Identificação do aluno</h2>
+
+        <div class="campo">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome completo" autocomplete="name">
+        </div>
+
+        <div class="campo">
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" placeholder="000.000.000-00"
+                   maxlength="14" inputmode="numeric" autocomplete="off">
+            <div class="aviso">Informe os 11 números do seu CPF.</div>
+        </div>
+    </section>
+
+    <div class="progresso-area">
+        <div class="progresso-info">
+            <span>Progresso da avaliação</span>
+            <strong id="contador">0 de 60 respondidas</strong>
+        </div>
+        <div class="progresso-fundo">
+            <div class="progresso-barra" id="barraProgresso"></div>
+        </div>
+    </div>
+
+    <form id="formulario">
+        <div id="areaQuestoes"></div>
+
+        <div class="botoes">
+            <button type="button" class="btn-principal" onclick="finalizarAvaliacao()">
+                Finalizar avaliação
+            </button>
+            <button type="reset" class="btn-secundario" onclick="limparAvaliacao()">
+                Limpar respostas
+            </button>
+        </div>
+    </form>
+
+    <section class="resultado" id="resultado" aria-live="polite"></section>
+
+    <!-- CERTIFICADO -->
+    <section class="certificado" id="certificado">
+
+        <div class="marca">MINISTÉRIO ATALAIA</div>
+
+        <h1>CERTIFICADO</h1>
+        <div class="subtitulo">DE CONCLUSÃO DE CURSO</div>
+
+        <p class="texto">Certificamos que</p>
+
+        <div class="nome-aluno" id="certNome"></div>
+        <div class="cpf-certificado" id="certCPF"></div>
+
+        <p class="texto">
+            concluiu o curso <strong>O PAI NOSSO — Uma jornada de oração,
+            comunhão e transformação</strong>, da Escola Bíblica Atalaia,
+            tendo demonstrado aproveitamento satisfatório na avaliação
+            geral das 12 aulas.
+        </p>
+
+        <div class="dados">
+            <strong>Escola Bíblica Atalaia</strong><br>
+            Aproveitamento: <span id="certNota"></span><br>
+            Resultado: APROVADO(A)<br>
+            Data de emissão: <span id="certData"></span>
+        </div>
+
+        <div class="assinatura-area">
+            <img
+                class="assinatura-imagem"
+                src="../assets/imagens/assinatura-diego-transparente.png"
+                alt="Assinatura de Diego V. Nascimento">
+
+            <div class="assinatura-linha"></div>
+
+            <div class="assinatura-nome">Diego V. Nascimento</div>
+            <div class="assinatura-cargo">Pastor Evangelista</div>
+        </div>
+
+        <div class="lema">
+            PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.
+        </div>
+
+    </section>
+
+    <div class="botoes" id="areaImpressao" style="display:none;">
+        <button type="button" class="btn-principal" onclick="imprimirCertificado()">
+            Imprimir certificado
+        </button>
+    </div>
+
+    <footer class="rodape">
+        <strong>ESCOLA BÍBLICA ATALAIA</strong><br>
+        Ministério Atalaia<br>
+        Proclamando a Verdade. Formando Discípulos.<br><br>
+        © 2026 Editora Atalaia. Todos os direitos reservados.
+    </footer>
+
+</div>
+
+<script>
+const perguntas = [
+
+/* AULA 01 — O CONTEXTO DO PAI NOSSO */
+
+{
+    aula: "Aula 01 — O Contexto do Pai Nosso",
+    pergunta: "Em qual sermão Jesus apresentou o ensino do Pai Nosso registrado em Mateus 6?",
+    alternativas: [
+        "No Sermão do Monte",
+        "No sermão profético do Monte das Oliveiras",
+        "No discurso de despedida",
+        "Na sinagoga de Nazaré"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 01 — O Contexto do Pai Nosso",
+    pergunta: "De acordo com Mateus 6:5, qual comportamento Jesus condenou?",
+    alternativas: [
+        "A oração em família",
+        "A oração feita com humildade",
+        "Orar para ser visto e admirado pelas pessoas",
+        "A intercessão pelos necessitados"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 01 — O Contexto do Pai Nosso",
+    pergunta: "Segundo Mateus 6:6, qual orientação Jesus deu sobre a oração?",
+    alternativas: [
+        "Orar somente nas sinagogas",
+        "Entrar no quarto, fechar a porta e orar ao Pai em secreto",
+        "Orar apenas quando houver uma reunião",
+        "Evitar momentos de silêncio"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 01 — O Contexto do Pai Nosso",
+    pergunta: "O que Jesus ensinou em Mateus 6:7 sobre as repetições na oração?",
+    alternativas: [
+        "Toda oração precisa ser longa",
+        "A repetição de palavras garante a resposta",
+        "Deus só ouve quem usa palavras difíceis",
+        "Não devemos usar repetições vazias, como se muitas palavras obrigassem Deus a responder"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 01 — O Contexto do Pai Nosso",
+    pergunta: "Qual é a principal lição do contexto em que Jesus ensinou o Pai Nosso?",
+    alternativas: [
+        "A oração deve ser sincera e direcionada a Deus, não uma apresentação para os homens",
+        "A oração deve ser feita para receber elogios",
+        "A oração depende de palavras elaboradas",
+        "A oração é desnecessária para quem conhece a Bíblia"
+    ],
+    correta: 0
+},
+
+/* AULA 02 — PAI NOSSO QUE ESTÁS NOS CÉUS */
+
+{
+    aula: "Aula 02 — Pai Nosso que estás nos céus",
+    pergunta: "O que a expressão 'Pai Nosso' revela sobre o relacionamento do cristão com Deus?",
+    alternativas: [
+        "Que Deus é apenas uma força impessoal",
+        "Que Deus é obrigado a realizar todos os desejos humanos",
+        "Que existe relacionamento, pertencimento e comunhão com o Pai",
+        "Que cada pessoa pode viver sem depender de Deus"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 02 — Pai Nosso que estás nos céus",
+    pergunta: "Por que Jesus ensinou a dizer 'Pai Nosso', e não apenas 'Pai meu'?",
+    alternativas: [
+        "Para ensinar que a oração é exclusivamente coletiva",
+        "Para destacar que os discípulos pertencem a uma família e comunidade de fé",
+        "Para impedir a oração individual",
+        "Para ensinar que todos possuem a mesma função na igreja"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 02 — Pai Nosso que estás nos céus",
+    pergunta: "O que a expressão 'que estás nos céus' destaca?",
+    alternativas: [
+        "Que Deus está distante e não se importa conosco",
+        "Que Deus habita somente em edifícios religiosos",
+        "Que Deus não pode ouvir as orações humanas",
+        "A majestade, a transcendência e a autoridade do Pai celestial"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 02 — Pai Nosso que estás nos céus",
+    pergunta: "Em Romanos 8:15, qual expressão está relacionada à adoção dos filhos de Deus?",
+    alternativas: [
+        "Aba, Pai",
+        "Rei dos reis",
+        "Senhor dos exércitos",
+        "Filho de Davi"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 02 — Pai Nosso que estás nos céus",
+    pergunta: "Qual atitude deve acompanhar a confiança de chamar Deus de Pai?",
+    alternativas: [
+        "Ausência de reverência",
+        "Independência espiritual",
+        "Amor, confiança, reverência e obediência",
+        "A exigência de que Deus cumpra todos os nossos planos"
+    ],
+    correta: 2
+},
+
+/* AULA 03 — SANTIFICADO SEJA O TEU NOME */
+
+{
+    aula: "Aula 03 — Santificado seja o Teu nome",
+    pergunta: "O que significa pedir 'Santificado seja o teu nome'?",
+    alternativas: [
+        "Pedir reconhecimento para nosso próprio nome",
+        "Reconhecer, honrar e reverenciar a santidade de Deus",
+        "Solicitar que Deus se torne santo",
+        "Repetir uma expressão sem compreender seu significado"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 03 — Santificado seja o Teu nome",
+    pergunta: "Segundo Êxodo 20:7, qual atitude devemos evitar em relação ao nome de Deus?",
+    alternativas: [
+        "Louvá-lo com sinceridade",
+        "Invocá-lo em oração",
+        "Ensinar seus mandamentos",
+        "Tomar seu nome em vão"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 03 — Santificado seja o Teu nome",
+    pergunta: "Como o cristão também pode honrar o nome de Deus?",
+    alternativas: [
+        "Vivendo de maneira coerente com sua fé e seus ensinamentos",
+        "Buscando somente reconhecimento público",
+        "Usando o nome de Deus para justificar qualquer atitude",
+        "Separando a fé do comportamento diário"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 03 — Santificado seja o Teu nome",
+    pergunta: "Em Mateus 5:16, Jesus ensina que nossas boas obras devem:",
+    alternativas: [
+        "Servir para exaltar nossa própria capacidade",
+        "Ser realizadas somente diante de autoridades",
+        "Levar as pessoas a glorificar o Pai que está nos céus",
+        "Substituir a necessidade de oração"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 03 — Santificado seja o Teu nome",
+    pergunta: "O que Ezequiel 36:23 apresenta sobre o nome de Deus?",
+    alternativas: [
+        "Que o nome de Deus deve ser esquecido",
+        "Que Deus manifesta sua santidade e seu nome diante das nações",
+        "Que a santidade é responsabilidade exclusiva dos sacerdotes",
+        "Que a glória pertence aos governantes"
+    ],
+    correta: 1
+},
+
+/* AULA 04 — VENHA O TEU REINO */
+
+{
+    aula: "Aula 04 — Venha o Teu Reino",
+    pergunta: "O que pedimos quando oramos 'Venha o teu Reino'?",
+    alternativas: [
+        "Que nosso próprio poder seja estabelecido",
+        "Que todos os problemas desapareçam imediatamente",
+        "Que nossa vontade prevaleça sobre a de Deus",
+        "Que o governo e a vontade de Deus se manifestem"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 04 — Venha o Teu Reino",
+    pergunta: "Qual mensagem marcou o início da pregação de Jesus em Marcos 1:15?",
+    alternativas: [
+        "O Reino de Deus está próximo; arrependei-vos e crede no evangelho",
+        "O poder político será a solução para todos",
+        "A riqueza é o sinal definitivo do Reino",
+        "A oração deve ser abandonada"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 04 — Venha o Teu Reino",
+    pergunta: "Segundo Mateus 6:33, o que devemos buscar em primeiro lugar?",
+    alternativas: [
+        "A aprovação das pessoas",
+        "A prosperidade acima de tudo",
+        "O Reino de Deus e a sua justiça",
+        "A posição de destaque na sociedade"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 04 — Venha o Teu Reino",
+    pergunta: "Qual atitude demonstra compromisso com os valores do Reino de Deus?",
+    alternativas: [
+        "Viver somente para os próprios interesses",
+        "Praticar justiça, misericórdia, amor e obediência a Deus",
+        "Buscar domínio sobre outras pessoas",
+        "Ignorar as necessidades do próximo"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 04 — Venha o Teu Reino",
+    pergunta: "De acordo com Romanos 14:17, o Reino de Deus está relacionado a:",
+    alternativas: [
+        "Comida e bebida como prioridade absoluta",
+        "Poder político e riqueza material",
+        "Fama e reconhecimento",
+        "Justiça, paz e alegria no Espírito Santo"
+    ],
+    correta: 3
+},
+
+/* AULA 05 — SEJA FEITA A TUA VONTADE */
+
+{
+    aula: "Aula 05 — Seja feita a Tua vontade",
+    pergunta: "O que significa orar 'Seja feita a tua vontade'?",
+    alternativas: [
+        "Submeter nossos desejos, planos e decisões à vontade de Deus",
+        "Desistir de apresentar pedidos ao Senhor",
+        "Acreditar que nossa vontade é sempre perfeita",
+        "Esperar que Deus aprove qualquer escolha"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 05 — Seja feita a Tua vontade",
+    pergunta: "Qual exemplo Jesus deixou no Getsêmani, conforme Mateus 26:39?",
+    alternativas: [
+        "Recusou-se a conversar com o Pai",
+        "Exigiu que os discípulos decidissem por Ele",
+        "Expressou sua angústia e submeteu-se à vontade do Pai",
+        "Abandonou sua missão"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 05 — Seja feita a Tua vontade",
+    pergunta: "Segundo Romanos 12:2, como podemos discernir a vontade de Deus?",
+    alternativas: [
+        "Imitando todos os costumes do mundo",
+        "Pela renovação da mente e transformação da vida",
+        "Seguindo apenas nossas emoções",
+        "Desconsiderando os ensinamentos bíblicos"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 05 — Seja feita a Tua vontade",
+    pergunta: "Qual passagem ensina que devemos confiar no Senhor e não nos apoiar somente em nosso próprio entendimento?",
+    alternativas: [
+        "Salmo 23:1",
+        "João 11:35",
+        "Gênesis 1:1",
+        "Provérbios 3:5-6"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 05 — Seja feita a Tua vontade",
+    pergunta: "Qual é a relação entre oração e obediência à vontade de Deus?",
+    alternativas: [
+        "A oração deve produzir uma vida disposta a obedecer à Palavra",
+        "A oração substitui a obediência",
+        "A obediência é desnecessária para quem ora",
+        "A vontade de Deus não tem relação com nossas escolhas"
+    ],
+    correta: 0
+},
+
+/* AULA 06 — O PÃO NOSSO DE CADA DIA */
+
+{
+    aula: "Aula 06 — O pão nosso de cada dia",
+    pergunta: "O que o pedido pelo pão de cada dia ensina?",
+    alternativas: [
+        "Que devemos acumular sem limites",
+        "Que não precisamos trabalhar",
+        "Dependência diária de Deus e confiança em sua provisão",
+        "Que a oração deve tratar somente de bens materiais"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 06 — O pão nosso de cada dia",
+    pergunta: "Qual acontecimento do Antigo Testamento ilustra a provisão diária de Deus?",
+    alternativas: [
+        "A construção da torre de Babel",
+        "O maná concedido ao povo de Israel no deserto",
+        "A construção dos muros de Jericó",
+        "A coroação de Davi"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 06 — O pão nosso de cada dia",
+    pergunta: "Em Mateus 6:31-34, Jesus ensina seus discípulos a:",
+    alternativas: [
+        "Viver dominados pela preocupação",
+        "Abandonar suas responsabilidades",
+        "Confiar somente nas riquezas",
+        "Não viver ansiosos, confiando no cuidado do Pai"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 06 — O pão nosso de cada dia",
+    pergunta: "Qual atitude deve acompanhar o recebimento da provisão de Deus?",
+    alternativas: [
+        "Gratidão e responsabilidade no uso dos recursos",
+        "Orgulho e desprezo pelos necessitados",
+        "Desperdício e egoísmo",
+        "Ingratidão e independência"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 06 — O pão nosso de cada dia",
+    pergunta: "Qual princípio de Provérbios 30:8-9 está relacionado ao pedido pelo pão diário?",
+    alternativas: [
+        "Buscar riqueza a qualquer custo",
+        "Recusar toda forma de trabalho",
+        "Pedir sustento adequado, evitando tanto a miséria quanto a arrogância da fartura",
+        "Considerar o dinheiro mais importante que Deus"
+    ],
+    correta: 2
+},
+
+/* AULA 07 — PERDOA AS NOSSAS DÍVIDAS */
+
+{
+    aula: "Aula 07 — Perdoa as nossas dívidas",
+    pergunta: "Na oração do Pai Nosso, a expressão 'dívidas' está relacionada principalmente a:",
+    alternativas: [
+        "Empréstimos financeiros entre pessoas",
+        "Nossas faltas e pecados diante de Deus",
+        "Impostos cobrados pelo governo",
+        "Compromissos profissionais"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 07 — Perdoa as nossas dívidas",
+    pergunta: "Segundo 1 João 1:9, o que Deus faz quando confessamos nossos pecados?",
+    alternativas: [
+        "Ignora toda responsabilidade humana",
+        "Exige que nunca mais oremos",
+        "Rejeita automaticamente quem confessa",
+        "É fiel e justo para perdoar e purificar de toda injustiça"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 07 — Perdoa as nossas dívidas",
+    pergunta: "Qual é a importância do arrependimento na busca pelo perdão?",
+    alternativas: [
+        "Reconhecer o pecado e voltar-se para Deus",
+        "Apenas sentir medo das consequências",
+        "Esconder os erros dos outros",
+        "Transferir sempre a culpa para outra pessoa"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 07 — Perdoa as nossas dívidas",
+    pergunta: "De acordo com Efésios 1:7, a redenção e o perdão dos pecados estão relacionados:",
+    alternativas: [
+        "À capacidade humana de nunca errar",
+        "À quantidade de palavras pronunciadas",
+        "À riqueza da graça de Deus em Cristo",
+        "À aprovação das autoridades"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 07 — Perdoa as nossas dívidas",
+    pergunta: "O que o perdão de Deus deve produzir na vida do cristão?",
+    alternativas: [
+        "Indiferença diante do pecado",
+        "Gratidão, arrependimento e uma vida transformada",
+        "Orgulho espiritual",
+        "Permissão para continuar praticando o mal"
+    ],
+    correta: 1
+},
+
+/* AULA 08 — ASSIM COMO PERDOAMOS */
+
+{
+    aula: "Aula 08 — Assim como perdoamos",
+    pergunta: "Qual relação Jesus apresenta entre o perdão recebido e o perdão concedido?",
+    alternativas: [
+        "Não existe relação entre eles",
+        "Só devemos perdoar quem nunca nos ofendeu",
+        "O perdão é uma forma de obter poder sobre o próximo",
+        "Quem recebeu a misericórdia de Deus deve também agir com misericórdia"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 08 — Assim como perdoamos",
+    pergunta: "Na parábola do credor incompassivo, em Mateus 18:21-35, qual atitude foi condenada?",
+    alternativas: [
+        "Receber perdão e depois recusar misericórdia ao próximo",
+        "Reconhecer uma dívida",
+        "Buscar reconciliação",
+        "Demonstrar compaixão"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 08 — Assim como perdoamos",
+    pergunta: "Segundo Colossenses 3:13, como devemos perdoar uns aos outros?",
+    alternativas: [
+        "Somente quando recebermos uma recompensa",
+        "Apenas quando a pessoa for nossa amiga",
+        "Assim como o Senhor nos perdoou",
+        "Somente quando não houver consequências"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 08 — Assim como perdoamos",
+    pergunta: "O que significa perdoar alguém?",
+    alternativas: [
+        "Afirmar que a injustiça foi correta",
+        "Abandonar o desejo de vingança e entregar a questão a Deus, buscando agir com misericórdia",
+        "Permitir que a pessoa continue praticando violência",
+        "Negar que houve sofrimento"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 08 — Assim como perdoamos",
+    pergunta: "De acordo com Mateus 5:23-24, o que Jesus orienta quando lembramos que alguém tem algo contra nós?",
+    alternativas: [
+        "Ignorar a situação",
+        "Esperar que a outra pessoa resolva tudo",
+        "Falar mal da pessoa",
+        "Buscar reconciliação e tratar a situação com responsabilidade"
+    ],
+    correta: 3
+},
+
+/* AULA 09 — NÃO NOS DEIXES CAIR EM TENTAÇÃO */
+
+{
+    aula: "Aula 09 — Não nos deixes cair em tentação",
+    pergunta: "O que significa pedir a Deus que não nos deixe cair em tentação?",
+    alternativas: [
+        "Reconhecer nossa fragilidade e depender de Deus para permanecer firmes",
+        "Afirmar que o cristão nunca será tentado",
+        "Transferir a responsabilidade de todas as escolhas",
+        "Evitar qualquer responsabilidade pessoal"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 09 — Não nos deixes cair em tentação",
+    pergunta: "Segundo Mateus 26:41, qual orientação Jesus deu aos discípulos?",
+    alternativas: [
+        "Dormir e esquecer os perigos",
+        "Confiar somente na própria força",
+        "Vigiar e orar para não entrar em tentação",
+        "Abandonar a comunhão"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 09 — Não nos deixes cair em tentação",
+    pergunta: "De acordo com Tiago 1:13, Deus:",
+    alternativas: [
+        "Tenta as pessoas para que pequem",
+        "Não pode ser tentado pelo mal e a ninguém tenta",
+        "Aprova todas as tentações",
+        "É responsável pelas escolhas pecaminosas humanas"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 09 — Não nos deixes cair em tentação",
+    pergunta: "O que 1 Coríntios 10:13 ensina sobre as tentações?",
+    alternativas: [
+        "Que somente algumas pessoas são tentadas",
+        "Que a tentação sempre será impossível de suportar",
+        "Que não precisamos procurar uma saída",
+        "Que Deus é fiel e providencia escape para que possamos suportar"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 09 — Não nos deixes cair em tentação",
+    pergunta: "Qual atitude prática ajuda o cristão a resistir à tentação?",
+    alternativas: [
+        "Vigilância, oração, conhecimento da Palavra e afastamento de ocasiões de pecado",
+        "Confiança excessiva em si mesmo",
+        "Aproximação deliberada de situações perigosas",
+        "Desprezo pelos conselhos bíblicos"
+    ],
+    correta: 0
+},
+
+/* AULA 10 — LIVRA-NOS DO MAL */
+
+{
+    aula: "Aula 10 — Livra-nos do mal",
+    pergunta: "O que expressamos ao pedir 'Livra-nos do mal'?",
+    alternativas: [
+        "Que podemos vencer todo mal sem Deus",
+        "Que não existe realidade espiritual",
+        "Que dependemos da proteção e do livramento de Deus",
+        "Que nunca enfrentaremos dificuldades"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 10 — Livra-nos do mal",
+    pergunta: "Segundo Efésios 6:11, o que os cristãos devem vestir?",
+    alternativas: [
+        "As armas e estratégias do mundo",
+        "Toda a armadura de Deus",
+        "A autoridade dos governantes",
+        "A força de sua própria reputação"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 10 — Livra-nos do mal",
+    pergunta: "De acordo com João 17:15, pelo que Jesus orou em favor de seus discípulos?",
+    alternativas: [
+        "Para que fossem retirados imediatamente do mundo",
+        "Para que nunca enfrentassem oposição",
+        "Para que tivessem poder político",
+        "Para que fossem guardados do mal"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 10 — Livra-nos do mal",
+    pergunta: "Qual é a postura adequada diante das dificuldades e do mal?",
+    alternativas: [
+        "Confiar em Deus, permanecer vigilante e agir conforme a Palavra",
+        "Viver dominado pelo medo",
+        "Buscar vingança pessoal",
+        "Abandonar a fé diante das provações"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 10 — Livra-nos do mal",
+    pergunta: "Segundo Tiago 4:7, qual é a orientação para resistir ao diabo?",
+    alternativas: [
+        "Confiar somente na própria força",
+        "Fazer acordos com o mal",
+        "Sujeitar-se a Deus e resistir ao diabo",
+        "Ignorar a necessidade de vigilância"
+    ],
+    correta: 2
+},
+
+/* AULA 11 — TEU É O REINO, O PODER E A GLÓRIA */
+
+{
+    aula: "Aula 11 — Teu é o Reino, o Poder e a Glória",
+    pergunta: "O que a declaração 'Teu é o Reino' reconhece?",
+    alternativas: [
+        "Que o governo humano é eterno",
+        "Que o Reino e o domínio pertencem a Deus",
+        "Que o cristão deve buscar domínio sobre todos",
+        "Que Deus não exerce autoridade"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 11 — Teu é o Reino, o Poder e a Glória",
+    pergunta: "O que significa reconhecer que o poder pertence a Deus?",
+    alternativas: [
+        "Que o ser humano controla todas as coisas",
+        "Que o poder depende da riqueza",
+        "Que a força humana é ilimitada",
+        "Que Deus possui autoridade e poder soberanos"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 11 — Teu é o Reino, o Poder e a Glória",
+    pergunta: "Segundo 1 Crônicas 29:11, a grandeza, o poder, a glória, a vitória e a majestade pertencem:",
+    alternativas: [
+        "Ao Senhor",
+        "Aos reis humanos",
+        "Aos exércitos",
+        "Aos sábios da terra"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 11 — Teu é o Reino, o Poder e a Glória",
+    pergunta: "O que significa dizer 'Amém' ao concluir uma oração?",
+    alternativas: [
+        "Encerrar uma frase sem significado",
+        "Exigir que Deus concorde conosco",
+        "Expressar concordância, confiança e afirmação diante de Deus",
+        "Substituir a fé por uma palavra"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 11 — Teu é o Reino, o Poder e a Glória",
+    pergunta: "Qual deve ser a atitude do cristão diante da glória de Deus?",
+    alternativas: [
+        "Buscar para si toda a honra",
+        "Atribuir a Deus a honra e a glória que lhe pertencem",
+        "Usar o ministério para autopromoção",
+        "Buscar reconhecimento acima da vontade divina"
+    ],
+    correta: 1
+},
+
+/* AULA 12 — APRENDENDO A ORAR COMO JESUS */
+
+{
+    aula: "Aula 12 — Aprendendo a Orar como Jesus",
+    pergunta: "Segundo Marcos 1:35, qual hábito Jesus praticava?",
+    alternativas: [
+        "Orava somente em grandes reuniões",
+        "Evitava momentos de silêncio",
+        "Orava apenas quando estava em dificuldade",
+        "Levantava-se de madrugada e buscava um lugar deserto para orar"
+    ],
+    correta: 3
+},
+{
+    aula: "Aula 12 — Aprendendo a Orar como Jesus",
+    pergunta: "O que Lucas 5:16 revela sobre a vida de oração de Jesus?",
+    alternativas: [
+        "Ele frequentemente se retirava para lugares solitários e orava",
+        "Ele nunca orava sozinho",
+        "Ele orava apenas durante as festas",
+        "Ele considerava a oração desnecessária"
+    ],
+    correta: 0
+},
+{
+    aula: "Aula 12 — Aprendendo a Orar como Jesus",
+    pergunta: "Qual ensinamento está presente em Lucas 18:1?",
+    alternativas: [
+        "Orar somente uma vez por cada necessidade",
+        "Evitar a oração quando houver demora",
+        "Orar sempre e não desanimar",
+        "Orar apenas quando outras pessoas estiverem presentes"
+    ],
+    correta: 2
+},
+{
+    aula: "Aula 12 — Aprendendo a Orar como Jesus",
+    pergunta: "Segundo Filipenses 4:6-7, como devemos apresentar nossas preocupações a Deus?",
+    alternativas: [
+        "Escondendo toda ansiedade",
+        "Com oração, súplicas e ações de graças",
+        "Abandonando a confiança em Deus",
+        "Exigindo respostas imediatas"
+    ],
+    correta: 1
+},
+{
+    aula: "Aula 12 — Aprendendo a Orar como Jesus",
+    pergunta: "Qual deve ser o resultado de uma vida de oração segundo o exemplo de Jesus?",
+    alternativas: [
+        "Uma vida sem responsabilidades",
+        "O controle sobre todas as pessoas",
+        "O reconhecimento público como superior",
+        "Uma comunhão mais profunda com Deus, que transforma atitudes e escolhas"
+    ],
+    correta: 3
+}
+
+];
+
+/* CRIAÇÃO DAS QUESTÕES */
+
+const areaQuestoes = document.getElementById("areaQuestoes");
+
+function criarQuestoes() {
+    let aulaAtual = "";
+
+    perguntas.forEach((questao, indice) => {
+
+        if (questao.aula !== aulaAtual) {
+            aulaAtual = questao.aula;
+
+            const grupo = document.createElement("section");
+            grupo.className = "grupo-aula";
+            grupo.id = "grupo-" + (Math.floor(indice / 5) + 1);
+
+            const titulo = document.createElement("h2");
+            titulo.textContent = questao.aula;
+            grupo.appendChild(titulo);
+
+            areaQuestoes.appendChild(grupo);
+        }
+
+        const grupoAtual = areaQuestoes.lastElementChild;
+
+        const bloco = document.createElement("div");
+        bloco.className = "questao";
+
+        const tituloQuestao = document.createElement("h3");
+        tituloQuestao.textContent = `${indice + 1}. ${questao.pergunta}`;
+        bloco.appendChild(tituloQuestao);
+
+        questao.alternativas.forEach((alternativa, opcao) => {
+
+            const label = document.createElement("label");
+            label.className = "alternativa";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = "questao" + indice;
+            radio.value = opcao;
+
+            radio.addEventListener("change", () => {
+                bloco.querySelectorAll(".alternativa").forEach(item => {
+                    item.classList.remove("selecionada");
+                });
+
+                label.classList.add("selecionada");
+                atualizarProgresso();
+            });
+
+            const texto = document.createElement("span");
+            texto.textContent =
+                String.fromCharCode(65 + opcao) + ") " + alternativa;
+
+            label.appendChild(radio);
+            label.appendChild(texto);
+            bloco.appendChild(label);
+        });
+
+        grupoAtual.appendChild(bloco);
+    });
+}
+
+/* PROGRESSO */
+
+function atualizarProgresso() {
+    let respondidas = 0;
+
+    perguntas.forEach((_, indice) => {
+        if (document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        )) {
+            respondidas++;
+        }
+    });
+
+    document.getElementById("contador").textContent =
+        `${respondidas} de ${perguntas.length} respondidas`;
+
+    document.getElementById("barraProgresso").style.width =
+        (respondidas / perguntas.length * 100) + "%";
+}
+
+/* MÁSCARA DO CPF */
+
+document.getElementById("cpf").addEventListener("input", function() {
+    let valor = this.value.replace(/\D/g, "").slice(0, 11);
+
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    this.value = valor;
+});
+
+/* VALIDAÇÃO DO CPF */
+
+function validarCPF(cpf) {
+    cpf = cpf.replace(/\D/g, "");
+
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+        return false;
+    }
+
+    let soma = 0;
+
+    for (let i = 0; i < 9; i++) {
+        soma += Number(cpf.charAt(i)) * (10 - i);
+    }
+
+    let resto = (soma * 10) % 11;
+    if (resto === 10) resto = 0;
+
+    if (resto !== Number(cpf.charAt(9))) {
+        return false;
+    }
+
+    soma = 0;
+
+    for (let i = 0; i < 10; i++) {
+        soma += Number(cpf.charAt(i)) * (11 - i);
+    }
+
+    resto = (soma * 10) % 11;
+    if (resto === 10) resto = 0;
+
+    return resto === Number(cpf.charAt(10));
+}
+
+/* FINALIZAÇÃO E CORREÇÃO */
+
+function finalizarAvaliacao() {
+    const nome = document.getElementById("nome").value.trim();
+    const cpf = document.getElementById("cpf").value.trim();
+
+    if (nome.length < 5) {
+        alert("Informe seu nome completo.");
+        document.getElementById("nome").focus();
+        return;
+    }
+
+    if (!validarCPF(cpf)) {
+        alert("Informe um CPF válido.");
+        document.getElementById("cpf").focus();
+        return;
+    }
+
+    let respondidas = 0;
+    let acertos = 0;
+
+    perguntas.forEach((questao, indice) => {
+        const resposta = document.querySelector(
+            `input[name="questao${indice}"]:checked`
+        );
+
+        if (resposta) {
+            respondidas++;
+
+            if (Number(resposta.value) === questao.correta) {
+                acertos++;
+            }
+        }
+    });
+
+    if (respondidas < perguntas.length) {
+        const continuar = confirm(
+            `Você respondeu ${respondidas} de 60 questões. Deseja finalizar mesmo assim?`
+        );
+
+        if (!continuar) return;
+    }
+
+    const total = perguntas.length;
+    const percentual = Math.round((acertos / total) * 100);
+    const aprovado = acertos >= 42;
+
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = "";
+    resultado.style.display = "block";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = "Resultado da Avaliação Geral";
+
+    const nota = document.createElement("div");
+    nota.className = "nota";
+    nota.textContent = `${acertos} de ${total}`;
+
+    const aproveitamento = document.createElement("p");
+    aproveitamento.textContent = `Aproveitamento: ${percentual}%`;
+
+    const situacao = document.createElement("p");
+    situacao.className = aprovado ? "aprovado" : "reprovado";
+    situacao.textContent = aprovado
+        ? "PARABÉNS! VOCÊ FOI APROVADO(A)!"
+        : "VOCÊ NÃO ALCANÇOU A NOTA MÍNIMA.";
+
+    const mensagem = document.createElement("p");
+    mensagem.textContent = aprovado
+        ? "Você concluiu a avaliação geral com o aproveitamento exigido. Seu certificado está disponível abaixo."
+        : `Para aprovação são necessários 42 acertos. Você acertou ${acertos} questão(ões).`;
+
+    resultado.append(titulo, nota, aproveitamento, situacao, mensagem);
+
+    const certificado = document.getElementById("certificado");
+    const areaImpressao = document.getElementById("areaImpressao");
+
+    if (aprovado) {
+        document.getElementById("certNome").textContent = nome;
+        document.getElementById("certCPF").textContent = "CPF: " + cpf;
+        document.getElementById("certNota").textContent =
+            `${acertos} de 60 questões (${percentual}%)`;
+
+        document.getElementById("certData").textContent =
+            new Date().toLocaleDateString("pt-BR");
+
+        certificado.style.display = "block";
+        areaImpressao.style.display = "flex";
+    } else {
+        certificado.style.display = "none";
+        areaImpressao.style.display = "none";
+    }
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+/* IMPRESSÃO */
+
+function imprimirCertificado() {
+    window.print();
+}
+
+/* LIMPAR A AVALIAÇÃO */
+
+function limparAvaliacao() {
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("certificado").style.display = "none";
+    document.getElementById("areaImpressao").style.display = "none";
+
+    document.querySelectorAll(".alternativa").forEach(label => {
+        label.classList.remove("selecionada");
+    });
+
+    setTimeout(atualizarProgresso, 0);
+}
+
+/* INICIALIZAÇÃO */
+
+criarQuestoes();
+atualizarProgresso();
+
+</script>
+
+</body>
+</html>

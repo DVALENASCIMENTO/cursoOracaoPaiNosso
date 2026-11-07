@@ -1,0 +1,1678 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aula 08 — Assim como Nós Perdoamos | Escola Bíblica Atalaia</title>
+
+<meta name="description" content="Estudo bíblico aprofundado sobre o perdão ao próximo, com referências bíblicas clicáveis.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --azul: #071b33;
+    --azul-claro: #102d4e;
+    --dourado: #c9a45c;
+    --papel: #fffdf7;
+    --texto: #293443;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #e9edf2;
+    color: var(--texto);
+    font-family: "Crimson Text", Georgia, serif;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+    color: white;
+    text-align: center;
+    padding: 25px 15px 22px;
+    border-bottom: 4px solid var(--dourado);
+}
+
+header .ministerio {
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--dourado);
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(23px, 4vw, 34px);
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 17px;
+    color: #e4e8ed;
+}
+
+.identificacao {
+    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--dourado);
+}
+
+.instrucoes {
+    text-align: center;
+    padding: 15px 10px 5px;
+    color: #536173;
+    font-size: 16px;
+}
+
+.instrucoes strong {
+    color: var(--azul);
+}
+
+.flipbook-area {
+    width: 100%;
+    padding: 20px 12px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.livro {
+    width: min(100%, 850px);
+    min-height: 570px;
+    position: relative;
+    perspective: 1800px;
+}
+
+.pagina {
+    display: none;
+    width: 100%;
+    min-height: 570px;
+    background: var(--papel);
+    border: 1px solid #ded8c9;
+    border-radius: 5px;
+    padding: clamp(25px, 5vw, 55px);
+    box-shadow: 0 12px 35px rgba(0,0,0,.13);
+    animation: aparecer .35s ease;
+    position: relative;
+}
+
+.pagina.ativa {
+    display: block;
+}
+
+@keyframes aparecer {
+    from { opacity: .3; transform: rotateY(-3deg); }
+    to { opacity: 1; transform: rotateY(0); }
+}
+
+.pagina::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--dourado), #ead9b4, var(--dourado));
+    opacity: .75;
+}
+
+.pagina h2 {
+    font-family: "Cinzel", serif;
+    color: var(--azul);
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.pagina h3 {
+    font-family: "Cinzel", serif;
+    font-size: 18px;
+    color: var(--azul-claro);
+    margin: 25px 0 10px;
+}
+
+.pagina h4 {
+    font-size: 19px;
+    color: #8a682e;
+    margin: 18px 0 7px;
+}
+
+.pagina p {
+    font-size: 19px;
+    line-height: 1.65;
+    margin-bottom: 13px;
+    text-align: justify;
+}
+
+.pagina ul,
+.pagina ol {
+    margin: 10px 0 18px 25px;
+}
+
+.pagina li {
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 7px;
+}
+
+.linha-dourada {
+    width: 75px;
+    height: 3px;
+    background: var(--dourado);
+    margin: 15px 0 22px;
+}
+
+.destaque {
+    background: #f4f0e6;
+    border-left: 4px solid var(--dourado);
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.referencia {
+    color: #986d22;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.referencia:hover {
+    color: #c18a28;
+    text-decoration-style: solid;
+}
+
+.capa {
+    min-height: 570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(7,27,51,.94), rgba(7,27,51,.96));
+    color: white;
+    border: 5px double var(--dourado);
+}
+
+.capa::before {
+    display: none;
+}
+
+.capa .marca {
+    color: var(--dourado);
+    font-family: "Cinzel", serif;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-bottom: 45px;
+}
+
+.capa h2 {
+    color: white;
+    font-size: clamp(30px, 6vw, 45px);
+    margin-bottom: 18px;
+}
+
+.capa .subtitulo {
+    max-width: 570px;
+    font-size: 21px;
+    color: #e5e8ec;
+    text-align: center;
+}
+
+.capa .aula {
+    margin-top: 45px;
+    color: var(--dourado);
+    font-family: "Cinzel", serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+
+.capa .escola {
+    margin-top: 55px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #d5dbe2;
+}
+
+.controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 15px 25px;
+}
+
+.controles button {
+    border: none;
+    background: var(--azul);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: .2s;
+}
+
+.controles button:hover {
+    background: var(--azul-claro);
+}
+
+.controles button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+#contador {
+    color: var(--azul);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    min-width: 110px;
+    text-align: center;
+}
+
+.progresso {
+    width: min(500px, 85%);
+    height: 5px;
+    background: #d5dbe2;
+    margin: 0 auto 25px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progresso div {
+    height: 100%;
+    width: 0;
+    background: var(--dourado);
+    transition: width .3s;
+}
+
+footer {
+    background: var(--azul);
+    color: #dce2e9;
+    text-align: center;
+    padding: 22px 12px;
+    border-top: 3px solid var(--dourado);
+    font-size: 15px;
+}
+
+footer strong {
+    color: var(--dourado);
+}
+
+/* POPUP BÍBLICO */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,.72);
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.aberto {
+    display: flex;
+}
+
+.modal-conteudo {
+    width: min(650px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--papel);
+    border-radius: 7px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.35);
+    padding: 25px;
+    position: relative;
+    animation: modalEntrada .25s ease;
+}
+
+@keyframes modalEntrada {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-topo {
+    border-bottom: 2px solid var(--dourado);
+    padding-bottom: 12px;
+    margin-bottom: 17px;
+    padding-right: 35px;
+}
+
+.modal-topo h2 {
+    color: var(--azul);
+    font-family: "Cinzel", serif;
+    font-size: 21px;
+}
+
+.fechar-modal {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    border: none;
+    background: var(--azul);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#textoBiblico {
+    font-size: 19px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+#textoBiblico .versiculo {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.numero-versiculo {
+    color: #9a702c;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.aviso-modal {
+    font-size: 14px;
+    color: #7a8490;
+    margin-top: 18px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+@media (max-width: 600px) {
+    header { padding: 20px 12px; }
+
+    .livro { min-height: 650px; }
+
+    .pagina {
+        min-height: 650px;
+        padding: 28px 23px 45px 28px;
+    }
+
+    .pagina p { font-size: 18px; }
+    .pagina li { font-size: 17px; }
+    .capa { min-height: 650px; }
+
+    .controles { gap: 8px; }
+    .controles button { padding: 11px 15px; }
+    .modal-conteudo { padding: 20px; }
+}
+
+@media print {
+    body { background: white; }
+
+    header,
+    .instrucoes,
+    .controles,
+    .progresso,
+    footer,
+    .modal {
+        display: none !important;
+    }
+
+    .flipbook-area {
+        display: block;
+        padding: 0;
+    }
+
+    .livro { width: 100%; }
+
+    .pagina {
+        display: block !important;
+        min-height: auto;
+        page-break-after: always;
+        box-shadow: none;
+        border: none;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="ministerio">MINISTÉRIO ATALAIA</div>
+    <h1>O Pai Nosso</h1>
+    <p>Uma jornada de oração, comunhão e transformação</p>
+    <div class="identificacao">ESCOLA BÍBLICA ATALAIA • CURSO DE FORMAÇÃO CRISTÃ</div>
+</header>
+
+<div class="instrucoes">
+    <strong>Estudo bíblico interativo</strong><br>
+    Clique nas referências bíblicas sublinhadas para consultar os textos.
+</div>
+
+<main class="flipbook-area">
+<div class="livro" id="livro">
+
+<!-- CAPA -->
+<section class="pagina capa ativa">
+    <div class="marca">ESCOLA BÍBLICA ATALAIA</div>
+    <h2>ASSIM COMO NÓS<br>PERDOAMOS</h2>
+    <div class="linha-dourada"></div>
+    <p class="subtitulo">
+        O perdão recebido de Deus e a responsabilidade
+        de perdoar aqueles que nos ofendem.
+    </p>
+    <div class="aula">AULA 08</div>
+    <div class="escola">PROCLAMANDO A VERDADE. FORMANDO DISCÍPULOS.</div>
+</section>
+
+<!-- PÁGINA 2 -->
+<section class="pagina">
+    <h2>Apresentação do Estudo</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Na oração do Pai Nosso, Jesus nos ensina a pedir perdão a Deus
+        e, ao mesmo tempo, a reconhecer nossa responsabilidade de
+        perdoar aqueles que nos ofendem.
+    </p>
+
+    <p>
+        O perdão ocupa um lugar central na vida cristã. Ele está
+        relacionado à graça de Deus, à obra redentora de Jesus Cristo,
+        ao arrependimento, à restauração da comunhão e à transformação
+        dos relacionamentos.
+    </p>
+
+    <div class="texto-base">
+        <h3>Texto-base</h3>
+        <p><span class="referencia">Mateus 6:12</span></p>
+        <p>
+            “E perdoa-nos as nossas dívidas, assim como nós perdoamos
+            aos nossos devedores.”
+        </p>
+    </div>
+
+    <p>
+        A expressão “assim como nós perdoamos aos nossos devedores”
+        não significa que compramos o perdão divino mediante boas obras.
+        A salvação é pela graça, mediante a fé
+        (<span class="referencia">Efésios 2:8–9</span>).
+    </p>
+
+    <p>
+        Entretanto, aquele que compreende a misericórdia divina é
+        chamado a demonstrar misericórdia ao próximo.
+    </p>
+
+    <div class="destaque">
+        O perdão não é o preço da graça. É uma evidência de que a graça
+        está transformando nosso coração.
+    </div>
+
+    <p>
+        Referências introdutórias:
+        <span class="referencia">Mateus 6:12–15</span>;
+        <span class="referencia">Mateus 18:21–35</span>;
+        <span class="referencia">Marcos 11:25</span>;
+        <span class="referencia">Lucas 11:4</span>;
+        <span class="referencia">Efésios 4:32</span>;
+        <span class="referencia">Colossenses 3:13</span>.
+    </p>
+</section>
+
+<!-- PÁGINA 3 -->
+<section class="pagina">
+    <h2>1. O Significado do Perdão na Oração</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A oração ensinada por Jesus apresenta duas dimensões:
+        o perdão que buscamos diante de Deus e o perdão que devemos
+        conceder ao próximo.
+    </p>
+
+    <p>
+        A expressão “dívidas” representa nossas transgressões diante
+        de Deus. O pecado constitui uma dívida moral e espiritual
+        que não podemos resolver por nossos próprios méritos.
+    </p>
+
+    <p>
+        Jesus também emprega a linguagem das ofensas em
+        <span class="referencia">Lucas 11:4</span>, mostrando que o
+        pedido envolve nossa necessidade de misericórdia e nossa
+        responsabilidade para com aqueles que nos ofendem.
+    </p>
+
+    <h3>O perdão não é apenas um sentimento</h3>
+
+    <p>
+        O perdão é uma atitude espiritual que envolve reconhecer
+        a misericórdia recebida e abandonar o desejo de vingança.
+    </p>
+
+    <h3>Referências bíblicas</h3>
+    <ul>
+        <li><span class="referencia">Mateus 6:12</span> — O pedido de perdão.</li>
+        <li><span class="referencia">Mateus 6:14–15</span> — Perdoar as ofensas.</li>
+        <li><span class="referencia">Lucas 11:4</span> — Perdão e ofensas.</li>
+        <li><span class="referencia">Marcos 11:25</span> — Perdoar durante a oração.</li>
+        <li><span class="referencia">Efésios 4:32</span> — Perdoar como Deus nos perdoou.</li>
+        <li><span class="referencia">Colossenses 3:13</span> — Suportar e perdoar.</li>
+        <li><span class="referencia">Tiago 2:13</span> — A misericórdia triunfa sobre o juízo.</li>
+    </ul>
+
+    <div class="destaque">
+        A oração do Pai Nosso nos ensina que o relacionamento com Deus
+        deve transformar também nossos relacionamentos humanos.
+    </div>
+</section>
+
+<!-- PÁGINA 4 -->
+<section class="pagina">
+    <h2>2. A Necessidade Humana do Perdão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A Bíblia ensina que todos os seres humanos estão sujeitos
+        ao pecado e necessitam da graça divina.
+    </p>
+
+    <p>
+        Em <span class="referencia">Romanos 3:23</span>, Paulo declara
+        que todos pecaram e carecem da glória de Deus.
+    </p>
+
+    <p>
+        O pecado afeta nossa comunhão com Deus, nossa consciência,
+        nossos relacionamentos e nossa maneira de viver.
+        A necessidade do perdão não é exclusiva de pessoas consideradas
+        moralmente más. Todos necessitamos da misericórdia do Senhor.
+    </p>
+
+    <h3>A universalidade do pecado</h3>
+    <ul>
+        <li><span class="referencia">Romanos 3:9–23</span> — Todos estão debaixo do pecado.</li>
+        <li><span class="referencia">Romanos 5:12</span> — O pecado entrou no mundo.</li>
+        <li><span class="referencia">Eclesiastes 7:20</span> — Não há homem que não peque.</li>
+        <li><span class="referencia">Isaías 53:6</span> — Todos nós nos desviamos.</li>
+        <li><span class="referencia">Isaías 59:1–2</span> — O pecado separa o ser humano de Deus.</li>
+        <li><span class="referencia">1 João 1:8–10</span> — A necessidade de reconhecer o pecado.</li>
+    </ul>
+
+    <h3>Reconhecendo nossas transgressões</h3>
+    <ul>
+        <li><span class="referencia">Salmo 32:3–5</span></li>
+        <li><span class="referencia">Salmo 51:1–5</span></li>
+        <li><span class="referencia">Provérbios 28:13</span></li>
+        <li><span class="referencia">Isaías 6:1–7</span></li>
+        <li><span class="referencia">Lucas 18:9–14</span></li>
+        <li><span class="referencia">Romanos 7:18–25</span></li>
+    </ul>
+
+    <div class="destaque">
+        O primeiro passo para experimentar o perdão é reconhecer
+        nossa verdadeira condição diante de Deus.
+    </div>
+</section>
+
+<!-- PÁGINA 5 -->
+<section class="pagina">
+    <h2>3. O Pecado como Dívida Diante de Deus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Na oração do Pai Nosso, Jesus utiliza a linguagem das dívidas
+        para ensinar sobre a necessidade do perdão.
+    </p>
+
+    <p>
+        Uma dívida representa uma obrigação que precisa ser resolvida.
+        Na dimensão espiritual, o pecado constitui uma transgressão
+        contra a santidade e a justiça de Deus.
+    </p>
+
+    <p>
+        A humanidade não possui recursos próprios suficientes para
+        remover a culpa do pecado. A redenção depende da iniciativa
+        graciosa de Deus.
+    </p>
+
+    <h3>A dívida espiritual</h3>
+    <ul>
+        <li><span class="referencia">Mateus 18:23–35</span> — O credor incompassivo.</li>
+        <li><span class="referencia">Lucas 7:36–50</span> — A mulher pecadora e o perdão.</li>
+        <li><span class="referencia">Colossenses 2:13–14</span> — O escrito de dívida cancelado.</li>
+        <li><span class="referencia">Romanos 6:23</span> — O salário do pecado.</li>
+        <li><span class="referencia">Efésios 2:1–9</span> — A salvação pela graça.</li>
+        <li><span class="referencia">Hebreus 9:22</span> — A relação entre perdão e expiação.</li>
+        <li><span class="referencia">1 Pedro 2:24</span> — Cristo levou nossos pecados.</li>
+    </ul>
+
+    <h3>A parábola do credor incompassivo</h3>
+
+    <p>
+        O servo foi perdoado de uma dívida enorme, mas recusou-se
+        a perdoar seu companheiro.
+    </p>
+
+    <p>
+        Jesus confronta a incoerência de quem deseja receber
+        misericórdia, mas não demonstra misericórdia.
+    </p>
+
+    <div class="destaque">
+        A misericórdia recebida deve transformar a maneira como
+        tratamos aqueles que nos devem ou nos ofendem.
+    </div>
+</section>
+
+<!-- PÁGINA 6 -->
+<section class="pagina">
+    <h2>4. Arrependimento: O Caminho para o Perdão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        O perdão bíblico está relacionado ao arrependimento.
+        Arrepender-se não significa apenas sentir tristeza por ter
+        cometido um erro.
+    </p>
+
+    <p>
+        O arrependimento envolve reconhecer o pecado, abandonar
+        a prática pecaminosa e voltar-se para Deus.
+    </p>
+
+    <h3>O chamado ao arrependimento</h3>
+    <ul>
+        <li><span class="referencia">Atos 3:19</span> — Arrepender-se e converter-se.</li>
+        <li><span class="referencia">Salmo 51:1–17</span> — A oração de Davi.</li>
+        <li><span class="referencia">Salmo 32:1–5</span> — Confissão e restauração.</li>
+        <li><span class="referencia">Provérbios 28:13</span> — Confessar e deixar o pecado.</li>
+        <li><span class="referencia">Isaías 55:6–7</span> — Abandonar o caminho perverso.</li>
+        <li><span class="referencia">Ezequiel 18:30–32</span> — Converter-se e viver.</li>
+        <li><span class="referencia">Mateus 3:1–8</span> — Frutos dignos de arrependimento.</li>
+        <li><span class="referencia">Marcos 1:14–15</span> — Arrependimento e fé no evangelho.</li>
+        <li><span class="referencia">Atos 17:30–31</span> — O chamado ao arrependimento.</li>
+        <li><span class="referencia">2 Coríntios 7:9–10</span> — A tristeza segundo Deus.</li>
+    </ul>
+
+    <h3>O exemplo de Davi</h3>
+
+    <p>
+        Davi não tentou justificar sua transgressão. No
+        <span class="referencia">Salmo 51</span>, reconhece seu pecado,
+        clama por misericórdia e pede que o Senhor purifique seu coração.
+    </p>
+
+    <p>
+        Sua oração revela que o verdadeiro arrependimento não busca
+        apenas escapar das consequências. Ele deseja restauração
+        da comunhão com Deus.
+    </p>
+
+    <p>
+        Leia também <span class="referencia">2 Samuel 12:1–13</span>,
+        <span class="referencia">Salmo 51:10–12</span> e
+        <span class="referencia">Salmo 139:23–24</span>.
+    </p>
+</section>
+
+<!-- PÁGINA 7 -->
+<section class="pagina">
+    <h2>5. O Perdão é uma Manifestação da Graça</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A Bíblia ensina que o perdão não é conquistado por mérito humano.
+        Deus toma a iniciativa de reconciliar consigo a humanidade
+        por meio de Jesus Cristo.
+    </p>
+
+    <p>
+        A graça não significa que o pecado deixou de ser importante.
+        Significa que Deus providenciou, em Cristo, o caminho
+        para a redenção.
+    </p>
+
+    <h3>A graça de Deus em Cristo</h3>
+    <ul>
+        <li><span class="referencia">Efésios 1:7</span> — Redenção e perdão pelo sangue de Cristo.</li>
+        <li><span class="referencia">Romanos 3:21–26</span> — A justiça de Deus em Cristo.</li>
+        <li><span class="referencia">João 1:29</span> — Jesus, o Cordeiro de Deus.</li>
+        <li><span class="referencia">João 3:16–17</span> — O amor de Deus e a salvação.</li>
+        <li><span class="referencia">Romanos 5:6–11</span> — Reconciliação mediante Cristo.</li>
+        <li><span class="referencia">2 Coríntios 5:18–21</span> — O ministério da reconciliação.</li>
+        <li><span class="referencia">Efésios 2:4–9</span> — Salvação pela graça.</li>
+        <li><span class="referencia">Colossenses 1:13–14</span> — Redenção e remissão dos pecados.</li>
+        <li><span class="referencia">Hebreus 9:11–14</span> — O sacrifício de Cristo.</li>
+        <li><span class="referencia">1 Pedro 1:18–19</span> — O precioso sangue de Jesus.</li>
+    </ul>
+
+    <div class="destaque">
+        O perdão divino revela a seriedade do pecado e o preço
+        da redenção. A graça nos alcança por meio de Jesus Cristo.
+    </div>
+</section>
+
+<!-- PÁGINA 8 -->
+<section class="pagina">
+    <h2>6. Confissão e Fidelidade de Deus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A confissão é o reconhecimento sincero de nossos pecados
+        diante do Senhor.
+    </p>
+
+    <p>
+        Não confessamos porque Deus desconhece nossas transgressões,
+        mas porque precisamos abandonar a negação e nos posicionar
+        diante da verdade.
+    </p>
+
+    <div class="texto-base">
+        <p><strong>1 João 1:9</strong></p>
+        <p>
+            Deus é fiel e justo para perdoar os pecados e purificar
+            de toda injustiça aqueles que os confessam.
+        </p>
+    </div>
+
+    <h3>Exemplos bíblicos de confissão</h3>
+    <ul>
+        <li><span class="referencia">1 João 1:8–10</span> — Confissão e purificação.</li>
+        <li><span class="referencia">Salmo 32:3–5</span> — Davi confessa seu pecado.</li>
+        <li><span class="referencia">Levítico 5:5–6</span> — Reconhecimento da transgressão.</li>
+        <li><span class="referencia">Números 5:6–7</span> — Confissão e reparação.</li>
+        <li><span class="referencia">Salmo 51:3–4</span> — Reconhecimento da culpa.</li>
+        <li><span class="referencia">Provérbios 28:13</span> — Misericórdia para quem confessa e abandona.</li>
+        <li><span class="referencia">Daniel 9:4–19</span> — Confissão e intercessão.</li>
+        <li><span class="referencia">Esdras 9:5–15</span> — Arrependimento e reconhecimento da culpa.</li>
+        <li><span class="referencia">Neemias 1:4–11</span> — Confissão e oração pela restauração.</li>
+    </ul>
+
+    <div class="destaque">
+        A confissão bíblica não é uma simples formalidade religiosa.
+        Ela deve expressar sinceridade e disposição para abandonar o pecado.
+    </div>
+</section>
+
+<!-- PÁGINA 9 -->
+<section class="pagina">
+    <h2>7. O Perdão Não Autoriza Continuar Pecando</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Uma compreensão equivocada da graça pode levar alguém
+        a pensar que, porque Deus perdoa, não existe necessidade
+        de transformação.
+    </p>
+
+    <p>
+        Paulo confronta diretamente essa ideia em
+        <span class="referencia">Romanos 6:1–2</span>.
+        A graça não deve ser utilizada como justificativa
+        para permanecer deliberadamente no pecado.
+    </p>
+
+    <h3>A transformação do comportamento</h3>
+    <ul>
+        <li><span class="referencia">Romanos 6:1–2</span> — Não permanecer no pecado.</li>
+        <li><span class="referencia">João 5:14</span> — A advertência de Jesus ao homem curado.</li>
+        <li><span class="referencia">1 Coríntios 6:9–11</span> — A transformação dos que foram lavados.</li>
+        <li><span class="referencia">Gálatas 5:16–25</span> — Andar no Espírito.</li>
+        <li><span class="referencia">Efésios 4:17–32</span> — Abandonar a velha maneira de viver.</li>
+        <li><span class="referencia">Colossenses 3:1–10</span> — Revestir-se do novo homem.</li>
+        <li><span class="referencia">Tito 2:11–14</span> — A graça nos ensina a viver piedosamente.</li>
+        <li><span class="referencia">1 Pedro 1:13–16</span> — O chamado à santidade.</li>
+        <li><span class="referencia">1 João 2:1–2</span> — Não pecar, mas reconhecer a provisão de Cristo.</li>
+    </ul>
+
+    <p>
+        O perdão restaura nossa comunhão com Deus e nos chama
+        a uma vida de santidade.
+    </p>
+
+    <div class="destaque">
+        A graça não elimina o chamado à santidade.
+        Pelo contrário, ela nos capacita a viver de maneira diferente.
+    </div>
+</section>
+
+<!-- PÁGINA 10 -->
+<section class="pagina">
+    <h2>8. O Perdão Restaura a Comunhão com Deus</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        O pecado produz culpa, sofrimento espiritual e afastamento
+        da comunhão com Deus. Entretanto, a Bíblia revela que o Senhor
+        é misericordioso e deseja restaurar aqueles que se arrependem.
+    </p>
+
+    <p>
+        O perdão não significa apenas a remoção da culpa.
+        Ele também está relacionado à restauração da comunhão,
+        à renovação interior e à esperança.
+    </p>
+
+    <h3>A misericórdia restauradora de Deus</h3>
+    <ul>
+        <li><span class="referencia">Isaías 1:18</span> — Deus convida à purificação.</li>
+        <li><span class="referencia">Salmo 103:8–12</span> — A grandeza da misericórdia divina.</li>
+        <li><span class="referencia">Miqueias 7:18–19</span> — Deus tem prazer na misericórdia.</li>
+        <li><span class="referencia">Salmo 23:3</span> — Deus restaura a alma.</li>
+        <li><span class="referencia">Salmo 30:1–5</span> — O choro pode durar uma noite.</li>
+        <li><span class="referencia">Salmo 51:10–12</span> — Renovação do coração.</li>
+        <li><span class="referencia">Salmo 85:1–7</span> — Perdão e restauração.</li>
+        <li><span class="referencia">Isaías 44:21–22</span> — Deus apaga as transgressões.</li>
+        <li><span class="referencia">Lucas 15:11–24</span> — A parábola do filho pródigo.</li>
+        <li><span class="referencia">Romanos 5:1–2</span> — Paz com Deus mediante Jesus Cristo.</li>
+    </ul>
+
+    <h3>O filho pródigo</h3>
+
+    <p>
+        O filho reconhece sua condição e retorna ao pai.
+        O pai demonstra compaixão e acolhimento.
+        Essa narrativa nos ajuda a compreender a disposição
+        misericordiosa de Deus para com aqueles que se arrependem.
+    </p>
+</section>
+
+<!-- PÁGINA 11 -->
+<section class="pagina">
+    <h2>9. Jesus Cristo é a Base do Perdão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        O perdão cristão não está fundamentado em sentimentos humanos,
+        tradições religiosas ou esforços pessoais. Ele está fundamentado
+        na obra redentora de Jesus Cristo.
+    </p>
+
+    <p>
+        Na cruz, Jesus levou sobre si nossos pecados e ofereceu
+        sua vida como sacrifício. A morte e a ressurreição de Cristo
+        constituem o fundamento da esperança cristã.
+    </p>
+
+    <h3>A obra redentora de Jesus</h3>
+    <ul>
+        <li><span class="referencia">Hebreus 10:10–14</span> — A oferta de Cristo, uma vez por todas.</li>
+        <li><span class="referencia">João 1:29</span> — O Cordeiro de Deus.</li>
+        <li><span class="referencia">1 Pedro 2:24</span> — Cristo levou nossos pecados.</li>
+        <li><span class="referencia">Isaías 53:4–6</span> — O Servo sofredor.</li>
+        <li><span class="referencia">Mateus 26:26–28</span> — O sangue da aliança.</li>
+        <li><span class="referencia">João 19:28–30</span> — A consumação da obra de Cristo.</li>
+        <li><span class="referencia">Atos 10:42–43</span> — Perdão mediante Jesus.</li>
+        <li><span class="referencia">Romanos 4:23–25</span> — Cristo morreu e ressuscitou.</li>
+        <li><span class="referencia">1 Coríntios 15:3–4</span> — A morte e a ressurreição.</li>
+        <li><span class="referencia">Efésios 5:1–2</span> — Cristo nos amou e se entregou por nós.</li>
+        <li><span class="referencia">Hebreus 9:24–28</span> — Cristo ofereceu-se para tirar os pecados.</li>
+        <li><span class="referencia">Hebreus 10:10–18</span> — A suficiência do sacrifício de Jesus.</li>
+    </ul>
+
+    <div class="destaque">
+        A cruz nos ensina que Deus não ignorou o pecado.
+        Ele providenciou a redenção por meio de seu Filho.
+    </div>
+</section>
+
+<!-- PÁGINA 12 -->
+<section class="pagina">
+    <h2>10. O Perdão Recebido Deve Produzir Gratidão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Quem compreende a grandeza do perdão divino é chamado
+        a viver com gratidão.
+    </p>
+
+    <p>
+        A gratidão não deve ser apenas uma expressão verbal.
+        Ela deve manifestar-se em nossa maneira de viver, servir,
+        amar e tratar as pessoas.
+    </p>
+
+    <h3>Gratidão pela misericórdia</h3>
+    <ul>
+        <li><span class="referencia">Lucas 7:36–50</span> — A mulher que demonstrou grande amor.</li>
+        <li><span class="referencia">1 Timóteo 1:12–16</span> — Paulo reconhece a misericórdia.</li>
+        <li><span class="referencia">Salmo 103:1–5</span> — Bendizer ao Senhor por seus benefícios.</li>
+        <li><span class="referencia">Salmo 116:1–14</span> — Gratidão pela salvação.</li>
+        <li><span class="referencia">Romanos 12:1–2</span> — Apresentar a vida a Deus.</li>
+        <li><span class="referencia">1 Coríntios 6:19–20</span> — Glorificar a Deus com o corpo.</li>
+        <li><span class="referencia">Efésios 5:18–20</span> — Louvor e gratidão.</li>
+        <li><span class="referencia">Colossenses 3:15–17</span> — Viver com gratidão.</li>
+        <li><span class="referencia">Hebreus 12:28</span> — Servir a Deus com reverência.</li>
+    </ul>
+
+    <div class="destaque">
+        O perdão recebido deve produzir uma vida marcada pela
+        misericórdia, pela humildade e pela disposição de servir.
+    </div>
+</section>
+
+<!-- PÁGINA 13 -->
+<section class="pagina">
+    <h2>11. O Perdão ao Próximo</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        Perdoar é uma das manifestações mais importantes do amor cristão.
+        Jesus nos ensina a amar nossos inimigos e a orar por aqueles
+        que nos perseguem.
+    </p>
+
+    <p>
+        Esse ensinamento não é uma aprovação da injustiça.
+        É um chamado para não permitir que a vingança e o ódio
+        dominem nosso coração.
+    </p>
+
+    <h3>O ensino de Jesus</h3>
+    <ul>
+        <li><span class="referencia">Mateus 5:43–48</span> — Amar os inimigos.</li>
+        <li><span class="referencia">Mateus 6:14–15</span> — Perdoar as ofensas.</li>
+        <li><span class="referencia">Mateus 18:21–35</span> — Perdoar sem cultivar vingança.</li>
+        <li><span class="referencia">Marcos 11:25</span> — Perdoar durante a oração.</li>
+        <li><span class="referencia">Lucas 6:27–36</span> — Amar e agir com misericórdia.</li>
+        <li><span class="referencia">Lucas 17:3–4</span> — Repreensão, arrependimento e perdão.</li>
+        <li><span class="referencia">João 13:34–35</span> — Amar como Jesus amou.</li>
+    </ul>
+
+    <h3>O ensino apostólico</h3>
+    <ul>
+        <li><span class="referencia">Romanos 12:17–21</span> — Não retribuir o mal com o mal.</li>
+        <li><span class="referencia">Efésios 4:31–32</span> — Abandonar a amargura e perdoar.</li>
+        <li><span class="referencia">Colossenses 3:12–13</span> — Suportar e perdoar.</li>
+        <li><span class="referencia">1 Tessalonicenses 5:15</span> — Buscar o bem de todos.</li>
+        <li><span class="referencia">1 Pedro 3:8–9</span> — Não retribuir maldição com maldição.</li>
+        <li><span class="referencia">Tiago 3:17–18</span> — A sabedoria do alto produz paz.</li>
+        <li><span class="referencia">1 João 4:7–11</span> — O amor procede de Deus.</li>
+    </ul>
+</section>
+
+<!-- PÁGINA 14 -->
+<section class="pagina">
+    <h2>12. Perdão, Justiça e Reconciliação</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        É necessário compreender que perdão, justiça e reconciliação
+        não são conceitos opostos.
+    </p>
+
+    <p>
+        A Bíblia nos chama a perdoar, mas também nos ensina a praticar
+        a justiça, proteger os vulneráveis e confrontar o pecado.
+    </p>
+
+    <p>
+        O perdão não exige que a vítima negue o sofrimento,
+        abandone seus direitos ou permaneça em uma situação perigosa.
+    </p>
+
+    <p>
+        A reconciliação pode exigir arrependimento verdadeiro,
+        mudança de comportamento, reparação e reconstrução da confiança.
+    </p>
+
+    <h3>Referências para compreender esse equilíbrio</h3>
+    <ul>
+        <li><span class="referencia">Levítico 19:15–18</span> — Justiça e amor ao próximo.</li>
+        <li><span class="referencia">Provérbios 24:24–25</span> — Julgar corretamente.</li>
+        <li><span class="referencia">Isaías 1:16–17</span> — Buscar justiça e proteger o oprimido.</li>
+        <li><span class="referencia">Mateus 18:15–17</span> — Confrontar o pecado com responsabilidade.</li>
+        <li><span class="referencia">Lucas 17:3–4</span> — Repreensão e perdão.</li>
+        <li><span class="referencia">Romanos 12:18–21</span> — Buscar a paz e não praticar vingança.</li>
+        <li><span class="referencia">Efésios 4:15</span> — Falar a verdade em amor.</li>
+        <li><span class="referencia">Gálatas 6:1–2</span> — Restaurar com mansidão.</li>
+        <li><span class="referencia">1 Pedro 3:8–12</span> — Buscar a paz e praticar o bem.</li>
+    </ul>
+
+    <div class="destaque">
+        Perdoar não significa permitir que o mal continue.
+        Em situações de violência ou abuso, é necessário buscar
+        proteção, apoio responsável e ajuda das autoridades competentes.
+    </div>
+</section>
+
+<!-- PÁGINA 15 -->
+<section class="pagina">
+    <h2>13. Como Praticar o Perdão no Cotidiano</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        O perdão deve ser desenvolvido como parte da caminhada cristã.
+        Algumas feridas exigem tempo, oração e acompanhamento.
+    </p>
+
+    <ol>
+        <li>
+            <strong>Examine seu coração.</strong>
+            Peça a Deus que revele ressentimentos e sentimentos
+            de vingança.
+            Referências: <span class="referencia">Salmo 139:23–24</span>;
+            <span class="referencia">1 Coríntios 11:28</span>;
+            <span class="referencia">2 Coríntios 13:5</span>.
+        </li>
+
+        <li>
+            <strong>Reconheça sua própria necessidade de misericórdia.</strong>
+            Referências: <span class="referencia">Romanos 3:23</span>;
+            <span class="referencia">Efésios 2:1–9</span>;
+            <span class="referencia">1 João 1:8–9</span>.
+        </li>
+
+        <li>
+            <strong>Confesse seus próprios pecados.</strong>
+            Não justifique suas transgressões nem transfira toda
+            a responsabilidade.
+            Referências: <span class="referencia">Salmo 32:5</span>;
+            <span class="referencia">Provérbios 28:13</span>.
+        </li>
+
+        <li>
+            <strong>Entregue a Deus sua dor.</strong>
+            Não permita que a vingança governe sua vida.
+            Referências: <span class="referencia">Salmo 55:22</span>;
+            <span class="referencia">Romanos 12:19</span>;
+            <span class="referencia">1 Pedro 5:7</span>.
+        </li>
+
+        <li>
+            <strong>Ore por aqueles que lhe fizeram mal.</strong>
+            Referências: <span class="referencia">Mateus 5:44</span>;
+            <span class="referencia">Lucas 6:27–28</span>.
+        </li>
+
+        <li>
+            <strong>Busque a paz quando for possível e seguro.</strong>
+            Referências: <span class="referencia">Romanos 12:18</span>;
+            <span class="referencia">Efésios 4:15</span>;
+            <span class="referencia">Hebreus 12:14</span>.
+        </li>
+
+        <li>
+            <strong>Caminhe em santidade.</strong>
+            Referências: <span class="referencia">Romanos 6:12–14</span>;
+            <span class="referencia">Tito 2:11–14</span>;
+            <span class="referencia">1 Tessalonicenses 4:3–7</span>.
+        </li>
+    </ol>
+</section>
+
+<!-- PÁGINA 16 -->
+<section class="pagina">
+    <h2>14. A Transformação do Coração</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        O perdão bíblico não deve ser reduzido a uma obrigação exterior.
+        Deus deseja transformar nosso coração, nossas atitudes e
+        nossa maneira de tratar as pessoas.
+    </p>
+
+    <p>
+        Em <span class="referencia">Ezequiel 36:26</span>, o Senhor
+        promete dar um coração novo e um espírito novo.
+        Essa promessa aponta para a obra de transformação realizada
+        por Deus em seu povo.
+    </p>
+
+    <p>
+        A vida cristã é marcada pela renovação da mente e pela
+        ação do Espírito Santo.
+    </p>
+
+    <h3>Referências complementares</h3>
+    <ul>
+        <li><span class="referencia">Ezequiel 36:25–27</span></li>
+        <li><span class="referencia">Jeremias 31:31–34</span></li>
+        <li><span class="referencia">Romanos 12:1–2</span></li>
+        <li><span class="referencia">2 Coríntios 3:17–18</span></li>
+        <li><span class="referencia">Gálatas 5:22–23</span></li>
+        <li><span class="referencia">Efésios 5:1–2</span></li>
+        <li><span class="referencia">Filipenses 2:1–5</span></li>
+        <li><span class="referencia">Colossenses 3:12–15</span></li>
+        <li><span class="referencia">1 Pedro 1:22–23</span></li>
+    </ul>
+
+    <div class="destaque">
+        O perdão não é apenas uma atitude isolada.
+        Ele faz parte da formação do caráter de Cristo em nós.
+    </div>
+</section>
+
+<!-- PÁGINA 17 -->
+<section class="pagina">
+    <h2>15. Conclusão</h2>
+    <div class="linha-dourada"></div>
+
+    <p>
+        A expressão “assim como nós perdoamos aos nossos devedores”
+        nos confronta com uma verdade essencial da vida cristã.
+    </p>
+
+    <p>
+        Não podemos compreender plenamente a misericórdia de Deus
+        e permanecer indiferentes à necessidade de misericórdia
+        em nossos relacionamentos.
+    </p>
+
+    <h3>Verdades fundamentais deste estudo</h3>
+    <ul>
+        <li>Todos necessitamos do perdão de Deus.</li>
+        <li>O perdão é concedido pela graça mediante a obra de Jesus Cristo.</li>
+        <li>O arrependimento envolve reconhecer e abandonar o pecado.</li>
+        <li>A confissão deve ser sincera.</li>
+        <li>O perdão não é autorização para continuar pecando.</li>
+        <li>Perdoar não significa aprovar a injustiça.</li>
+        <li>A reconciliação exige verdade, responsabilidade e segurança.</li>
+        <li>O cristão deve abandonar a vingança e buscar a paz.</li>
+        <li>A misericórdia recebida deve ser demonstrada ao próximo.</li>
+    </ul>
+
+    <p>
+        A cruz de Cristo é o maior exemplo de amor, misericórdia
+        e perdão.
+    </p>
+
+    <div class="destaque">
+        Que o Senhor nos conceda um coração humilde, disposto a
+        reconhecer nossas próprias falhas e a tratar os outros com
+        a mesma misericórdia que recebemos de Deus.
+    </div>
+
+    <h3>Oração final</h3>
+
+    <p>
+        Pai, nós te agradecemos porque, por meio de Jesus Cristo,
+        recebemos o perdão dos nossos pecados.
+    </p>
+
+    <p>
+        Reconhecemos que muitas vezes somos feridos e temos
+        dificuldade de perdoar.
+    </p>
+
+    <p>
+        Pedimos que o Senhor cure nosso coração, retire de nós
+        a amargura e nos ensine a agir com misericórdia.
+    </p>
+
+    <p>
+        Ajuda-nos a perdoar como fomos perdoados, sem abandonar
+        a verdade, a justiça e a sabedoria da tua Palavra.
+    </p>
+
+    <p>
+        Que nossos relacionamentos sejam transformados pelo amor
+        de Cristo. Em nome de Jesus. Amém.
+    </p>
+</section>
+
+<!-- PÁGINA 18 -->
+<section class="pagina">
+    <h2>16. Questões de Reflexão</h2>
+    <div class="linha-dourada"></div>
+
+    <div class="questionario">
+        <ol>
+            <li>O que Jesus ensina em Mateus 6:12 sobre o perdão?</li>
+            <li>Qual é a relação entre o perdão recebido de Deus e o perdão oferecido ao próximo?</li>
+            <li>O que aprendemos com a parábola do credor incompassivo?</li>
+            <li>Qual é a diferença entre arrependimento verdadeiro e simples remorso?</li>
+            <li>Por que o perdão não pode ser conquistado por mérito humano?</li>
+            <li>Como a obra de Jesus Cristo torna possível o perdão dos pecados?</li>
+            <li>O perdão significa que devemos aceitar a continuidade de uma situação injusta?</li>
+            <li>Qual é a diferença entre perdão e reconciliação?</li>
+            <li>Como podemos lidar biblicamente com a amargura e o desejo de vingança?</li>
+            <li>Que atitude prática você precisa tomar para viver o ensino desta aula?</li>
+        </ol>
+    </div>
+
+    <h3>Desafio espiritual — 7 dias</h3>
+    <ol>
+        <li>Leia <span class="referencia">Mateus 6:12–15</span> diariamente.</li>
+        <li>Medite em <span class="referencia">Efésios 4:31–32</span>.</li>
+        <li>Ore pedindo a Deus que examine seu coração.</li>
+        <li>Reconheça diante do Senhor qualquer ressentimento.</li>
+        <li>Ore por sabedoria, cura e libertação da amargura.</li>
+        <li>Busque uma atitude de paz quando isso for possível e seguro.</li>
+        <li>Pratique a misericórdia em seus relacionamentos.</li>
+    </ol>
+
+    <h3>Versículo para memorizar</h3>
+    <div class="destaque">
+        “Antes, sede uns para com os outros benignos, misericordiosos,
+        perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.”
+        <br><br>
+        <strong>Efésios 4:32</strong>
+    </div>
+</section>
+
+<!-- PÁGINA 19 -->
+<section class="pagina">
+    <h2>17. Quadro de Referências Bíblicas</h2>
+    <div class="linha-dourada"></div>
+
+    <ul>
+        <li><strong>O ensino do Pai Nosso:</strong> <span class="referencia">Mateus 6:12–15</span>; <span class="referencia">Lucas 11:4</span>.</li>
+        <li><strong>A necessidade do perdão:</strong> <span class="referencia">Romanos 3:23</span>; <span class="referencia">Isaías 59:1–2</span>.</li>
+        <li><strong>Arrependimento:</strong> <span class="referencia">Salmo 51</span>; <span class="referencia">Atos 3:19</span>; <span class="referencia">Provérbios 28:13</span>.</li>
+        <li><strong>Graça e redenção:</strong> <span class="referencia">Efésios 1:7</span>; <span class="referencia">Efésios 2:8–9</span>; <span class="referencia">Colossenses 1:13–14</span>.</li>
+        <li><strong>Confissão:</strong> <span class="referencia">Salmo 32:5</span>; <span class="referencia">1 João 1:8–9</span>.</li>
+        <li><strong>Perdão e transformação:</strong> <span class="referencia">Romanos 6:1–14</span>; <span class="referencia">Tito 2:11–14</span>.</li>
+        <li><strong>Misericórdia divina:</strong> <span class="referencia">Salmo 103:8–12</span>; <span class="referencia">Miqueias 7:18–19</span>.</li>
+        <li><strong>Sacrifício de Cristo:</strong> <span class="referencia">Isaías 53:4–6</span>; <span class="referencia">Hebreus 10:10–14</span>.</li>
+        <li><strong>Perdão ao próximo:</strong> <span class="referencia">Mateus 18:21–35</span>; <span class="referencia">Efésios 4:32</span>; <span class="referencia">Colossenses 3:13</span>.</li>
+        <li><strong>Justiça e reconciliação:</strong> <span class="referencia">Romanos 12:17–21</span>; <span class="referencia">Mateus 18:15–17</span>.</li>
+        <li><strong>Gratidão:</strong> <span class="referencia">Salmo 103:1–5</span>; <span class="referencia">Colossenses 3:15–17</span>.</li>
+        <li><strong>Santidade:</strong> <span class="referencia">Gálatas 5:16–25</span>; <span class="referencia">1 Pedro 1:13–16</span>.</li>
+    </ul>
+
+    <div class="destaque">
+        Consulte as referências bíblicas, compare os textos e permita
+        que as Escrituras orientem sua compreensão do perdão.
+    </div>
+</section>
+
+<!-- PÁGINA 20 -->
+<section class="pagina">
+    <h2>Próxima Aula</h2>
+    <div class="linha-dourada"></div>
+
+    <h3>AULA 09</h3>
+    <h2>E Não Nos Deixes Cair em Tentação</h2>
+
+    <p>
+        Na próxima aula, estudaremos o pedido de Jesus relacionado
+        à tentação, à vigilância espiritual e à dependência de Deus
+        diante das provações.
+    </p>
+
+    <h3>Texto-base</h3>
+    <p><span class="referencia">Mateus 6:13</span></p>
+
+    <div class="destaque">
+        “E não nos deixes cair em tentação, mas livra-nos do mal.”
+    </div>
+
+    <p>
+        Continue estudando as Escrituras, consultando as referências
+        bíblicas e desenvolvendo uma vida de oração fundamentada
+        na Palavra de Deus.
+    </p>
+
+    <div style="text-align:center; margin-top:55px;">
+        <p style="font-family:'Cinzel',serif; color:#9a702c; font-size:16px;">
+            ESCOLA BÍBLICA ATALAIA
+        </p>
+        <p style="font-size:15px; text-align:center;">
+            Proclamando a Verdade. Formando Discípulos.
+        </p>
+    </div>
+</section>
+
+</div>
+</main>
+
+<div class="progresso">
+    <div id="barraProgresso"></div>
+</div>
+
+<nav class="controles">
+    <button id="anterior" onclick="mudarPagina(-1)">&#8592; Anterior</button>
+    <span id="contador">Página 1</span>
+    <button id="proxima" onclick="mudarPagina(1)">Próxima &#8594;</button>
+</nav>
+
+<footer>
+    <p><strong>MINISTÉRIO ATALAIA</strong></p>
+    <p>Escola Bíblica Atalaia — Curso O Pai Nosso</p>
+    <p>Proclamando a Verdade. Formando Discípulos.</p>
+</footer>
+
+<!-- POPUP BÍBLICO -->
+<div class="modal" id="modalBiblia" onclick="fecharSeFora(event)">
+    <div class="modal-conteudo">
+        <button class="fechar-modal" onclick="fecharBiblia()" aria-label="Fechar">×</button>
+
+        <div class="modal-topo">
+            <h2 id="tituloReferencia">Texto bíblico</h2>
+        </div>
+
+        <div id="textoBiblico">Carregando texto bíblico...</div>
+
+        <div class="aviso-modal">
+            Texto bíblico consultado pela API Bible. É necessária conexão com a internet.
+        </div>
+    </div>
+</div>
+
+<script>
+/* ==========================================
+   NAVEGAÇÃO DO FLIPBOOK
+========================================== */
+
+const paginas = document.querySelectorAll(".pagina");
+const contador = document.getElementById("contador");
+const botaoAnterior = document.getElementById("anterior");
+const botaoProxima = document.getElementById("proxima");
+const barraProgresso = document.getElementById("barraProgresso");
+
+let paginaAtual = 0;
+
+function atualizarFlipbook() {
+    paginas.forEach((pagina, indice) => {
+        pagina.classList.toggle("ativa", indice === paginaAtual);
+    });
+
+    contador.textContent = `Página ${paginaAtual + 1} de ${paginas.length}`;
+
+    botaoAnterior.disabled = paginaAtual === 0;
+    botaoProxima.disabled = paginaAtual === paginas.length - 1;
+
+    barraProgresso.style.width =
+        ((paginaAtual + 1) / paginas.length * 100) + "%";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function mudarPagina(direcao) {
+    const novaPagina = paginaAtual + direcao;
+
+    if (novaPagina >= 0 && novaPagina < paginas.length) {
+        paginaAtual = novaPagina;
+        atualizarFlipbook();
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (modalBiblia.classList.contains("aberto")) {
+        if (event.key === "Escape") fecharBiblia();
+        return;
+    }
+
+    if (event.key === "ArrowRight") mudarPagina(1);
+    if (event.key === "ArrowLeft") mudarPagina(-1);
+});
+
+atualizarFlipbook();
+
+/* ==========================================
+   REFERÊNCIAS BÍBLICAS CLICÁVEIS
+========================================== */
+
+const modalBiblia = document.getElementById("modalBiblia");
+const tituloReferencia = document.getElementById("tituloReferencia");
+const textoBiblico = document.getElementById("textoBiblico");
+
+document.querySelectorAll(".referencia").forEach(elemento => {
+    elemento.setAttribute("role", "button");
+    elemento.setAttribute("tabindex", "0");
+    elemento.setAttribute("title", "Clique para consultar o texto bíblico");
+
+    elemento.addEventListener("click", function() {
+        consultarBiblia(this.textContent.trim());
+    });
+
+    elemento.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            consultarBiblia(this.textContent.trim());
+        }
+    });
+});
+
+/* ==========================================
+   LIVROS BÍBLICOS — PORTUGUÊS PARA INGLÊS
+========================================== */
+
+const livrosBiblia = {
+    "gênesis":"Genesis","genesis":"Genesis",
+    "êxodo":"Exodus","exodo":"Exodus",
+    "levítico":"Leviticus","levitico":"Leviticus",
+    "números":"Numbers","numeros":"Numbers",
+    "deuteronômio":"Deuteronomy","deuteronomio":"Deuteronomy",
+    "josué":"Joshua","josue":"Joshua",
+    "juízes":"Judges","juizes":"Judges",
+    "rute":"Ruth",
+    "1 samuel":"1 Samuel","2 samuel":"2 Samuel",
+    "1 reis":"1 Kings","2 reis":"2 Kings",
+    "1 crônicas":"1 Chronicles","1 cronicas":"1 Chronicles",
+    "2 crônicas":"2 Chronicles","2 cronicas":"2 Chronicles",
+    "esdras":"Ezra","neemias":"Nehemiah","ester":"Esther",
+    "jó":"Job","jo":"Job",
+    "salmos":"Psalms","salmo":"Psalms",
+    "provérbios":"Proverbs","proverbios":"Proverbs",
+    "eclesiastes":"Ecclesiastes",
+    "cantares":"Song of Solomon","cânticos":"Song of Solomon",
+    "isaias":"Isaiah","isaías":"Isaiah",
+    "jeremias":"Jeremiah",
+    "lamentações":"Lamentations","lamentacoes":"Lamentations",
+    "ezequiel":"Ezekiel","daniel":"Daniel",
+    "oseias":"Hosea","oséias":"Hosea",
+    "joel":"Joel","amós":"Amos","amos":"Amos",
+    "obadias":"Obadiah","jonas":"Jonah",
+    "miqueias":"Micah","miquéias":"Micah",
+    "naum":"Nahum","habacuque":"Habakkuk",
+    "sofonias":"Zephaniah","ageu":"Haggai",
+    "zacarias":"Zechariah","malaquias":"Malachi",
+    "mateus":"Matthew","marcos":"Mark","lucas":"Luke",
+    "joão":"John","joao":"John","atos":"Acts",
+    "romanos":"Romans",
+    "1 coríntios":"1 Corinthians","1 corintios":"1 Corinthians",
+    "2 coríntios":"2 Corinthians","2 corintios":"2 Corinthians",
+    "gálatas":"Galatians","galatas":"Galatians",
+    "efésios":"Ephesians","efesios":"Ephesians",
+    "filipenses":"Philippians","colossenses":"Colossians",
+    "1 tessalonicenses":"1 Thessalonians",
+    "2 tessalonicenses":"2 Thessalonians",
+    "1 timóteo":"1 Timothy","1 timoteo":"1 Timothy",
+    "2 timóteo":"2 Timothy","2 timoteo":"2 Timothy",
+    "tito":"Titus","filemom":"Philemon","hebreus":"Hebrews",
+    "tiago":"James","1 pedro":"1 Peter","2 pedro":"2 Peter",
+    "1 joão":"1 John","1 joao":"1 John",
+    "2 joão":"2 John","2 joao":"2 John",
+    "3 joão":"3 John","3 joao":"3 John",
+    "judas":"Jude","apocalipse":"Revelation"
+};
+
+/* ==========================================
+   NORMALIZAR REFERÊNCIA
+========================================== */
+
+function normalizarReferencia(referencia) {
+    referencia = referencia
+        .replace(/[–—−]/g, "-")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const resultado = referencia.match(/^(.+?)\s+(\d+)(?::([\d,-]+))?$/);
+
+    if (!resultado) {
+        throw new Error("Formato de referência não reconhecido.");
+    }
+
+    const nomeLivro = resultado[1].trim().toLowerCase();
+    const capitulo = resultado[2];
+    const versiculos = resultado[3] || null;
+
+    const livroIngles = livrosBiblia[nomeLivro];
+
+    if (!livroIngles) {
+        throw new Error("Livro bíblico não reconhecido: " + nomeLivro);
+    }
+
+    return {
+        livro: livroIngles,
+        capitulo: capitulo,
+        versiculos: versiculos
+    };
+}
+
+/* ==========================================
+   CONSULTAR BÍBLIA
+========================================== */
+
+async function buscarCapitulo(livro, capitulo, versiculos = null) {
+    let referencia = `${livro} ${capitulo}`;
+
+    if (versiculos) {
+        referencia += `:${versiculos}`;
+    }
+
+    const url =
+        "https://bible-api.com/" +
+        encodeURIComponent(referencia) +
+        "?translation=almeida";
+
+    const resposta = await fetch(url);
+
+    if (!resposta.ok) {
+        throw new Error("Não foi possível consultar a referência.");
+    }
+
+    const dados = await resposta.json();
+
+    if (!dados.verses || !Array.isArray(dados.verses)) {
+        throw new Error("A API não retornou os versículos.");
+    }
+
+    return dados;
+}
+
+/* ==========================================
+   EXIBIR TEXTO BÍBLICO NO POPUP
+========================================== */
+
+async function consultarBiblia(referencia) {
+    modalBiblia.classList.add("aberto");
+    tituloReferencia.textContent = referencia;
+    textoBiblico.textContent = "Carregando texto bíblico...";
+
+    try {
+        const dadosReferencia = normalizarReferencia(referencia);
+        const resultados = [];
+
+        if (
+            !dadosReferencia.versiculos &&
+            dadosReferencia.capitulo.includes("-")
+        ) {
+            const partes = dadosReferencia.capitulo.split("-");
+            const inicio = Number(partes[0]);
+            const fim = Number(partes[1]);
+
+            if (
+                !Number.isInteger(inicio) ||
+                !Number.isInteger(fim) ||
+                fim < inicio ||
+                fim - inicio > 10
+            ) {
+                throw new Error("Intervalo de capítulos inválido.");
+            }
+
+            for (let cap = inicio; cap <= fim; cap++) {
+                const dados = await buscarCapitulo(
+                    dadosReferencia.livro,
+                    cap
+                );
+                resultados.push(dados);
+            }
+        } else {
+            const dados = await buscarCapitulo(
+                dadosReferencia.livro,
+                dadosReferencia.capitulo,
+                dadosReferencia.versiculos
+            );
+            resultados.push(dados);
+        }
+
+        textoBiblico.innerHTML = "";
+
+        resultados.forEach(dados => {
+            if (dados.reference) {
+                const subtitulo = document.createElement("h3");
+                subtitulo.textContent = dados.reference;
+                subtitulo.style.cssText =
+                    "font-family:Cinzel,serif;color:#102d4e;font-size:16px;margin:15px 0;";
+                textoBiblico.appendChild(subtitulo);
+            }
+
+            dados.verses.forEach(versiculo => {
+                const linha = document.createElement("p");
+                linha.className = "versiculo";
+
+                const numero = document.createElement("strong");
+                numero.className = "numero-versiculo";
+                numero.textContent = versiculo.verse + ".";
+
+                const texto = document.createTextNode(
+                    " " + versiculo.text.trim()
+                );
+
+                linha.appendChild(numero);
+                linha.appendChild(texto);
+                textoBiblico.appendChild(linha);
+            });
+        });
+
+        const identificacao = document.createElement("p");
+        identificacao.style.cssText =
+            "margin-top:20px;padding-top:12px;border-top:1px solid #ddd;font-size:13px;color:#777;";
+        identificacao.textContent =
+            "Texto consultado pela API Bible. Tradução disponibilizada pelo serviço.";
+        textoBiblico.appendChild(identificacao);
+
+    } catch (erro) {
+        console.error("Erro na consulta bíblica:", erro);
+
+        textoBiblico.textContent =
+            "Não foi possível carregar os versículos desta referência. " +
+            "Verifique sua conexão com a internet e tente novamente. " +
+            "Referência: " + referencia;
+    }
+}
+
+/* ==========================================
+   FECHAR POPUP
+========================================== */
+
+function fecharBiblia() {
+    modalBiblia.classList.remove("aberto");
+}
+
+function fecharSeFora(event) {
+    if (event.target === modalBiblia) {
+        fecharBiblia();
+    }
+}
+</script>
+
+</body>
+</html>
